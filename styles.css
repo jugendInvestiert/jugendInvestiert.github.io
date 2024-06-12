@@ -1,0 +1,79 @@
+body {
+    background-image: url('background.jpg');
+    font-family: "Roboto", Arial, sans-serif;
+}
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #333; /* Example background color */
+    color: #fff; /* Example text color */
+    padding: 10px; /* Example padding */
+    text-align: center; /* Example text alignment */
+}
+h1, h3, p, h2 {
+    margin: 10px;
+}
+/* styles.css */
+
+header {
+    display: flex;
+    align-items: center;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 100px; /* Adjust the width as needed */
+    height: auto;
+    margin-right: 10px; /* Add spacing between logo and title */
+}
+h1 {
+    font-size: 3em; /* Adjust the font size as needed */
+}
+.content-container {
+    position: center;
+    top: 50%;
+    left: 50%;
+    background-color: rgba(255, 255, 255, 0.7); /* Example background color with opacity */
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    width: 30%;
+    min-width: 200px; /* Minimum width */
+    max-width: 200px; /* Maximum width */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding-bottom: 200px;
+}
+.content-container img {
+    width: 170px; /* Adjust the width as needed */
+    height: auto; /* Maintain aspect ratio */
+}
+.wide-container {
+    width: 90%; /* Adjust the width as needed */
+    max-width: 1200px; /* Set a maximum width to maintain readability */
+    margin: 0 auto; /* Center the container horizontally */
+    padding: 20px; /* Add padding to the container */
+    background-color: #f2f2f2; /* Example background color */
+    border-radius: 10px; /* Add rounded corners to the container */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 1); /* Add a shadow for depth */
+    overflow-y: auto; /* Enable vertical scrolling */
+    padding-bottom: 70px; /* Add padding to the bottom */
+}
+a {
+    color: black; /* Set the color of links */
+}
+.wide-container img {
+    max-width: 100%; /* Ensure images don't exceed container width */
+    height: auto; /* Maintain aspect ratio */
+}
+
+

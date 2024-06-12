@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Quiz</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Optional: Link to your CSS stylesheet -->
+</head>
+<body>
+    <h1>Quiz Lektion 1:</h1>
+    <div class="wide-container">
+    <form id="quizForm">
+        <p>Was versteht man untern einer Aktie?</p>
+        <input type="radio" name="question1" value="Anteil">Ein Anteil an einem Unternhemen<br>
+        <input type="radio" name="question1" value="Platform">Eine Platform zum kauf von aktion<br>
+        <input type="radio" name="question1" value="Index">Ein anderes Wort für Index<br>
+        <br>
+        <p>Worauf sollta man beim erstellen eines Aktienportfolios besonders Achten</p>
+        <input type="radio" name="question2" value="Profit">Möglichst wenige Aktien zu halten um die Profite zu erhöhen<br>
+        <input type="radio" name="question2" value="Viele">Viele Aktien aus dem selben Finanziellen Sektor halten<br>
+        <input type="radio" name="question2" value="Risiko">Möglischst viele Aktien aus verschiedenen Sektoren zu halten<br>
+        <br>
+        <p>Welsche Art des Investierens empfiehlt sich für einen Anfänger</p>
+        <input type="radio" name="question3" value="Aktien">Der Aktien Kauf<br>
+        <input type="radio" name="question3" value="Index">Das Investieren in einen Index<br>
+        <input type="radio" name="question3" value="Anleihen">Der An- und Verkauf von Staatsanleihen<br>
+        <br>
+        <p>Was ist kein Index?</p>
+        <input type="radio" name="question4" value="SP500">S&P500<br>
+        <input type="radio" name="question4" value="DJIA">Dow Jones Industrial Average<br>
+        <input type="radio" name="question4" value="DAX">DAX<br>
+        <input type="radio" name="question4" value="AAPL">AAPL<br>
+        <input type="radio" name="question4" value="NASDAQ">NASDAQ<br>
+        <br>
+        <input type="submit" value="Prüfen">
+    </form>
+    </div>
+    <div id="result"></div>
+
+    <script src="script.js"></script> <!-- Link to your JavaScript file -->
+</body>
+</html>
