@@ -1,0 +1,89 @@
+<<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Courses</title>
+    <style>
+        body {
+            display: flex;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .sidebar {
+            width: 30%;
+            background-color: #f8f9fa;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        }
+        .content {
+            width: 70%;
+            padding: 20px;
+        }
+        .course-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .course-list li {
+            padding: 10px 0;
+            font-size: 1.1em;
+        }
+        .course-list a {
+            text-decoration: none;
+            color: #007bff;
+            cursor: pointer;
+        }
+        .course-list a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Courses</h2>
+        <ul class="course-list">
+            <li><a onclick="showCourse('course1')">Wie lege ich mein Geld in Aktien an?</a></li>
+            <li><a onclick="showCourse('course2')">Wie lege ich mein Geld in Anleihen an</a></li>
+            <li><a onclick="showCourse('course3')">Wie investiere ich mein Geld in crypto?</a></li>
+            <li><a onclick="showCourse('course4')">Wie lege ich mein Geld in Rohstoffe an?</a></li>
+            <li><a onclick="showCourse('course5')">Wie lege ich mein Geld in Immobilien an?</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <div id="course1" class="course-content">
+            <h1>Introduction to Finance</h1>
+            <p>Welcome to the Introduction to Finance course. In this course, you will learn the basics of financial management, including key concepts like saving, investing, and understanding financial statements.</p>
+            <h2>Lesson 1: Financial Literacy</h2>
+            <p>Financial literacy is the ability to understand and effectively use various financial skills, including personal financial management, budgeting, and investing.</p>
+        </div>
+        <div id="course2" class="course-content" style="display:none;">
+            <h1>Budgeting Basics</h1>
+            <p>Learn the fundamentals of budgeting to manage your finances effectively. This course will cover techniques to create a budget, track expenses, and set financial goals.</p>
+        </div>
+        <div id="course3" class="course-content" style="display:none;">
+            <h1>Investing 101</h1>
+            <p>This course introduces the basics of investing, different types of investments, risk management, and how to build a diversified portfolio.</p>
+        </div>
+        <div id="course4" class="course-content" style="display:none;">
+            <h1>Understanding Credit</h1>
+            <p>Understand how credit works, including credit scores, credit reports, and how to maintain good credit health.</p>
+        </div>
+        <div id="course5" class="course-content" style="display:none;">
+            <h1>Retirement Planning</h1>
+            <p>Learn how to plan for retirement, including setting retirement goals, understanding retirement accounts, and strategies to save for the future.</p>
+        </div>
+    </div>
+
+    <script>
+        function showCourse(courseId) {
+            // Hide all course contents
+            var contents = document.getElementsByClassName('course-content');
+            for (var i = 0; i < contents.length; i++) {
+                contents[i].style.display = 'none';
+            }
+            // Show the selected course content
+            document.getElementById(courseId).style.display = 'block';
+        }
+    </script>
+</body>
+</html>
