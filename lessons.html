@@ -1,0 +1,115 @@
+<<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finance Courses</title>
+    <style>
+        body {
+            display: flex;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .sidebar {
+            width: 30%;
+            background-color: #f8f9fa;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        }
+        .content {
+            width: 70%;
+            padding: 20px;
+        }
+        .course-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .course-list li {
+            padding: 10px 0;
+            font-size: 1.1em;
+        }
+        .course-list a {
+            text-decoration: none;
+            color: #007bff;
+            cursor: pointer;
+        }
+        .course-list a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Courses</h2>
+        <ul class="course-list">
+            <li><a onclick="showCourse('course1')">Wie lege ich mein Geld in Aktien an?</a></li>
+            <li><a onclick="showCourse('course2')">Wie lege ich mein Geld in Anleihen an</a></li>
+            <li><a onclick="showCourse('course3')">Wie investiere ich mein Geld in crypto?</a></li>
+            <li><a onclick="showCourse('course4')">Wie lege ich mein Geld in Rohstoffe an?</a></li>
+            <li><a onclick="showCourse('course5')">Wie lege ich mein Geld in Immobilien an?</a></li>
+            <li><a onclick="showCourse('course6')">Wie funktioniert Inflation?</a></li>
+            <li><a onclick="showCourse('course7')">Wie funktioniert Deflation?</a></li>
+            <li><a onclick="showCourse('course8')">Wie funktioniert das deutsche Rentensystem?</a></li>
+            <li><a onclick="showCourse('course9')">Wie lege ich mein Geld in ETFs an?</a></li>
+            <li><a onclick="showCourse('course10')">Wie funktioniert die Börse</a></li>
+        </ul>
+    </div>
+    <div class="content">
+        <div id="course1" class="course-content">
+            <h1>Wie lege ich mein Geld in Aktien an?</h1>
+                <p>Bei Investitionen bevorzugen wir langfristige, risikoarme Anlagen. Im Folgenden werden wir einige dieser Anlageklassen genauer betrachten</p>
+                <h2>A. Die Aktie</h2>
+                <p>Eine Aktie repräsentiert einen Anteil am Eigenkapital eines Unternehmens. Durch den Kauf von Aktien erwirbt man ein Stück des Unternehmens und wird damit zum Miteigentümer. Der Wert einer Aktie kann sich je nach der finanziellen Performance des Unternehmens sowie Angebot und Nachfrage ändern.</p>
+                <h3>Beispiel:</h3>
+                <img src="apple.jpg">
+                <p>Stellen Sie sich vor, Sie entscheiden sich, in Apple-Aktien zu investieren. Sie kaufen Aktien von Apple (AAPL) für 150 US-Dollar pro Aktie. Wenn der Preis der Apple-Aktie nach Ihrem Kauf steigt, sagen wir auf 200 US-Dollar pro Aktie, können Sie Ihre Aktien zu einem höheren Preis verkaufen und einen Gewinn von 50 US-Dollar pro Aktie erzielen.
+                    Wenn jedoch der Preis der Apple-Aktie nach Ihrem Kauf fällt, sagen wir auf 120 US-Dollar pro Aktie, und Sie entscheiden sich, Ihre Aktien zu diesem Preis zu verkaufen, würden Sie einen Verlust von 30 US-Dollar pro Aktie erleiden.
+                    Zusammenfassend: Beim Investieren in Apple-Aktien oder jede andere Aktie können Sie Geld verdienen, wenn der Aktienkurs steigt, indem Sie Ihre Aktien zu einem höheren Preis verkaufen. Wenn jedoch der Aktienkurs fällt, können Sie einen Verlust erleiden, wenn Sie Ihre Aktien zu einem niedrigeren Preis verkaufen als dem, den Sie dafür bezahlt haben.</p>
+                <h2>B. Diversifizieren</h2>
+                <p>Wie bereits gezeigt, kann das Investieren in nur eine Aktie riskant sein. Daher ist es ratsam, das Risiko zu streuen, indem man sein Kapital auf verschiedene Anlagen verteilt. Dies nennt man Diversifizierung. Durch die Diversifizierung kann man das Risiko mindern, da Verluste in einer Anlage durch Gewinne in anderen Anlagen ausgeglichen werden können. Auf diese Weise kann man sein Portfolio stabilisieren und langfristig erfolgreich sein.</p>
+                <h3>Hier spricht man von einem Aktion Portfolio</h3>
+                <img src="portfolio.jpg">
+                <p>Mit einem breit diversifizierten Aktienportfolio investieren wir nun in mehrere Aktien aus verschiedenen Branchen. Dadurch wird das Risiko gestreut, da Verluste in einer Branche durch Gewinne in anderen Branchen ausgeglichen werden können. Obwohl die potenziellen Gewinne möglicherweise nicht so hoch sind wie bei der Investition in eine einzelne Aktie, ist das Risiko insgesamt geringer. Es ist jedoch wichtig, Aktien aus verschiedenen Sektoren auszuwählen, um das Risiko weiter zu minimieren und langfristig stabile Renditen zu erzielen.</p>
+                <h3>Der Index</h3>
+                <p>Das Erstellen eines eigenen Aktienportfolios ist besonders für Anfänger eine Herausforderung da die richtigen Aktien auszuwählen und ein ausgewogenes Portfolio zusammenzustellen äußerst anspruchsvoll ist. Eine einfachere Option für Anfänger ist es, in einen Index zu investieren. Im grunde ist ein Index ein großes Aktion Portfolio was von anderen geleitet wird</p>
+                <h3>Beispiel: Der S&P500</h3>
+                <img src="sp500.jpg">
+                <p>Der <a href="https://en.wikipedia.org/wiki/S%26P_500">S&P 500</a> ist einer der bekanntesten Aktienindizes weltweit und gilt als Maßstab für die allgemeine Performance des US-Aktienmarktes. Er umfasst die 500 größten börsennotierten Unternehmen in den USA und spiegelt somit die Performance eines breiten Querschnitts der US-Wirtschaft wider.Ein Investment im S&P 500 bietet eine breite Diversifizierung und reduziert das Risiko im Vergleich zum Investieren in einzelne Aktien. Da der Index aus 500 Unternehmen besteht, gleichen sich einzelne Gewinne und Verluste aus, was zu einer insgesamt stabileren Performance führt.</p>
+                <p>Hier sind einige andere Beispiele für Aktienindizes:
+
+                    <li><b>Dow Jones Industrial Average (DJIA)</b>: Ein Index, der die Performance von 30 bedeutenden Industrieunternehmen in den USA verfolgt.</li>
+                    <li><b>NASDAQ Composite</b>: Ein Index, der die Performance aller Aktien an der NASDAQ-Börse widerspiegelt, darunter viele Technologieunternehmen.</li>
+                    <li><b>DAX</b>: Der wichtigste deutsche Aktienindex, der die Performance der 30 größten Unternehmen an der Frankfurter Wertpapierbörse widerspiegelt.</li>
+                    </p>
+        </div>
+        <div id="course2" class="course-content" style="display:none;">
+            <h1>Budgeting Basics</h1>
+            <p>Learn the fundamentals of budgeting to manage your finances effectively. This course will cover techniques to create a budget, track expenses, and set financial goals.</p>
+        </div>
+        <div id="course3" class="course-content" style="display:none;">
+            <h1>Investing 101</h1>
+            <p>This course introduces the basics of investing, different types of investments, risk management, and how to build a diversified portfolio.</p>
+        </div>
+        <div id="course4" class="course-content" style="display:none;">
+            <h1>Understanding Credit</h1>
+            <p>Understand how credit works, including credit scores, credit reports, and how to maintain good credit health.</p>
+        </div>
+        <div id="course5" class="course-content" style="display:none;">
+            <h1>Retirement Planning</h1>
+            <p>Learn how to plan for retirement, including setting retirement goals, understanding retirement accounts, and strategies to save for the future.</p>
+        </div>
+    </div>
+
+    <script>
+        function showCourse(courseId) {
+            // Hide all course contents
+            var contents = document.getElementsByClassName('course-content');
+            for (var i = 0; i < contents.length; i++) {
+                contents[i].style.display = 'none';
+            }
+            // Show the selected course content
+            document.getElementById(courseId).style.display = 'block';
+        }
+    </script>
+</body>
+</html>
