@@ -1,4 +1,4 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,12 +13,17 @@
         .sidebar {
             width: 30%;
             background-color: #f8f9fa;
-            padding: 20px;
+            padding: 5px;
             box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            position: fixed;
+            height: 100%;
+            overflow-y: auto;
         }
         .content {
-            width: 70%;
+            margin-left: 30%; /* Adjust the margin to make space for the fixed sidebar */
             padding: 20px;
+            width: 70%;
+            box-sizing: border-box;
         }
         .course-list {
             list-style-type: none;
@@ -36,67 +41,113 @@
         .course-list a:hover {
             text-decoration: underline;
         }
+        .course-content img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 20px 0;
+            width: 100%; /* Ensure all images are the same size */
+            height: 300px; /* Set a fixed height */
+            object-fit: cover; /* Ensure images are properly scaled */
+        }
+        h1, h2, h3 {
+            color: #333;
+        }
     </style>
 </head>
 <body>
     <div class="sidebar">
-        <h2>Courses</h2>
+        <h2>Unsere Kurse</h2>
         <ul class="course-list">
-            <li><a onclick="showCourse('course1')">Wie lege ich mein Geld in Aktien an?</a></li>
-            <li><a onclick="showCourse('course2')">Wie lege ich mein Geld in Anleihen an</a></li>
-            <li><a onclick="showCourse('course3')">Wie investiere ich mein Geld in crypto?</a></li>
-            <li><a onclick="showCourse('course4')">Wie lege ich mein Geld in Rohstoffe an?</a></li>
-            <li><a onclick="showCourse('course5')">Wie lege ich mein Geld in Immobilien an?</a></li>
-            <li><a onclick="showCourse('course6')">Wie funktioniert Inflation?</a></li>
-            <li><a onclick="showCourse('course7')">Wie funktioniert Deflation?</a></li>
-            <li><a onclick="showCourse('course8')">Wie funktioniert das deutsche Rentensystem?</a></li>
-            <li><a onclick="showCourse('course9')">Wie lege ich mein Geld in ETFs an?</a></li>
-            <li><a onclick="showCourse('course10')">Wie funktioniert die Börse</a></li>
+            <li><a onclick="showSection('section1')">1. Wie investiere ich mein Geld</a></li>
+            <ul>
+                <li><a onclick="showCourse('course1')">1.1 Wie lege ich mein Geld in Aktien an?</a></li>
+                <li><a onclick="showCourse('course2')">1.2 Wie lege ich mein Geld in Anleihen an?</a></li>
+                <li><a onclick="showCourse('course3')">1.3 Wie investiere ich mein Geld in Krypto?</a></li>
+                <li><a onclick="showCourse('course4')">1.4 Wie lege ich mein Geld in Rohstoffe an?</a></li>
+                <li><a onclick="showCourse('course5')">1.5 Wie lege ich mein Geld in Immobilien an?</a></li>
+                <li><a onclick="showCourse('course9')">1.6 Wie lege ich mein Geld in ETFs an?</a></li>
+            </ul>
+            <li><a onclick="showSection('section2')">2. Wirtschaft</a></li>
+            <ul>
+                <li><a onclick="showCourse('course6')">2.1 Wie funktioniert Inflation?</a></li>
+                <li><a onclick="showCourse('course7')">2.2 Wie funktioniert Deflation?</a></li>
+                <li><a onclick="showCourse('course8')">2.3 Wie funktioniert das deutsche Rentensystem?</a></li>
+                <li><a onclick="showCourse('course10')">2.4 Wie funktioniert die Börse?</a></li>
+            </ul>
         </ul>
     </div>
     <div class="content">
-        <div id="course1" class="course-content">
-            <h1>Wie lege ich mein Geld in Aktien an?</h1>
-                <p>Bei Investitionen bevorzugen wir langfristige, risikoarme Anlagen. Im Folgenden werden wir einige dieser Anlageklassen genauer betrachten</p>
-                <h2>A. Die Aktie</h2>
-                <p>Eine Aktie repräsentiert einen Anteil am Eigenkapital eines Unternehmens. Durch den Kauf von Aktien erwirbt man ein Stück des Unternehmens und wird damit zum Miteigentümer. Der Wert einer Aktie kann sich je nach der finanziellen Performance des Unternehmens sowie Angebot und Nachfrage ändern.</p>
-                <h3>Beispiel:</h3>
-                <img src="apple.jpg">
-                <p>Stellen Sie sich vor, Sie entscheiden sich, in Apple-Aktien zu investieren. Sie kaufen Aktien von Apple (AAPL) für 150 US-Dollar pro Aktie. Wenn der Preis der Apple-Aktie nach Ihrem Kauf steigt, sagen wir auf 200 US-Dollar pro Aktie, können Sie Ihre Aktien zu einem höheren Preis verkaufen und einen Gewinn von 50 US-Dollar pro Aktie erzielen.
-                    Wenn jedoch der Preis der Apple-Aktie nach Ihrem Kauf fällt, sagen wir auf 120 US-Dollar pro Aktie, und Sie entscheiden sich, Ihre Aktien zu diesem Preis zu verkaufen, würden Sie einen Verlust von 30 US-Dollar pro Aktie erleiden.
-                    Zusammenfassend: Beim Investieren in Apple-Aktien oder jede andere Aktie können Sie Geld verdienen, wenn der Aktienkurs steigt, indem Sie Ihre Aktien zu einem höheren Preis verkaufen. Wenn jedoch der Aktienkurs fällt, können Sie einen Verlust erleiden, wenn Sie Ihre Aktien zu einem niedrigeren Preis verkaufen als dem, den Sie dafür bezahlt haben.</p>
-                <h2>B. Diversifizieren</h2>
-                <p>Wie bereits gezeigt, kann das Investieren in nur eine Aktie riskant sein. Daher ist es ratsam, das Risiko zu streuen, indem man sein Kapital auf verschiedene Anlagen verteilt. Dies nennt man Diversifizierung. Durch die Diversifizierung kann man das Risiko mindern, da Verluste in einer Anlage durch Gewinne in anderen Anlagen ausgeglichen werden können. Auf diese Weise kann man sein Portfolio stabilisieren und langfristig erfolgreich sein.</p>
-                <h3>Hier spricht man von einem Aktion Portfolio</h3>
-                <img src="portfolio.jpg">
-                <p>Mit einem breit diversifizierten Aktienportfolio investieren wir nun in mehrere Aktien aus verschiedenen Branchen. Dadurch wird das Risiko gestreut, da Verluste in einer Branche durch Gewinne in anderen Branchen ausgeglichen werden können. Obwohl die potenziellen Gewinne möglicherweise nicht so hoch sind wie bei der Investition in eine einzelne Aktie, ist das Risiko insgesamt geringer. Es ist jedoch wichtig, Aktien aus verschiedenen Sektoren auszuwählen, um das Risiko weiter zu minimieren und langfristig stabile Renditen zu erzielen.</p>
-                <h3>Der Index</h3>
-                <p>Das Erstellen eines eigenen Aktienportfolios ist besonders für Anfänger eine Herausforderung da die richtigen Aktien auszuwählen und ein ausgewogenes Portfolio zusammenzustellen äußerst anspruchsvoll ist. Eine einfachere Option für Anfänger ist es, in einen Index zu investieren. Im grunde ist ein Index ein großes Aktion Portfolio was von anderen geleitet wird</p>
-                <h3>Beispiel: Der S&P500</h3>
-                <img src="sp500.jpg">
-                <p>Der <a href="https://en.wikipedia.org/wiki/S%26P_500">S&P 500</a> ist einer der bekanntesten Aktienindizes weltweit und gilt als Maßstab für die allgemeine Performance des US-Aktienmarktes. Er umfasst die 500 größten börsennotierten Unternehmen in den USA und spiegelt somit die Performance eines breiten Querschnitts der US-Wirtschaft wider.Ein Investment im S&P 500 bietet eine breite Diversifizierung und reduziert das Risiko im Vergleich zum Investieren in einzelne Aktien. Da der Index aus 500 Unternehmen besteht, gleichen sich einzelne Gewinne und Verluste aus, was zu einer insgesamt stabileren Performance führt.</p>
-                <p>Hier sind einige andere Beispiele für Aktienindizes:
-
-                    <li><b>Dow Jones Industrial Average (DJIA)</b>: Ein Index, der die Performance von 30 bedeutenden Industrieunternehmen in den USA verfolgt.</li>
-                    <li><b>NASDAQ Composite</b>: Ein Index, der die Performance aller Aktien an der NASDAQ-Börse widerspiegelt, darunter viele Technologieunternehmen.</li>
-                    <li><b>DAX</b>: Der wichtigste deutsche Aktienindex, der die Performance der 30 größten Unternehmen an der Frankfurter Wertpapierbörse widerspiegelt.</li>
-                    </p>
+        <div id="section1" class="course-content" style="display:none;">
+            <h1>1. Wie investiere ich mein Geld</h1>
+            <p>Hier sind verschiedene Möglichkeiten, wie Sie Ihr Geld investieren können.</p>
+        </div>
+        <div id="course1" class="course-content" style="display:none;">
+            <h1>1.1 Wie lege ich mein Geld in Aktien an?</h1>
+            <p>Bei Investitionen bevorzugen wir langfristige, risikoarme Anlagen. Im Folgenden werden wir einige dieser Anlageklassen genauer betrachten.</p>
+            <h2>A. Die Aktie</h2>
+            <p>Eine Aktie repräsentiert einen Anteil am Eigenkapital eines Unternehmens. Durch den Kauf von Aktien erwirbt man ein Stück des Unternehmens und wird damit zum Miteigentümer. Der Wert einer Aktie kann sich je nach der finanziellen Performance des Unternehmens sowie Angebot und Nachfrage ändern.</p>
+            <h3>Beispiel:</h3>
+            <img src="apple.jpg" alt="Apple Aktie">
+            <p>Stellen Sie sich vor, Sie entscheiden sich, in Apple-Aktien zu investieren. Sie kaufen Aktien von Apple (AAPL) für 150 US-Dollar pro Aktie. Wenn der Preis der Apple-Aktie nach Ihrem Kauf steigt, sagen wir auf 200 US-Dollar pro Aktie, können Sie Ihre Aktien zu einem höheren Preis verkaufen und einen Gewinn von 50 US-Dollar pro Aktie erzielen.
+            Wenn jedoch der Preis der Apple-Aktie nach Ihrem Kauf fällt, sagen wir auf 120 US-Dollar pro Aktie, und Sie entscheiden sich, Ihre Aktien zu diesem Preis zu verkaufen, würden Sie einen Verlust von 30 US-Dollar pro Aktie erleiden.
+            Zusammenfassend: Beim Investieren in Apple-Aktien oder jede andere Aktie können Sie Geld verdienen, wenn der Aktienkurs steigt, indem Sie Ihre Aktien zu einem höheren Preis verkaufen. Wenn jedoch der Aktienkurs fällt, können Sie einen Verlust erleiden, wenn Sie Ihre Aktien zu einem niedrigeren Preis verkaufen als dem, den Sie dafür bezahlt haben.</p>
+            <h2>B. Diversifizieren</h2>
+            <p>Wie bereits gezeigt, kann das Investieren in nur eine Aktie riskant sein. Daher ist es ratsam, das Risiko zu streuen, indem man sein Kapital auf verschiedene Anlagen verteilt. Dies nennt man Diversifizierung. Durch die Diversifizierung kann man das Risiko mindern, da Verluste in einer Anlage durch Gewinne in anderen Anlagen ausgeglichen werden können. Auf diese Weise kann man sein Portfolio stabilisieren und langfristig erfolgreich sein.</p>
+            <h3>Hier spricht man von einem Aktienportfolio</h3>
+            <img src="portfolio.jpg" alt="Aktien Portfolio">
+            <p>Mit einem breit diversifizierten Aktienportfolio investieren wir nun in mehrere Aktien aus verschiedenen Branchen. Dadurch wird das Risiko gestreut, da Verluste in einer Branche durch Gewinne in anderen Branchen ausgeglichen werden können. Obwohl die potenziellen Gewinne möglicherweise nicht so hoch sind wie bei der Investition in eine einzelne Aktie, ist das Risiko insgesamt geringer. Es ist jedoch wichtig, Aktien aus verschiedenen Sektoren auszuwählen, um das Risiko weiter zu minimieren und langfristig stabile Renditen zu erzielen.</p>
+            <h3>Der Index</h3>
+            <p>Das Erstellen eines eigenen Aktienportfolios ist besonders für Anfänger eine Herausforderung, da die richtigen Aktien auszuwählen und ein ausgewogenes Portfolio zusammenzustellen äußerst anspruchsvoll ist. Eine einfachere Option für Anfänger ist es, in einen Index zu investieren. Im Grunde ist ein Index ein großes Aktienportfolio, das von anderen geleitet wird.</p>
+            <h3>Beispiel: Der S&P500</h3>
+            <img src="sp500.jpg" alt="S&P 500">
+            <p>Der <a href="https://en.wikipedia.org/wiki/S%26P_500">S&P 500</a> ist einer der bekanntesten Aktienindizes weltweit und gilt als Maßstab für die allgemeine Performance des US-Aktienmarktes. Er umfasst die 500 größten börsennotierten Unternehmen in den USA und spiegelt somit die Performance eines breiten Querschnitts der US-Wirtschaft wider. Ein Investment im S&P 500 bietet eine breite Diversifizierung und reduziert das Risiko im Vergleich zum Investieren in einzelne Aktien. Da der Index aus 500 Unternehmen besteht, gleichen sich einzelne Gewinne und Verluste aus, was zu einer insgesamt stabileren Performance führt.</p>
+            <p>Hier sind einige andere Beispiele für Aktienindizes:</p>
+            <ul>
+                <li><b>Dow Jones Industrial Average (DJIA)</b>: Ein Index, der die Performance von 30 bedeutenden Industrieunternehmen in den USA verfolgt.</li>
+                <li><b>NASDAQ Composite</b>: Ein Index, der die Performance aller Aktien an der NASDAQ-Börse widerspiegelt, darunter viele Technologieunternehmen.</li>
+                <li><b>DAX</b>: Der wichtigste deutsche Aktienindex, der die Performance der 30 größten Unternehmen an der Frankfurter Wertpapierbörse widerspiegelt.</li>
+            </ul>
         </div>
         <div id="course2" class="course-content" style="display:none;">
-            <h1>Budgeting Basics</h1>
-            <p>Learn the fundamentals of budgeting to manage your finances effectively. This course will cover techniques to create a budget, track expenses, and set financial goals.</p>
+            <h1>Wie lege ich mein Geld in Anleihen an?</h1>
+            <p>Anleihen sind Schuldverschreibungen, die von Unternehmen oder Regierungen ausgegeben werden, um Kapital zu beschaffen. Wenn Sie eine Anleihe kaufen, leihen Sie dem Emittenten Geld und erhalten dafür regelmäßige Zinszahlungen.</p>
         </div>
         <div id="course3" class="course-content" style="display:none;">
-            <h1>Investing 101</h1>
-            <p>This course introduces the basics of investing, different types of investments, risk management, and how to build a diversified portfolio.</p>
+            <h1>Wie investiere ich mein Geld in Krypto?</h1>
+            <p>Kryptowährungen sind digitale oder virtuelle Währungen, die Kryptografie für die Sicherheit nutzen. Beispiele sind Bitcoin und Ethereum. Investieren in Krypto kann hochprofitabel, aber auch risikoreich sein.</p>
         </div>
         <div id="course4" class="course-content" style="display:none;">
-            <h1>Understanding Credit</h1>
-            <p>Understand how credit works, including credit scores, credit reports, and how to maintain good credit health.</p>
+            <h1>Wie lege ich mein Geld in Rohstoffe an?</h1>
+            <p>Investitionen in Rohstoffe umfassen den Kauf von physischen Gütern wie Gold, Silber, Öl oder landwirtschaftlichen Produkten. Diese können als Absicherung gegen Inflation dienen.</p>
         </div>
         <div id="course5" class="course-content" style="display:none;">
-            <h1>Retirement Planning</h1>
-            <p>Learn how to plan for retirement, including setting retirement goals, understanding retirement accounts, and strategies to save for the future.</p>
+            <h1>Wie lege ich mein Geld in Immobilien an?</h1>
+            <p>Immobilieninvestitionen umfassen den Kauf von Immobilien, um Mieteinnahmen zu erzielen oder von einer Wertsteigerung zu profitieren. Dies kann durch den Kauf von Wohn- oder Gewerbeimmobilien erfolgen.</p>
+        </div>
+        <div id="section2" class="course-content" style="display:none;">
+            <h1>Wirtschaft</h1>
+            <p>Hier sind verschiedene Konzepte und Mechanismen der Wirtschaft erklärt.</p>
+        </div>
+        <div id="course6" class="course-content" style="display:none;">
+            <h1>Wie funktioniert Inflation?</h1>
+            <p>Inflation ist der Anstieg der Preise für Waren und Dienstleistungen über einen bestimmten Zeitraum. Sie verringert die Kaufkraft des Geldes, was bedeutet, dass man für denselben Betrag weniger kaufen kann.</p>
+        </div>
+        <div id="course7" class="course-content" style="display:none;">
+            <h1>Wie funktioniert Deflation?</h1>
+            <p>Deflation ist der Rückgang des allgemeinen Preisniveaus für Waren und Dienstleistungen. Sie erhöht die Kaufkraft des Geldes, was bedeutet, dass man für denselben Betrag mehr kaufen kann.</p>
+        </div>
+        <div id="course8" class="course-content" style="display:none;">
+            <h1>Wie funktioniert das deutsche Rentensystem?</h1>
+            <p>Das deutsche Rentensystem basiert auf einem Umlageverfahren, bei dem die derzeitigen Arbeitnehmer in die Rentenkasse einzahlen, aus der die aktuellen Renten bezahlt werden.</p>
+        </div>
+        <div id="course9" class="course-content" style="display:none;">
+            <h1>Wie lege ich mein Geld in ETFs an?</h1>
+            <p>ETFs (Exchange Traded Funds) sind Investmentfonds, die an der Börse gehandelt werden. Sie bieten eine einfache Möglichkeit, in eine Vielzahl von Vermögenswerten zu investieren und gleichzeitig das Risiko zu streuen.</p>
+        </div>
+        <div id="course10" class="course-content" style="display:none;">
+            <h1>Wie funktioniert die Börse?</h1>
+            <p>Die Börse ist ein Marktplatz, an dem Wertpapiere wie Aktien und Anleihen gekauft und verkauft werden. Sie ermöglicht Unternehmen die Kapitalaufnahme und Investoren die Teilhabe am wirtschaftlichen Erfolg dieser Unternehmen.</p>
         </div>
     </div>
 
@@ -109,6 +160,16 @@
             }
             // Show the selected course content
             document.getElementById(courseId).style.display = 'block';
+        }
+
+        function showSection(sectionId) {
+            // Hide all course contents
+            var contents = document.getElementsByClassName('course-content');
+            for (var i = 0; i < contents.length; i++) {
+                contents[i].style.display = 'none';
+            }
+            // Show the selected section content
+            document.getElementById(sectionId).style.display = 'block';
         }
     </script>
 </body>
