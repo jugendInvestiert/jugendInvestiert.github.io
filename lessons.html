@@ -46,9 +46,7 @@
             height: auto;
             display: block;
             margin: 20px 0;
-            width: 100%; /* Ensure all images are the same size */
-            height: 300px; /* Set a fixed height */
-            object-fit: cover; /* Ensure images are properly scaled */
+            object-fit: contain; /* Ensure images are properly scaled and not cut off */
         }
         h1, h2, h3 {
             color: #333;
@@ -59,7 +57,7 @@
     <div class="sidebar">
         <h2>Unsere Kurse</h2>
         <ul class="course-list">
-            <li><a onclick="showSection('section1')">1. Wie investiere ich mein Geld</a></li>
+            <li><a onclick="showSection('course1')">1. Wie investiere ich mein Geld</a></li>
             <ul>
                 <li><a onclick="showCourse('course1')">1.1 Wie lege ich mein Geld in Aktien an?</a></li>
                 <li><a onclick="showCourse('course2')">1.2 Wie lege ich mein Geld in Anleihen an?</a></li>
@@ -68,7 +66,7 @@
                 <li><a onclick="showCourse('course5')">1.5 Wie lege ich mein Geld in Immobilien an?</a></li>
                 <li><a onclick="showCourse('course9')">1.6 Wie lege ich mein Geld in ETFs an?</a></li>
             </ul>
-            <li><a onclick="showSection('section2')">2. Wirtschaft</a></li>
+            <li><a onclick="showSection('course6')">2. Wirtschaft</a></li>
             <ul>
                 <li><a onclick="showCourse('course6')">2.1 Wie funktioniert Inflation?</a></li>
                 <li><a onclick="showCourse('course7')">2.2 Wie funktioniert Deflation?</a></li>
@@ -162,14 +160,14 @@
             document.getElementById(courseId).style.display = 'block';
         }
 
-        function showSection(sectionId) {
+        function showSection(courseId) {
             // Hide all course contents
             var contents = document.getElementsByClassName('course-content');
             for (var i = 0; i < contents.length; i++) {
                 contents[i].style.display = 'none';
             }
-            // Show the selected section content
-            document.getElementById(sectionId).style.display = 'block';
+            // Show the first course in the section
+            document.getElementById(courseId).style.display = 'block';
         }
     </script>
 </body>
