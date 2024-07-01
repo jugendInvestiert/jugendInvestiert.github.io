@@ -1,11 +1,140 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Index</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JugendInvestiert</title>
+    <style>
+        body {
+            font-family: "Roboto", Arial, sans-serif;
+            background-image: url('background.jpg');
+            margin: 0;
+            padding: 0;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .logo {
+            height: 50px;
+            margin-right: 20px;
+        }
+
+        h1 {
+            font-size: 3em;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            margin-top: 10px;
+        }
+
+        h3, p {
+            margin: 10px;
+            font-size: 1.1em;
+        }
+
+        .sidebar {
+            width: 30%;
+            background-color: rgba(255, 255, 255, 0.7);
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin-right: 20px;
+        }
+
+        .cube-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .cube {
+            flex: 1;
+            max-width: 220px;
+            margin: 10px;
+            text-align: center;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .cube:hover {
+            transform: scale(1.05);
+        }
+
+        .cube img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .cube h3 {
+            margin-top: 10px;
+            font-size: 1.2em;
+        }
+
+        .content-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding: 20px;
+        }
+
+        .simulator {
+            flex: 1;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .course-overview {
+            flex: 1;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .course-overview h2 {
+            margin-top: 0;
+        }
+
+        .course-overview ul {
+            padding: 0;
+            list-style-type: none;
+        }
+
+        .course-overview ul li {
+            margin-bottom: 10px;
+        }
+
+        .course-overview ul li a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .course-overview ul li a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <div class="logo-container">
@@ -14,21 +143,174 @@
     </div>
     <h2>Finanzwissen für alle - Investiere in deine Zukunft!</h2>
     <p><b>Unsere Plattform ist eine Quelle für umfassendes Finanzwissen, das gezielt auf die Bedürfnisse der Jugend zugeschnitten ist. Wir bieten eine Vielzahl von Ressourcen, Schulungen und Tools an, um jungen Menschen dabei zu helfen, ein solides Verständnis für Finanzen aufzubauen. Von Budgetierung und Sparen bis hin zu Investitionen und Vermögensaufbau - wir unterstützen die Jugend dabei, finanziell kompetent zu werden und ihre Zukunft aufzubauen.</b></p>
-    <div class="content-container">
-        <h2><a href="https://jugendinvestiert.github.io/jugendInvestiert/lessons.html">Unsere Course</a></h2>
-        <img src="cours.jpg" alt="Course Image">
-        <h2><a href="C:\Users\alber\Documents\jugendInvestiert\.vscode\ressources.html">Ressourcen</a></h2>
-        <img src="money.jpg" alt="Resources Image">
-        <h2><a href="C:\Users\alber\Documents\jugendInvestiert\.vscode\our_mission">Unsere Mission</a></h2>
-        <img src="mission.jpg" alt="Mission Image">
-        <h2><a href="C:\Users\alber\Documents\jugendInvestiert\.vscode\about_us.html">Über uns</a></h2>
-        <img src="entrepreneur.jpg" alt="About Us Image">
+
+    <div class="cube-container">
+        <div class="cube">
+            <a href="C:\Users\alber\Documents\jugendInvestiert\.vscode\course1.html">
+                <img src="cours.jpg" alt="Course Image">
+                <h3>Unsere Kurse</h3>
+            </a>
+        </div>
+        <div class="cube">
+            <a href="C:\Users\alber\Documents\jugendInvestiert\.vscode\ressources.html">
+                <img src="money.jpg" alt="Resources Image">
+                <h3>Ressourcen</h3>
+            </a>
+        </div>
+        <div class="cube">
+            <a href="C:\Users\alber\Documents\jugendInvestiert\.vscode\our_mission">
+                <img src="mission.jpg" alt="Mission Image">
+                <h3>Unsere Mission</h3>
+            </a>
+        </div>
+        <div class="cube">
+            <a href="C:\Users\alber\Documents\jugendInvestiert\.vscode\about_us.html">
+                <img src="entrepreneur.jpg" alt="About Us Image">
+                <h3>Über uns</h3>
+            </a>
+        </div>
+        <div class="cube">
+            <a href="YOUR_NEWSLETTER_LINK_HERE">
+                <img src="email.jpg" alt="Newsletter Image">
+                <h3>Newsletter</h3>
+            </a>
+        </div>
     </div>
+
+    <div class="content-container">
+        <div class="course-overview sidebar">
+            <h2>Unsere Kurse</h2>
+            <ul class="course-list">
+                <li><a onclick="showSection('course1')">1. Wie investiere ich mein Geld</a></li>
+                <ul>
+                    <li><a onclick="showCourse('course1')">1.1 Wie lege ich mein Geld in Aktien an?</a></li>
+                    <li><a onclick="showCourse('course2')">1.2 Wie lege ich mein Geld in Anleihen an?</a></li>
+                    <li><a onclick="showCourse('course3')">1.3 Wie investiere ich mein Geld in Krypto?</a></li>
+                    <li><a onclick="showCourse('course4')">1.4 Wie lege ich mein Geld in Rohstoffe an?</a></li>
+                    <li><a onclick="showCourse('course5')">1.5 Wie lege ich mein Geld in Immobilien an?</a></li>
+                    <li><a onclick="showCourse('course9')">1.6 Wie lege ich mein Geld in ETFs an?</a></li>
+                </ul>
+                <li><a onclick="showSection('course6')">2. Wirtschaft</a></li>
+                <ul>
+                    <li><a onclick="showCourse('course6')">2.1 Wie funktioniert Inflation?</a></li>
+                    <li><a onclick="showCourse('course7')">2.2 Wie funktioniert Deflation?</a></li>
+                    <li><a onclick="showCourse('course8')">2.3 Wie funktioniert das deutsche Rentensystem?</a></li>
+                    <li><a onclick="showCourse('course10')">2.4 Wie funktioniert die Börse?</a></li>
+                </ul>
+            </ul>
+        </div>
+        <div class="simulator">
+            <h2>Stock Buying Simulator</h2>
+            <div class="credits">
+                <h3>Credits: $<span id="credits">10000</span></h3>
+            </div>
+            <div class="stock-list">
+                <h3>Available Stocks</h3>
+                <div id="stocks"></div>
+            </div>
+            <div class="form-group">
+                <h3>Buy Stock</h3>
+                <form id="buyStockForm">
+                    <select id="stockSelect" required>
+                        <option value="">Select Stock</option>
+                    </select>
+                    <input type="number" id="stockQuantity" min="1" placeholder="Quantity" required>
+                    <button type="submit">Buy</button>
+                </form>
+            </div>
+            <div class="portfolio">
+                <h3>Your Portfolio</h3>
+                <div id="portfolio"></div>
+            </div>
+        </div>
+    </div>
+
     <footer>
         <p>Kontakt:</p>
         <p>Email: info.jugendinvestiert@gmail.com</p>
         <p>Telefon: +49 152 55341792</p>
         <p>&copy; 2024 JugendInvestiert. Alle Rechte vorbehalten.</p>
     </footer>
+
+    <script>
+        function showCourse(courseId) {
+            var contents = document.getElementsByClassName('course-content');
+            for (var i = 0; i < contents.length; i++) {
+                contents[i].style.display = 'none';
+            }
+            var selectedContent = document.getElementById(courseId);
+            if (selectedContent) {
+                selectedContent.style.display = 'block';
+            }
+        }
+
+        const stocks = [
+            { name: "Apple", price: 150 },
+            { name: "Google", price: 2800 },
+            { name: "Amazon", price: 3500 },
+        ];
+
+        const portfolio = [];
+
+        function updateStockList() {
+            const stockList = document.getElementById("stocks");
+            stockList.innerHTML = "";
+            stocks.forEach(stock => {
+                const stockElement = document.createElement("div");
+                stockElement.textContent = `${stock.name}: $${stock.price}`;
+                stockList.appendChild(stockElement);
+
+                const optionElement = document.createElement("option");
+                optionElement.value = stock.name;
+                optionElement.textContent = stock.name;
+                document.getElementById("stockSelect").appendChild(optionElement);
+            });
+        }
+
+        function updatePortfolio() {
+            const portfolioElement = document.getElementById("portfolio");
+            portfolioElement.innerHTML = "";
+            portfolio.forEach(entry => {
+                const portfolioItem = document.createElement("div");
+                portfolioItem.textContent = `${entry.stock}: ${entry.quantity} shares`;
+                portfolioElement.appendChild(portfolioItem);
+            });
+        }
+
+        document.getElementById("buyStockForm").addEventListener("submit", function (event) {
+            event.preventDefault();
+            const stockName = document.getElementById("stockSelect").value;
+            const quantity = parseInt(document.getElementById("stockQuantity").value, 10);
+
+            if (stockName && quantity > 0) {
+                const stock = stocks.find(s => s.name === stockName);
+                if (stock) {
+                    const cost = stock.price * quantity;
+                    const creditsElement = document.getElementById("credits");
+                    let credits = parseInt(creditsElement.textContent, 10);
+                    if (cost <= credits) {
+                        credits -= cost;
+                        creditsElement.textContent = credits;
+
+                        const portfolioEntry = portfolio.find(p => p.stock === stockName);
+                        if (portfolioEntry) {
+                            portfolioEntry.quantity += quantity;
+                        } else {
+                            portfolio.push({ stock: stockName, quantity });
+                        }
+
+                        updatePortfolio();
+                    } else {
+                        alert("Not enough credits to buy the stock.");
+                    }
+                }
+            }
+        });
+
+        updateStockList();
+        updatePortfolio();
+    </script>
 </body>
+</html>
+
 </html>
