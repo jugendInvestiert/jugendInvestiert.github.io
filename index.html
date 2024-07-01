@@ -1,4 +1,4 @@
-!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -10,21 +10,24 @@
             background-image: url('background.jpg');
             margin: 0;
             padding: 0;
+            color: #333;
         }
 
         .logo-container {
             display: flex;
             align-items: center;
             padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
         }
 
         .logo {
-            height: 50px;
+            height: 100px;
             margin-right: 20px;
         }
 
         h1 {
             font-size: 3em;
+            margin: 0;
         }
 
         h2 {
@@ -39,7 +42,7 @@
 
         .sidebar {
             width: 30%;
-            background-color: rgba(255, 255, 255, 0.7);
+            background-color: rgba(255, 255, 255, 0.9);
             padding: 20px;
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
             border-radius: 10px;
@@ -63,6 +66,7 @@
             padding: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
+            background-color: rgba(255, 255, 255, 0.9);
         }
 
         .cube:hover {
@@ -126,13 +130,53 @@
         }
 
         footer {
-            position: fixed;
-            bottom: 0;
-            width: 100%;
             background-color: #333;
             color: #fff;
             padding: 10px;
             text-align: center;
+            margin-top: 20px;
+        }
+
+        .form-group {
+            margin-top: 20px;
+        }
+
+        .form-group select,
+        .form-group input,
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-group button {
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .form-group button:hover {
+            background-color: #0056b3;
+        }
+
+        .stock-list,
+        .portfolio {
+            margin-top: 20px;
+        }
+
+        .stock-list div,
+        .portfolio div {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .portfolio-value {
+            font-weight: bold;
+            margin-top: 20px;
         }
     </style>
 </head>
@@ -200,7 +244,7 @@
             </ul>
         </div>
         <div class="simulator">
-            <h2>Stock Buying Simulator</h2>
+            <h2>Stock Buying Simulator (BETA)</h2>
             <div class="credits">
                 <h3>Credits: $<span id="credits">10000</span></h3>
             </div>
@@ -211,106 +255,124 @@
             <div class="form-group">
                 <h3>Buy Stock</h3>
                 <form id="buyStockForm">
-                    <select id="stockSelect" required>
-                        <option value="">Select Stock</option>
-                    </select>
-                    <input type="number" id="stockQuantity" min="1" placeholder="Quantity" required>
+                    <select id="stockSelect"></select>
+                    <input type="number" id="stockQuantity" placeholder="Quantity" required>
                     <button type="submit">Buy</button>
                 </form>
             </div>
             <div class="portfolio">
-                <h3>Your Portfolio</h3>
+                <h3>Portfolio</h3>
                 <div id="portfolio"></div>
+                <div class="portfolio-value">
+                    Total Portfolio Value: $<span id="portfolioValue">0.00</span>
+                </div>
             </div>
         </div>
     </div>
-
     <footer>
-        <p>Kontakt:</p>
-        <p>Email: info.jugendinvestiert@gmail.com</p>
-        <p>Telefon: +49 152 55341792</p>
-        <p>&copy; 2024 JugendInvestiert. Alle Rechte vorbehalten.</p>
+        <p>&copy; 2023 JugendInvestiert. All rights reserved.</p>
     </footer>
-
     <script>
-        function showCourse(courseId) {
-            var contents = document.getElementsByClassName('course-content');
-            for (var i = 0; i < contents.length; i++) {
-                contents[i].style.display = 'none';
-            }
-            var selectedContent = document.getElementById(courseId);
-            if (selectedContent) {
-                selectedContent.style.display = 'block';
-            }
-        }
-
         const stocks = [
-            { name: "Apple", price: 150 },
-            { name: "Google", price: 2800 },
-            { name: "Amazon", price: 3500 },
+            { name: "Allianz", price: 200 },
+            { name: "BASF", price: 65 },
+            { name: "Bayer", price: 50 },
+            { name: "BMW", price: 90 },
+            { name: "Continental", price: 95 },
+            { name: "Covestro", price: 55 },
+            { name: "Daimler", price: 85 },
+            { name: "Deutsche Bank", price: 8 },
+            { name: "Deutsche Börse", price: 150 },
+            { name: "Deutsche Post", price: 45 },
+            { name: "Deutsche Telekom", price: 18 },
+            { name: "E.ON", price: 10 },
+            { name: "Fresenius", price: 40 },
+            { name: "HeidelbergCement", price: 65 },
+            { name: "Henkel", price: 80 },
+            { name: "Infineon", price: 35 },
+            { name: "Linde", price: 250 },
+            { name: "Merck", price: 140 },
+            { name: "MTU Aero Engines", price: 180 }
         ];
 
-        const portfolio = [];
+        let credits = 10000;
+        let portfolio = [];
 
-        function updateStockList() {
-            const stockList = document.getElementById("stocks");
-            stockList.innerHTML = "";
+        function getRandomPriceChange() {
+            return (Math.random() - 0.5) * 2; // Random price change between -1 and +1
+        }
+
+        function updateStockPrices() {
             stocks.forEach(stock => {
-                const stockElement = document.createElement("div");
-                stockElement.textContent = `${stock.name}: $${stock.price}`;
-                stockList.appendChild(stockElement);
-
-                const optionElement = document.createElement("option");
-                optionElement.value = stock.name;
-                optionElement.textContent = stock.name;
-                document.getElementById("stockSelect").appendChild(optionElement);
+                const change = getRandomPriceChange();
+                stock.price = Math.max(stock.price + change, 0.01); // Ensure price is not negative
             });
         }
 
-        function updatePortfolio() {
-            const portfolioElement = document.getElementById("portfolio");
-            portfolioElement.innerHTML = "";
-            portfolio.forEach(entry => {
-                const portfolioItem = document.createElement("div");
-                portfolioItem.textContent = `${entry.stock}: ${entry.quantity} shares`;
-                portfolioElement.appendChild(portfolioItem);
+        function displayStocks() {
+            const stocksDiv = document.getElementById("stocks");
+            const stockSelect = document.getElementById("stockSelect");
+            stocksDiv.innerHTML = "";
+            stockSelect.innerHTML = '<option value="">Select Stock</option>';
+
+            stocks.forEach(stock => {
+                const stockDiv = document.createElement("div");
+                stockDiv.innerHTML = `${stock.name}: $${stock.price.toFixed(2)}`;
+                stocksDiv.appendChild(stockDiv);
+
+                const option = document.createElement("option");
+                option.value = stock.name;
+                option.textContent = `${stock.name} - $${stock.price.toFixed(2)}`;
+                stockSelect.appendChild(option);
             });
         }
 
-        document.getElementById("buyStockForm").addEventListener("submit", function (event) {
+        function displayPortfolio() {
+            const portfolioDiv = document.getElementById("portfolio");
+            portfolioDiv.innerHTML = "";
+            let totalValue = 0;
+            portfolio.forEach(item => {
+                const stock = stocks.find(s => s.name === item.name);
+                const value = stock.price * item.quantity;
+                totalValue += value;
+
+                const itemDiv = document.createElement("div");
+                itemDiv.innerHTML = `${item.name}: ${item.quantity} shares ($${value.toFixed(2)})`;
+                portfolioDiv.appendChild(itemDiv);
+            });
+            document.getElementById("portfolioValue").textContent = totalValue.toFixed(2);
+        }
+
+        document.getElementById("buyStockForm").addEventListener("submit", function(event) {
             event.preventDefault();
             const stockName = document.getElementById("stockSelect").value;
-            const quantity = parseInt(document.getElementById("stockQuantity").value, 10);
+            const quantity = parseInt(document.getElementById("stockQuantity").value);
 
             if (stockName && quantity > 0) {
                 const stock = stocks.find(s => s.name === stockName);
-                if (stock) {
-                    const cost = stock.price * quantity;
-                    const creditsElement = document.getElementById("credits");
-                    let credits = parseInt(creditsElement.textContent, 10);
-                    if (cost <= credits) {
-                        credits -= cost;
-                        creditsElement.textContent = credits;
+                const cost = stock.price * quantity;
 
-                        const portfolioEntry = portfolio.find(p => p.stock === stockName);
-                        if (portfolioEntry) {
-                            portfolioEntry.quantity += quantity;
-                        } else {
-                            portfolio.push({ stock: stockName, quantity });
-                        }
+                if (cost <= credits) {
+                    credits -= cost;
+                    document.getElementById("credits").textContent = credits.toFixed(2);
 
-                        updatePortfolio();
+                    const existingItem = portfolio.find(item => item.name === stockName);
+                    if (existingItem) {
+                        existingItem.quantity += quantity;
                     } else {
-                        alert("Not enough credits to buy the stock.");
+                        portfolio.push({ name: stockName, quantity });
                     }
+
+                    displayPortfolio();
+                } else {
+                    alert("Not enough credits!");
                 }
             }
         });
 
-        updateStockList();
-        updatePortfolio();
+        updateStockPrices();
+        displayStocks();
+        displayPortfolio();
     </script>
 </body>
-</html>
-
 </html>
