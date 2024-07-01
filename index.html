@@ -17,7 +17,7 @@
             display: flex;
             align-items: center;
             padding: 20px;
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.3);
         }
 
         .logo {
@@ -40,15 +40,6 @@
             font-size: 1.1em;
         }
 
-        .sidebar {
-            width: 30%;
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            margin-right: 20px;
-        }
-
         .cube-container {
             display: flex;
             justify-content: space-around;
@@ -66,7 +57,7 @@
             padding: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.7);
         }
 
         .cube:hover {
@@ -89,10 +80,11 @@
             justify-content: space-between;
             margin-top: 20px;
             padding: 20px;
+            gap: 20px;
         }
 
         .simulator {
-            flex: 1;
+            width: 35%;
             background-color: #fff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             padding: 20px;
@@ -100,33 +92,47 @@
         }
 
         .course-overview {
-            flex: 1;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            border-radius: 10px;
+            display: flex;
+            flex-grow: 1;
+            gap: 20px;
         }
 
-        .course-overview h2 {
+        .course-list {
+            width: 40%;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .course-list h2 {
             margin-top: 0;
         }
 
-        .course-overview ul {
+        .course-list ul {
             padding: 0;
             list-style-type: none;
         }
 
-        .course-overview ul li {
+        .course-list ul li {
             margin-bottom: 10px;
         }
 
-        .course-overview ul li a {
+        .course-list ul li a {
             text-decoration: none;
             color: #007bff;
         }
 
-        .course-overview ul li a:hover {
+        .course-list ul li a:hover {
             text-decoration: underline;
+        }
+
+        .course-preview {
+            flex-grow: 1;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         footer {
@@ -190,25 +196,25 @@
 
     <div class="cube-container">
         <div class="cube">
-            <a href="C:\Users\alber\Documents\jugendInvestiert\.vscode\course1.html">
+            <a href="course1.html">
                 <img src="cours.jpg" alt="Course Image">
                 <h3>Unsere Kurse</h3>
             </a>
         </div>
         <div class="cube">
-            <a href="C:\Users\alber\Documents\jugendInvestiert\.vscode\ressources.html">
+            <a href="resources.html">
                 <img src="money.jpg" alt="Resources Image">
                 <h3>Ressourcen</h3>
             </a>
         </div>
         <div class="cube">
-            <a href="C:\Users\alber\Documents\jugendInvestiert\.vscode\our_mission">
+            <a href="our_mission.html">
                 <img src="mission.jpg" alt="Mission Image">
                 <h3>Unsere Mission</h3>
             </a>
         </div>
         <div class="cube">
-            <a href="C:\Users\alber\Documents\jugendInvestiert\.vscode\about_us.html">
+            <a href="about_us.html">
                 <img src="entrepreneur.jpg" alt="About Us Image">
                 <h3>Über uns</h3>
             </a>
@@ -222,35 +228,44 @@
     </div>
 
     <div class="content-container">
-        <div class="course-overview sidebar">
-            <h2>Unsere Kurse</h2>
-            <ul class="course-list">
-                <li><a onclick="showSection('course1')">1. Wie investiere ich mein Geld</a></li>
+        <div class="course-overview">
+            <div class="course-list sidebar">
+                <h2>Unsere Kurse</h2>
                 <ul>
-                    <li><a onclick="showCourse('course1')">1.1 Wie lege ich mein Geld in Aktien an?</a></li>
-                    <li><a onclick="showCourse('course2')">1.2 Wie lege ich mein Geld in Anleihen an?</a></li>
-                    <li><a onclick="showCourse('course3')">1.3 Wie investiere ich mein Geld in Krypto?</a></li>
-                    <li><a onclick="showCourse('course4')">1.4 Wie lege ich mein Geld in Rohstoffe an?</a></li>
-                    <li><a onclick="showCourse('course5')">1.5 Wie lege ich mein Geld in Immobilien an?</a></li>
-                    <li><a onclick="showCourse('course9')">1.6 Wie lege ich mein Geld in ETFs an?</a></li>
+                    <li><a onclick="showSection('course1')">1. Wie investiere ich mein Geld</a></li>
+                    <ul>
+                        <li><a onclick="showCourse('course1')">1.1 Wie lege ich mein Geld in Aktien an?</a></li>
+                        <li><a onclick="showCourse('course2')">1.2 Wie lege ich mein Geld in Anleihen an?</a></li>
+                        <li><a onclick="showCourse('course3')">1.3 Wie investiere ich mein Geld in Krypto?</a></li>
+                        <li><a onclick="showCourse('course4')">1.4 Wie lege ich mein Geld in Rohstoffe an?</a></li>
+                        <li><a onclick="showCourse('course5')">1.5 Wie lege ich mein Geld in Immobilien an?</a></li>
+                        <li><a onclick="showCourse('course9')">1.6 Wie lege ich mein Geld in ETFs an?</a></li>
+                    </ul>
+                    <li><a onclick="showSection('course6')">2. Wirtschaft</a></li>
+                    <ul>
+                        <li><a onclick="showCourse('course6')">2.1 Wie funktioniert Inflation?</a></li>
+                        <li><a onclick="showCourse('course7')">2.2 Wie funktioniert Deflation?</a></li>
+                        <li><a onclick="showCourse('course8')">2.3 Wie funktioniert das deutsche Rentensystem?</a></li>
+                        <li><a onclick="showCourse('course10')">2.4 Wie funktioniert die Börse?</a></li>
+                    </ul>
                 </ul>
-                <li><a onclick="showSection('course6')">2. Wirtschaft</a></li>
-                <ul>
-                    <li><a onclick="showCourse('course6')">2.1 Wie funktioniert Inflation?</a></li>
-                    <li><a onclick="showCourse('course7')">2.2 Wie funktioniert Deflation?</a></li>
-                    <li><a onclick="showCourse('course8')">2.3 Wie funktioniert das deutsche Rentensystem?</a></li>
-                    <li><a onclick="showCourse('course10')">2.4 Wie funktioniert die Börse?</a></li>
-                </ul>
-            </ul>
-        </div>
-        <div class="simulator">
-            <h2>Stock Buying Simulator (BETA)</h2>
-            <div class="credits">
-                <h3>Credits: $<span id="credits">10000</span></h3>
             </div>
+            <div class="course-preview">
+                <h2>Kurs Vorschau</h2>
+                <div id="courseContent">
+                    <p>Wählen Sie einen Kurs aus der Liste aus, um eine Vorschau anzuzeigen.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="simulator">
+            <h2>Aktienhandel Simulator</h2>
             <div class="stock-list">
-                <h3>Available Stocks</h3>
+                <h3>Verfügbare Aktien</h3>
                 <div id="stocks"></div>
+            </div>
+            <div class="form-group">
+                <h3>Credits: $<span id="credits">10000.00</span></h3>
             </div>
             <div class="form-group">
                 <h3>Buy Stock</h3>
@@ -269,9 +284,11 @@
             </div>
         </div>
     </div>
+
     <footer>
         <p>&copy; 2023 JugendInvestiert. All rights reserved.</p>
     </footer>
+
     <script>
         const stocks = [
             { name: "Allianz", price: 200 },
@@ -370,9 +387,33 @@
             }
         });
 
+        function showCourse(courseId) {
+            const courseContent = {
+                course1: "<h3>1.1 Wie lege ich mein Geld in Aktien an?</h3><p>Details zu Kurs 1.1</p>",
+                course2: "<h3>1.2 Wie lege ich mein Geld in Anleihen an?</h3><p>Details zu Kurs 1.2</p>",
+                course3: "<h3>1.3 Wie investiere ich mein Geld in Krypto?</h3><p>Details zu Kurs 1.3</p>",
+                course4: "<h3>1.4 Wie lege ich mein Geld in Rohstoffe an?</h3><p>Details zu Kurs 1.4</p>",
+                course5: "<h3>1.5 Wie lege ich mein Geld in Immobilien an?</h3><p>Details zu Kurs 1.5</p>",
+                course6: "<h3>2.1 Wie funktioniert Inflation?</h3><p>Details zu Kurs 2.1</p>",
+                course7: "<h3>2.2 Wie funktioniert Deflation?</h3><p>Details zu Kurs 2.2</p>",
+                course8: "<h3>2.3 Wie funktioniert das deutsche Rentensystem?</h3><p>Details zu Kurs 2.3</p>",
+                course9: "<h3>1.6 Wie lege ich mein Geld in ETFs an?</h3><p>Details zu Kurs 1.6</p>",
+                course10: "<h3>2.4 Wie funktioniert die Börse?</h3><p>Details zu Kurs 2.4</p>"
+            };
+
+            document.getElementById("courseContent").innerHTML = courseContent[courseId];
+        }
+
+        function showSection(section) {
+            if (section === 'course1') {
+                window.location.href = 'lessons.html';
+            }
+        }
+
         updateStockPrices();
         displayStocks();
         displayPortfolio();
     </script>
 </body>
 </html>
+
