@@ -4,400 +4,175 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JugendInvestiert</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: "Roboto", Arial, sans-serif;
-            background-image: url('background.jpg');
+            font-family: 'Poppins', Arial, sans-serif;
             margin: 0;
             padding: 0;
-            color: #333;
+            display: flex;
+            background-color: #101820;
         }
-
-        .logo-container {
+        .sidebar {
+            width: 300px;
+            background-color: #1B2631;
+            color: white;
+            height: 100vh;
+            padding: 0 2px;
+            position: fixed;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .sidebar h2 {
+            text-align: center;
+            font-size: 26px;
+            color: #00C4CC;
+            margin-bottom: 20px;
+            padding: 0 10px;
+        }
+        .sidebar a {
             display: flex;
             align-items: center;
-            padding: 20px;
-            background-color: transparent;
+            color: white;
+            padding: 8px 10px;
+            text-decoration: none;
+            font-size: 14px;
+            box-sizing: border-box;
+            border: 2px solid transparent;
+            border-radius: 15px;
+            margin: 8px 0;
+            transition: background-color 0.3s, border-color 0.3s;
+            text-transform: uppercase;
+            width: 90%;
+            justify-content: flex-start;
         }
-
-        .logo {
-            height: 100px;
-            margin-right: 20px;
+        .sidebar a:hover {
+            background-color: #34495e;
         }
-
-        h1 {
-            font-size: 3em;
-            margin: 0;
+        .sidebar a.active {
+            border-color: #00A3A7;
         }
-
-        h2 {
-            font-size: 1.5em;
+        .sidebar a .emoji {
+            font-size: 32px;
+            margin-right: 10px;
+        }
+        .sidebar a.login,
+        .sidebar a.signup {
+            text-align: center;
+            padding: 10px 0;
+            border-radius: 15px;
+            justify-content: center;
+            font-size: 18px;
+            width: 90%;
             margin-top: 10px;
         }
-
-        h3, p {
-            margin: 10px;
-            font-size: 1.1em;
+        .sidebar a.login {
+            background-color: #00C4CC;
         }
-
-        .cube-container {
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            margin: 20px 0;
+        .sidebar a.login:hover {
+            background-color: #00A3A7;
         }
-
-        .cube {
-            flex: 1;
-            max-width: 220px;
-            margin: 10px;
-            text-align: center;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-            background-color: rgba(255, 255, 255, 0.7);
+        .sidebar a.signup {
+            background-color: #7F8C8D;
         }
-
-        .cube:hover {
-            transform: scale(1.05);
+        .sidebar a.signup:hover {
+            background-color: #5D6D6E;
         }
-
-        .cube img {
+        .bottom-buttons {
+            margin-top: auto;
             width: 100%;
-            height: auto;
-            border-radius: 5px;
-        }
-
-        .content-container {
             display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-            padding: 20px;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 20px;
         }
-
-        .course-list {
-            width: calc(55% - 40px); /* Adjusted width and subtracting 40px margin */
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .simulator {
-            width: calc(45% - 40px); /* Adjusted width and subtracting 40px margin */
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            border-radius: 10px;
-            margin-left: 10px; /* Added margin to separate from sidebar */
-        }
-
-        .course-list h2 {
-            margin-top: 0;
-        }
-
-        .course-list ul {
-            padding: 0;
-            list-style-type: none;
-        }
-
-        .course-list ul li {
-            margin-bottom: 10px;
-        }
-
-        .course-list ul li a {
-            text-decoration: none;
-            color: #007bff;
-        }
-
-        .course-list ul li a:hover {
-            text-decoration: underline;
-        }
-
-        footer {
-            background-color: #333;
-            color: #fff;
-            padding: 10px;
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .form-group {
-            margin-top: 20px;
-        }
-
-        .form-group select,
-        .form-group input,
-        .form-group button {
-            width: 100%;
-            padding: 10px;
-            margin: 5px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-        }
-
-        .form-group button {
-            background-color: #007bff;
+        .content {
+            margin-left: 300px;
+            width: calc(100% - 300px);
+            box-sizing: border-box;
             color: white;
-            cursor: pointer;
+        }
+        .content h1 {
+            font-size: 32px;
+        }
+        .content section {
+            display: none;
+            width: 100%;
+            height: 100vh;
+        }
+        .content section.active {
+            display: block;
+        }
+        .content iframe {
+            width: 100%;
+            height: 100vh;
             border: none;
-            transition: background-color 0.3s ease;
-        }
-
-        .form-group button:hover {
-            background-color: #0056b3;
-        }
-
-        .stock-list,
-        .portfolio {
-            margin-top: 20px;
-        }
-
-        .stock-list div,
-        .portfolio div {
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .portfolio-value {
-            font-weight: bold;
-            margin-top: 20px;
         }
     </style>
 </head>
 <body>
-    <div class="logo-container">
-        <img src="logo.jpg" alt="Logo" class="logo">
-        <h1>JugendInvestiert</h1>
-    </div>
-    <h2>Finanzwissen für alle - Investiere in deine Zukunft!</h2>
-    <p><b>Unsere Plattform ist eine Quelle für umfassendes Finanzwissen, das gezielt auf die Bedürfnisse der Jugend zugeschnitten ist. Wir bieten eine Vielzahl von Ressourcen, Schulungen und Tools an, um jungen Menschen dabei zu helfen, ein solides Verständnis für Finanzen aufzubauen. Von Budgetierung und Sparen bis hin zu Investitionen und Vermögensaufbau - wir unterstützen die Jugend dabei, finanziell kompetent zu werden und ihre Zukunft aufzubauen.</b></p>
 
-    <div class="cube-container">
-        <div class="cube">
-            <a href="lessons.html"> <!-- Changed link to lessons.html -->
-                <img src="cours.jpg" alt="Course Image">
-                <h3>Unsere Kurse</h3>
-            </a>
-        </div>
-        <div class="cube">
-            <a href="resources.html">
-                <img src="money.jpg" alt="Resources Image">
-                <h3>Ressourcen</h3>
-            </a>
-        </div>
-        <div class="cube">
-            <a href="our_mission.html">
-                <img src="mission.jpg" alt="Mission Image">
-                <h3>Unsere Mission</h3>
-            </a>
-        </div>
-        <div class="cube">
-            <a href="about_us.html">
-                <img src="entrepreneur.jpg" alt="About Us Image">
-                <h3>Über uns</h3>
-            </a>
-        </div>
-        <div class="cube">
-            <a href="YOUR_NEWSLETTER_LINK_HERE">
-                <img src="email.jpg" alt="Newsletter Image">
-                <h3>Newsletter</h3>
-            </a>
+    <div class="sidebar">
+        <h2>JugendInvestiert</h2>
+        <a href="#home" class="button" onclick="showSection('home', this)"><span class="emoji">🏠</span> Zuhause</a>
+        <a href="#lernen" class="button" onclick="showSection('lernen', this)"><span class="emoji">📚</span> Lernen</a>
+        <a href="#resourcen" class="button" onclick="showSection('resourcen', this)"><span class="emoji">📁</span> Ressourcen</a>
+        <a href="#simulator" class="button" onclick="showSection('simulator', this)"><span class="emoji">🛠️</span> Simulator</a>
+        <a href="#unsere-mission" class="button" onclick="showSection('unsere-mission', this)"><span class="emoji">🌍</span> Unsere Mission</a>
+        <div class="bottom-buttons">
+            <a href="#login" class="button login" onclick="showSection('login', this)"><span class="emoji">🔑</span> Anmelden</a>
+            <a href="#signup" class="button signup" onclick="showSection('signup', this)"><span class="emoji">✍️</span> Registrieren</a>
         </div>
     </div>
 
-    <div class="content-container">
-        <div class="course-list sidebar">
-            <h2>Unsere Kurse</h2>
-            <ul>
-                <li><a href="lessons.html">1. Wie investiere ich mein Geld</a>
-                    <ul>
-                        <li><a href="lessons.html">1.1 Wie lege ich mein Geld in Aktien an?</a></li>
-                        <li><a href="lessons.html">1.2 Wie lege ich mein Geld in Anleihen an?</a></li>
-                        <li><a href="lessons.html">1.3 Wie investiere ich mein Geld in Krypto?</a></li>
-                        <li><a href="lessons.html">1.4 Wie lege ich mein Geld in Rohstoffe an?</a></li>
-                        <li><a href="lessons.html">1.5 Wie lege ich mein Geld in Immobilien an?</a></li>
-                        <li><a href="lessons.html">1.6 Wie lege ich mein Geld in ETFs an?</a></li>
-                    </ul>
-                </li>
-                <li><a href="lessons.html">2. Wirtschaft</a>
-                    <ul>
-                        <li><a href="lessons.html">2.1 Wie funktioniert Inflation?</a></li>
-                        <li><a href="lessons.html">2.2 Wie funktioniert Deflation?</a></li>
-                        <li><a href="lessons.html">2.3 Wie funktioniert das deutsche Rentensystem?</a></li>
-                        <li><a href="lessons.html">2.4 Wie funktioniert die Börse?</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-
-        <div class="simulator">
-            <h2>Aktienhandel Simulator (BETA)</h2>
-            <div class="stock-list">
-                <h3>Verfügbare DAX Aktien</h3>
-                <div id="stocks"></div>
-            </div>
-            <div class="form-group">
-                <h3>Guthaben: $<span id="credits">10000.00</span></h3>
-            </div>
-            <div class="form-group">
-                <h3>Transaktion</h3>
-                <select id="stock-select"></select>
-                <input type="number" id="quantity" placeholder="Menge">
-                <button onclick="buyStock()">Kaufen</button>
-                <button onclick="sellStock()">Verkaufen</button> <!-- Added sell button -->
-            </div>
-            <div class="portfolio">
-                <h3>Portfolio</h3>
-                <div id="portfolio"></div>
-            </div>
-            <div class="form-group">
-                <h3>Gesamtwert des Portfolios: $<span id="portfolio-value">0.00</span></h3>
-            </div>
-        </div>
+    <div class="content">
+        <section id="home">
+            <iframe src="https://www.spacex.com"></iframe>
+        </section>
+        <section id="lernen">
+            <h1>Lernen</h1>
+            <p>Inhalt für Lernen.</p>
+        </section>
+        <section id="resourcen">
+            <h1>Ressourcen</h1>
+            <p>Inhalt für Ressourcen.</p>
+        </section>
+        <section id="simulator">
+            <h1>Simulator</h1>
+            <p>Inhalt für Simulator.</p>
+        </section>
+        <section id="unsere-mission">
+            <h1>Unsere Mission</h1>
+            <p>Inhalt für Unsere Mission.</p>
+        </section>
+        <section id="login">
+            <h1>Anmelden</h1>
+            <p>Das Anmeldeformular wird hier angezeigt.</p>
+        </section>
+        <section id="signup">
+            <h1>Registrieren</h1>
+            <p>Das Registrierungsformular wird hier angezeigt.</p>
+        </section>
     </div>
-
-    <footer>
-        <p>&copy; 2024 JugendInvestiert. All rights reserved.</p>
-    </footer>
 
     <script>
-        // Stock data
-        const stocks = [
-            { name: 'Allianz SE', price: 200.00 },
-            { name: 'BASF SE', price: 60.00 },
-            { name: 'Bayer AG', price: 50.00 },
-            { name: 'BMW AG', price: 80.00 },
-            { name: 'Continental AG', price: 90.00 },
-            { name: 'Covestro AG', price: 55.00 },
-            { name: 'Daimler AG', price: 75.00 },
-            { name: 'Deutsche Bank AG', price: 9.00 },
-            { name: 'Deutsche Börse AG', price: 140.00 },
-            { name: 'Deutsche Post AG', price: 45.00 },
-            { name: 'Deutsche Telekom AG', price: 18.00 },
-            { name: 'E.ON SE', price: 10.00 },
-            { name: 'Fresenius SE & Co. KGaA', price: 45.00 },
-            { name: 'HeidelbergCement AG', price: 60.00 },
-            { name: 'Henkel AG & Co. KGaA', price: 80.00 },
-            { name: 'Infineon Technologies AG', price: 35.00 },
-            { name: 'Linde plc', price: 250.00 },
-            { name: 'Merck KGaA', price: 130.00 },
-            { name: 'MTU Aero Engines AG', price: 220.00 },
-            { name: 'Münchener Rückversicherungs-Gesellschaft AG', price: 240.00 },
-            { name: 'RWE AG', price: 33.00 },
-            { name: 'SAP SE', price: 120.00 },
-            { name: 'Siemens AG', price: 150.00 },
-            { name: 'Volkswagen AG', price: 170.00 },
-            { name: 'Vonovia SE', price: 40.00 }
-        ];
+        function showSection(id, element) {
+            const sections = document.querySelectorAll('.content section');
+            const buttons = document.querySelectorAll('.sidebar a.button');
 
-        let credits = 10000.00;
-        let portfolio = [];
+            sections.forEach(section => section.classList.remove('active'));
+            buttons.forEach(button => button.classList.remove('active'));
 
-        function updateStockList() {
-            const stockList = document.getElementById('stocks');
-            const stockSelect = document.getElementById('stock-select');
-            stockList.innerHTML = '';
-            stockSelect.innerHTML = '';
-
-            stocks.forEach((stock, index) => {
-                const stockDiv = document.createElement('div');
-                stockDiv.textContent = `${stock.name} - $${stock.price.toFixed(2)}`;
-                stockList.appendChild(stockDiv);
-
-                const option = document.createElement('option');
-                option.value = index;
-                option.textContent = `${stock.name} - $${stock.price.toFixed(2)}`;
-                stockSelect.appendChild(option);
-            });
-        }
-
-        function buyStock() {
-            const stockIndex = document.getElementById('stock-select').value;
-            const quantity = parseInt(document.getElementById('quantity').value);
-
-            if (!Number.isInteger(quantity) || quantity <= 0) {
-                alert('Bitte geben Sie eine gültige Menge ein.');
-                return;
-            }
-
-            const stock = stocks[stockIndex];
-            const cost = stock.price * quantity;
-
-            if (cost > credits) {
-                alert('Nicht genug Guthaben.');
-                return;
-            }
-
-            credits -= cost;
-            document.getElementById('credits').textContent = credits.toFixed(2);
-
-            const portfolioStock = portfolio.find(item => item.stock.name === stock.name);
-            if (portfolioStock) {
-                portfolioStock.quantity += quantity;
-            } else {
-                portfolio.push({ stock, quantity });
-            }
-
-            updatePortfolio();
-        }
-
-        function sellStock() {
-            const stockIndex = document.getElementById('stock-select').value;
-            const quantity = parseInt(document.getElementById('quantity').value);
-
-            if (!Number.isInteger(quantity) || quantity <= 0) {
-                alert('Bitte geben Sie eine gültige Menge ein.');
-                return;
-            }
-
-            const stock = stocks[stockIndex];
-            const portfolioStock = portfolio.find(item => item.stock.name === stock.name);
-
-            if (!portfolioStock || portfolioStock.quantity < quantity) {
-                alert('Nicht genug Aktien im Portfolio.');
-                return;
-            }
-
-            const earnings = stock.price * quantity;
-            credits += earnings;
-            document.getElementById('credits').textContent = credits.toFixed(2);
-
-            portfolioStock.quantity -= quantity;
-            if (portfolioStock.quantity === 0) {
-                portfolio = portfolio.filter(item => item.quantity > 0);
-            }
-
-            updatePortfolio();
-        }
-
-        function updatePortfolio() {
-            const portfolioDiv = document.getElementById('portfolio');
-            portfolioDiv.innerHTML = '';
-            let totalValue = 0;
-
-            portfolio.forEach(item => {
-                const value = item.stock.price * item.quantity;
-                totalValue += value;
-
-                const portfolioItemDiv = document.createElement('div');
-                portfolioItemDiv.textContent = `${item.stock.name} - ${item.quantity} Aktien - $${value.toFixed(2)}`;
-                portfolioDiv.appendChild(portfolioItemDiv);
-            });
-
-            document.getElementById('portfolio-value').textContent = totalValue.toFixed(2);
+            document.getElementById(id).classList.add('active');
+            element.classList.add('active');
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            updateStockList();
+            showSection('home', document.querySelector('.sidebar a[href="#home"]'));
         });
-
-        // JavaScript disclaimer
-        window.onload = function() {
-            alert('Achtung: jugendInvestiert ist keine Finanzberatung sondern dient pädagogischen Zwecken. Bitte besprechen sie Echtgeldinvestments mit einem qualifizierten Finanzberater');
-        };
     </script>
+
 </body>
 </html>
