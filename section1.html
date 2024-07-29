@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JugendInvestiert Courses</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #101820; /* Dark background color */
+            color: white;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+
+        .content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            background-color: #2C3E50; /* Dark header color */
+            padding: 10px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .arrow {
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .course {
+            background-color: #2C3E50; /* Dark course background color */
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 10px;
+            max-width: 600px; /* Reasonable max-width */
+            width: 100%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .course:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .banner {
+            padding: 10px 15px;
+            border-radius: 10px 10px 0 0;
+            color: white;
+            text-align: center;
+            font-size: 18px; /* Font size for banner */
+            font-weight: bold;
+            position: relative;
+            width: calc(100% + 20px); /* Ensure the banner width is the same as the course width */
+            margin: -10px -10px 10px -10px; /* Adjust margins to make it fit well */
+            box-sizing: border-box; /* Make sure padding is included in the width calculation */
+        }
+
+        .banner-1 {
+            background-color: #007bff; /* Vibrant blue */
+        }
+
+        .banner-2 {
+            background-color: #28a745; /* Vibrant green */
+        }
+
+        .banner-3 {
+            background-color: #ffc107; /* Vibrant yellow */
+        }
+
+        .banner-4 {
+            background-color: #17a2b8; /* Vibrant teal */
+        }
+
+        .banner-5 {
+            background-color: #dc3545; /* Vibrant red */
+        }
+
+        .banner-6 {
+            background-color: #6f42c1; /* Vibrant purple */
+        }
+
+        .course-content {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .text-container {
+            display: flex;
+            justify-content: space-between; /* Ensure space between text and button */
+            align-items: center; /* Center items vertically */
+        }
+
+        .course p {
+            margin: 0;
+            font-size: 14px; /* Font size for text */
+            padding-right: 10px; /* Adjusted padding */
+            flex: 1; /* Allow text to take available space */
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: flex-end; /* Align button to the right */
+        }
+
+        .action-button {
+            font-weight: bold; /* Make the button text bold */
+            color: white;
+            border: none;
+            padding: 8px 15px; /* Adjusted padding */
+            font-size: 14px; /* Font size for button */
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-left: 10px; /* Space between text and button */
+        }
+
+        .anzeigen-button {
+            background-color: #1dd05d; /* Green for "Anzeigen" */
+        }
+
+        .minimieren-button {
+            background-color: red; /* Red for "Minimieren" */
+        }
+
+        .action-button:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="header">
+            <div class="arrow" onclick="location.href='lessons.html'">←</div>
+            <div>📚 Section 1: Wie investiere ich mein Geld</div>
+        </div>
+        <div class="course" id="course1">
+            <div class="banner banner-1">
+                💹 Wie lege ich mein Geld in Aktien an?
+            </div>
+            <div class="course-content">
+                <div class="text-container">
+                    <p>Entdecken Sie die besten Methoden, um Ihr Geld gewinnbringend in Aktien zu investieren.</p>
+                    <button class="action-button anzeigen-button" onclick="location.href='course1.html'">Anzeigen</button>
+                </div>
+            </div>
+        </div>
+        <div class="course" id="course2">
+            <div class="banner banner-2">
+                🏦 Wie lege ich mein Geld in Anleihen an?
+            </div>
+            <div class="course-content">
+                <div class="text-container">
+                    <p>Erfahren Sie mehr über die Investition in Anleihen und ihre Vorteile.</p>
+                    <button class="action-button anzeigen-button" onclick="location.href='course2.html'">Anzeigen</button>
+                </div>
+            </div>
+        </div>
+        <div class="course" id="course3">
+            <div class="banner banner-3">
+                🚀 Wie investiere ich mein Geld in Krypto?
+            </div>
+            <div class="course-content">
+                <div class="text-container">
+                    <p>Lernen Sie die Grundlagen und Strategien für das Investieren in Kryptowährungen.</p>
+                    <button class="action-button anzeigen-button" onclick="location.href='course3.html'">Anzeigen</button>
+                </div>
+            </div>
+        </div>
+        <div class="course" id="course4">
+            <div class="banner banner-4">
+                💰 Wie lege ich mein Geld in Rohstoffe an?
+            </div>
+            <div class="course-content">
+                <div class="text-container">
+                    <p>Verstehen Sie, wie Sie in verschiedene Rohstoffe investieren können.</p>
+                    <button class="action-button anzeigen-button" onclick="location.href='course4.html'">Anzeigen</button>
+                </div>
+            </div>
+        </div>
+        <div class="course" id="course5">
+            <div class="banner banner-5">
+                🏠 Wie lege ich mein Geld in Immobilien an?
+            </div>
+            <div class="course-content">
+                <div class="text-container">
+                    <p>Erforschen Sie die verschiedenen Möglichkeiten der Immobilieninvestition.</p>
+                    <button class="action-button anzeigen-button" onclick="location.href='course5.html'">Anzeigen</button>
+                </div>
+            </div>
+        </div>
+        <div class="course" id="course6">
+            <div class="banner banner-6">
+                📈 Wie lege ich mein Geld in ETFs an?
+            </div>
+            <div class="course-content">
+                <div class="text-container">
+                    <p>Erfahren Sie, wie Sie Ihr Geld sicher und gewinnbringend in ETFs anlegen können.</p>
+                    <button class="action-button anzeigen-button" onclick="location.href='course6.html'">Anzeigen</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

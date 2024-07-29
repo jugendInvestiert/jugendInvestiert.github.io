@@ -3,45 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Finanzwissen für die Jugend</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>JugendInvestiert Courses</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #101820;
+            color: white;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            z-index: 1000; /* Make sure it stays on top */
+        }
+        .navbar .cross {
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+        .navbar .cross:hover {
+            color: #00C4CC; /* Miami blue */
+        }
+        .scroll-bar-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: #444;
+            z-index: 1000; /* Make sure it stays on top */
+        }
+        .scroll-bar {
+            height: 100%;
+            width: 0%;
+            background-color: #1dd05d;
+            transition: width 0.2s;
+        }
+        body {
+            margin-top: 40px; /* Ensure content is below the navbar */
+        }
+        .content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        #course-details {
+            padding: 20px;
+            background-color: #2C3E50;
+            border-radius: 10px;
+        }
+        .example {
+            background-color: #1B2631; /* Dark blue tone */
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
-    <main>
-        <section class="lessons">
-        <h2>Unsere Lektionen</h2>
-    <div class="wide-container">
-            <article>
-                <h1>Lektion 1: Wie lege ich mein Geld in Aktien an?</h1>
-                <p>Bei Investitionen bevorzugen wir langfristige, risikoarme Anlagen. Im Folgenden werden wir einige dieser Anlageklassen genauer betrachten</p>
-                <h2>A. Die Aktie</h2>
-                <p>Eine Aktie repräsentiert einen Anteil am Eigenkapital eines Unternehmens. Durch den Kauf von Aktien erwirbt man ein Stück des Unternehmens und wird damit zum Miteigentümer. Der Wert einer Aktie kann sich je nach der finanziellen Performance des Unternehmens sowie Angebot und Nachfrage ändern.</p>
-                <h3>Beispiel:</h3>
-                <img src="apple.jpg">
-                <p>Stellen Sie sich vor, Sie entscheiden sich, in Apple-Aktien zu investieren. Sie kaufen Aktien von Apple (AAPL) für 150 US-Dollar pro Aktie. Wenn der Preis der Apple-Aktie nach Ihrem Kauf steigt, sagen wir auf 200 US-Dollar pro Aktie, können Sie Ihre Aktien zu einem höheren Preis verkaufen und einen Gewinn von 50 US-Dollar pro Aktie erzielen.
-                    Wenn jedoch der Preis der Apple-Aktie nach Ihrem Kauf fällt, sagen wir auf 120 US-Dollar pro Aktie, und Sie entscheiden sich, Ihre Aktien zu diesem Preis zu verkaufen, würden Sie einen Verlust von 30 US-Dollar pro Aktie erleiden.
-                    Zusammenfassend: Beim Investieren in Apple-Aktien oder jede andere Aktie können Sie Geld verdienen, wenn der Aktienkurs steigt, indem Sie Ihre Aktien zu einem höheren Preis verkaufen. Wenn jedoch der Aktienkurs fällt, können Sie einen Verlust erleiden, wenn Sie Ihre Aktien zu einem niedrigeren Preis verkaufen als dem, den Sie dafür bezahlt haben.</p>
-                <h2>B. Diversifizieren</h2>
-                <p>Wie bereits gezeigt, kann das Investieren in nur eine Aktie riskant sein. Daher ist es ratsam, das Risiko zu streuen, indem man sein Kapital auf verschiedene Anlagen verteilt. Dies nennt man Diversifizierung. Durch die Diversifizierung kann man das Risiko mindern, da Verluste in einer Anlage durch Gewinne in anderen Anlagen ausgeglichen werden können. Auf diese Weise kann man sein Portfolio stabilisieren und langfristig erfolgreich sein.</p>
-                <h3>Hier spricht man von einem Aktion Portfolio</h3>
-                <img src="portfolio.jpg">
-                <p>Mit einem breit diversifizierten Aktienportfolio investieren wir nun in mehrere Aktien aus verschiedenen Branchen. Dadurch wird das Risiko gestreut, da Verluste in einer Branche durch Gewinne in anderen Branchen ausgeglichen werden können. Obwohl die potenziellen Gewinne möglicherweise nicht so hoch sind wie bei der Investition in eine einzelne Aktie, ist das Risiko insgesamt geringer. Es ist jedoch wichtig, Aktien aus verschiedenen Sektoren auszuwählen, um das Risiko weiter zu minimieren und langfristig stabile Renditen zu erzielen.</p>
-                <h3>Der Index</h3>
-                <p>Das Erstellen eines eigenen Aktienportfolios ist besonders für Anfänger eine Herausforderung da die richtigen Aktien auszuwählen und ein ausgewogenes Portfolio zusammenzustellen äußerst anspruchsvoll ist. Eine einfachere Option für Anfänger ist es, in einen Index zu investieren. Im grunde ist ein Index ein großes Aktion Portfolio was von anderen geleitet wird</p>
-                <h3>Beispiel: Der S&P500</h3>
-                <img src="sp500.jpg">
-                <p>Der <a href="https://en.wikipedia.org/wiki/S%26P_500">S&P 500</a> ist einer der bekanntesten Aktienindizes weltweit und gilt als Maßstab für die allgemeine Performance des US-Aktienmarktes. Er umfasst die 500 größten börsennotierten Unternehmen in den USA und spiegelt somit die Performance eines breiten Querschnitts der US-Wirtschaft wider.Ein Investment im S&P 500 bietet eine breite Diversifizierung und reduziert das Risiko im Vergleich zum Investieren in einzelne Aktien. Da der Index aus 500 Unternehmen besteht, gleichen sich einzelne Gewinne und Verluste aus, was zu einer insgesamt stabileren Performance führt.</p>
-                <p>Hier sind einige andere Beispiele für Aktienindizes:
 
-                    <li><b>Dow Jones Industrial Average (DJIA)</b>: Ein Index, der die Performance von 30 bedeutenden Industrieunternehmen in den USA verfolgt.</li>
-                    <li><b>NASDAQ Composite</b>: Ein Index, der die Performance aller Aktien an der NASDAQ-Börse widerspiegelt, darunter viele Technologieunternehmen.</li>
-                    <li><b>DAX</b>: Der wichtigste deutsche Aktienindex, der die Performance der 30 größten Unternehmen an der Frankfurter Wertpapierbörse widerspiegelt.</li>
-                    </p>
-            </article>
+    <div class="navbar">
+        <div class="cross" onclick="window.location.href='section1.html'">✖</div>
     </div>
-    </main>
-    <footer>
-        <p>&copy; 2024 JugendInvestiert. Alle Rechte vorbehalten.</p>
-    </footer>
+
+    <div class="scroll-bar-container">
+        <div class="scroll-bar" id="scroll-bar"></div>
+    </div>
+
+    <div id="course-details">
+        <div class="container">
+            <h2>Lektion 1: Wie lege ich mein Geld in Aktien an?</h2>
+            <p>Bei Investitionen bevorzugen wir langfristige, risikoarme Anlagen. Im Folgenden werden wir einige dieser Anlageklassen genauer betrachten:</p>
+            <h3>A. Die Aktie</h3>
+            <p>Eine Aktie repräsentiert einen Anteil am Eigenkapital eines Unternehmens. Durch den Kauf von Aktien erwirbt man ein Stück des Unternehmens und wird damit zum Miteigentümer. Der Wert einer Aktie kann sich je nach der finanziellen Performance des Unternehmens sowie Angebot und Nachfrage ändern.</p>
+            <div class="example">
+                <h4>Beispiel:</h4>
+                <p>Stellen Sie sich vor, Sie entscheiden sich, in Apple-Aktien zu investieren. Sie kaufen Aktien von Apple (AAPL) für 150 US-Dollar pro Aktie. Wenn der Preis der Apple-Aktie nach Ihrem Kauf steigt, sagen wir auf 200 US-Dollar pro Aktie, können Sie Ihre Aktien zu einem höheren Preis verkaufen und einen Gewinn von 50 US-Dollar pro Aktie erzielen. Wenn jedoch der Preis der Apple-Aktie nach Ihrem Kauf fällt, sagen wir auf 120 US-Dollar pro Aktie, und Sie entscheiden sich, Ihre Aktien zu diesem Preis zu verkaufen, würden Sie einen Verlust von 30 US-Dollar pro Aktie erleiden.</p>
+                <p>Zusammenfassend: Beim Investieren in Apple-Aktien oder jede andere Aktie können Sie Geld verdienen, wenn der Aktienkurs steigt, indem Sie Ihre Aktien zu einem höheren Preis verkaufen. Wenn jedoch der Aktienkurs fällt, können Sie einen Verlust erleiden, wenn Sie Ihre Aktien zu einem niedrigeren Preis verkaufen als dem, den Sie dafür bezahlt haben.</p>
+            </div>
+            <h3>B. Diversifizieren</h3>
+            <p>Wie bereits gezeigt, kann das Investieren in nur eine Aktie riskant sein. Daher ist es ratsam, das Risiko zu streuen, indem man sein Kapital auf verschiedene Anlagen verteilt. Dies nennt man Diversifizierung. Durch die Diversifizierung kann man das Risiko mindern, da Verluste in einer Anlage durch Gewinne in anderen Anlagen ausgeglichen werden können. Auf diese Weise kann man sein Portfolio stabilisieren und langfristig erfolgreich sein.</p>
+            <p>Hier spricht man von einem Aktion Portfolio.</p>
+            <p>Mit einem breit diversifizierten Aktienportfolio investieren wir nun in mehrere Aktien aus verschiedenen Branchen. Dadurch wird das Risiko gestreut, da Verluste in einer Branche durch Gewinne in anderen Branchen ausgeglichen werden können. Obwohl die potenziellen Gewinne möglicherweise nicht so hoch sind wie bei der Investition in eine einzelne Aktie, ist das Risiko insgesamt geringer. Es ist jedoch wichtig, Aktien aus verschiedenen Sektoren auszuwählen, um das Risiko weiter zu minimieren und langfristig stabile Renditen zu erzielen.</p>
+            <h3>Der Index</h3>
+            <p>Das Erstellen eines eigenen Aktienportfolios ist besonders für Anfänger eine Herausforderung, da die richtigen Aktien auszuwählen und ein ausgewogenes Portfolio zusammenzustellen äußerst anspruchsvoll ist. Eine einfachere Option für Anfänger ist es, in einen Index zu investieren. Im Grunde ist ein Index ein großes Aktion Portfolio was von anderen geleitet wird.</p>
+            <div class="example">
+                <h4>Beispiel: Der S&P500</h4>
+                <p>Der S&P 500 ist einer der bekanntesten Aktienindizes weltweit und gilt als Maßstab für die allgemeine Performance des US-Aktienmarktes. Er umfasst die 500 größten börsennotierten Unternehmen in den USA und spiegelt somit die Performance eines breiten Querschnitts der US-Wirtschaft wider. Ein Investment im S&P 500 bietet eine breite Diversifizierung und reduziert das Risiko im Vergleich zum Investieren in einzelne Aktien. Da der Index aus 500 Unternehmen besteht, gleichen sich einzelne Gewinne und Verluste aus, was zu einer insgesamt stabileren Performance führt.</p>
+            </div>
+            <p>Hier sind einige andere Beispiele für Aktienindizes:</p>
+            <ul>
+                <li>Dow Jones Industrial Average (DJIA): Ein Index, der die Performance von 30 bedeutenden Industrieunternehmen in den USA verfolgt.</li>
+                <li>NASDAQ Composite: Ein Index, der die Performance aller Aktien an der NASDAQ-Börse widerspiegelt, darunter viele Technologieunternehmen.</li>
+                <li>DAX: Der wichtigste deutsche Aktienindex, der die Performance der 30 größten Unternehmen an der Frankfurter Wertpapierbörse widerspiegelt.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function updateScrollBar() {
+            const scrollBar = document.getElementById('scroll-bar');
+            const scrollHeight = document.documentElement.scrollHeight;
+            const clientHeight = document.documentElement.clientHeight;
+            const scrollTop = window.scrollY;
+            const scrollPercent = (scrollTop / (scrollHeight - clientHeight)) * 100;
+            scrollBar.style.width = scrollPercent + '%';
+        }
+
+        window.addEventListener('scroll', updateScrollBar);
+        window.addEventListener('resize', updateScrollBar);
+    </script>
 </body>
 </html>
