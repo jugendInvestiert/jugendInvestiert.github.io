@@ -10,119 +10,209 @@
             font-family: 'Poppins', Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #101820;
+            background-color: #101820; /* Dark background color */
             color: white;
             overflow-x: hidden; /* Prevent horizontal scroll */
         }
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: #333;
-            color: white;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px;
-            z-index: 1000; /* Make sure it stays on top */
-        }
-        .navbar .cross {
-            font-size: 1.5em;
-            cursor: pointer;
-        }
-        .navbar .cross:hover {
-            color: #00C4CC; /* Miami blue */
-        }
-        .scroll-bar-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 5px;
-            background-color: #444;
-            z-index: 1000; /* Make sure it stays on top */
-        }
-        .scroll-bar {
-            height: 100%;
-            width: 0%;
-            background-color: #1dd05d;
-            transition: width 0.2s;
-        }
-        body {
-            margin-top: 40px; /* Ensure content is below the navbar */
-        }
+
         .content {
             padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: flex-start;
         }
-        #course-details {
-            padding: 20px;
-            background-color: #2C3E50;
+
+        .header {
+            display: flex;
+            align-items: center;
+            background-color: #2C3E50; /* Dark header color */
+            padding: 10px;
             border-radius: 10px;
+            margin-bottom: 20px;
         }
-        .example {
-            background-color: #1B2631; /* Dark blue tone */
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 10px;
+
+        .arrow {
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .course {
+            background-color: #2C3E50; /* Dark course background color */
+            margin-bottom: 20px;
+            padding: 10px;
+            border-radius: 10px;
+            max-width: 600px; /* Reasonable max-width */
+            width: 100%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .course:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+        }
+
+        .banner {
+            padding: 10px 15px;
+            border-radius: 10px 10px 0 0;
+            color: white;
+            text-align: center;
+            font-size: 18px; /* Font size for banner */
+            font-weight: bold;
+            position: relative;
+            width: calc(100% + 20px); /* Ensure the banner width is the same as the course width */
+            margin: -10px -10px 10px -10px; /* Adjust margins to make it fit well */
+            box-sizing: border-box; /* Make sure padding is included in the width calculation */
+        }
+
+        .banner-1 {
+            background-color: #007bff; /* Vibrant blue */
+        }
+
+        .banner-2 {
+            background-color: #28a745; /* Vibrant green */
+        }
+
+        .banner-3 {
+            background-color: #ffc107; /* Vibrant yellow */
+        }
+
+        .banner-4 {
+            background-color: #17a2b8; /* Vibrant teal */
+        }
+
+        .banner-5 {
+            background-color: #dc3545; /* Vibrant red */
+        }
+
+        .banner-6 {
+            background-color: #6f42c1; /* Vibrant purple */
+        }
+
+        .course-content {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .text-container {
+            display: flex;
+            justify-content: space-between; /* Ensure space between text and button */
+            align-items: center; /* Center items vertically */
+        }
+
+        .course p {
+            margin: 0;
+            font-size: 14px; /* Font size for text */
+            padding-right: 10px; /* Adjusted padding */
+            flex: 1; /* Allow text to take available space */
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: flex-end; /* Align button to the right */
+        }
+
+        .action-button {
+            font-weight: bold; /* Make the button text bold */
+            color: white;
+            border: none;
+            padding: 8px 15px; /* Adjusted padding */
+            font-size: 14px; /* Font size for button */
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-left: 10px; /* Space between text and button */
+        }
+
+        .anzeigen-button {
+            background-color: #1dd05d; /* Green for "Anzeigen" */
+        }
+
+        .minimieren-button {
+            background-color: red; /* Red for "Minimieren" */
+        }
+
+        .action-button:hover {
+            transform: scale(1.05);
         }
     </style>
 </head>
 <body>
-
-    <div class="navbar">
-        <div class="cross" onclick="window.location.href='section1.html'">✖</div>
-    </div>
-
-    <div class="scroll-bar-container">
-        <div class="scroll-bar" id="scroll-bar"></div>
-    </div>
-
-    <div id="course-details">
-        <div class="container">
-            <h2>Lektion 1: Wie lege ich mein Geld in Aktien an?</h2>
-            <p>Bei Investitionen bevorzugen wir langfristige, risikoarme Anlagen. Im Folgenden werden wir einige dieser Anlageklassen genauer betrachten:</p>
-            <h3>A. Die Aktie</h3>
-            <p>Eine Aktie repräsentiert einen Anteil am Eigenkapital eines Unternehmens. Durch den Kauf von Aktien erwirbt man ein Stück des Unternehmens und wird damit zum Miteigentümer. Der Wert einer Aktie kann sich je nach der finanziellen Performance des Unternehmens sowie Angebot und Nachfrage ändern.</p>
-            <div class="example">
-                <h4>Beispiel:</h4>
-                <p>Stellen Sie sich vor, Sie entscheiden sich, in Apple-Aktien zu investieren. Sie kaufen Aktien von Apple (AAPL) für 150 US-Dollar pro Aktie. Wenn der Preis der Apple-Aktie nach Ihrem Kauf steigt, sagen wir auf 200 US-Dollar pro Aktie, können Sie Ihre Aktien zu einem höheren Preis verkaufen und einen Gewinn von 50 US-Dollar pro Aktie erzielen. Wenn jedoch der Preis der Apple-Aktie nach Ihrem Kauf fällt, sagen wir auf 120 US-Dollar pro Aktie, und Sie entscheiden sich, Ihre Aktien zu diesem Preis zu verkaufen, würden Sie einen Verlust von 30 US-Dollar pro Aktie erleiden.</p>
-                <p>Zusammenfassend: Beim Investieren in Apple-Aktien oder jede andere Aktie können Sie Geld verdienen, wenn der Aktienkurs steigt, indem Sie Ihre Aktien zu einem höheren Preis verkaufen. Wenn jedoch der Aktienkurs fällt, können Sie einen Verlust erleiden, wenn Sie Ihre Aktien zu einem niedrigeren Preis verkaufen als dem, den Sie dafür bezahlt haben.</p>
+    <div class="content">
+        <div class="header">
+            <div class="arrow" onclick="location.href='lessons.html'">←</div>
+            <div>📚 Section 1: Wie investiere ich mein Geld</div>
+        </div>
+        <div class="course" id="course1">
+            <div class="banner banner-1">
+                💹 Wie lege ich mein Geld in Aktien an?
             </div>
-            <h3>B. Diversifizieren</h3>
-            <p>Wie bereits gezeigt, kann das Investieren in nur eine Aktie riskant sein. Daher ist es ratsam, das Risiko zu streuen, indem man sein Kapital auf verschiedene Anlagen verteilt. Dies nennt man Diversifizierung. Durch die Diversifizierung kann man das Risiko mindern, da Verluste in einer Anlage durch Gewinne in anderen Anlagen ausgeglichen werden können. Auf diese Weise kann man sein Portfolio stabilisieren und langfristig erfolgreich sein.</p>
-            <p>Hier spricht man von einem Aktion Portfolio.</p>
-            <p>Mit einem breit diversifizierten Aktienportfolio investieren wir nun in mehrere Aktien aus verschiedenen Branchen. Dadurch wird das Risiko gestreut, da Verluste in einer Branche durch Gewinne in anderen Branchen ausgeglichen werden können. Obwohl die potenziellen Gewinne möglicherweise nicht so hoch sind wie bei der Investition in eine einzelne Aktie, ist das Risiko insgesamt geringer. Es ist jedoch wichtig, Aktien aus verschiedenen Sektoren auszuwählen, um das Risiko weiter zu minimieren und langfristig stabile Renditen zu erzielen.</p>
-            <h3>Der Index</h3>
-            <p>Das Erstellen eines eigenen Aktienportfolios ist besonders für Anfänger eine Herausforderung, da die richtigen Aktien auszuwählen und ein ausgewogenes Portfolio zusammenzustellen äußerst anspruchsvoll ist. Eine einfachere Option für Anfänger ist es, in einen Index zu investieren. Im Grunde ist ein Index ein großes Aktion Portfolio was von anderen geleitet wird.</p>
-            <div class="example">
-                <h4>Beispiel: Der S&P500</h4>
-                <p>Der S&P 500 ist einer der bekanntesten Aktienindizes weltweit und gilt als Maßstab für die allgemeine Performance des US-Aktienmarktes. Er umfasst die 500 größten börsennotierten Unternehmen in den USA und spiegelt somit die Performance eines breiten Querschnitts der US-Wirtschaft wider. Ein Investment im S&P 500 bietet eine breite Diversifizierung und reduziert das Risiko im Vergleich zum Investieren in einzelne Aktien. Da der Index aus 500 Unternehmen besteht, gleichen sich einzelne Gewinne und Verluste aus, was zu einer insgesamt stabileren Performance führt.</p>
+            <div class="course-content">
+                <div class="text-container">
+                    <p>Entdecken Sie die besten Methoden, um Ihr Geld gewinnbringend in Aktien zu investieren.</p>
+                    <button class="action-button anzeigen-button" onclick="location.href='course1.html'">Anzeigen</button>
+                </div>
             </div>
-            <p>Hier sind einige andere Beispiele für Aktienindizes:</p>
-            <ul>
-                <li>Dow Jones Industrial Average (DJIA): Ein Index, der die Performance von 30 bedeutenden Industrieunternehmen in den USA verfolgt.</li>
-                <li>NASDAQ Composite: Ein Index, der die Performance aller Aktien an der NASDAQ-Börse widerspiegelt, darunter viele Technologieunternehmen.</li>
-                <li>DAX: Der wichtigste deutsche Aktienindex, der die Performance der 30 größten Unternehmen an der Frankfurter Wertpapierbörse widerspiegelt.</li>
-            </ul>
+        </div>
+        <div class="course" id="course2">
+            <div class="banner banner-2">
+                🏦 Wie lege ich mein Geld in Anleihen an?
+            </div>
+            <div class="course-content">
+                <div class="text-container">
+                    <p>Erfahren Sie mehr über die Investition in Anleihen und ihre Vorteile.</p>
+                    <button class="action-button anzeigen-button" onclick="location.href='course2.html'">Anzeigen</button>
+                </div>
+            </div>
+        </div>
+        <div class="course" id="course3">
+            <div class="banner banner-3">
+                🚀 Wie investiere ich mein Geld in Krypto?
+            </div>
+            <div class="course-content">
+                <div class="text-container">
+                    <p>Lernen Sie die Grundlagen und Strategien für das Investieren in Kryptowährungen.</p>
+                    <button class="action-button anzeigen-button" onclick="location.href='course3.html'">Anzeigen</button>
+                </div>
+            </div>
+        </div>
+        <div class="course" id="course4">
+            <div class="banner banner-4">
+                💰 Wie lege ich mein Geld in Rohstoffe an?
+            </div>
+            <div class="course-content">
+                <div class="text-container">
+                    <p>Verstehen Sie, wie Sie in verschiedene Rohstoffe investieren können.</p>
+                    <button class="action-button anzeigen-button" onclick="location.href='course4.html'">Anzeigen</button>
+                </div>
+            </div>
+        </div>
+        <div class="course" id="course5">
+            <div class="banner banner-5">
+                🏠 Wie lege ich mein Geld in Immobilien an?
+            </div>
+            <div class="course-content">
+                <div class="text-container">
+                    <p>Erforschen Sie die verschiedenen Möglichkeiten der Immobilieninvestition.</p>
+                    <button class="action-button anzeigen-button" onclick="location.href='course5.html'">Anzeigen</button>
+                </div>
+            </div>
+        </div>
+        <div class="course" id="course6">
+            <div class="banner banner-6">
+                📈 Wie lege ich mein Geld in ETFs an?
+            </div>
+            <div class="course-content">
+                <div class="text-container">
+                    <p>Erfahren Sie, wie Sie Ihr Geld sicher und gewinnbringend in ETFs anlegen können.</p>
+                    <button class="action-button anzeigen-button" onclick="location.href='course6.html'">Anzeigen</button>
+                </div>
+            </div>
         </div>
     </div>
-
-    <script>
-        function updateScrollBar() {
-            const scrollBar = document.getElementById('scroll-bar');
-            const scrollHeight = document.documentElement.scrollHeight;
-            const clientHeight = document.documentElement.clientHeight;
-            const scrollTop = window.scrollY;
-            const scrollPercent = (scrollTop / (scrollHeight - clientHeight)) * 100;
-            scrollBar.style.width = scrollPercent + '%';
-        }
-
-        window.addEventListener('scroll', updateScrollBar);
-        window.addEventListener('resize', updateScrollBar);
-    </script>
 </body>
 </html>

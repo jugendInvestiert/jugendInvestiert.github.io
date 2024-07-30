@@ -3,11 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Resources</title>
+    <title>Pastel Colors</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden; /* Prevent scrolling */
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            height: 100vh; /* Full viewport height */
+            width: 100vw; /* Full viewport width */
+            overflow: hidden; /* Prevent scrolling */
+        }
+
+        .color {
+            flex: 1;
+            width: 100%;
+        }
+
+        .color:nth-child(1) {
+            background-color: #FAD02E; /* Pastel yellow */
+        }
+        .color:nth-child(2) {
+            background-color: #F28D35; /* Pastel orange */
+        }
+        .color:nth-child(3) {
+            background-color: #E16F6F; /* Pastel pink */
+        }
+        .color:nth-child(4) {
+            background-color: #8BC0E8; /* Pastel blue */
+        }
+        .color:nth-child(5) {
+            background-color: #A2D5AB; /* Pastel green */
+        }
+        .color:nth-child(6) {
+            background-color: #D6A4A4; /* Pastel mauve */
+        }
+    </style>
 </head>
-<main>
-    <h1>Resources</h1>
-    <p><b>Hier finden sie Resourcen über die Fianzwelt:</b></p>
+<body>
+
+    <div class="container">
+        <div class="color"></div>
+        <div class="color"></div>
+        <div class="color"></div>
+        <div class="color"></div>
+        <div class="color"></div>
+        <div class="color"></div>
+    </div>
+
 </body>
 </html>

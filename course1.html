@@ -13,6 +13,7 @@
             background-color: #101820;
             color: white;
             overflow-x: hidden; /* Prevent horizontal scroll */
+            margin-top: 40px; /* Ensure content is below the navbar */
         }
         .navbar {
             position: fixed;
@@ -32,7 +33,7 @@
             cursor: pointer;
         }
         .navbar .cross:hover {
-            color: #00C4CC; /* Miami blue */
+            color: grey; /* Miami blue */
         }
         .scroll-bar-container {
             position: fixed;
@@ -48,9 +49,6 @@
             width: 0%;
             background-color: #1dd05d;
             transition: width 0.2s;
-        }
-        body {
-            margin-top: 40px; /* Ensure content is below the navbar */
         }
         .content {
             padding: 20px;
@@ -68,6 +66,14 @@
             padding: 15px;
             border-radius: 8px;
             margin-top: 10px;
+        }
+        /* Ensure images scale properly and have rounded edges */
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto; /* Center the image if desired */
+            border-radius: 10px; /* Adjust the radius as needed */
         }
     </style>
 </head>
@@ -89,6 +95,7 @@
             <p>Eine Aktie repräsentiert einen Anteil am Eigenkapital eines Unternehmens. Durch den Kauf von Aktien erwirbt man ein Stück des Unternehmens und wird damit zum Miteigentümer. Der Wert einer Aktie kann sich je nach der finanziellen Performance des Unternehmens sowie Angebot und Nachfrage ändern.</p>
             <div class="example">
                 <h4>Beispiel:</h4>
+                <img src="apple.jpg" alt="Apple">
                 <p>Stellen Sie sich vor, Sie entscheiden sich, in Apple-Aktien zu investieren. Sie kaufen Aktien von Apple (AAPL) für 150 US-Dollar pro Aktie. Wenn der Preis der Apple-Aktie nach Ihrem Kauf steigt, sagen wir auf 200 US-Dollar pro Aktie, können Sie Ihre Aktien zu einem höheren Preis verkaufen und einen Gewinn von 50 US-Dollar pro Aktie erzielen. Wenn jedoch der Preis der Apple-Aktie nach Ihrem Kauf fällt, sagen wir auf 120 US-Dollar pro Aktie, und Sie entscheiden sich, Ihre Aktien zu diesem Preis zu verkaufen, würden Sie einen Verlust von 30 US-Dollar pro Aktie erleiden.</p>
                 <p>Zusammenfassend: Beim Investieren in Apple-Aktien oder jede andere Aktie können Sie Geld verdienen, wenn der Aktienkurs steigt, indem Sie Ihre Aktien zu einem höheren Preis verkaufen. Wenn jedoch der Aktienkurs fällt, können Sie einen Verlust erleiden, wenn Sie Ihre Aktien zu einem niedrigeren Preis verkaufen als dem, den Sie dafür bezahlt haben.</p>
             </div>
