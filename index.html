@@ -112,7 +112,6 @@
             border: none;
         }
     </style>
-    <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" integrity="sha384-t3Ox4Bsj2F/y0NAYRjjaIQi8+aaB4OMm8nxb15m/OqQpy9yUHTDJoD70FMRgkX4z" crossorigin="anonymous"></script>
 </head>
 <body>
 
@@ -170,7 +169,9 @@
 
         document.addEventListener('DOMContentLoaded', () => {
             showSection('home', document.querySelector('.sidebar a[href="#home"]'));
-            twemoji.parse(document.body); // Initialize twemoji
+            
+            // Initialize twemoji
+            twemoji.parse(document.body); 
         });
     </script>
 
