@@ -1,34 +1,150 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cours2</title>
+    <title>JugendInvestiert Courses</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #101820;
+            color: white;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+            margin-top: 40px; /* Ensure content is below the navbar */
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            z-index: 1000; /* Make sure it stays on top */
+        }
+        .navbar .cross {
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+        .navbar .cross:hover {
+            color: grey; /* Miami blue */
+        }
+        .scroll-bar-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: #444;
+            z-index: 1000; /* Make sure it stays on top */
+        }
+        .scroll-bar {
+            height: 100%;
+            width: 0%;
+            background-color: #1dd05d;
+            transition: width 0.2s;
+        }
+        .content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        #course-details {
+            padding: 20px;
+            background-color: #2C3E50;
+            border-radius: 10px;
+        }
+        .example {
+            background-color: #1B2631; /* Dark blue tone */
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        /* Ensure images scale properly and have rounded edges */
+        img {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            display: block;
+            border-radius: 10px; /* Adjust the radius as needed */
+            align-self: left;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <h1>Lektion 2: Wie lege ich mein Geld in Anleihen an?</h1>
-    </header>
-    <p>Bei Investitionen bevorzugen wir langfristige, risikoarme Anlagen. Im Folgenden werden wir einige dieser Anlageklassen genauer betrachten.</p>
-    
-    <h2>A. Die Anleihe</h2>
-    <p>Eine Anleihe ist ein Schuldverschreibungsinstrument, bei dem der Anleger dem Emittenten (z.B. einem Unternehmen oder einer Regierung) Geld leiht. Im Gegenzug verspricht der Emittent, dem Anleger regelmäßige Zinszahlungen (Kuponzahlungen) zu leisten und den geliehenen Betrag am Ende der Laufzeit (Fälligkeit) zurückzuzahlen.</p>
-    
-    <h3>Beispiel:</h3>
-  
-    <p>Stellen Sie sich vor, Sie investieren in eine Unternehmensanleihe von ABC Corp. im Wert von 1000 Euro mit einer Laufzeit von 10 Jahren und einem jährlichen Zinssatz von 5%. Sie erhalten jedes Jahr 50 Euro an Zinsen (5% von 1000 Euro). Am Ende der 10 Jahre erhalten Sie zusätzlich zu den jährlichen Zinszahlungen Ihren ursprünglichen Investitionsbetrag von 1000 Euro zurück.</p>
-    
-    <h2>B. Kategorien von Anleihen</h2>
-    <h3>1. Staatsanleihen</h3>
-    <p>Staatsanleihen sind Schuldtitel, die von Regierungen ausgegeben werden, um Mittel für öffentliche Ausgaben zu beschaffen. Sie gelten als eine der sichersten Anlagemöglichkeiten, da sie durch die Steuerkraft der Regierung abgesichert sind. Beispiele für Staatsanleihen sind US-Treasuries, deutsche Bundesanleihen und japanische Staatsanleihen.</p>
-   
-    
-    <h3>2. Unternehmensanleihen</h3>
-    <p>Unternehmensanleihen werden von Unternehmen ausgegeben, um Kapital für betriebliche Zwecke wie Expansion oder Betriebskapital zu beschaffen. Sie bieten in der Regel höhere Zinsen als Staatsanleihen, da sie ein höheres Risiko tragen. Beispiele für Unternehmensanleihen sind Anleihen von großen Unternehmen wie Apple, General Electric oder Volkswagen.</p>
-   
-    <h2>C. Diversifizieren</h2>
-    <p>Wie bereits gezeigt, kann das Investieren in nur eine Anleihe riskant sein. Daher ist es ratsam, das Risiko zu streuen, indem man sein Kapital auf verschiedene Anleihen verteilt. Dies nennt man Diversifizierung. Durch die Diversifizierung kann man das Risiko mindern, da Verluste in einer Anleihe durch Gewinne in anderen Anleihen ausgeglichen werden können. Auf diese Weise kann man sein Portfolio stabilisieren und langfristig erfolgreich sein.</p>
-    
-   
 
-   
+    <div class="navbar">
+        <div class="cross" onclick="window.location.href='section1.html'">✖</div>
+    </div>
+
+    <div class="scroll-bar-container">
+        <div class="scroll-bar" id="scroll-bar"></div>
+    </div>
+
+    <div id="course-details">
+        <div class="container">
+            <h1>Lektion 2: Wie investiere ich in Anleihen?</h1>
+            <p>Anleihen bieten eine solide Möglichkeit, regelmäßige Erträge zu erzielen und das Kapital langfristig zu sichern. In diesem Kurs erfährst du, was Anleihen sind, wie sie funktionieren und wie du sie als Teil einer diversifizierten Anlagestrategie nutzen kannst.</p>
+            
+            <h2>Was sind Anleihen?</h2>
+            <p>Anleihen sind Schuldtitel, bei denen du als Anleger einem Emittenten (z.B. einem Unternehmen oder einer Regierung) Geld leihst. Im Gegenzug erhältst du regelmäßige Zinszahlungen und am Ende der Laufzeit dein investiertes Kapital zurück. Anleihen gelten als sicherere Anlageform, besonders im Vergleich zu Aktien.</p>
+            <img src="bond_example.jpg" alt="Ein Beispiel für eine Anleihe-Transaktion">
+            
+            <div class="example">
+                <h3>Beispiel: Investieren in Anleihen</h3>
+                <p>Stell dir vor, du investierst 1000 Euro in eine 10-jährige Anleihe mit einem jährlichen Zinssatz von 5%. Das bedeutet, dass du jedes Jahr 50 Euro an Zinsen erhältst. Nach 10 Jahren bekommst du zusätzlich zu den Zinsen auch deine ursprünglichen 1000 Euro zurück. Dieses Beispiel verdeutlicht, wie Anleihen ein stabiler Bestandteil deines Portfolios sein können, insbesondere in Zeiten niedriger Zinsen.</p>
+                <p><strong>Zusätzliches Beispiel:</strong> Wenn du 10.000 Euro in eine Unternehmensanleihe mit einem Zinssatz von 7% pro Jahr investierst, bekommst du jedes Jahr 700 Euro an Zinsen. Nach 5 Jahren würdest du 3.500 Euro an Zinsen erhalten und am Ende der Laufzeit die 10.000 Euro zurückbekommen.</p>
+            </div>
+            
+            <h2>Arten von Anleihen</h2>
+            <h3>Staatsanleihen</h3>
+            <p>Staatsanleihen werden von Regierungen herausgegeben, um öffentliche Projekte zu finanzieren. Aufgrund der Steuerkraft der Emittenten gelten sie als besonders sicher. Bekannte Beispiele sind US-Treasuries und deutsche Bundesanleihen. Solche Anleihen sind ideal für Anleger, die Wert auf Sicherheit legen.</p>
+            <img src="gov_bond.jpg" alt="Ein Zertifikat für eine Staatsanleihe">
+            <div class="example">
+                <h3>Beispiel: Investieren in Staatsanleihen</h3>
+                <p>Angenommen, du investierst 5000 Euro in eine 15-jährige deutsche Bundesanleihe mit einem Zinssatz von 2%. Jedes Jahr erhältst du 100 Euro Zinsen. Nach 15 Jahren hast du 1.500 Euro an Zinsen verdient und bekommst deine 5000 Euro zurück.</p>
+                <p><strong>Praktische Überlegung:</strong> Da Staatsanleihen oft als besonders sicher gelten, sind die Zinsen niedriger. Dies ist ein Kompromiss zwischen Sicherheit und Ertrag.</p>
+            </div>
+            
+            <h3>Unternehmensanleihen</h3>
+            <p>Unternehmensanleihen werden von Firmen ausgegeben, die Kapital für Investitionen und Expansionen benötigen. Sie bieten in der Regel höhere Zinsen als Staatsanleihen, bringen jedoch auch ein höheres Risiko mit sich. Unternehmen nutzen diese Mittel oft, um Innovationen voranzutreiben oder Marktanteile zu vergrößern.</p>
+            <img src="corporate_bond.jpg" alt="Beispiel einer Unternehmensanleihe">
+            <div class="example">
+                <h3>Beispiel: Investieren in Unternehmensanleihen</h3>
+                <p>Stell dir vor, du investierst 8000 Euro in eine 8-jährige Unternehmensanleihe eines großen Technologieunternehmens mit einem Zinssatz von 6%. Jedes Jahr erhältst du 480 Euro an Zinsen. Nach 8 Jahren hast du 3.840 Euro an Zinsen verdient und bekommst deine 8000 Euro zurück.</p>
+                <p><strong>Wichtige Anmerkung:</strong> Unternehmensanleihen bieten höhere Renditen, aber es besteht ein größeres Risiko, dass das Unternehmen in finanzielle Schwierigkeiten gerät und die Anleihe nicht wie geplant bedient wird.</p>
+            </div>
+            
+            <h2>Diversifizieren: Eine wichtige Strategie</h2>
+            <p>Diversifikation bedeutet, dein Geld auf verschiedene Anleihen zu verteilen, um das Risiko zu minimieren. Falls eine Anleihe ausfällt, gleichen andere Anleihen mögliche Verluste aus. Eine diversifizierte Anlagestrategie ist essenziell, um langfristig stabile Renditen zu erzielen und gleichzeitig das Risiko zu steuern.</p>
+            <img src="bond_pie_chart.jpg" alt="Visuelle Darstellung von Diversifizierung">
+            <div class="example">
+                <h3>Beispiel: Diversifizieren deiner Anleihe-Investitionen</h3>
+                <p>Angenommen, du hast 20.000 Euro, die du in Anleihen investieren möchtest. Anstatt alles in eine einzige Anleihe zu stecken, könntest du 10.000 Euro in Staatsanleihen, 5.000 Euro in Unternehmensanleihen und 5.000 Euro in Anleihen eines Schwellenlandes investieren. So profitierst du von der Sicherheit der Staatsanleihen, den höheren Zinsen der Unternehmensanleihen und der möglichen Wachstumsdynamik von Schwellenländern.</p>
+                <p><strong>Überlege:</strong> Wenn eine Anleihe im Schwellenland ausfällt, hast du trotzdem noch die Erträge aus den anderen beiden Anleihen. Diversifikation hilft dir, dein Risiko zu streuen und stabilere Erträge zu erzielen.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function updateScrollBar() {
+            const scrollBar = document.getElementById('scroll-bar');
+            const scrollHeight = document.documentElement.scrollHeight;
+            const clientHeight = document.documentElement.clientHeight;
+            const scrollTop = window.scrollY;
+            const scrollPercent = (scrollTop / (scrollHeight - clientHeight)) * 100;
+            scrollBar.style.width = scrollPercent + '%';
+        }
+
+        window.addEventListener('scroll', updateScrollBar);
+        window.addEventListener('resize', updateScrollBar);
+    </script>
+</body>
+</html>
