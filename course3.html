@@ -12,99 +12,209 @@
             padding: 0;
             background-color: #101820;
             color: white;
-            overflow-x: hidden;
-            margin-top: 40px;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+            margin-top: 40px; /* Ensure content is below the navbar */
         }
-        header {
-            background-color: #1B2631;
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            z-index: 1000; /* Make sure it stays on top */
+        }
+        .navbar .cross {
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+        .navbar .cross:hover {
+            color: grey;
+        }
+        .scroll-bar-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: #444;
+            z-index: 1000; /* Make sure it stays on top */
+        }
+        .scroll-bar {
+            height: 100%;
+            width: 0%;
+            background-color: #1dd05d;
+            transition: width 0.2s;
+        }
+        .content {
             padding: 20px;
-            text-align: center;
-            border-bottom: 3px solid #34495e;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
         }
-        header h1 {
-            font-size: 32px;
-            margin: 0;
-        }
-        .wide-container {
+        #course-details {
             padding: 20px;
             background-color: #2C3E50;
             border-radius: 10px;
-            margin: 20px auto;
-            max-width: 1200px;
         }
-        h2 {
-            font-size: 24px;
-            margin-top: 20px;
-        }
-        p {
-            font-size: 16px;
-            line-height: 1.5;
-        }
-        ol, ul {
-            padding-left: 20px;
-        }
-        ol li, ul li {
-            margin-bottom: 10px;
-        }
-        
         .example {
-            background-color: #1B2631;
+            background-color: #1B2631; /* Dark blue tone */
             padding: 15px;
             border-radius: 8px;
             margin-top: 10px;
         }
+
+        /* Coin container styling */
+        .coin-container {
+            display: flex;
+            gap: 20px; /* Space between the two images */
+        }
+        
+        .coin-container img {
+            max-width: 150px; /* Increased size for both logos */
+            height: auto;
+            border-radius: 10px;
+        }
+
+        /* Exchange images container */
+        .exchange-container {
+            display: flex;
+            gap: 10px; /* Reduced space between the exchange images */
+            justify-content: 10px; /* Align images in a row */
+        }
+        
+        .exchange-container img {
+            max-width: 30%; /* Adjusted size for better fit */
+            height: auto;
+            border-radius: 10px;
+        }
+
+        /* Ensure images scale properly and have rounded edges */
+        img {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            display: block;
+            border-radius: 10px; /* Adjust the radius as needed */
+            align-self: left;
+        }
     </style>
 </head>
 <body>
-    <header>
-        <h1>Lektion 3: Wie investiere ich mein Geld in Krypto?</h1>
-    </header>
-    <div class="wide-container">
-        <h2>A. Was ist eine Kryptowährung?</h2>
-        <p>Eine Kryptowährung ist eine digitale oder virtuelle Währung, die Kryptografie zur Sicherheit verwendet. Im Gegensatz zu traditionellen Währungen werden Kryptowährungen dezentralisiert über die Blockchain-Technologie betrieben, die Transaktionen verifiziert und neue Einheiten generiert.</p>
-        
-        <div class="example">
-            <h3>Beispiel: Bitcoin</h3>
-            <p>Stell dir Bitcoin als eine Art digitales Gold vor. Es wird auf vielen Computern weltweit gespeichert, und jeder kann es nutzen, um online zu bezahlen oder zu investieren. Bitcoin wurde 2009 eingeführt und ist die bekannteste Kryptowährung.</p>
-        </div>
 
-        <h2>B. Wie funktioniert eine Kryptowährung?</h2>
-        <p>Kryptowährungen funktionieren durch ein dezentrales Netzwerk von Computern, die Transaktionen verifizieren und in einem öffentlichen Ledger, der sogenannten Blockchain, aufzeichnen. Jeder Block in der Kette enthält eine Liste von Transaktionen und ist kryptografisch mit dem vorherigen Block verbunden, wodurch eine sichere und unveränderliche Aufzeichnung entsteht.</p>
-        
-        <div class="example">
-            <h3>Beispiel: Blockchain-Technologie</h3>
-            <p>Stell dir vor, die Blockchain ist wie ein digitales Notizbuch, das auf vielen Computern gespeichert ist. Wenn jemand eine Transaktion durchführt, wird sie in diesem Notizbuch eingetragen und von vielen Computern überprüft, um sicherzustellen, dass alles korrekt ist.</p>
-        </div>
+    <div class="navbar">
+        <div class="cross" onclick="window.location.href='section1.html'">✖</div>
+    </div>
 
-        <h2>C. Wie kann ich Kryptowährungen kaufen?</h2>
-        <p>Der Kauf von Kryptowährungen erfolgt normalerweise über Online-Börsen. Hier sind die grundlegenden Schritte:</p>
-        <ol>
-            <li><b>Wählen Sie eine Kryptowährungsbörse:</b> Plattformen wie Binance bieten den Kauf und Verkauf von Kryptowährungen an.</li>
-            <li><b>Erstellen Sie ein Konto:</b> Registrieren Sie sich und verifizieren Sie Ihr Konto auf der ausgewählten Börse.</li>
-            <li><b>Einzahlung vornehmen:</b> Überweisen Sie Geld auf Ihr Konto, entweder durch Banküberweisung, Kreditkarte oder andere Zahlungsmethoden.</li>
-            <li><b>Kauf von Kryptowährungen:</b> Wählen Sie die gewünschte Kryptowährung und führen Sie den Kauf durch.</li>
-            <li><b>Speicherung:</b> Bewahren Sie Ihre Kryptowährungen sicher in einer digitalen Geldbörse (Wallet) auf. Es gibt verschiedene Arten von Wallets, darunter Online-Wallets, Hardware-Wallets und mobile Wallets.</li>
-        </ol>
-        
-        <div class="example">
-            <h3>Beispiel: Kauf von Bitcoin</h3>
-            <p>Wenn du Bitcoin kaufen möchtest, musst du zuerst ein Konto auf einer Plattform wie Binance erstellen. Dann kannst du Geld auf dein Konto einzahlen und Bitcoin kaufen. Nach dem Kauf bewahrst du deine Bitcoin sicher in einer digitalen Geldbörse auf.</p>
-        </div>
-        
-        <h2>D. Was sind die Risiken?</h2>
-        <p>Investitionen in Kryptowährungen sind mit erheblichen Risiken verbunden:</p>
-        <ul>
-            <li><b>Volatilität:</b> Kryptowährungen sind extrem volatil und ihre Preise können innerhalb kurzer Zeit stark schwanken.</li>
-            <li><b>Regulatorische Unsicherheit:</b> Die rechtliche Lage von Kryptowährungen variiert weltweit und kann sich jederzeit ändern, was Auswirkungen auf den Markt haben kann.</li>
-            <li><b>Sicherheitsrisiken:</b> Kryptowährungsbörsen und Wallets können Ziel von Hacks und Betrug werden, was zu Verlusten führen kann.</li>
-            <li><b>Fehlende Absicherung:</b> Im Gegensatz zu Bankeinlagen sind Kryptowährungen nicht durch staatliche Einlagenversicherungen geschützt.</li>
-            <li><b>Technische Risiken:</b> Fehler im Code oder bei der Nutzung der Blockchain-Technologie können zu Verlusten führen.</li>
-        </ul>
+    <div class="scroll-bar-container">
+        <div class="scroll-bar" id="scroll-bar"></div>
+    </div>
 
-        <div class="example">
-            <h3>Beispiel: Sicherheitsrisiken</h3>
-            <p>Wenn du deine Bitcoin in einem Online-Wallet speicherst, kann dieses Wallet gehackt werden. Deshalb ist es sicherer, deine Bitcoin in einem Hardware-Wallet aufzubewahren, das offline gespeichert wird.</p>
+    <div id="course-details">
+        <div class="container">
+            <h2>Lektion 3: Wie investiere ich mein Geld in Krypto?</h2>
+            <p>Kryptowährungen sind eine aufstrebende Anlageklasse, die durch Blockchain-Technologie ermöglicht wird. Hier erfahren Sie, wie Sie in Kryptowährungen investieren können.</p>
+
+            <h3>A. Was ist eine Kryptowährung?</h3>
+            <p>Eine Kryptowährung ist eine digitale oder virtuelle Währung, die Kryptografie zur Sicherheit verwendet. Im Gegensatz zu traditionellen Währungen sind Kryptowährungen dezentralisiert und basieren auf der Blockchain-Technologie.</p>
+
+            <div class="example">
+                <h4>Beispiel: Bitcoin & Ethereum</h4>
+                <!-- New container for Bitcoin and Ethereum logos -->
+                <div class="coin-container">
+                    <img src="bitcoin.jpg" alt="Bitcoin Logo">
+                    <img src="ethereum.jpg" alt="Ethereum Logo">
+                    <img src="tether.jpg" alt="Tether logo">
+                </div>
+                <p>Stellen Sie sich Bitcoin als digitales Gold und Ethereum als die führende Plattform für dezentrale Anwendungen vor. Beide Kryptowährungen haben unterschiedliche Anwendungsfälle und Funktionen.</p>
+            </div>
+
+            <h3>B. Wie funktioniert eine Kryptowährung?</h3>
+            <p>Kryptowährungen funktionieren durch ein Netzwerk von Computern, die Transaktionen verifizieren und in der Blockchain aufzeichnen. Diese Technik sorgt für sichere, dezentralisierte Zahlungen.</p>
+
+            <div class="example">
+                <h4>Beispiel: Blockchain-Technologie</h4>
+                <img src="blockchain.jpg" alt="Blockchain">
+                <p>Die Blockchain ist ein digitaler Ledger, der Transaktionen aufzeichnet. Jede neue Transaktion wird in einem Block gespeichert, der kryptografisch mit dem vorherigen Block verknüpft ist.</p>
+            </div>
+
+            <h3>C. Wie kann ich Kryptowährungen kaufen?</h3>
+            <p>Der Kauf von Kryptowährungen erfolgt in der Regel über Börsen wie Binance oder Coinbase. Sie erstellen ein Konto, zahlen Geld ein und kaufen die gewünschte Kryptowährung.</p>
+            
+            <!-- Exchange images side by side -->
+            <div class="example">
+                <h4>Beispiel: Kauf von Bitcoin</h4>
+                <div class="exchange-container">
+                    <img src="binance.jpg" alt="Binance">
+                    <img src="cryptoex.jpg" alt="Crypto Exchange">
+                    <img src="coinbase.jpg" alt="Coinbase"> 
+                </div>
+                <p>Wenn Sie Bitcoin kaufen möchten, registrieren Sie sich bei einer Kryptowährungsbörse, überweisen Geld auf Ihr Konto und führen den Kauf durch. Danach speichern Sie Ihre Bitcoin sicher in einer Wallet.</p>
+            </div>
+
+            <h3>D. Was sind die Risiken?</h3>
+            <p>Investitionen in Kryptowährungen sind volatil und risikoreich. Preisschwankungen können extrem sein, und regulatorische oder technische Risiken können zu Verlusten führen.</p>
+
+            <div class="example">
+                <h4>Beispiel: Volatilität</h4>
+                <img src="crypto_volatility.jpg" alt="Krypto-Volatilität">
+                <p>Kryptowährungen sind bekannt für ihre extreme Volatilität. Der Wert kann innerhalb weniger Stunden stark schwanken, was sowohl Gewinn- als auch Verlustmöglichkeiten bietet.</p>
+            </div>
+
+            <h3>E. Wie funktioniert das Mining von Kryptowährungen?</h3>
+            <p>Beim Mining handelt es sich um den Prozess, bei dem neue Kryptowährungseinheiten erstellt und Transaktionen in der Blockchain verifiziert werden. Dies erfolgt durch komplexe mathematische Berechnungen, die von speziellen Computern ausgeführt werden.</p>
+
+            <div class="example">
+                <h4>Beispiel: Bitcoin Mining</h4>
+                <img src="bitcoin_mining.jpg" alt="Bitcoin Mining">
+                <p>Beim Bitcoin-Mining konkurrieren Miner darum, komplexe kryptografische Probleme zu lösen. Der erste Miner, der das Problem löst, erhält neue Bitcoins als Belohnung. Dies erfordert erhebliche Rechenleistung und Energie.</p>
+            </div>
+
+            <h3>F. Was sind Wallets und wie bewahre ich meine Kryptowährungen sicher auf?</h3>
+            <p>Eine Wallet ist eine digitale Geldbörse, die es Ihnen ermöglicht, Kryptowährungen zu speichern, zu senden und zu empfangen. Es gibt verschiedene Arten von Wallets, darunter Hardware-Wallets, Software-Wallets und Paper Wallets.</p>
+
+            <div class="example">
+                <h4>Beispiel: Hardware-Wallet</h4>
+                <img src="hardware_wallet.jpg" alt="Hardware Wallet">
+                <p>Ein Hardware-Wallet ist ein physisches Gerät, das Ihre privaten Schlüssel offline speichert und somit eine hohe Sicherheit bietet. Im Gegensatz zu Online-Wallets ist ein Hardware-Wallet weniger anfällig für Hacks.</p>
+            </div>
+
+            <h3>G. Regulierung von Kryptowährungen</h3>
+            <p>Die Regulierung von Kryptowährungen variiert weltweit. Einige Länder unterstützen Kryptowährungen, während andere strikte Regeln oder sogar Verbote erlassen. Die rechtliche Landschaft entwickelt sich ständig weiter.</p>
+
+            <div class="example">
+                <h4>Beispiel: Regulierung in der Europäischen Union</h4>
+                <img src="eu_regulation.jpg" alt="EU Regulierung">
+                <p>In der Europäischen Union arbeitet die EU an der Entwicklung eines einheitlichen Regelwerks für Kryptowährungen, das mehr Sicherheit und Vertrauen für Investoren schaffen soll. Dies beinhaltet Maßnahmen zur Bekämpfung von Geldwäsche und zur Verbesserung der Markttransparenz.</p>
+            </div>
+
+            <h3>H. Die Zukunft der Kryptowährungen</h3>
+            <p>Die Zukunft von Kryptowährungen bleibt unsicher, aber viele Experten glauben, dass die Blockchain-Technologie und Kryptowährungen in den kommenden Jahren weiter an Bedeutung gewinnen werden. Bereiche wie Dezentralisierte Finanzen (DeFi) und digitale Zentralbankwährungen (CBDCs) sind nur einige der möglichen Entwicklungen.</p>
+
+            <div class="example">
+                <h4>Beispiel: Dezentralisierte Finanzen (DeFi)</h4>
+                <img src="defi.jpg" alt="DeFi">
+                <p>DeFi nutzt Blockchain-Technologie, um Finanzdienstleistungen ohne traditionelle Vermittler wie Banken anzubieten. Dies könnte die Art und Weise, wie Menschen Kredite aufnehmen, Zinsen verdienen und handeln, revolutionieren.</p>
+            </div>
         </div>
     </div>
+
+    <script>
+        function updateScrollBar() {
+            const scrollBar = document.getElementById('scroll-bar');
+            const scrollHeight = document.documentElement.scrollHeight;
+            const clientHeight = document.documentElement.clientHeight;
+            const scrollTop = window.scrollY;
+            const scrollPercent = (scrollTop / (scrollHeight - clientHeight)) * 100;
+            scrollBar.style.width = scrollPercent + '%';
+        }
+
+        window.addEventListener('scroll', updateScrollBar);
+        window.addEventListener('resize', updateScrollBar);
+    </script>
 </body>
 </html>
