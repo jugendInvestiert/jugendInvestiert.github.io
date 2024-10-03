@@ -4,37 +4,163 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lektion 1: Wie lege ich mein Geld in Rohstoffe an?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #101820;
+            color: white;
+            overflow-x: hidden;
+            margin-top: 40px;
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            z-index: 1000;
+        }
+        .navbar .cross {
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+        .navbar .cross:hover {
+            color: grey;
+        }
+        .scroll-bar-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: #444;
+            z-index: 1000;
+        }
+        .scroll-bar {
+            height: 100%;
+            width: 0%;
+            background-color: #1dd05d;
+            /* #00aaff blue */
+            transition: width 0.2s;
+        }
+        .content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        #course-details {
+            padding: 20px;
+            background-color: #2C3E50;
+            border-radius: 10px;
+        }
+        .example {
+            background-color: #1B2631;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        img {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            display: block;
+            border-radius: 10px;
+            align-self: left;
+        }
+        ol, ul {
+            padding-left: 20px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Lektion 1: Wie lege ich mein Geld in Rohstoffen an?</h1>
-    <p>Bei Investitionen bevorzugen wir langfristige, risikoarme Anlagen. Im Folgenden werden wir einige dieser Anlageklassen genauer betrachten.</p>
-    
-    <h2>A. Was ist ein Rohstoff?</h2>
-    <p>Ein Rohstoff ist ein grundlegendes Wirtschaftsgut, das entweder direkt aus der Natur gewonnen wird oder durch einen Veredelungsprozess entsteht. Rohstoffe werden in der Regel in großen Mengen gehandelt und sind die Basis für viele industrielle Prozesse. Beispiele für Rohstoffe sind Öl, Gold, Silber, Kupfer, Weizen und Kaffee.</p>
-    
 
-    
-    
-    <h2>B. Wie kann ich Rohstoffe kaufen?</h2>
-    <p>Es gibt verschiedene Möglichkeiten, in Rohstoffe zu investieren:</p>
-    <ol>
-        <li><b>Physischer Kauf:</b> Der direkte Kauf und Besitz von physischen Rohstoffen wie Goldbarren oder Silbermünzen. Diese Methode erfordert Lagerung und Versicherung.</li>
-        <li><b>Futures-Kontrakte:</b> Verträge, die den Kauf oder Verkauf einer bestimmten Menge eines Rohstoffs zu einem zukünftigen Zeitpunkt zu einem festgelegten Preis vereinbaren. Diese werden an Terminbörsen gehandelt.</li>
-        <li><b>ETFs und ETCs:</b> Exchange-Traded Funds (ETFs) und Exchange-Traded Commodities (ETCs) sind börsengehandelte Produkte, die die Preisentwicklung eines oder mehrerer Rohstoffe abbilden, ohne dass man die physischen Rohstoffe besitzen muss.</li>
-        <li><b>Rohstoffaktien:</b> Investitionen in Aktien von Unternehmen, die im Rohstoffsektor tätig sind, wie z.B. Bergbau- oder Ölgesellschaften.</li>
-        <li><b>Rohstofffonds:</b> Investmentfonds, die in eine Vielzahl von Rohstoffen oder Rohstoffunternehmen investieren.</li>
-    </ol>
-   
-    <h2>C. Was sind die Risiken?</h2>
-    <p>Investitionen in Rohstoffe sind mit erheblichen Risiken verbunden:</p>
-    <ul>
-        <li><b>Volatilität:</b> Rohstoffpreise können stark schwanken, beeinflusst durch Angebot und Nachfrage, geopolitische Ereignisse und wirtschaftliche Faktoren.</li>
-        <li><b>Marktrisiko:</b> Veränderungen auf dem Markt können den Wert der Investition beeinflussen, insbesondere bei Rohstoff-Futures und ETFs.</li>
-        <li><b>Lager- und Versicherungskosten:</b> Physische Rohstoffe erfordern sichere Lagerung und Versicherung, was zusätzliche Kosten verursacht.</li>
-        <li><b>Liquiditätsrisiko:</b> Einige Rohstoffe oder Rohstoffprodukte können schwer zu verkaufen sein, wenn der Markt illiquide ist.</li>
-        <li><b>Regulatorische Risiken:</b> Änderungen in der Gesetzgebung und Regulierung können sich auf den Rohstoffmarkt und die Investitionsmöglichkeiten auswirken.</li>
-    </ul>
-   
-    
+    <div class="navbar">
+        <div class="cross" onclick="window.location.href='section1.html'">✖</div>
+    </div>
+
+    <div class="scroll-bar-container">
+        <div class="scroll-bar" id="scroll-bar"></div>
+    </div>
+
+    <div id="course-details">
+        <div class="container">
+            <h1>Lektion 1: Wie lege ich mein Geld in Rohstoffe an?</h1>
+            <p>Bei Investitionen bevorzugen wir langfristige, risikoarme Anlagen. Rohstoffe sind ein guter Ausgangspunkt für Einsteiger. Sie bieten nicht nur Sicherheit, sondern auch Wachstumspotenzial, insbesondere in unsicheren wirtschaftlichen Zeiten.</p>
+
+            <h2>A. Was ist ein Rohstoff?</h2>
+            <p>Ein Rohstoff ist ein grundlegendes Wirtschaftsgut, das entweder direkt aus der Natur gewonnen wird oder durch einen Veredelungsprozess entsteht. Beispiele für Rohstoffe sind Öl, Gold, Silber, Kupfer, Weizen und Kaffee. Sie bilden die Grundlage der Wirtschaft und werden in fast allen Branchen verwendet.</p>
+            
+            <div class="example">
+                <h3>Warum in Rohstoffe investieren?</h3>
+                <p>Rohstoffe bieten einen gewissen Schutz vor Inflation, da ihr Wert in Zeiten wirtschaftlicher Unsicherheit oft steigt. Viele junge Menschen sehen Rohstoffe wie Gold als "sicherer Hafen" an, während andere Rohstoffe wie Öl und Kupfer als wachstumsorientierte Anlagen betrachtet werden können.</p>
+            </div>
+
+            <h2>B. Wie kann ich Rohstoffe kaufen?</h2>
+            <p>Es gibt verschiedene Möglichkeiten, in Rohstoffe zu investieren:</p>
+            <ol>
+                <li><b>Physischer Kauf:</b> Direktes Kaufen und Besitzen von physischen Rohstoffen wie Goldbarren oder Silbermünzen. Diese Methode ist sicher, aber erfordert Lagerung und Versicherung.</li>
+                <li><b>Futures-Kontrakte:</b> Verträge, die den Kauf oder Verkauf einer bestimmten Menge eines Rohstoffs zu einem zukünftigen Zeitpunkt zu einem festgelegten Preis vereinbaren.</li>
+                <li><b>ETFs und ETCs:</b> Börsengehandelte Produkte, die die Preisentwicklung eines oder mehrerer Rohstoffe abbilden, ohne dass man die physischen Rohstoffe besitzen muss.</li>
+                <li><b>Rohstoffaktien:</b> Investieren in Unternehmen, die im Rohstoffsektor tätig sind, wie z.B. Bergbau- oder Ölgesellschaften.</li>
+                <li><b>Rohstofffonds:</b> Investmentfonds, die in eine Vielzahl von Rohstoffen oder Rohstoffunternehmen investieren.</li>
+            </ol>
+
+            <div class="example">
+                <h3>Beispiel: Physischer Kauf von Gold</h3>
+                <img src="gold.jpg" alt="Goldbarren">
+                <p>Gold ist ein klassisches Beispiel für einen physischen Rohstoff. Investoren kaufen häufig Goldbarren oder Münzen, um ihr Vermögen vor Inflation zu schützen.</p>
+            </div>
+
+            <h2>C. Tipps für junge Investoren</h2>
+            <p>Junge Menschen, die in Rohstoffe investieren möchten, sollten sich gut informieren und eine langfristige Perspektive haben. Hier sind einige Tipps:</p>
+            <ul>
+                <li><b>Geduld:</b> Rohstoffe neigen dazu, im Laufe der Zeit an Wert zu gewinnen, bieten aber kurzfristig weniger Rendite. Daher ist eine langfristige Anlagestrategie wichtig.</li>
+                <li><b>Diversifikation:</b> Investiere nicht nur in einen Rohstoff. Durch den Kauf von mehreren Rohstoffen oder Rohstoff-ETFs kannst du Risiken minimieren.</li>
+                <li><b>Informiere dich über den Markt:</b> Verfolge die Entwicklungen in der Rohstoffbranche, wie z.B. geopolitische Ereignisse oder technische Innovationen. Diese können sich direkt auf die Preise auswirken.</li>
+                <li><b>Klein anfangen:</b> Es ist in Ordnung, klein anzufangen. Du musst nicht sofort große Summen in Rohstoffe investieren. ETFs bieten eine einfache Möglichkeit, schon mit wenig Kapital in den Rohstoffmarkt einzusteigen.</li>
+            </ul>
+
+            <h2>D. Was sind die Risiken?</h2>
+            <p>Investitionen in Rohstoffe sind mit erheblichen Risiken verbunden:</p>
+            <ul>
+                <li><b>Volatilität:</b> Rohstoffpreise können stark schwanken, beeinflusst durch Angebot und Nachfrage, geopolitische Ereignisse und wirtschaftliche Faktoren.</li>
+                <li><b>Marktrisiko:</b> Veränderungen auf dem Markt können den Wert der Investition beeinflussen, insbesondere bei Rohstoff-Futures und ETFs.</li>
+                <li><b>Lager- und Versicherungskosten:</b> Physische Rohstoffe erfordern sichere Lagerung und Versicherung, was zusätzliche Kosten verursacht.</li>
+                <li><b>Liquiditätsrisiko:</b> Einige Rohstoffe oder Rohstoffprodukte können schwer zu verkaufen sein, wenn der Markt illiquide ist.</li>
+                <li><b>Regulatorische Risiken:</b> Änderungen in der Gesetzgebung und Regulierung können sich auf den Rohstoffmarkt und die Investitionsmöglichkeiten auswirken.</li>
+            </ul>
+
+            <div class="example">
+                <h3>Beispiel: Volatilität im Ölpreis</h3>
+                <img src="oil.jpg" alt="Ölpreis Volatilität">
+                <p>Der Preis für Rohöl kann stark schwanken, was es zu einer riskanten, aber potenziell gewinnbringenden Anlage macht.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function updateScrollBar() {
+            const scrollBar = document.getElementById('scroll-bar');
+            const scrollHeight = document.documentElement.scrollHeight;
+            const clientHeight = document.documentElement.clientHeight;
+            const scrollTop = window.scrollY || document.documentElement.scrollTop;
+            const scrollPercent = (scrollTop / (scrollHeight - clientHeight)) * 100;
+            scrollBar.style.width = scrollPercent + '%';
+        }
+
+        window.addEventListener('scroll', updateScrollBar);
+        window.addEventListener('resize', updateScrollBar);
+        updateScrollBar(); // Initialize scroll bar when page loads
+    </script>
 </body>
 </html>

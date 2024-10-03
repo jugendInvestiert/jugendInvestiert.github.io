@@ -4,46 +4,152 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lektion 1: Wie lege ich mein Geld in Immobilien an?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #101820;
+            color: white;
+            overflow-x: hidden;
+            margin-top: 40px;
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            z-index: 1000;
+        }
+        .navbar .cross {
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+        .navbar .cross:hover {
+            color: grey;
+        }
+        .scroll-bar-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: #444;
+            z-index: 1000;
+        }
+        .scroll-bar {
+            height: 100%;
+            width: 0%;
+            background-color: #1dd05d;
+            transition: width 0.2s;
+        }
+        .content {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        #course-details {
+            padding: 20px;
+            background-color: #2C3E50;
+            border-radius: 10px;
+        }
+        .example {
+            background-color: #1B2631;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        img {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+            display: block;
+            border-radius: 10px;
+            align-self: left;
+        }
+    </style>
 </head>
 <body>
-    <h1>Lektion 1: Wie lege ich mein Geld in Immobilien an?</h1>
-    <p>Bei Investitionen bevorzugen wir langfristige, risikoarme Anlagen. Im Folgenden werden wir einige dieser Anlageklassen genauer betrachten.</p>
-    
-    <h2>A. Was ist eine Immobilie?</h2>
-    <p>Eine Immobilie ist ein physisches Eigentum, das Land und alle darauf befindlichen Bauwerke umfasst. Immobilien können zu Wohn-, Geschäfts- oder Industriezwecken genutzt werden. Beispiele sind Wohnhäuser, Bürogebäude, Einkaufszentren und Fabriken.</p>
-    
-    
-    <h2>B. Wie kann ich in Immobilien investieren?</h2>
-    <p>Es gibt verschiedene Möglichkeiten, in Immobilien zu investieren:</p>
-    <ol>
-        <li><b>Direkter Kauf:</b> Der Erwerb von Wohn- oder Gewerbeimmobilien zur Eigennutzung oder Vermietung. Dies erfordert eine beträchtliche Anfangsinvestition und laufende Verwaltung.</li>
-        <li><b>Immobilienfonds:</b> Investmentfonds, die in verschiedene Immobilienprojekte investieren. Diese Fonds können privat oder öffentlich sein und bieten Diversifizierung und professionelles Management.</li>
-        <li><b>REITs (Real Estate Investment Trusts):</b> Börsengehandelte Unternehmen, die in Immobilien investieren und Einkünfte aus Mieten und Verkaufserlösen an die Aktionäre ausschütten. REITs bieten eine einfache Möglichkeit, in Immobilien zu investieren, ohne direktes Eigentum zu erwerben.</li>
-        <li><b>Crowdfunding:</b> Plattformen, die es Investoren ermöglichen, sich an Immobilienprojekten zu beteiligen, indem sie kleine Beträge investieren. Dies ermöglicht Zugang zu Immobilieninvestitionen mit geringeren Beträgen.</li>
-        <li><b>Immobilienentwicklung:</b> Investitionen in Bauprojekte, bei denen neue Immobilien entwickelt oder bestehende Immobilien renoviert werden. Dies erfordert in der Regel eine hohe Kapitalinvestition und umfangreiches Wissen über den Markt.</li>
-    </ol>
-    
-    
-    <h2>C. Wie ist bei Immobilien die Rendite?</h2>
-    <p>Die Rendite von Immobilieninvestitionen setzt sich aus mehreren Komponenten zusammen:</p>
-    <ul>
-        <li><b>Mieteinnahmen:</b> Regelmäßige Einkünfte aus der Vermietung von Wohn- oder Gewerbeimmobilien.</li>
-        <li><b>Wertsteigerung:</b> Der Anstieg des Immobilienwerts über die Zeit, der zu einem Gewinn beim Verkauf führen kann.</li>
-        <li><b>Steuervorteile:</b> Absetzbare Kosten und Abschreibungen, die die Steuerlast senken können.</li>
-    </ul>
-    <p>Die Gesamtrendite hängt von verschiedenen Faktoren ab, einschließlich Standort, Marktbedingungen, Qualität der Immobilie und Managementfähigkeiten.</p>
 
-    <h2>D. Was sind die Risiken?</h2>
-    <p>Investitionen in Immobilien sind mit verschiedenen Risiken verbunden:</p>
-    <ul>
-        <li><b>Marktrisiko:</b> Schwankungen im Immobilienmarkt können den Wert und die Mieteinnahmen beeinflussen.</li>
-        <li><b>Liquiditätsrisiko:</b> Immobilien sind weniger liquide als andere Anlageformen, was den schnellen Verkauf bei Bedarf erschweren kann.</li>
-        <li><b>Instandhaltungskosten:</b> Laufende Kosten für Reparaturen, Wartung und Verwaltung können die Rendite mindern.</li>
-        <li><b>Finanzierungsrisiko:</b> Zinsänderungen können die Kosten für Hypotheken und Kredite beeinflussen.</li>
-        <li><b>Leerstand:</b> Zeiten, in denen Immobilien nicht vermietet sind, können zu Einkommensverlusten führen.</li>
-        <li><b>Rechtliche Risiken:</b> Änderungen in der Gesetzgebung oder lokale Vorschriften können sich auf die Nutzung und Rentabilität von Immobilien auswirken.</li>
-    </ul>
-    
-    
+    <div class="navbar">
+        <div class="cross" onclick="window.location.href='section1.html'">✖</div>
+    </div>
+
+    <div class="scroll-bar-container">
+        <div class="scroll-bar" id="scroll-bar"></div>
+    </div>
+
+    <div id="course-details">
+        <div class="container">
+            <h1>Lektion 1: Wie lege ich mein Geld in Immobilien an?</h1>
+            <p>In Immobilien zu investieren, ist eine der sichersten und beständigsten Möglichkeiten, langfristig Vermögen aufzubauen. Und das Beste daran? Du musst nicht reich sein, um damit zu beginnen! Lass uns anschauen, wie es funktioniert.</p>
+            
+            <h2>A. Was ist eine Immobilie? 🤔</h2>
+            <p>Eine Immobilie ist im Grunde alles, was auf einem Stück Land steht. Das kann dein Zuhause, ein Bürogebäude, ein Einkaufszentrum oder sogar eine kleine Ferienhütte am Strand sein.</p>
+            
+            <div class="example">
+                <p><b>Beispiel:</b> Stell dir vor, du kaufst eine kleine Wohnung in der Stadt. Du kannst dort entweder selbst wohnen oder sie vermieten und so Mieteinnahmen generieren. Diese Wohnung gehört dir, und wenn die Immobilienpreise steigen, kannst du sie vielleicht in ein paar Jahren mit Gewinn verkaufen!</p>
+            </div>
+
+            <h2>B. Wie kann ich in Immobilien investieren? 🏡💰</h2>
+            <p>Es gibt viele Möglichkeiten, in Immobilien zu investieren. Einige erfordern mehr Geld und Engagement, während andere flexibler sind:</p>
+            <ol>
+                <li><b>Direkter Kauf:</b> Du kaufst ein Haus oder eine Wohnung. Wenn du es vermietest, erhältst du regelmäßig Miete. Das ist toll, aber du musst auch Geld für Reparaturen und Verwaltung einplanen.</li>
+                <li><b>Immobilienfonds:</b> Du legst dein Geld in einem Fonds an, der in verschiedene Immobilienprojekte investiert. Du bekommst dann einen Anteil an den Gewinnen, ohne dass du direkt eine Immobilie kaufen musst.</li>
+                <li><b>REITs (Real Estate Investment Trusts):</b> Diese funktionieren wie Aktien, nur dass sie in Immobilien investieren. Du kannst sie an der Börse kaufen und verkaufen und bekommst einen Anteil der Mieteinnahmen und Gewinne.</li>
+                <li><b>Crowdfunding:</b> Durch spezielle Plattformen kannst du mit kleinen Beträgen in Immobilienprojekte investieren. Du und viele andere Investoren schmeißen euer Geld zusammen, um größere Projekte zu finanzieren.</li>
+            </ol>
+
+            <div class="example">
+                <p><b>Beispiel:</b> Lisa hat nicht genug Geld, um ein Haus zu kaufen. Stattdessen investiert sie 1000 Euro in einen Immobilienfonds. Dieser Fonds besitzt mehrere Wohnhäuser, und Lisa bekommt jeden Monat einen kleinen Anteil der Mieteinnahmen.</p>
+            </div>
+
+            <h2>C. Wie ist bei Immobilien die Rendite? 📈</h2>
+            <p>Die Rendite von Immobilien ergibt sich aus zwei Hauptquellen:</p>
+            <ul>
+                <li><b>Mieteinnahmen:</b> Du verdienst Geld, indem du deine Immobilie vermietest. Je länger du vermietest, desto mehr Mieteinnahmen bekommst du.</li>
+                <li><b>Wertsteigerung:</b> Immobilien werden im Laufe der Zeit oft mehr wert. Wenn du sie also in ein paar Jahren verkaufst, kannst du einen Gewinn machen.</li>
+            </ul>
+
+            <div class="example">
+                <p><b>Beispiel:</b> Marco kauft ein Apartment für 200.000 Euro. Er vermietet es für 800 Euro pro Monat und verkauft es fünf Jahre später für 240.000 Euro. Er hat in dieser Zeit sowohl Mieteinnahmen erzielt als auch den Wert der Immobilie gesteigert.</p>
+            </div>
+
+            <h2>D. Was sind die Risiken? ⚠️</h2>
+            <p>Wie bei jeder Investition gibt es auch bei Immobilien Risiken. Hier sind einige der wichtigsten:</p>
+            <ul>
+                <li><b>Marktrisiko:</b> Die Immobilienpreise können auch fallen. Du könntest also weniger verdienen oder sogar Verluste machen.</li>
+                <li><b>Leerstand:</b> Wenn du deine Immobilie nicht vermieten kannst, verlierst du Mieteinnahmen.</li>
+                <li><b>Instandhaltungskosten:</b> Reparaturen und Wartung können teuer sein und deine Gewinne schmälern.</li>
+                <li><b>Liquiditätsrisiko:</b> Immobilien lassen sich nicht immer schnell verkaufen, wenn du plötzlich Geld brauchst.</li>
+            </ul>
+
+            <div class="example">
+                <p><b>Beispiel:</b> Tom kauft ein Bürogebäude. Doch während einer Wirtschaftskrise ziehen viele Mieter aus, und Tom bleibt auf den Instandhaltungskosten sitzen, ohne Mieteinnahmen zu haben.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function updateScrollBar() {
+            const scrollBar = document.getElementById('scroll-bar');
+            const scrollHeight = document.documentElement.scrollHeight;
+            const clientHeight = document.documentElement.clientHeight;
+            const scrollTop = window.scrollY;
+            const scrollPercent = (scrollTop / (scrollHeight - clientHeight)) * 100;
+            scrollBar.style.width = scrollPercent + '%';
+        }
+
+        window.addEventListener('scroll', updateScrollBar);
+        window.addEventListener('resize', updateScrollBar);
+    </script>
 </body>
 </html>

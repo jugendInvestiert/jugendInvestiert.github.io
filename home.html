@@ -225,6 +225,51 @@
             flex: 1;
         }
 
+        /* Slideshow Styles */
+        .slideshow {
+            position: relative;
+            width: 100%;
+            max-width: 900px; /* Increased width */
+            overflow: hidden; /* Hide overflow */
+            border-radius: 15px;
+            margin-top: 20px; /* Space above the slideshow */
+        }
+
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease;
+            width: 300%; /* Adjust according to the number of slides */
+        }
+
+        .slide {
+            width: 100%; /* Each slide takes full width */
+            flex-shrink: 0; /* Prevent shrinking */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .arrow.left {
+            left: 10px;
+        }
+
+        .arrow.right {
+            right: 10px;
+        }
+
         .glowing-button {
             background-color: #007bff;
             color: white;
@@ -267,7 +312,7 @@
             <div class="squares-container">
                 <div class="squares-row">
                     <div class="square">
-                        <p>Unsere Plattform ist eine Quelle für umfassendes Finanzwissen, das gezielt auf die Bedürfnisse der Jugend zugeschnitten ist. Wir bieten eine Vielzahl von Ressourcen, Schulungen und Tools an, um jungen Menschen dabei zu helfen, ein solides Verständnis für Finanzen aufzubauen. Von Budgetierung und Sparen bis hin zu Investitionen und Vermögensaufbau - wir unterstützen die Jugend dabei, finanziell kompetent zu werden und ihre Zukunft aufzubauen.</p>
+                        <p>Unsere Plattform ist eine Quelle für umfassendes Finanzwissen, das gezielt auf die Bedürfnisse der Jugend zugeschnitten ist. Wir bieten eine Vielzahl von Ressourcen, Schulungen und Tools an, um jungen Menschen dabei zu helfen, ein solides Verständnis für Finanzen aufzubauen. Von Budgetierung und Sparen bis hin zu Investitionen und Finanzplanung – wir sind hier, um dich auf deinem Weg zu unterstützen.</p>
                     </div>
                     <div class="square number-square">
                         #1
@@ -301,6 +346,27 @@
                         </div>
                     </div>
                 </div>
+                
+                <div class="slogan-square">
+                    <h2>Unsere Kurse</h2>
+                </div>
+
+                <!-- Slideshow Positioned Below the "Finanzwissen für alle" Cube and Above "Gratis, Effizient und macht Spaß" -->
+                <div class="slideshow">
+                    <button class="arrow left" onclick="changeSlide(-1)">&#10094;</button>
+                    <div class="slides">
+                        <div class="slide">
+                            <iframe src="course1.html"></iframe>
+                        </div>
+                        <div class="slide">
+                            <iframe src="course2.html"></iframe>
+                        </div>
+                        <div class="slide">
+                            <iframe src="course3.html"></iframe>
+                        </div>
+                    </div>
+                    <button class="arrow right" onclick="changeSlide(1)">&#10095;</button>
+                </div>
             </div>
         </div>
         <button class="glowing-button" id="confetti-button">
@@ -309,6 +375,24 @@
     </div>
 
     <script>
+        let currentSlide = 0;
+
+        function changeSlide(direction) {
+            const slides = document.querySelector('.slides');
+            const totalSlides = document.querySelectorAll('.slide').length;
+
+            currentSlide += direction;
+
+            if (currentSlide < 0) {
+                currentSlide = totalSlides - 1; // Loop to last slide
+            } else if (currentSlide >= totalSlides) {
+                currentSlide = 0; // Loop to first slide
+            }
+
+            const slideWidth = 100; // Each slide takes 100% of the container
+            slides.style.transform = translateX(-${currentSlide * slideWidth}%);
+        }
+
         document.getElementById('confetti-button').addEventListener('click', function () {
             // Redirect to register.html
             window.location.href = 'register.html';
