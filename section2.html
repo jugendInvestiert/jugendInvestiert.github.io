@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JugendInvestiert Kurse</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #101820; /* Dark background color */
+            color: white;
+            overflow-x: hidden;
+        }
+
+        .content {
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center align content */
+            max-width: 420px;
+        }
+
+        .header {
+            margin-top: -15px;
+            display: flex;
+            padding: 15px;
+            align-items: center;
+            background-color: #1B2631; /* Dark blue background color for header */
+            border-radius: 10px;
+            margin-bottom: 20px;
+            width: 100%;
+            max-width: 800px; /* Restrict header width */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s ease;
+        }
+
+        .header:hover {
+            background-color: #1B2631; /* Slightly darker blue on hover */
+        }
+
+        .arrow {
+            cursor: pointer;
+            margin-right: 15px;
+            font-size: 20px;
+            transition: transform 0.3s ease, font-size 0.3s ease; /* Add transition for smooth hover effect */
+        }
+
+        .arrow:hover {
+            transform: scale(1.2); /* Increase the size of the arrow on hover */
+            font-size: 24px; /* Optional: increase the font size for better visual effect */
+        }
+
+        .header-text {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .course {
+            background-color: #1B2631; /* Dark blue tone */
+            margin-bottom: 25px;
+            padding: 20px;
+            border-radius: 15px;
+            max-width: 800px;
+            width: 100%;
+            position: relative;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .course:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .banner {
+            padding: 15px;
+            border-radius: 10px 10px 10px 10px;
+            color: #fff;
+            text-align: center;
+            font-size: 20px;
+            font-weight: bold;
+            position: relative;
+            margin-bottom: 15px;
+        }
+
+        .banner-1 { background-color: #007bff; }
+        .banner-2 { background-color: #28a745; }
+        .banner-3 { background-color: #ffc107; }
+        .banner-4 { background-color: #17a2b8; }
+        .banner-5 { background-color: #dc3545; }
+        .banner-6 { background-color: #6f42c1; }
+
+        .course-content {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .text-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .text-container p {
+            margin: 0;
+            font-size: 16px; /* Slightly larger text for better readability */
+            flex: 1;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .action-button {
+            font-weight: bold;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-left: 10px;
+        }
+
+        .anzeigen-button {
+            background-color: #28a745; /* Green for "Anzeigen" */
+        }
+
+        .minimieren-button {
+            background-color: #dc3545; /* Red for "Minimieren" */
+        }
+
+        .action-button:hover {
+            transform: scale(1.05);
+        }
+
+        @media (max-width: 600px) {
+            .header, .course {
+                width: 95%;
+                padding: 15px;
+            }
+
+            .text-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .button-container {
+                justify-content: center;
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <div class="header">
+            <div class="arrow" onclick="location.href='lessons.html'">←</div>
+            <div class="header-text">📚 Section 1: Wie investiere ich mein Geld</div>
+        </div>
+        <div class="course" id="course1">
+            <div class="banner banner-1">
+                📉 Wie funktioniert Inflation?
+            </div>
+            <div class="course-content">
+                <div class="text-container">
+                    <p>Verstehe die Grundlagen von Inflation und ihre Auswirkungen auf die Wirtschaft.</p>
+                    <div class="button-container">
+                        <button class="action-button anzeigen-button" onclick="location.href='course1.html'">Anzeigen</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="course" id="course2">
+            <div class="banner banner-2">
+                📉 Wie funktioniert Deflation?
+            </div>
+            <div class="course-content">
+                <div class="text-container">
+                    <p>Erfahre mehr über Deflation und deren wirtschaftliche Folgen.</p>
+                    <div class="button-container">
+                        <button class="action-button anzeigen-button" onclick="location.href='course7.html'">Anzeigen</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="course" id="course3">
+            <div class="banner banner-3">
+                📈 Wie funktioniert das deutsche Rentensystem?
+            </div>
+            <div class="course-content">
+                <div class="text-container">
+                    <p>Erhalte einen Einblick in das deutsche Rentensystem und seine Strukturen.</p>
+                    <div class="button-container">
+                        <button class="action-button anzeigen-button" onclick="location.href='course3.html'">Anzeigen</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="course" id="course4">
+            <div class="banner banner-4">
+                📊 Wie funktioniert die Börse?
+            </div>
+            <div class="course-content">
+                <div class="text-container">
+                    <p>Entdecke die Grundlagen der Börse und wie sie funktioniert.</p>
+                    <div class="button-container">
+                        <button class="action-button anzeigen-button" onclick="location.href='course4.html'">Anzeigen</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="course" id="course5">
+            <div class="banner banner-5">
+                🏦 Wie funktioniert die Geldpolitik?
+            </div>
+            <div class="course-content">
+                <div class="text-container">
+                    <p>Verstehe die Rolle der Zentralbanken und ihre Entscheidungen.</p>
+                    <div class="button-container">
+                        <button class="action-button anzeigen-button" onclick="location.href='course5.html'">Anzeigen</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

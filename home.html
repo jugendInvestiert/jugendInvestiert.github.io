@@ -87,7 +87,7 @@
 
         .square {
             flex: 1;
-            padding: 20px;
+            padding: 10px; /* Reduced padding */
             background-color: #1B2631;
             border-radius: 15px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -96,8 +96,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            min-height: 200px;
-            height: auto;
+            min-height: 350px; /* Increased min-height for more length */
             transition: transform 0.3s ease-in-out;
         }
 
@@ -164,6 +163,7 @@
             box-sizing: border-box;
             transition: transform 0.3s ease-in-out;
             padding-bottom: 10px;
+            height: auto;
         }
 
         .text-container:hover {
@@ -172,7 +172,7 @@
 
         iframe {
             width: 100%;
-            height: 300px;
+            height: 350px; /* Reduced height */
             border: none;
             border-radius: 15px;
         }
@@ -229,10 +229,11 @@
         .slideshow {
             position: relative;
             width: 100%;
-            max-width: 900px; /* Increased width */
+            max-width: 1200px; /* Increased width */
             overflow: hidden; /* Hide overflow */
             border-radius: 15px;
-            margin-top: 20px; /* Space above the slideshow */
+            margin-top: 0px; /* Space above the slideshow */
+            margin-bottom: 20px; /* Space above the slideshow */
         }
 
         .slides {
@@ -251,15 +252,15 @@
 
         .arrow {
             position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.5);
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 50%;
-            cursor: pointer;
-            z-index: 10;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #000; /* Dark rectangle */
+    color: #fff; /* White arrow */
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 10;
         }
 
         .arrow.left {
@@ -305,10 +306,27 @@
     </div>
 
     <div class="content">
+        
         <div class="container">
+            <div class="slideshow">
+                <button class="arrow left" onclick="changeSlide(-1)">&#10094;</button>
+                <div class="slides">
+                    <div class="slide">
+                        <iframe src="littlebamboo.html"></iframe>
+                    </div>
+                    <div class="slide">
+                        <iframe src="course2.html"></iframe>
+                    </div>
+                    <div class="slide">
+                        <iframe src="course3.html"></iframe>
+                    </div>
+                </div>
+                <button class="arrow right" onclick="changeSlide(1)">&#10095;</button>
+            </div>
             <div class="slogan">
                 <h1>Finanzwissen für alle - Investiere in deine Zukunft!</h1>
             </div>
+
             <div class="squares-container">
                 <div class="squares-row">
                     <div class="square">
@@ -336,37 +354,18 @@
                     <div class="right-bottom">
                         <div class="square text-square">
                             Umfassend
-                            Einzigartig
-                            Innovativ
+                            <span style="margin: -10px 0 0 0;">Einzigartig</span> <!-- Reduced space here -->
+                            <span style="margin: -10px 0 0 0;">Innovativ</span> <!-- Reduced space here -->
                         </div>
                         <div class="square">
                             <div class="rocket-emoji">🚀</div>
-                            <h2>Steigere dein</h2>
-                            <h2>Finanzwissen!</h2>
+                            <h2 style="margin: 0;">Steigere dein</h2> <!-- Reduced space above -->
+                            <h2 style="margin: 0;">Finanzwissen!</h2>
                         </div>
                     </div>
-                </div>
-                
-                <div class="slogan-square">
-                    <h2>Unsere Kurse</h2>
                 </div>
 
-                <!-- Slideshow Positioned Below the "Finanzwissen für alle" Cube and Above "Gratis, Effizient und macht Spaß" -->
-                <div class="slideshow">
-                    <button class="arrow left" onclick="changeSlide(-1)">&#10094;</button>
-                    <div class="slides">
-                        <div class="slide">
-                            <iframe src="course1.html"></iframe>
-                        </div>
-                        <div class="slide">
-                            <iframe src="course2.html"></iframe>
-                        </div>
-                        <div class="slide">
-                            <iframe src="course3.html"></iframe>
-                        </div>
-                    </div>
-                    <button class="arrow right" onclick="changeSlide(1)">&#10095;</button>
-                </div>
+            
             </div>
         </div>
         <button class="glowing-button" id="confetti-button">
@@ -390,7 +389,7 @@
             }
 
             const slideWidth = 100; // Each slide takes 100% of the container
-            slides.style.transform = translateX(-${currentSlide * slideWidth}%);
+            slides.style.transform = `translateX(-${currentSlide * slideWidth}%)`; // Fixed with backticks
         }
 
         document.getElementById('confetti-button').addEventListener('click', function () {

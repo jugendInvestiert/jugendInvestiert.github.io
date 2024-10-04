@@ -1,60 +1,230 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pastel Colors</title>
+    <title>Ressourcen</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
     <style>
-        body, html {
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
             margin: 0;
             padding: 0;
-            height: 100%;
-            overflow: hidden; /* Prevent scrolling */
+            display: flex;
+            background-color: #101820;
+            color: white;
+            flex-direction: column;
         }
-
         .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+        h1 {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: white;
+        }
+        h2 {
+            font-size: 28px;
+            margin: 20px 0 10px;
+            color: whitesmoke;
+        }
+        .resource-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .resource-card {
+            background-color: #1B2631;
+            border: 2px solid #34495e;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 10px;
+            flex: 1 1 30%; /* 3 items per row */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease; /* Smooth transition for scaling */
+        }
+        .resource-card:hover {
+            transform: scale(1.05); /* Scale the card on hover */
+        }
+        .resource-card h3 {
+            font-size: 24px;
+            margin: 10px 0;
+            color: whitesmoke;
+        }
+        .resource-card a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .resource-card a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            .resource-card {
+                flex: 1 1 45%; /* 2 items per row */
+            }
+        }
+        @media (max-width: 480px) {
+            .resource-card {
+                flex: 1 1 100%; /* 1 item per row */
+            }
+        }
+        .recommendations {
+            background-color: #1B2631;
+            border: 2px solid #34495e;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
             display: flex;
             flex-direction: column;
-            height: 100vh; /* Full viewport height */
-            width: 100vw; /* Full viewport width */
-            overflow: hidden; /* Prevent scrolling */
+            align-items: center;
         }
-
-        .color {
-            flex: 1;
+        .recommendations h2 {
+            margin-bottom: 20px;
+            color: whitesmoke;
+        }
+        .recommendation-items {
+            display: flex;
+            justify-content: space-around;
             width: 100%;
+            margin-top: 10px;
         }
-
-        .color:nth-child(1) {
-            background-color: #FAD02E; /* Pastel yellow */
+        .recommendation-item {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+            margin: 0 20px;
         }
-        .color:nth-child(2) {
-            background-color: #F28D35; /* Pastel orange */
+        .recommendation-item img {
+            width: 200px; /* Adjust the size as needed */
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 10px; /* Rounded edges */
         }
-        .color:nth-child(3) {
-            background-color: #E16F6F; /* Pastel pink */
+        .recommendation-item a {
+            color: white; /* White links */
+            text-decoration: none;
         }
-        .color:nth-child(4) {
-            background-color: #8BC0E8; /* Pastel blue */
-        }
-        .color:nth-child(5) {
-            background-color: #A2D5AB; /* Pastel green */
-        }
-        .color:nth-child(6) {
-            background-color: #D6A4A4; /* Pastel mauve */
+        .recommendation-item a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-
+    <h1>Nützliche Ressourcen 💡</h1>
     <div class="container">
-        <div class="color"></div>
-        <div class="color"></div>
-        <div class="color"></div>
-        <div class="color"></div>
-        <div class="color"></div>
-        <div class="color"></div>
+
+        <div class="recommendations">
+            <h2>Unsere Empfehlungen</h2>
+            <div class="recommendation-items">
+                <div class="recommendation-item">
+                    <img src="ft.jpg" alt="Financial Times Logo">
+                    <h3><a href="https://www.ft.com" target="_blank">Financial Times</a></h3>
+                    <p>Aktuelle Nachrichten und Analysen zu globalen Finanzmärkten.</p>
+                </div>
+                <div class="recommendation-item">
+                    <img src="jisim.jpg" alt="ft.jpg">
+                    <h3><a href="simulator.html">Unser Simulator</a></h3>
+                    <p>Eine interaktive Plattform für das Üben von Investitionsstrategien.</p>
+                </div>
+                <div class="recommendation-item">
+                    <img src="wsj.jpg" alt="Wall Street Journal Logo">
+                    <h3><a href="https://www.wsj.com" target="_blank">Wall Street Journal</a></h3>
+                    <p>Umfassende Berichterstattung über Wirtschaft und Finanzmärkte.</p>
+                </div>
+            </div>
+        </div>
+
+        
+        <h2>Finanzanalyse</h2>
+        <div class="resource-section">
+            <div class="resource-card">
+                <h3><a href="https://www.morningstar.com" target="_blank">Morningstar</a></h3>
+                <p>Bietet Investmentforschung und Daten für verschiedene Anlageklassen.</p>
+            </div>
+            <div class="resource-card">
+                <h3><a href="https://www.bloomberg.com" target="_blank">Bloomberg</a></h3>
+                <p>Aktuelle Nachrichten und Analysen zu Finanzmärkten.</p>
+            </div>
+            <div class="resource-card">
+                <h3><a href="https://www.wallstreetmojo.com" target="_blank">Wall Street Mojo</a></h3>
+                <p>Ressourcen und Tutorials zu Finanzanalysen und Unternehmensbewertung.</p>
+            </div>
+            <div class="resource-card">
+                <h3><a href="https://www.financialmodelingprep.com" target="_blank">Financial Modeling Prep</a></h3>
+                <p>Bietet kostenlose Finanzdaten-APIs für Finanzanalysen.</p>
+            </div>
+            <div class="resource-card">
+                <h3><a href="https://www.marketrealist.com" target="_blank">Market Realist</a></h3>
+                <p>Analysen und Informationen über die Finanzmärkte.</p>
+            </div>
+            <div class="resource-card">
+                <h3><a href="https://www.seekingalpha.com" target="_blank">Seeking Alpha</a></h3>
+                <p>Investmentanalysen und Meinungen von Experten.</p>
+            </div>
+            <div class="resource-card">
+                <h3><a href="https://www.zacks.com" target="_blank">Zacks Investment Research</a></h3>
+                <p>Aktienanalysen und Investitionsberatung.</p>
+            </div>
+        </div>
+
+        <h2>Investmentressourcen</h2>
+        <div class="resource-section">
+            <div class="resource-card">
+                <h3><a href="https://www.investopedia.com" target="_blank">Investopedia</a></h3>
+                <p>Umfassende Informationen zu Finanzthemen, einschließlich Anlagestrategien.</p>
+            </div>
+            <div class="resource-card">
+                <h3><a href="https://www.marketwatch.com" target="_blank">MarketWatch</a></h3>
+                <p>Neueste Finanznachrichten und Marktanalysen.</p>
+            </div>
+            <div class="resource-card">
+                <h3><a href="https://www.reuters.com/finance" target="_blank">Reuters Finance</a></h3>
+                <p>Aktuelle Finanznachrichten und Marktberichte.</p>
+            </div>
+            <div class="resource-card">
+                <h3><a href="https://www.thebalance.com" target="_blank">The Balance</a></h3>
+                <p>Umfassende Ressourcen zu persönlichen Finanzen und Investitionen.</p>
+            </div>
+            <div class="resource-card">
+                <h3><a href="https://www.fool.com" target="_blank">The Motley Fool</a></h3>
+                <p>Aktienanalysen und Empfehlungen für Investoren.</p>
+            </div>
+            <div class="resource-card">
+                <h3><a href="https://www.schwab.com" target="_blank">Charles Schwab</a></h3>
+                <p>Informationen über Anlagestrategien und Marktanalysen.</p>
+            </div>
+            <div class="resource-card">
+                <h3><a href="https://www.yahoo.com/finance" target="_blank">Yahoo Finance</a></h3>
+                <p>Bietet Finanznachrichten, Daten und Unternehmensanalysen.</p>
+            </div>
+        </div>
+
+        <h2>Bildungsressourcen</h2>
+        <div class="resource-section">
+            <div class="resource-card">
+                <h3><a href="https://www.coursera.org" target="_blank">Coursera</a></h3>
+                <p>Online-Kurse zu einer Vielzahl von Themen, einschließlich Finanzen.</p>
+            </div>
+            <div class="resource-card">
+                <h3><a href="https://www.edx.org" target="_blank">edX</a></h3>
+                <p>Hochwertige Online-Kurse von Universitäten und Institutionen.</p>
+            </div>
+            <div class="resource-card">
+                <h3><a href="https://www.udemy.com" target="_blank">Udemy</a></h3>
+                <p>Vielfältige Kurse zu Investitionsstrategien und Finanzmanagement.</p>
+            </div>
+            <div class="resource-card">
+                <h3><a href="https://www.khanacademy.org" target="_blank">Khan Academy</a></h3>
+                <p>Kostenlose Bildungsressourcen zu verschiedenen Finanzthemen.</p>
+            </div>
+        </div>
+
     </div>
 
 </body>
 </html>
+
