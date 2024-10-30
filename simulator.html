@@ -2,353 +2,537 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Investment Simulator - Stock Exchange</title>
+    <title>Investment Simulator</title>
+    <!-- Include Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+    <!-- Include Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #121212;
-            color: #ffffff;
+          * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            display: flex;
-            height: 100vh;
-            overflow: hidden;
         }
 
-        /* Global Container */
+        html, body {
+            height: 100%;
+            font-family: 'Roboto', sans-serif;
+            background-color: #0e0e0e;
+            color: #ffffff;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Navbar Styles */
+        .navbar {
+            background-color: #1a1a1a;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: center; /* Center the logo */
+            align-items: center;
+        }
+
+        .navbar .logo {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #ffffff;
+        }
+
+        /* Main Content Styles */
         .container {
             display: flex;
-            width: 100%;
-        }
-
-        /* Sidebar (Portfolio) */
-        .sidebar {
-            width: 25%;
-            background-color: #1e1e1e;
-            padding: 20px;
-            box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.3);
-            display: flex;
             flex-direction: column;
-            justify-content: space-between;
-        }
-
-        .sidebar h2 {
-            color: #008cba; /* Blue color for header */
-        }
-
-        .sidebar table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .sidebar table th, .sidebar table td {
-            padding: 10px;
-            text-align: left;
-            border-bottom: 1px solid #333;
-        }
-
-        /* Main Content */
-        .main-content {
-            flex-grow: 1;
             padding: 20px;
-            display: flex;
-            flex-direction: column;
+            gap: 20px;
         }
 
-        .main-content h1 {
-            color: #008cba; /* Blue color for main title */
-            font-size: 1.8rem;
-        }
-
-        /* Stock Trading Section */
-        .trade-section {
-            background-color: #1e1e1e;
+        /* Account Summary Styles */
+        .account-summary {
+            background-color: #1a1a1a;
             padding: 20px;
             border-radius: 10px;
-            margin-bottom: 20px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+
+        .account-summary .summary-item {
+            flex: 1;
+        }
+
+        .account-summary .summary-item h3 {
+            font-size: 1rem;
+            font-weight: 400;
+            color: #888;
+        }
+
+        .account-summary .summary-item p {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-top: 5px;
+        }
+
+        /* Trade and Widget Container */
+        .trade-widget-container {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* Trade Section Styles */
+        .trade-section {
+            background-color: #1a1a1a;
+            padding: 20px;
+            border-radius: 10px;
+            flex: 1;
+            min-width: 300px;
+            position: relative; /* To position suggestions */
+        }
+
+        .trade-section h2 {
+            font-size: 1.25rem;
+            margin-bottom: 15px;
         }
 
         .trade-section label {
-            font-size: 1rem;
-            color: #ffffff;
-        }
-
-        .trade-section input, .trade-section button {
-            width: 100%;
-            padding: 15px;
-            margin: 10px 0;
-            border-radius: 8px;
-            border: none;
-            font-size: 1rem;
+            display: block;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            color: #888;
         }
 
         .trade-section input {
-            background-color: #2a2a2a;
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 15px;
+            border: 1px solid #2e2e2e;
+            border-radius: 5px;
+            background-color: #1a1a1a;
             color: #ffffff;
+            font-size: 1rem;
         }
 
-        .trade-section button {
-            background-color: #008cba; /* Blue for buttons */
-            color: #fff;
+        .trade-section input::placeholder {
+            color: #555;
+        }
+
+        .trade-section input:focus {
+            outline: none;
+            border-color: #007aff;
+        }
+
+        /* Blue Buy Button with Bold Text */
+        #buy-button {
+            width: 100%;
+            padding: 15px;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            color: #ffffff;
+            font-size: 1rem;
             font-weight: bold;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            margin-top: 10px;
         }
 
-        .trade-section button:hover {
-            background-color: #007bb5; /* Darker blue on hover */
+        #buy-button:hover {
+            background-color: #0056b3;
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
         }
 
-        /* Suggestion Box Styling */
+        /* Suggestions Styles */
         #suggestions {
-            background-color: #2a2a2a;
+            background-color: #1a1a1a;
+            border: 1px solid #2e2e2e;
             border-radius: 5px;
-            margin-top: 5px;
             max-height: 200px;
             overflow-y: auto;
+            position: absolute;
+            top: 85px; /* Adjust based on input field */
+            width: calc(100% - 24px); /* Adjusted for padding */
+            z-index: 10;
+            display: none; /* Hidden by default */
         }
 
         .suggestion-item {
             padding: 10px;
-            border-bottom: 1px solid #333;
-            color: #fff;
             cursor: pointer;
         }
 
         .suggestion-item:hover {
-            background-color: #333;
+            background-color: #2e2e2e;
         }
 
-        /* TradingView Chart Section */
+        /* TradingView Widget Styles */
         #tradingview-widget {
-            margin-top: 20px;
-            background-color: #1e1e1e;
-            padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            flex: 1;
+            min-width: 300px;
+            height: 400px;
+            display: none; /* Hidden by default */
         }
 
-        /* Transaction History */
-        .transaction-history {
-            margin-top: 20px;
-            background-color: #1e1e1e;
+        /* Portfolio Section Styles */
+        .portfolio-section {
+            background-color: #1a1a1a;
             padding: 20px;
             border-radius: 10px;
-            height: 200px;
-            overflow-y: auto;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
         }
 
-        .transaction-history table {
+        .portfolio-section h2 {
+            font-size: 1.25rem;
+            margin-bottom: 15px;
+        }
+
+        .portfolio-table {
             width: 100%;
             border-collapse: collapse;
         }
 
-        .transaction-history th, .transaction-history td {
-            padding: 10px;
-            border-bottom: 1px solid #333;
+        .portfolio-table th, .portfolio-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #2e2e2e;
         }
 
-        /* Budget Section */
-        #budget-section {
-            background-color: #008cba; /* Blue background for visibility */
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-            margin-bottom: 10px;
+        .portfolio-table th {
+            color: #888;
+            font-weight: 400;
+            font-size: 0.9rem;
         }
 
-        #budget-section h2 {
-            margin: 0;
+        .portfolio-table td {
+            font-size: 0.95rem;
+        }
+
+        .profit-positive {
+            color: #4caf50;
+        }
+
+        .profit-negative {
+            color: #f44336;
+        }
+
+        /* Sell Button in Portfolio */
+        .portfolio-table button {
+            padding: 5px 10px;
+            background-color: #f44336;
             color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .portfolio-table button:hover {
+            background-color: #d32f2f;
+        }
+
+        /* Success and Error Messages */
+        .message {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: #1a1a1a;
+            padding: 15px;
+            border-radius: 5px;
+            color: #fff;
+            z-index: 2000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            animation: fadeInOut 4s forwards;
+        }
+
+        .message i {
             font-size: 1.5rem;
         }
 
-        /* Responsive Design */
-        @media screen and (max-width: 1200px) {
-            .sidebar {
-                width: 30%;
-            }
-
-            .main-content {
-                padding: 10px;
-            }
-
-            .trade-section, .transaction-history {
-                margin-bottom: 15px;
-            }
+        .message.success {
+            border-left: 5px solid #4caf50;
         }
 
+        .message.error {
+            border-left: 5px solid #f44336;
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(20px); }
+            10% { opacity: 1; transform: translateY(0); }
+            90% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(20px); }
+        }
+
+        /* Loader Styles */
+        #loader {
+            display: none;
+            position: fixed;
+            z-index: 3000;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            color: #007aff;
+            font-size: 2rem;
+        }
+
+        /* Responsive Design */
         @media screen and (max-width: 768px) {
-            body {
+            .account-summary {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .trade-widget-container {
                 flex-direction: column;
             }
 
-            .sidebar {
-                width: 100%;
-                height: auto;
+            #tradingview-widget {
+                max-width: 100%;
+                margin-top: 20px;
             }
 
-            .main-content {
-                width: 100%;
+            .portfolio-table th, .portfolio-table td {
+                padding: 10px;
             }
 
-            .trade-section {
-                width: 100%;
+            .trade-section input, .trade-section button {
+                font-size: 0.95rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Sidebar (Portfolio) -->
-        <div class="sidebar">
-            <div>
-                <h2>Your Portfolio</h2>
-                <div class="table-container">
-                    <table id="portfolioTable">
-                        <thead>
-                            <tr>
-                                <th>Symbol</th>
-                                <th>Quantity</th>
-                                <th>Purchase Price</th>
-                                <th>Current Price</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Portfolio will be populated here -->
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <div id="budget-section">
-                <h2>Budget: $<span id="budget">10000.00</span></h2>
-            </div>
-        </div>
 
-        <!-- Main Content Area -->
-        <div class="main-content">
-            <h1>Investment Simulator</h1>
-            <!-- Trading Section -->
-            <div class="trade-section">
-                <label for="stockSymbol">Stock Symbol</label>
-                <input type="text" id="stock-symbol" onkeyup="filterSymbols()" placeholder="AAPL, TSLA, NOC, etc.">
-                <div id="suggestions"></div> <!-- Suggestions Dropdown -->
-
-                <label for="quantity">Quantity</label>
-                <input type="number" id="quantity" placeholder="Enter Quantity">
-                <button onclick="buyStock()">Buy</button>
-                <button onclick="sellStock()">Sell</button>
-
-                <h3>Current Price: $<span id="currentPrice">0.00</span></h3>
-            </div>
-
-            <!-- TradingView Widget Container -->
-            <div id="tradingview-widget"></div>
-
-            <!-- Transaction History -->
-            <div class="transaction-history">
-                <h2>Transaction History</h2>
-                <table id="transactionTable">
-                    <thead>
-                        <tr>
-                            <th>Type</th>
-                            <th>Symbol</th>
-                            <th>Quantity</th>
-                            <th>Price</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <!-- Transactions will be populated here -->
-                    </tbody>
-                </table>
-            </div>
-        </div>
+    <!-- Navbar -->
+    <div class="navbar">
+        <div class="logo">Investment Simulator</div>
     </div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Main Content -->
+    <div class="container">
+
+        <!-- Account Summary -->
+        <div class="account-summary">
+            <div class="summary-item">
+                <h3>Portfolio Value</h3>
+                <p>$<span id="portfolioValue">0.00</span></p>
+            </div>
+            <div class="summary-item">
+                <h3>Cash Balance</h3>
+                <p>$<span id="budget">10000.00</span></p>
+            </div>
+            <div class="summary-item">
+                <h3>Total Profit</h3>
+                <p>$<span id="totalProfit">0.00</span></p>
+            </div>
+        </div>
+
+        <!-- Trade and Widget Section -->
+        <div class="trade-widget-container">
+            <!-- Trade Section -->
+            <div class="trade-section" id="trade-section">
+                <h2>Trade Stocks</h2>
+                <label for="stock-symbol">Stock Symbol or Company Name</label>
+                <input type="text" id="stock-symbol" placeholder="e.g., AAPL, Apple Inc." autocomplete="off" onkeyup="debouncedFilterSymbols()">
+                <div id="suggestions"></div>
+
+                <label for="quantity">Quantity</label>
+                <input type="number" id="quantity" placeholder="Enter Quantity" min="1" step="1">
+
+                <button id="buy-button" onclick="buyStock()"><b>Buy</b></button>
+
+                <div id="current-price" style="margin-top: 15px;">
+                    <h3>Current Price: $<span id="currentPrice">0.00</span></h3>
+                </div>
+            </div>
+
+            <!-- TradingView Widget -->
+            <div id="tradingview-widget"></div>
+        </div>
+
+        <!-- Portfolio Section -->
+        <div class="portfolio-section">
+            <h2>Your Portfolio</h2>
+            <table class="portfolio-table">
+                <thead>
+                    <tr>
+                        <th>Symbol</th>
+                        <th>Quantity</th>
+                        <th>Avg. Price</th>
+                        <th>Current Price</th>
+                        <th>Profit/Loss</th>
+                        <th>Profit/Loss %</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="portfolioTableBody">
+                    <!-- Portfolio items will be injected here -->
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+    <!-- Loader -->
+    <div id="loader"><i class="fas fa-spinner fa-spin"></i></div>
+
+    <!-- TradingView Widget Script -->
+    <script src="https://s3.tradingview.com/tv.js"></script>
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+
     <script>
+        // Your Finnhub API key
+        const finnhubApiKey = "cs1uv71r01qpjum5l9agcs1uv71r01qpjum5l9b0"; // Replace with your actual Finnhub API key
+
+        // Your Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDmEUCl7sWzBI7N78HgcgBRcRAkTYbtm5g",
+  authDomain: "jugendinvestiert-5f6eb.firebaseapp.com",
+  databaseURL: "https://jugendinvestiert-5f6eb-default-rtdb.firebaseio.com",
+  projectId: "jugendinvestiert-5f6eb",
+  storageBucket: "jugendinvestiert-5f6eb.appspot.com",
+  messagingSenderId: "432595310987",
+  appId: "1:432595310987:web:fd9f7975d5e87f1fe1378e",
+  measurementId: "G-5ENQC9KQBY"
+        };
+
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const database = firebase.database();
+
+        // Initialize budget and portfolio
         let budget = 10000;
-        let portfolio = {};
-        const apiKey = 'crvr62hr01qkji45on7gcrvr62hr01qkji45on80';
+        let portfolio = {}; // { SYMBOL: { quantity: Number, totalInvested: Number } }
+
         let stockList = [];
 
-        // Fetch stock list from Finnhub API
+        // Flag to prevent multiple purchases
+        let isBuying = false;
+
+        // Fetch the list of stocks from Finnhub API
         async function fetchStockList() {
-            const url = `https://finnhub.io/api/v1/stock/symbol?exchange=US&token=${apiKey}`;
-            const response = await fetch(url);
-            const data = await response.json();
-            stockList = data.map(stock => ({
-                symbol: stock.symbol,
-                description: stock.description || stock.displaySymbol
-            }));
-        }
-
-        fetchStockList(); // Fetch on load
-
-        // Fetch stock price using Finnhub API
-        async function fetchStockPrice(symbol) {
-            const url = `https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${apiKey}`;
-            const response = await fetch(url);
-            const data = await response.json();
-            return data.c; // Current price
-        }
-
-        // Auto-suggest stock symbols
-        function filterSymbols() {
-            const input = $('#stock-symbol').val().toUpperCase();
-            const suggestionsDiv = $('#suggestions');
-            suggestionsDiv.empty();
-
-            if (input) {
-                const filteredStocks = stockList.filter(stock => 
-                    stock.symbol.toUpperCase().includes(input) || 
-                    stock.description.toUpperCase().includes(input)
-                );
-
-                filteredStocks.sort((a, b) => {
-                    if (a.symbol.toUpperCase() === input) return -1;
-                    if (b.symbol.toUpperCase() === input) return 1;
-                    return 0;
+            const url = 'https://finnhub.io/api/v1/stock/symbol?exchange=US&token=' + finnhubApiKey;
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                stockList = data.map(stock => {
+                    return {
+                        symbol: stock.symbol.toUpperCase(), // Convert to uppercase
+                        description: stock.description
+                    };
                 });
-
-                filteredStocks.forEach(stock => {
-                    const highlightedDescription = highlightMatch(stock.description, input);
-                    const div = $('<div>')
-                        .html(`${highlightMatch(stock.symbol, input)} - ${highlightedDescription}`)
-                        .addClass('suggestion-item')
-                        .on('click', function () {
-                            $('#stock-symbol').val(stock.symbol);
-                            suggestionsDiv.empty();
-                            searchStock();
-                            showTradingViewWidget(stock.symbol);
-                        });
-                    suggestionsDiv.append(div);
-                });
+                console.log("Stock list fetched and normalized:", stockList);
+            } catch (error) {
+                console.error("Error fetching stock list:", error);
+                displayErrorMessage("Failed to fetch stock list. Please try again later.");
             }
         }
 
-        // Highlight matches in the suggestions
-        function highlightMatch(text, input) {
+        fetchStockList();
+
+        // Debounce Function to Limit API Calls
+        function debounce(func, delay) {
+            let debounceTimer;
+            return function() {
+                const context = this;
+                const args = arguments;
+                clearTimeout(debounceTimer);
+                debounceTimer = setTimeout(() => func.apply(context, args), delay);
+            }
+        }
+
+        const debouncedFilterSymbols = debounce(filterSymbols, 300);
+
+        // Filter stock symbols based on user input
+        function filterSymbols() {
+            const input = document.getElementById('stock-symbol').value.toUpperCase();
+            const suggestions = document.getElementById('suggestions');
+            suggestions.innerHTML = '';
+
+            if (input === '') {
+                suggestions.style.display = 'none';
+                return;
+            }
+
+            const filtered = stockList
+                .filter(stock =>
+                    stock.symbol.includes(input) || stock.description.toUpperCase().includes(input)
+                )
+                .sort((a, b) => {
+                    const aStartsWithInput = a.symbol.startsWith(input) || a.description.toUpperCase().startsWith(input);
+                    const bStartsWithInput = b.symbol.startsWith(input) || b.description.toUpperCase().startsWith(input);
+                    return aStartsWithInput === bStartsWithInput ? 0 : aStartsWithInput ? -1 : 1;
+                })
+                .slice(0, 5);
+
+            filtered.forEach(stock => {
+                const div = document.createElement('div');
+                div.classList.add('suggestion-item');
+
+                const boldedSymbol = boldMatch(stock.symbol, input);
+                const boldedDescription = boldMatch(stock.description.toUpperCase(), input);
+
+                div.innerHTML = `${boldedSymbol} - ${boldedDescription}`;
+                div.onclick = () => selectSymbol(stock.symbol);
+                suggestions.appendChild(div);
+            });
+
+            suggestions.style.display = 'block';
+        }
+
+        // Bold the matching part of the suggestion
+        function boldMatch(text, input) {
             const regex = new RegExp(`(${input})`, 'gi');
             return text.replace(regex, '<strong>$1</strong>');
         }
 
-        // Search for selected stock
-        async function searchStock() {
-            const symbol = $('#stock-symbol').val().toUpperCase();
-            if (symbol) {
-                const price = await fetchStockPrice(symbol);
-                $('#currentPrice').text(price ? price.toFixed(2) : '0.00');
+        // Handle symbol selection from suggestions
+        async function selectSymbol(symbol) {
+            symbol = symbol.toUpperCase(); // Ensure symbol is uppercase
+            document.getElementById('stock-symbol').value = symbol;
+            const price = await fetchStockPrice(symbol);
+            if (price > 0) {
+                document.getElementById('currentPrice').innerText = price.toFixed(2);
+            } else {
+                document.getElementById('currentPrice').innerText = "0.00";
+            }
+            document.getElementById('suggestions').style.display = 'none';
+            createTradingViewWidget(symbol);
+        }
+
+        // Fetch current stock price from Finnhub API
+        async function fetchStockPrice(symbol) {
+            symbol = symbol.toUpperCase(); // Ensure symbol is uppercase
+            const url = `https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${finnhubApiKey}`;
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+                if (!data || !data.c) {
+                    throw new Error("Invalid stock symbol or no data available.");
+                }
+                return parseFloat(data.c);
+            } catch (error) {
+                console.error(`Error fetching price for ${symbol}:`, error);
+                displayErrorMessage(`Failed to fetch price for ${symbol}.`);
+                return 0;
             }
         }
 
-        // Function to display TradingView widget
-        function showTradingViewWidget(symbol) {
+        // Create TradingView widget for selected stock
+        function createTradingViewWidget(symbol) {
+            symbol = symbol.toUpperCase(); // Ensure symbol is uppercase
             const widgetContainer = document.getElementById('tradingview-widget');
-            widgetContainer.innerHTML = ''; // Clear previous widget
+            widgetContainer.innerHTML = '';
 
             new TradingView.MediumWidget({
                 symbols: [[symbol]],
@@ -365,101 +549,347 @@
                 autosize: true,
                 container_id: "tradingview-widget"
             });
+
+            widgetContainer.style.display = 'block';
         }
 
-        // Watch stock symbol input to auto-fetch the latest price
-        $('#stock-symbol').on('input', searchStock);
-
-        // Buy stock function
+        // Buy Stock Function
         async function buyStock() {
-            const symbol = $('#stock-symbol').val().toUpperCase();
-            const quantity = parseInt($('#quantity').val());
-            const price = await fetchStockPrice(symbol);
+            // Prevent multiple purchases
+            if (isBuying) return;
 
-            if (quantity && price) {
-                const cost = quantity * price;
+            isBuying = true;
+            const buyButton = document.getElementById('buy-button');
+            buyButton.disabled = true;
 
-                if (cost <= budget) {
-                    budget -= cost;
-                    $('#budget').text(budget.toFixed(2));
+            const symbolInput = document.getElementById('stock-symbol').value.trim();
+            const quantityInput = document.getElementById('quantity').value;
+            const symbol = symbolInput.toUpperCase(); // Ensure symbol is uppercase
+            const quantity = parseInt(quantityInput);
 
-                    if (!portfolio[symbol]) {
-                        portfolio[symbol] = { quantity: 0, purchasePrice: price };
-                    }
+            if (!symbol) {
+                displayErrorMessage("Please enter a stock symbol.");
+                isBuying = false;
+                buyButton.disabled = false;
+                return;
+            }
 
-                    portfolio[symbol].quantity += quantity;
-                    portfolio[symbol].purchasePrice = price; // Store the latest purchase price
+            if (!quantity || quantity <= 0 || isNaN(quantity)) {
+                displayErrorMessage("Please enter a valid positive quantity.");
+                isBuying = false;
+                buyButton.disabled = false;
+                return;
+            }
 
-                    updatePortfolioTable();
-                    addTransaction('Buy', symbol, quantity, price);
-                } else {
-                    alert('Not enough budget!');
+            try {
+                const price = await fetchStockPrice(symbol);
+                if (price <= 0) {
+                    displayErrorMessage("Invalid stock symbol or unable to fetch price.");
+                    isBuying = false;
+                    buyButton.disabled = false;
+                    return;
                 }
-            } else {
-                alert('Invalid input!');
+
+                const totalCost = price * quantity;
+                if (totalCost > budget) {
+                    displayErrorMessage("Insufficient funds.");
+                    isBuying = false;
+                    buyButton.disabled = false;
+                    return;
+                }
+
+                // Deduct the cost from budget
+                budget -= totalCost;
+
+                // If the stock already exists in the portfolio, aggregate the quantity and total invested
+                if (portfolio[symbol]) {
+                    portfolio[symbol].quantity += quantity;
+                    portfolio[symbol].totalInvested += totalCost;
+                } else {
+                    // Initialize the stock in the portfolio
+                    portfolio[symbol] = {
+                        quantity: quantity,
+                        totalInvested: totalCost
+                    };
+                }
+
+                // Update UI and Data
+                updateBudget();
+                await updatePortfolioTable();
+                sendPortfolioUpdate(); // Notify parent
+                saveUserData(); // Save to Firebase
+                displaySuccessMessage(`Successfully purchased ${quantity} shares of ${symbol}.`);
+                console.log(`Bought ${quantity} shares of ${symbol} at $${price.toFixed(2)} each.`);
+            } catch (error) {
+                console.error("Error buying stock:", error);
+                displayErrorMessage("An error occurred while buying the stock.");
+            } finally {
+                isBuying = false;
+                buyButton.disabled = false;
             }
         }
 
-        // Sell stock function
-        async function sellStock() {
-            const symbol = $('#stock-symbol').val().toUpperCase();
-            const quantity = parseInt($('#quantity').val());
-            const price = await fetchStockPrice(symbol);
+        // Sell Stock from Portfolio Function
+        async function sellStockFromPortfolio(symbol) {
+            symbol = symbol.toUpperCase(); // Ensure symbol is uppercase
+            const totalQuantity = getTotalQuantity(symbol);
+            const quantityToSell = parseInt(prompt(`Enter quantity to sell (Available: ${totalQuantity}):`, totalQuantity));
+            if (!quantityToSell || quantityToSell <= 0 || isNaN(quantityToSell)) {
+                displayErrorMessage("Please enter a valid positive quantity.");
+                return;
+            }
+            if (quantityToSell > totalQuantity) {
+                displayErrorMessage("Insufficient shares to sell.");
+                return;
+            }
+            // Proceed to sell the stock
+            await sellStockFromPortfolioWithQuantity(symbol, quantityToSell);
+        }
 
-            if (portfolio[symbol] && portfolio[symbol].quantity >= quantity && quantity > 0) {
-                const earnings = quantity * price;
+        async function sellStockFromPortfolioWithQuantity(symbol, quantity) {
+            symbol = symbol.toUpperCase(); // Ensure symbol is uppercase
+            if (!portfolio[symbol] || getTotalQuantity(symbol) < quantity) {
+                displayErrorMessage("Insufficient shares to sell.");
+                return;
+            }
+
+            try {
+                const price = await fetchStockPrice(symbol);
+                if (price <= 0) {
+                    displayErrorMessage("Invalid stock symbol or unable to fetch price.");
+                    return;
+                }
+
+                const totalRevenue = price * quantity;
+
+                // Add the revenue to the budget
+                budget += totalRevenue;
+
+                // Calculate average purchase price
+                const avgPurchasePrice = portfolio[symbol].totalInvested / portfolio[symbol].quantity;
+
+                // Update the portfolio
                 portfolio[symbol].quantity -= quantity;
-                budget += earnings;
+                portfolio[symbol].totalInvested -= avgPurchasePrice * quantity;
 
-                $('#budget').text(budget.toFixed(2));
-
+                // If quantity is zero, remove the stock from the portfolio
                 if (portfolio[symbol].quantity === 0) {
                     delete portfolio[symbol];
                 }
 
-                updatePortfolioTable();
-                addTransaction('Sell', symbol, quantity, price);
-            } else {
-                alert('Invalid sell order!');
+                // Update UI and Data
+                updateBudget();
+                await updatePortfolioTable();
+                sendPortfolioUpdate(); // Notify parent
+                saveUserData(); // Save to Firebase
+                displaySuccessMessage(`Successfully sold ${quantity} shares of ${symbol}.`);
+                console.log(`Sold ${quantity} shares of ${symbol} at $${price.toFixed(2)} each.`);
+            } catch (error) {
+                console.error("Error selling stock:", error);
+                displayErrorMessage("An error occurred while selling the stock.");
             }
         }
 
-        // Update the portfolio table
+        // Get total quantity of a stock
+        function getTotalQuantity(symbol) {
+            symbol = symbol.toUpperCase(); // Ensure symbol is uppercase
+            return portfolio[symbol] ? portfolio[symbol].quantity : 0;
+        }
+
+        // Update Budget Display
+        function updateBudget() {
+            document.getElementById('budget').innerText = budget.toFixed(2);
+            calculateTotalProfit();
+        }
+
+        // Update Portfolio Table
         async function updatePortfolioTable() {
-            const table = document.getElementById('portfolioTable').getElementsByTagName('tbody')[0];
-            table.innerHTML = '';
+            const tbody = document.getElementById('portfolioTableBody');
+            tbody.innerHTML = '';
 
-            for (const symbol in portfolio) {
+            let totalPortfolioValue = 0;
+            let totalProfit = 0;
+
+            const symbols = Object.keys(portfolio);
+
+            for (const symbol of symbols) {
+                const stockData = portfolio[symbol];
+                const totalQuantity = stockData.quantity;
+                const averagePurchasePrice = stockData.totalInvested / totalQuantity;
+
                 const currentPrice = await fetchStockPrice(symbol);
-                const row = table.insertRow();
-                row.insertCell(0).innerText = symbol;
-                row.insertCell(1).innerText = portfolio[symbol].quantity;
-                row.insertCell(2).innerText = portfolio[symbol].purchasePrice.toFixed(2);
-                row.insertCell(3).innerText = currentPrice.toFixed(2);
+                const totalCurrentValue = currentPrice * totalQuantity;
+                const profit = (currentPrice - averagePurchasePrice) * totalQuantity;
+                const percentageProfit = ((currentPrice - averagePurchasePrice) / averagePurchasePrice) * 100;
+
+                // Create table row
+                const row = document.createElement('tr');
+
+                // Symbol
+                const symbolCell = document.createElement('td');
+                symbolCell.innerText = symbol;
+                row.appendChild(symbolCell);
+
+                // Quantity
+                const quantityCell = document.createElement('td');
+                quantityCell.innerText = totalQuantity;
+                row.appendChild(quantityCell);
+
+                // Avg. Purchase Price
+                const avgPurchasePriceCell = document.createElement('td');
+                avgPurchasePriceCell.innerText = averagePurchasePrice.toFixed(2);
+                row.appendChild(avgPurchasePriceCell);
+
+                // Current Price
+                const currentPriceCell = document.createElement('td');
+                currentPriceCell.innerText = currentPrice.toFixed(2);
+                row.appendChild(currentPriceCell);
+
+                // Total Profit
+                const profitCell = document.createElement('td');
+                profitCell.innerText = `$${profit.toFixed(2)}`;
+                profitCell.classList.add(profit >= 0 ? 'profit-positive' : 'profit-negative');
+                row.appendChild(profitCell);
+
+                // Profit Percentage
+                const percentageCell = document.createElement('td');
+                percentageCell.innerText = `${percentageProfit.toFixed(2)}%`;
+                percentageCell.classList.add(percentageProfit >= 0 ? 'profit-positive' : 'profit-negative');
+                row.appendChild(percentageCell);
+
+                // Action Cell with Sell Button
+                const actionCell = document.createElement('td');
+                const sellButton = document.createElement('button');
+                sellButton.innerText = 'Sell';
+                sellButton.onclick = () => sellStockFromPortfolio(symbol);
+                actionCell.appendChild(sellButton);
+                row.appendChild(actionCell);
+
+                // Append row to table body
+                tbody.appendChild(row);
+
+                // Accumulate totals
+                totalPortfolioValue += totalCurrentValue;
+                totalProfit += profit;
             }
+
+            document.getElementById('portfolioValue').innerText = (budget + totalPortfolioValue).toFixed(2);
+            document.getElementById('totalProfit').innerText = totalProfit.toFixed(2);
         }
 
-        // Add transaction to the transaction history
-        function addTransaction(type, symbol, quantity, price) {
-            const table = document.getElementById('transactionTable').getElementsByTagName('tbody')[0];
-            const row = table.insertRow();
-            row.insertCell(0).innerText = type;
-            row.insertCell(1).innerText = symbol;
-            row.insertCell(2).innerText = quantity;
-            row.insertCell(3).innerText = price.toFixed(2);
-        }
+        // Calculate Total Profit
+        async function calculateTotalProfit() {
+            let totalProfit = 0;
+            let totalPortfolioValue = 0;
 
-        // Refresh stock prices every hour
-        setInterval(() => {
             for (const symbol in portfolio) {
-                updatePortfolioTable(); // Refresh portfolio prices
+                const stockData = portfolio[symbol];
+                const totalQuantity = stockData.quantity;
+                const averagePurchasePrice = stockData.totalInvested / totalQuantity;
+
+                const currentPrice = await fetchStockPrice(symbol);
+                const profit = (currentPrice - averagePurchasePrice) * totalQuantity;
+                totalProfit += profit;
+                totalPortfolioValue += currentPrice * totalQuantity;
             }
-            $('#stock-symbol').trigger('input'); // Refresh current price display
-        }, 3600000); // 3600000 ms = 1 hour
+
+            document.getElementById('totalProfit').innerText = totalProfit.toFixed(2);
+            document.getElementById('portfolioValue').innerText = (budget + totalPortfolioValue).toFixed(2);
+        }
+
+        // Function to send updated portfolio data to the parent window
+        function sendPortfolioUpdate() {
+            const data = {
+                type: 'PORTFOLIO_UPDATE',
+                budget: budget,
+                portfolio: portfolio
+            };
+            window.parent.postMessage(data, '*'); // For security: Replace '*' with your specific origin
+            console.log("PORTFOLIO_UPDATE sent to Parent:", data);
+        }
+
+        // Listen for messages from the parent window
+        window.addEventListener('message', (event) => {
+            // Security check: Ensure the message is from your own domain
+            // if (event.origin !== 'https://your-domain.com') return;
+
+            if (event.data.type === 'AUTH_DATA') {
+                let { budget: initialBudget, portfolio: initialPortfolio } = event.data;
+
+                // Ensure budget is a number
+                budget = typeof initialBudget === 'number' ? initialBudget : 10000;
+
+                // Ensure portfolio is an object
+                portfolio = initialPortfolio && typeof initialPortfolio === 'object' ? initialPortfolio : {};
+
+                // Normalize portfolio symbols to uppercase
+                portfolio = normalizePortfolioSymbols(portfolio);
+
+                updateBudget();
+                updatePortfolioTable();
+                console.log("AUTH_DATA received from Parent:", event.data);
+            }
+        });
+
+        // Function to normalize portfolio symbols to uppercase and aggregate data
+        function normalizePortfolioSymbols(originalPortfolio) {
+            const normalizedPortfolio = {};
+            for (const symbol in originalPortfolio) {
+                const upperSymbol = symbol.toUpperCase();
+                if (!normalizedPortfolio[upperSymbol]) {
+                    normalizedPortfolio[upperSymbol] = {
+                        quantity: 0,
+                        totalInvested: 0
+                    };
+                }
+                normalizedPortfolio[upperSymbol].quantity += originalPortfolio[symbol].quantity;
+                normalizedPortfolio[upperSymbol].totalInvested += originalPortfolio[symbol].totalInvested;
+            }
+            return normalizedPortfolio;
+        }
+
+        // Display Success Message
+        function displaySuccessMessage(message) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message', 'success');
+            messageDiv.innerHTML = `<i class="fas fa-check-circle"></i><span>${message}</span>`;
+            document.body.appendChild(messageDiv);
+            setTimeout(() => messageDiv.remove(), 4000);
+        }
+
+        // Display Error Message
+        function displayErrorMessage(message) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message', 'error');
+            messageDiv.innerHTML = `<i class="fas fa-exclamation-circle"></i><span>${message}</span>`;
+            document.body.appendChild(messageDiv);
+            setTimeout(() => messageDiv.remove(), 4000);
+        }
+
+        // Save User Data to Firebase
+        function saveUserData() {
+            const user = firebase.auth().currentUser;
+            if (user) {
+                const userId = user.uid;
+                const userRef = database.ref('users/' + userId);
+                userRef.set({
+                    budget: budget,
+                    portfolio: portfolio
+                }, (error) => {
+                    if (error) {
+                        console.error("Error saving data:", error);
+                        displayErrorMessage("Error saving user data.");
+                    } else {
+                        console.log("Data saved successfully");
+                    }
+                });
+            }
+        }
+
+        // Initial call to update the portfolio table
+        // This ensures that the table is updated when the simulator loads
+        updatePortfolioTable();
 
     </script>
-
-    <!-- TradingView Widget Script -->
-    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
 </body>
 </html>

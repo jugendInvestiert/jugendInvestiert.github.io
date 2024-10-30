@@ -2,20 +2,21 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
+    <!-- Add viewport meta tag for responsive design -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JugendInvestiert</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
     <style>
+        /* General Styles */
         body {
             font-family: 'Poppins', Arial, sans-serif;
             margin: 0;
-            padding: 0;
+            padding: 0 0 20px 0; /* Added padding-bottom */
             background-color: #101820;
             color: white;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: flex-start;
             min-height: 100vh;
             overflow-x: hidden;
         }
@@ -26,8 +27,10 @@
             display: flex;
             align-items: center;
             padding: 20px;
+            padding-bottom: 20px; /* Added extra padding below the header */
             box-sizing: border-box;
             margin-bottom: 0px;
+            flex-wrap: wrap; /* Allows wrapping if necessary */
         }
 
         .header img {
@@ -67,7 +70,7 @@
             padding: 20px;
             border-radius: 15px;
             text-align: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            box-sizing: border-box;
             margin-bottom: 20px;
             max-width: 100%;
         }
@@ -87,7 +90,7 @@
 
         .square {
             flex: 1;
-            padding: 10px; /* Reduced padding */
+            padding: 10px;
             background-color: #1B2631;
             border-radius: 15px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
@@ -96,8 +99,9 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            min-height: 350px; /* Increased min-height for more length */
+            min-height: 350px;
             transition: transform 0.3s ease-in-out;
+            position: relative;
         }
 
         .square:hover {
@@ -115,6 +119,7 @@
 
         .text-square {
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
             font-size: 40px;
@@ -128,7 +133,7 @@
             text-align: center;
             padding: 20px;
             border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            box-sizing: border-box;
             min-height: 150px;
             display: flex;
             align-items: center;
@@ -143,36 +148,38 @@
             text-align: center;
         }
 
-        .iframe-container {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            flex: 1;
+        .iframe-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
         }
 
-        .text-container {
-            display: flex;
+        .overlay {
+            display: none; /* Hidden by default */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
             justify-content: center;
             align-items: center;
-            flex: 1;
-            padding: 20px;
-            background-color: #1B2631;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            text-align: center;
-            box-sizing: border-box;
-            transition: transform 0.3s ease-in-out;
-            padding-bottom: 10px;
-            height: auto;
+            cursor: pointer;
+            z-index: 1;
         }
 
-        .text-container:hover {
-            transform: scale(1.05);
+        .overlay-text {
+            color: #fff;
+            font-size: 24px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            border-radius: 8px;
         }
 
         iframe {
             width: 100%;
-            height: 350px; /* Reduced height */
+            height: 350px;
             border: none;
             border-radius: 15px;
         }
@@ -229,22 +236,22 @@
         .slideshow {
             position: relative;
             width: 100%;
-            max-width: 1200px; /* Increased width */
-            overflow: hidden; /* Hide overflow */
+            max-width: 800px;
+            overflow: hidden;
             border-radius: 15px;
-            margin-top: 0px; /* Space above the slideshow */
-            margin-bottom: 20px; /* Space above the slideshow */
+            margin-top: 0px;
+            margin-bottom: 20px;
         }
 
         .slides {
             display: flex;
             transition: transform 0.5s ease;
-            width: 300%; /* Adjust according to the number of slides */
+            width: calc(100% * 3); /* Adjusted to match the number of slides */
         }
 
         .slide {
-            width: 100%; /* Each slide takes full width */
-            flex-shrink: 0; /* Prevent shrinking */
+            width: 100%;
+            flex-shrink: 0;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -252,15 +259,15 @@
 
         .arrow {
             position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: #000; /* Dark rectangle */
-    color: #fff; /* White arrow */
-    border: none;
-    padding: 10px;
-    border-radius: 5px;
-    cursor: pointer;
-    z-index: 10;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 10;
         }
 
         .arrow.left {
@@ -278,10 +285,10 @@
             padding: 15px 30px;
             font-size: 24px;
             font-weight: bold;
-            border-radius: 8px; /* More squared look */
+            border-radius: 8px;
             display: flex;
             align-items: center;
-            gap: 10px; /* Space between emoji and text */
+            gap: 10px;
             box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
             cursor: pointer;
             transition: background-color 0.3s, box-shadow 0.3s;
@@ -297,20 +304,136 @@
             background-color: #004080;
             box-shadow: 0 0 40px rgba(0, 123, 255, 0.9);
         }
+
+        /* Mobile Styles */
+        @media (max-width: 768px) {
+            .header {
+                /* Keep the logo and text side by side */
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+
+            .header img {
+                margin-bottom: 0;
+                height: 80px;
+                width: 80px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+                /* Allow the text to wrap and hyphenate */
+                word-break: break-word;
+                hyphens: auto;
+                max-width: calc(100% - 100px); /* Adjusting for the image width and margins */
+            }
+
+            .squares-row {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .square {
+                min-height: 200px;
+                width: 100%;
+            }
+
+            .number-square {
+                font-size: 60px;
+            }
+
+            .number-square .additional-text {
+                font-size: 16px;
+            }
+
+            .text-square {
+                font-size: 30px;
+            }
+
+            .bottom-cubes-container {
+                flex-direction: column;
+            }
+
+            .left-bottom, .right-bottom {
+                width: 100%;
+            }
+
+            .rocket-emoji {
+                font-size: 100px;
+            }
+
+            .slide {
+                width: 100%;
+            }
+
+            .slogan h1 {
+                font-size: 24px;
+            }
+
+            .glowing-button {
+                font-size: 20px;
+                padding: 12px 24px;
+                width: 90%;
+                justify-content: center;
+            }
+
+            /* Adjusting the slideshow for mobile */
+            .slideshow {
+                max-width: 100%;
+            }
+
+            .arrow {
+                padding: 8px;
+            }
+
+            /* Enhancing mobile styles creatively */
+            body {
+                background-color: #0d1117;
+            }
+
+            .square {
+                background-color: #161b22;
+            }
+
+            .slogan-square {
+                background-color: #21262d;
+            }
+
+            .glowing-button {
+                animation: pulse 2s infinite;
+            }
+
+            @keyframes pulse {
+                0% {
+                    box-shadow: 0 0 0px rgba(0, 123, 255, 0.5);
+                }
+                50% {
+                    box-shadow: 0 0 20px rgba(0, 123, 255, 1);
+                }
+                100% {
+                    box-shadow: 0 0 0px rgba(0, 123, 255, 0.5);
+                }
+            }
+
+            /* Overlay Styles for Mobile */
+            .overlay {
+                display: flex; /* Show overlay on mobile */
+            }
+        }
     </style>
 </head>
 <body>
     <div class="header">
         <img src="logo.jpg" alt="JugendInvestiert Logo">
-        <h1>JugendInvestiert</h1>
+        <h1>JugendInvestiert</h1> <!-- Removed hyphen -->
     </div>
 
     <div class="content">
-        
         <div class="container">
             <div class="slideshow">
                 <button class="arrow left" onclick="changeSlide(-1)">&#10094;</button>
-                <div class="slides">
+                <div class="slides" id="slides">
                     <div class="slide">
                         <iframe src="littlebamboo.html"></iframe>
                     </div>
@@ -345,27 +468,35 @@
                 <div class="bottom-cubes-container">
                     <div class="left-bottom">
                         <div class="square">
-                            <iframe src="displaycourse.html"></iframe>
+                            <div class="iframe-wrapper">
+                                <iframe src="displaycourse.html"></iframe>
+                                <div class="overlay" onclick="removeOverlay(this)">
+                                    <div class="overlay-text">Try Demo</div>
+                                </div>
+                            </div>
                         </div>
                         <div class="square">
-                            <iframe src="displaysection.html"></iframe>
+                            <div class="iframe-wrapper">
+                                <iframe src="displaysection.html"></iframe>
+                                <div class="overlay" onclick="removeOverlay(this)">
+                                    <div class="overlay-text">Try Demo</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="right-bottom">
                         <div class="square text-square">
-                            Umfassend
-                            <span style="margin: -10px 0 0 0;">Einzigartig</span> <!-- Reduced space here -->
-                            <span style="margin: -10px 0 0 0;">Innovativ</span> <!-- Reduced space here -->
+                            <p>Umfassend</p>
+                            <p>Einzigartig</p>
+                            <p>Innovativ</p>
                         </div>
                         <div class="square">
                             <div class="rocket-emoji">🚀</div>
-                            <h2 style="margin: 0;">Steigere dein</h2> <!-- Reduced space above -->
+                            <h2 style="margin: 0;">Steigere dein</h2>
                             <h2 style="margin: 0;">Finanzwissen!</h2>
                         </div>
                     </div>
                 </div>
-
-            
             </div>
         </div>
         <button class="glowing-button" id="confetti-button">
@@ -383,19 +514,23 @@
             currentSlide += direction;
 
             if (currentSlide < 0) {
-                currentSlide = totalSlides - 1; // Loop to last slide
+                currentSlide = totalSlides - 1;
             } else if (currentSlide >= totalSlides) {
-                currentSlide = 0; // Loop to first slide
+                currentSlide = 0;
             }
 
-            const slideWidth = 100; // Each slide takes 100% of the container
-            slides.style.transform = `translateX(-${currentSlide * slideWidth}%)`; // Fixed with backticks
+            const slideWidth = 100;
+            slides.style.transform = `translateX(-${currentSlide * slideWidth}%)`;
         }
 
         document.getElementById('confetti-button').addEventListener('click', function () {
             // Redirect to register.html
             window.location.href = 'register.html';
         });
+
+        function removeOverlay(element) {
+            element.style.display = 'none';
+        }
     </script>
 </body>
 </html>

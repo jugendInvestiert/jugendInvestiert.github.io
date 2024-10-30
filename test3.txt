@@ -34,7 +34,7 @@
         }
 
         .sidebar h2 {
-            color: #008cba; /* Blue color for header */
+            color: #008cba;
         }
 
         .sidebar table {
@@ -57,7 +57,7 @@
         }
 
         .main-content h1 {
-            color: #008cba; /* Blue color for main title */
+            color: #008cba;
             font-size: 1.8rem;
         }
 
@@ -68,6 +68,8 @@
             border-radius: 10px;
             margin-bottom: 20px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
         }
 
         .trade-section label {
@@ -87,10 +89,12 @@
         .trade-section input {
             background-color: #2a2a2a;
             color: #ffffff;
+            max-width: 100%;
+            box-sizing: border-box;
         }
 
         .trade-section button {
-            background-color: #008cba; /* Blue for buttons */
+            background-color: #008cba;
             color: #fff;
             font-weight: bold;
             cursor: pointer;
@@ -98,7 +102,7 @@
         }
 
         .trade-section button:hover {
-            background-color: #007bb5; /* Darker blue on hover */
+            background-color: #007bb5;
         }
 
         /* Suggestion Box Styling */
@@ -117,6 +121,10 @@
             cursor: pointer;
         }
 
+        .suggestion-item strong {
+            color: #008cba; /* Highlight color */
+        }
+
         .suggestion-item:hover {
             background-color: #333;
         }
@@ -128,6 +136,8 @@
             padding: 20px;
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            height: 400px;
+            display: none; /* Hidden by default */
         }
 
         /* Transaction History */
@@ -136,7 +146,8 @@
             background-color: #1e1e1e;
             padding: 20px;
             border-radius: 10px;
-            height: 200px;
+            height: auto;
+            max-height: 500px; /* Increased max-height */
             overflow-y: auto;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
         }
@@ -153,7 +164,7 @@
 
         /* Budget Section */
         #budget-section {
-            background-color: #008cba; /* Blue background for visibility */
+            background-color: #008cba;
             padding: 15px;
             border-radius: 8px;
             text-align: center;
@@ -233,16 +244,17 @@
             <h1>Investment Simulator</h1>
             <!-- Trading Section -->
             <div class="trade-section">
-                <label for="stockSymbol">Stock Symbol</label>
-                <input type="text" id="stock-symbol" onkeyup="filterSymbols()" placeholder="AAPL, TSLA, NOC, etc.">
-                <div id="suggestions"></div> <!-- Suggestions Dropdown -->
+                <label for="stockSymbol">Stock Symbol or Company Name</label>
+                <input type="text" id="stock-symbol" onkeyup="filterSymbols()" placeholder="AAPL, TSLA, Apple Inc., etc.">
+                <div id="suggestions"></div>
 
                 <label for="quantity">Quantity</label>
                 <input type="number" id="quantity" placeholder="Enter Quantity">
-                <button onclick="buyStock()">Buy</button>
-                <button onclick="sellStock()">Sell</button>
 
                 <h3>Current Price: $<span id="currentPrice">0.00</span></h3>
+
+                <button onclick="buyStock()">Buy</button>
+                <button onclick="sellStock()">Sell</button>
             </div>
 
             <!-- TradingView Widget Container -->
@@ -268,6 +280,9 @@
         </div>
     </div>
 
+    <!-- TradingView Script -->
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         let budget = 10000;
@@ -282,121 +297,114 @@
             const data = await response.json();
             stockList = data.map(stock => ({
                 symbol: stock.symbol,
-                description: stock.description || stock.displaySymbol
+                description: stock.description
             }));
         }
 
-        fetchStockList(); // Fetch on load
-
-        // Fetch stock price using Finnhub API
+        // Fetch the current stock price from Finnhub API
         async function fetchStockPrice(symbol) {
             const url = `https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${apiKey}`;
             const response = await fetch(url);
             const data = await response.json();
-            return data.c; // Current price
+            return data.c; // current price
         }
 
-        // Auto-suggest stock symbols
+        // Filter symbols and display suggestions with highlighted matches
         function filterSymbols() {
             const input = $('#stock-symbol').val().toUpperCase();
             const suggestionsDiv = $('#suggestions');
             suggestionsDiv.empty();
 
-            if (input) {
-                const filteredStocks = stockList.filter(stock => 
-                    stock.symbol.toUpperCase().includes(input) || 
-                    stock.description.toUpperCase().includes(input)
-                );
+            // Prioritize exact match followed by partial matches
+            const exactMatches = stockList.filter(stock => 
+                stock.symbol === input || stock.description.toUpperCase() === input
+            );
 
-                filteredStocks.sort((a, b) => {
-                    if (a.symbol.toUpperCase() === input) return -1;
-                    if (b.symbol.toUpperCase() === input) return 1;
-                    return 0;
-                });
+            const partialMatches = stockList.filter(stock => 
+                (stock.symbol.startsWith(input) || stock.description.toUpperCase().startsWith(input)) && !exactMatches.includes(stock)
+            );
 
-                filteredStocks.forEach(stock => {
-                    const highlightedDescription = highlightMatch(stock.description, input);
-                    const div = $('<div>')
-                        .html(`${highlightMatch(stock.symbol, input)} - ${highlightedDescription}`)
-                        .addClass('suggestion-item')
-                        .on('click', function () {
-                            $('#stock-symbol').val(stock.symbol);
-                            suggestionsDiv.empty();
-                            searchStock();
-                            showTradingViewWidget(stock.symbol);
-                        });
-                    suggestionsDiv.append(div);
-                });
-            }
-        }
+            const otherMatches = stockList.filter(stock => 
+                (stock.symbol.includes(input) || stock.description.toUpperCase().includes(input)) && !exactMatches.includes(stock) && !partialMatches.includes(stock)
+            );
 
-        // Highlight matches in the suggestions
-        function highlightMatch(text, input) {
-            const regex = new RegExp(`(${input})`, 'gi');
-            return text.replace(regex, '<strong>$1</strong>');
-        }
+            // Combine all matches and display top 5
+            const sortedStocks = [...exactMatches, ...partialMatches, ...otherMatches];
 
-        // Search for selected stock
-        async function searchStock() {
-            const symbol = $('#stock-symbol').val().toUpperCase();
-            if (symbol) {
-                const price = await fetchStockPrice(symbol);
-                $('#currentPrice').text(price ? price.toFixed(2) : '0.00');
-            }
-        }
+            sortedStocks.slice(0, 5).forEach(stock => {
+                const highlightedSymbol = highlightMatch(stock.symbol, input);
+                const highlightedDescription = highlightMatch(stock.description, input);
 
-        // Function to display TradingView widget
-        function showTradingViewWidget(symbol) {
-            const widgetContainer = document.getElementById('tradingview-widget');
-            widgetContainer.innerHTML = ''; // Clear previous widget
+                const suggestionItem = $('<div>')
+                    .addClass('suggestion-item')
+                    .html(`${highlightedSymbol} - ${highlightedDescription}`)
+                    .on('click', () => selectSymbol(stock.symbol));
 
-            new TradingView.MediumWidget({
-                symbols: [[symbol]],
-                chartOnly: false,
-                width: "100%",
-                height: 400,
-                locale: "en",
-                colorTheme: "dark",
-                gridLineColor: "#F0F3FA",
-                trendLineColor: "#2196F3",
-                fontColor: "#787B86",
-                underLineColor: "rgba(55, 166, 239, 0.15)",
-                isTransparent: false,
-                autosize: true,
-                container_id: "tradingview-widget"
+                suggestionsDiv.append(suggestionItem);
             });
         }
 
-        // Watch stock symbol input to auto-fetch the latest price
-        $('#stock-symbol').on('input', searchStock);
+        // Highlight matching letters
+        function highlightMatch(text, match) {
+            const regex = new RegExp(`(${match})`, 'gi');
+            return text.replace(regex, '<strong>$1</strong>');
+        }
+
+        // Select a stock symbol from the suggestion box
+        async function selectSymbol(symbol) {
+            $('#stock-symbol').val(symbol);
+            $('#suggestions').empty();
+            await updateCurrentPrice(symbol); // Update current price and load TradingView
+        }
+
+        // Update current price and load TradingView widget
+        async function updateCurrentPrice(symbol) {
+            const price = await fetchStockPrice(symbol);
+            $('#currentPrice').text(price.toFixed(2));
+
+            // Load TradingView widget for the selected stock
+            loadTradingViewWidget(symbol);
+        }
+
+        // Function to load TradingView widget
+        function loadTradingViewWidget(symbol) {
+            $('#tradingview-widget').empty(); // Clear previous widget
+
+            if (!symbol) {
+                $('#tradingview-widget').hide();
+                return;
+            }
+
+            $('#tradingview-widget').show(); // Show widget only if symbol is selected
+
+            new TradingView.widget({
+                "width": "100%",
+                "height": 400,
+                "symbol": symbol,
+                "interval": "D",
+                "theme": "dark",
+                "style": "1",
+                "locale": "en",
+                "toolbar_bg": "#f1f3f6",
+                "container_id": "tradingview-widget"
+            });
+        }
 
         // Buy stock function
         async function buyStock() {
             const symbol = $('#stock-symbol').val().toUpperCase();
             const quantity = parseInt($('#quantity').val());
-            const price = await fetchStockPrice(symbol);
+            const currentPrice = await fetchStockPrice(symbol);
+            const totalCost = currentPrice * quantity;
 
-            if (quantity && price) {
-                const cost = quantity * price;
-
-                if (cost <= budget) {
-                    budget -= cost;
-                    $('#budget').text(budget.toFixed(2));
-
-                    if (!portfolio[symbol]) {
-                        portfolio[symbol] = { quantity: 0, purchasePrice: price };
-                    }
-
-                    portfolio[symbol].quantity += quantity;
-                    portfolio[symbol].purchasePrice = price; // Store the latest purchase price
-
-                    updatePortfolioTable();
-                    addTransaction('Buy', symbol, quantity, price);
-                } else {
-                    alert('Not enough budget!');
-                }
+            if (budget >= totalCost) {
+                budget -= totalCost;
+                portfolio[symbol] = (portfolio[symbol] || 0) + quantity;
+                updatePortfolio();
+                updateTransactionHistory('Buy', symbol, quantity, currentPrice);
+                updateBudget();
             } else {
-                alert('Invalid input!');
+                alert('Not enough budget!');
             }
         }
 
@@ -404,62 +412,53 @@
         async function sellStock() {
             const symbol = $('#stock-symbol').val().toUpperCase();
             const quantity = parseInt($('#quantity').val());
-            const price = await fetchStockPrice(symbol);
+            const currentPrice = await fetchStockPrice(symbol);
 
-            if (portfolio[symbol] && portfolio[symbol].quantity >= quantity && quantity > 0) {
-                const earnings = quantity * price;
-                portfolio[symbol].quantity -= quantity;
-                budget += earnings;
-
-                $('#budget').text(budget.toFixed(2));
-
-                if (portfolio[symbol].quantity === 0) {
-                    delete portfolio[symbol];
-                }
-
-                updatePortfolioTable();
-                addTransaction('Sell', symbol, quantity, price);
+            if (portfolio[symbol] && portfolio[symbol] >= quantity) {
+                portfolio[symbol] -= quantity;
+                const totalGain = currentPrice * quantity;
+                budget += totalGain;
+                updatePortfolio();
+                updateTransactionHistory('Sell', symbol, quantity, currentPrice);
+                updateBudget();
             } else {
-                alert('Invalid sell order!');
+                alert('Not enough shares to sell!');
             }
         }
 
-        // Update the portfolio table
-        async function updatePortfolioTable() {
-            const table = document.getElementById('portfolioTable').getElementsByTagName('tbody')[0];
-            table.innerHTML = '';
+        // Update portfolio display
+        function updatePortfolio() {
+            const portfolioTableBody = $('#portfolioTable tbody');
+            portfolioTableBody.empty();
 
             for (const symbol in portfolio) {
-                const currentPrice = await fetchStockPrice(symbol);
-                const row = table.insertRow();
-                row.insertCell(0).innerText = symbol;
-                row.insertCell(1).innerText = portfolio[symbol].quantity;
-                row.insertCell(2).innerText = portfolio[symbol].purchasePrice.toFixed(2);
-                row.insertCell(3).innerText = currentPrice.toFixed(2);
+                const row = $('<tr>');
+                const currentPrice = $('#currentPrice').text();
+                row.append($('<td>').text(symbol));
+                row.append($('<td>').text(portfolio[symbol]));
+                row.append($('<td>').text((currentPrice * portfolio[symbol]).toFixed(2)));
+                portfolioTableBody.append(row);
             }
         }
 
-        // Add transaction to the transaction history
-        function addTransaction(type, symbol, quantity, price) {
-            const table = document.getElementById('transactionTable').getElementsByTagName('tbody')[0];
-            const row = table.insertRow();
-            row.insertCell(0).innerText = type;
-            row.insertCell(1).innerText = symbol;
-            row.insertCell(2).innerText = quantity;
-            row.insertCell(3).innerText = price.toFixed(2);
+        // Update transaction history display
+        function updateTransactionHistory(type, symbol, quantity, price) {
+            const transactionTableBody = $('#transactionTable tbody');
+            const row = $('<tr>');
+            row.append($('<td>').text(type));
+            row.append($('<td>').text(symbol));
+            row.append($('<td>').text(quantity));
+            row.append($('<td>').text(price.toFixed(2)));
+            transactionTableBody.append(row);
         }
 
-        // Refresh stock prices every hour
-        setInterval(() => {
-            for (const symbol in portfolio) {
-                updatePortfolioTable(); // Refresh portfolio prices
-            }
-            $('#stock-symbol').trigger('input'); // Refresh current price display
-        }, 3600000); // 3600000 ms = 1 hour
+        // Update budget display
+        function updateBudget() {
+            $('#budget').text(budget.toFixed(2));
+        }
 
+        // Fetch stock list on load
+        fetchStockList();
     </script>
-
-    <!-- TradingView Widget Script -->
-    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
 </body>
 </html>
