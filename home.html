@@ -2,16 +2,15 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <!-- Add viewport meta tag for responsive design -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JugendInvestiert</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
     <style>
-        /* General Styles */
+        /* Allgemeine Stile */
         body {
             font-family: 'Poppins', Arial, sans-serif;
             margin: 0;
-            padding: 0 0 20px 0; /* Added padding-bottom */
+            padding: 0;
             background-color: #101820;
             color: white;
             display: flex;
@@ -19,180 +18,144 @@
             align-items: center;
             min-height: 100vh;
             overflow-x: hidden;
+            overflow-y: auto; /* Allow vertical scrolling */
+            scrollbar-width: none; /* Firefox: Hide scrollbar */
         }
 
+        /* Hide scrollbar for Chrome, Safari, and Opera */
+        body::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* Header-Stile */
         .header {
             width: 100%;
             background-color: #1B2631;
             display: flex;
             align-items: center;
+            justify-content: center;
             padding: 20px;
-            padding-bottom: 20px; /* Added extra padding below the header */
             box-sizing: border-box;
-            margin-bottom: 0px;
-            flex-wrap: wrap; /* Allows wrapping if necessary */
+            flex-wrap: wrap;
+            text-align: center;
+            position: fixed; /* Fixed header */
+            top: 0;
+            left: 0;
+            z-index: 1000;
         }
 
         .header img {
-            height: 120px;
-            width: 120px;
-            margin-right: 20px;
+            height: 70px;
+            width: 70px;
+            margin-right: 15px;
             border-radius: 15px;
-            object-fit: cover;
         }
 
         .header h1 {
-            font-size: 56px;
+            font-size: 28px;
             margin: 0;
+            font-weight: bold;
             white-space: nowrap;
-            overflow: hidden;
-            display: inline-block;
         }
 
+        /* Hauptinhalt-Stile */
         .content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             width: 100%;
-            max-width: 1200px;
             padding: 20px;
+            text-align: center;
+            gap: 15px;
+            margin-top: 100px; /* Offset content for fixed header */
+        }
+
+        .cube {
+            background-color: #1B2631;
+            padding: 40px;
+            width: 90%;
+            max-width: 300px;
+            min-height: 300px;
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 20px;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 800px;
-        }
-
-        .slogan {
-            background-color: #2E4053;
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            box-sizing: border-box;
-            margin-bottom: 20px;
-            max-width: 100%;
-        }
-
-        .squares-container {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .squares-row {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            gap: 20px;
-        }
-
-        .square {
-            flex: 1;
-            padding: 10px;
-            background-color: #1B2631;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            text-align: center;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
             justify-content: center;
-            min-height: 350px;
-            transition: transform 0.3s ease-in-out;
-            position: relative;
-        }
-
-        .square:hover {
-            transform: scale(1.05);
+            gap: 10px;
+            border-radius: 15px;
         }
 
         .number-square {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            font-size: 100px;
+            font-size: 80px;
             color: #007bff;
+            font-weight: bold;
+            margin: 0;
         }
 
-        .text-square {
+        .description-text {
+            font-size: 16px;
+            color: #cccccc;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .description-text a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .number-and-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .bamboo-logo {
+            height: 80px;
+            width: auto;
+        }
+
+        .text-cube {
+            background-color: #1B2631;
+            padding: 20px;
+            width: 90%;
+            max-width: 300px;
+            box-sizing: border-box;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            min-height: 300px;
+            height: auto;
+        }
+
+        .text-cube p {
+            font-size: 16px;
+            color: #cccccc;
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        .rocket-cube {
+            background-color: #1B2631;
+            padding: 40px;
+            width: 90%;
+            max-width: 300px;
+            min-height: 300px;
+            box-sizing: border-box;
+            border-radius: 15px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
-            font-size: 40px;
-            color: #ffffff;
-        }
-
-        .slogan-square {
-            background-color: #2E4053;
-            color: #ffffff;
-            font-size: 30px;
+            justify-content: center;
             text-align: center;
-            padding: 20px;
-            border-radius: 15px;
-            box-sizing: border-box;
-            min-height: 150px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 10px;
-        }
-
-        .additional-text {
-            margin-top: 20px;
-            font-size: 20px;
-            color: #cccccc;
-            text-align: center;
-        }
-
-        .iframe-wrapper {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-
-        .overlay {
-            display: none; /* Hidden by default */
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            border-radius: 15px;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            z-index: 1;
-        }
-
-        .overlay-text {
-            color: #fff;
-            font-size: 24px;
-            padding: 10px 20px;
-            background-color: #007bff;
-            border-radius: 8px;
-        }
-
-        iframe {
-            width: 100%;
-            height: 350px;
-            border: none;
-            border-radius: 15px;
-        }
-
-        .square.text-square img {
-            width: 50%;
-            height: auto;
-            display: block;
-            margin: 0 auto;
+            gap: 10px;
         }
 
         .rocket-emoji {
-            font-size: 150px;
+            font-size: 120px;
             line-height: 1;
             color: #007bff;
             animation: bounce 2s infinite;
@@ -202,335 +165,77 @@
             0%, 20%, 50%, 80%, 100% {
                 transform: translateY(0);
             }
-
             40% {
-                transform: translateY(-30px);
+                transform: translateY(-20px);
             }
-
             60% {
-                transform: translateY(-15px);
+                transform: translateY(-10px);
             }
         }
 
-        .bottom-cubes-container {
-            display: flex;
-            gap: 20px;
-            width: 100%;
-        }
-
-        .left-bottom {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            flex: 1;
-        }
-
-        .right-bottom {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            flex: 1;
-        }
-
-        /* Slideshow Styles */
-        .slideshow {
-            position: relative;
-            width: 100%;
-            max-width: 800px;
-            overflow: hidden;
-            border-radius: 15px;
-            margin-top: 0px;
-            margin-bottom: 20px;
-        }
-
-        .slides {
-            display: flex;
-            transition: transform 0.5s ease;
-            width: calc(100% * 3); /* Adjusted to match the number of slides */
-        }
-
-        .slide {
-            width: 100%;
-            flex-shrink: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.6);
-            color: #fff;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            z-index: 10;
-        }
-
-        .arrow.left {
-            left: 10px;
-        }
-
-        .arrow.right {
-            right: 10px;
-        }
-
-        .glowing-button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 15px 30px;
+        .rocket-text {
             font-size: 24px;
-            font-weight: bold;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
-            cursor: pointer;
-            transition: background-color 0.3s, box-shadow 0.3s;
-            outline: none;
+            color: #ffffff;
+            margin: 0;
         }
 
-        .glowing-button:hover {
-            background-color: #0056b3;
-            box-shadow: 0 0 30px rgba(0, 123, 255, 0.7);
-        }
-
-        .glowing-button:active {
-            background-color: #004080;
-            box-shadow: 0 0 40px rgba(0, 123, 255, 0.9);
-        }
-
-        /* Mobile Styles */
-        @media (max-width: 768px) {
-            .header {
-                /* Keep the logo and text side by side */
-                flex-direction: row;
-                align-items: center;
-                justify-content: center;
-                flex-wrap: wrap;
-            }
-
-            .header img {
-                margin-bottom: 0;
-                height: 80px;
-                width: 80px;
-            }
-
+        /* Responsive Stile */
+        @media (max-width: 400px) {
             .header h1 {
-                font-size: 24px;
-                /* Allow the text to wrap and hyphenate */
-                word-break: break-word;
-                hyphens: auto;
-                max-width: calc(100% - 100px); /* Adjusting for the image width and margins */
+                white-space: normal;
             }
-
-            .squares-row {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .square {
-                min-height: 200px;
-                width: 100%;
-            }
-
-            .number-square {
-                font-size: 60px;
-            }
-
-            .number-square .additional-text {
-                font-size: 16px;
-            }
-
-            .text-square {
-                font-size: 30px;
-            }
-
-            .bottom-cubes-container {
+            .number-and-logo {
                 flex-direction: column;
             }
-
-            .left-bottom, .right-bottom {
-                width: 100%;
-            }
-
-            .rocket-emoji {
-                font-size: 100px;
-            }
-
-            .slide {
-                width: 100%;
-            }
-
-            .slogan h1 {
-                font-size: 24px;
-            }
-
-            .glowing-button {
-                font-size: 20px;
-                padding: 12px 24px;
-                width: 90%;
-                justify-content: center;
-            }
-
-            /* Adjusting the slideshow for mobile */
-            .slideshow {
-                max-width: 100%;
-            }
-
-            .arrow {
-                padding: 8px;
-            }
-
-            /* Enhancing mobile styles creatively */
-            body {
-                background-color: #0d1117;
-            }
-
-            .square {
-                background-color: #161b22;
-            }
-
-            .slogan-square {
-                background-color: #21262d;
-            }
-
-            .glowing-button {
-                animation: pulse 2s infinite;
-            }
-
-            @keyframes pulse {
-                0% {
-                    box-shadow: 0 0 0px rgba(0, 123, 255, 0.5);
-                }
-                50% {
-                    box-shadow: 0 0 20px rgba(0, 123, 255, 1);
-                }
-                100% {
-                    box-shadow: 0 0 0px rgba(0, 123, 255, 0.5);
-                }
-            }
-
-            /* Overlay Styles for Mobile */
-            .overlay {
-                display: flex; /* Show overlay on mobile */
+            .bamboo-logo {
+                margin-top: 10px;
             }
         }
     </style>
 </head>
 <body>
+
+    <!-- Header-Bereich -->
     <div class="header">
         <img src="logo.jpg" alt="JugendInvestiert Logo">
-        <h1>JugendInvestiert</h1> <!-- Removed hyphen -->
+        <h1>JugendInvestiert</h1>
     </div>
 
+    <!-- Hauptinhalt -->
     <div class="content">
-        <div class="container">
-            <div class="slideshow">
-                <button class="arrow left" onclick="changeSlide(-1)">&#10094;</button>
-                <div class="slides" id="slides">
-                    <div class="slide">
-                        <iframe src="littlebamboo.html"></iframe>
-                    </div>
-                    <div class="slide">
-                        <iframe src="course2.html"></iframe>
-                    </div>
-                    <div class="slide">
-                        <iframe src="course3.html"></iframe>
-                    </div>
-                </div>
-                <button class="arrow right" onclick="changeSlide(1)">&#10095;</button>
+        <!-- 10% Cube mit Bamboo Logo -->
+        <div class="cube">
+            <div class="number-and-logo">
+                <div class="number-square">10%</div>
+                <img src="bamboologo.jpg" alt="Little Bamboo Logo" class="bamboo-logo">
             </div>
-            <div class="slogan">
-                <h1>Finanzwissen für alle - Investiere in deine Zukunft!</h1>
-            </div>
-
-            <div class="squares-container">
-                <div class="squares-row">
-                    <div class="square">
-                        <p>Unsere Plattform ist eine Quelle für umfassendes Finanzwissen, das gezielt auf die Bedürfnisse der Jugend zugeschnitten ist. Wir bieten eine Vielzahl von Ressourcen, Schulungen und Tools an, um jungen Menschen dabei zu helfen, ein solides Verständnis für Finanzen aufzubauen. Von Budgetierung und Sparen bis hin zu Investitionen und Finanzplanung – wir sind hier, um dich auf deinem Weg zu unterstützen.</p>
-                    </div>
-                    <div class="square number-square">
-                        #1
-                        <p class="additional-text">bei der Vermittlung von Finanzwissen</p>
-                    </div>
-                </div>
-
-                <div class="slogan-square">
-                    Gratis, Effizient und macht Spaß
-                </div>
-
-                <div class="bottom-cubes-container">
-                    <div class="left-bottom">
-                        <div class="square">
-                            <div class="iframe-wrapper">
-                                <iframe src="displaycourse.html"></iframe>
-                                <div class="overlay" onclick="removeOverlay(this)">
-                                    <div class="overlay-text">Try Demo</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="square">
-                            <div class="iframe-wrapper">
-                                <iframe src="displaysection.html"></iframe>
-                                <div class="overlay" onclick="removeOverlay(this)">
-                                    <div class="overlay-text">Try Demo</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="right-bottom">
-                        <div class="square text-square">
-                            <p>Umfassend</p>
-                            <p>Einzigartig</p>
-                            <p>Innovativ</p>
-                        </div>
-                        <div class="square">
-                            <div class="rocket-emoji">🚀</div>
-                            <h2 style="margin: 0;">Steigere dein</h2>
-                            <h2 style="margin: 0;">Finanzwissen!</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <p class="description-text">
+                Der Einnahmen gehen an die Spendenorganisation
+                <a href="https://www.littlebamboo.info/" target="_blank">Little Bamboo</a>
+            </p>
         </div>
-        <button class="glowing-button" id="confetti-button">
-            🎉 Jetzt starten
-        </button>
+
+        <!-- #1 Cube -->
+        <div class="cube">
+            <div class="number-square">#1</div>
+            <p class="description-text">bei der Vermittlung von Finanzwissen</p>
+        </div>
+
+        <!-- Erklärungstext Cube -->
+        <div class="text-cube">
+            <p>
+                Unsere Plattform ist eine Quelle für umfassendes Finanzwissen 💡, das gezielt auf die Bedürfnisse der Jugend zugeschnitten ist. Wir bieten eine Vielzahl von Ressourcen 📖, Schulungen 📝 und Tools, um jungen Menschen dabei zu helfen, ein solides Verständnis für Finanzen aufzubauen. Von Budgetierung und Sparen bis hin zu Investitionen 📈 und Finanzplanung – wir sind hier, um dich auf deinem Weg zu unterstützen.
+            </p>
+        </div>
+
+        <!-- Rocket Cube -->
+        <div class="rocket-cube">
+            <div class="rocket-emoji">🚀</div>
+            <h2 class="rocket-text">Steigere dein</h2>
+            <h2 class="rocket-text">Finanzwissen! 💪</h2>
+        </div>
+
     </div>
 
-    <script>
-        let currentSlide = 0;
-
-        function changeSlide(direction) {
-            const slides = document.querySelector('.slides');
-            const totalSlides = document.querySelectorAll('.slide').length;
-
-            currentSlide += direction;
-
-            if (currentSlide < 0) {
-                currentSlide = totalSlides - 1;
-            } else if (currentSlide >= totalSlides) {
-                currentSlide = 0;
-            }
-
-            const slideWidth = 100;
-            slides.style.transform = `translateX(-${currentSlide * slideWidth}%)`;
-        }
-
-        document.getElementById('confetti-button').addEventListener('click', function () {
-            // Redirect to register.html
-            window.location.href = 'register.html';
-        });
-
-        function removeOverlay(element) {
-            element.style.display = 'none';
-        }
-    </script>
 </body>
 </html>

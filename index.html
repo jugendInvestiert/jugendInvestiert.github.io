@@ -8,6 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
     <!-- Include Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <!-- Link to Manifest for PWA -->
+    <link rel="manifest" href="manifest.json">
     <style>
         /* Reset and Base Styles */
         * {
@@ -52,13 +54,13 @@
             display: flex;
             align-items: center;
             color: white;
-            padding: 8px 10px;
+            padding: 12px 16px; /* Increased padding for larger buttons */
             text-decoration: none;
-            font-size: 14px;
+            font-size: 16px; /* Increased font size */
             box-sizing: border-box;
             border: 2px solid transparent;
             border-radius: 15px;
-            margin: 8px 0;
+            margin: 10px 0; /* Increased margin for spacing */
             transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
             text-transform: uppercase;
             width: 90%;
@@ -74,20 +76,36 @@
         }
 
         .sidebar a .emoji {
-            font-size: 32px;
-            margin-right: 10px;
-            font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji', sans-serif;
+            /* Removed font-size and font-family since we're using images */
+            margin-right: 12px; /* Increased margin for spacing */
+        }
+
+        /* Standard Icon Size */
+        .emoji-image {
+            width: 36px; /* Fixed width */
+            height: 36px; /* Fixed height */
+            margin-right: 12px;
+            object-fit: fill; /* Forces the image to fill the dimensions, causing distortion if necessary */
+        }
+
+        /* Slightly Larger Icon Size for Specific Icons */
+        .emoji-image-large {
+            width: 42px; /* Slightly increased width */
+            height: 42px; /* Slightly increased height */
+            object-fit: contain; /* Maintains aspect ratio */
         }
 
         .sidebar a.login,
         .sidebar a.signup {
-            text-align: center;
-            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Centers content horizontally */
+            text-align: center; /* Centers text horizontally */
+            padding: 12px 0; /* Increased padding */
             border-radius: 15px;
-            justify-content: center;
             font-size: 18px;
             width: 90%;
-            margin-top: 10px;
+            margin-top: 12px; /* Increased margin */
             transition: transform 0.3s ease, background-color 0.3s ease;
         }
 
@@ -101,8 +119,11 @@
         }
 
         .sidebar a.logout {
+            display: flex;
+            align-items: center;
+            justify-content: center; /* Centers content horizontally */
             background-color: #E74C3C;
-            margin-top: 10px;
+            margin-top: 12px; /* Increased margin */
             display: none; /* Initially hidden */
         }
 
@@ -146,6 +167,7 @@
             width: 100%;
             height: 100vh;
             border: none;
+            /* Remove padding if any */
         }
 
         /* Modal Styles */
@@ -286,6 +308,7 @@
             .content {
                 margin-left: 0;
                 width: 100%;
+                padding: 0; /* Removed extra padding */
             }
 
             .bottom-nav {
@@ -295,18 +318,36 @@
                 left: 0;
                 width: 100%;
                 background-color: #1B2631;
-                justify-content: space-around;
-                padding: 10px 0;
+                justify-content: space-evenly; /* Evenly distribute space between icons */
+                padding: 15px 0; /* Reduced padding for a smaller bottom bar */
+                box-shadow: 0 -2px 5px rgba(0,0,0,0.3); /* Optional: Add shadow for depth */
             }
 
             .bottom-nav a {
                 color: white;
                 text-decoration: none;
-                font-size: 24px;
+                font-size: 0; /* Remove font size since labels are removed */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: color 0.3s ease;
             }
 
             .bottom-nav a.active {
                 color: #a2e5ff;
+            }
+
+            /* Reduced Emoji Sizes in Bottom Navigation */
+            .bottom-nav a .emoji-image {
+                margin-right: 0; /* Remove margin in bottom-nav */
+                width: 36px; /* Reduced width from 48px */
+                height: 36px; /* Reduced height from 48px */
+                object-fit: contain; /* Maintains aspect ratio */
+            }
+
+            /* Remove Labels in Bottom Navigation */
+            .bottom-nav a .nav-label {
+                display: none;
             }
         }
     </style>
@@ -316,15 +357,37 @@
     <!-- Sidebar (hidden on mobile) -->
     <div class="sidebar">
         <h2>JugendInvestiert</h2>
-        <a href="#home" class="button" onclick="showSection('home', this)"><span class="emoji">🏠</span> Home</a>
-        <a href="#lernen" class="button" onclick="showSection('lernen', this)"><span class="emoji">📚</span> Lernen</a>
-        <a href="#resourcen" class="button" onclick="showSection('resourcen', this)"><span class="emoji">📁</span> Ressourcen</a>
-        <a href="#simulator" class="button" onclick="showSection('simulator', this)"><span class="emoji">🛠️</span> Simulator</a>
-        <a href="#unsere-mission" class="button" onclick="showSection('unsere-mission', this)"><span class="emoji">🌍</span> Unsere Mission</a>
+        <a href="#home" class="button" onclick="showSection('home', this)">
+            <img src="house2.png" alt="Home" class="emoji-image"> Home
+        </a>
+        <a href="#lernen" class="button" onclick="showSection('lernen', this)">
+            <!-- Apply the large class to Lernen image -->
+            <img src="lernen.jpg" alt="Lernen" class="emoji-image emoji-image-large"> Lernen
+        </a>
+        <a href="#resourcen" class="button" onclick="showSection('resourcen', this)">
+            <img src="ressourcen.png" alt="Ressourcen" class="emoji-image"> Ressourcen
+        </a>
+        <a href="#simulator" class="button" onclick="showSection('simulator', this)">
+            <!-- Apply the large class to Simulator image -->
+            <img src="simulator.png" alt="Simulator" class="emoji-image emoji-image-large"> Simulator
+        </a>
+        <a href="#unsere-mission" class="button" onclick="showSection('unsere-mission', this)">
+            <!-- Apply the large class to Unsere Mission image -->
+            <img src="mission.png" alt="Unsere Mission" class="emoji-image emoji-image-large"> Unsere Mission
+        </a>
         <div class="bottom-buttons">
-            <a href="#login" class="button login" onclick="openModal('loginModal')"><span class="emoji">🔑</span> Anmelden</a>
-            <a href="#signup" class="button signup" onclick="openModal('signupModal')"><span class="emoji">✍️</span> Registrieren</a>
-            <a href="#logout" class="button logout" onclick="logout()" style="display: none;"><span class="emoji">🚪</span> Abmelden</a>
+            <!-- Updated Login Button with Image -->
+            <a href="#login" class="button login" onclick="openModal('loginModal')">
+                <img src="login.png" alt="Anmelden" class="emoji-image"> Anmelden
+            </a>
+            <!-- Updated Signup Button with Image -->
+            <a href="#signup" class="button signup" onclick="openModal('signupModal')">
+                <img src="register.png" alt="Registrieren" class="emoji-image"> Registrieren
+            </a>
+            <!-- Logout Button remains unchanged, but you can also replace the emoji if desired -->
+            <a href="#logout" class="button logout" onclick="logout()" style="display: none;">
+                <img src="logout.png" alt="Abmelden" class="emoji-image"> Abmelden
+            </a>
         </div>
     </div>
 
@@ -349,12 +412,35 @@
 
     <!-- Bottom Navigation (visible on mobile) -->
     <div class="bottom-nav">
-        <a href="#home" class="button" onclick="showSection('home', this)"><span class="emoji">🏠</span></a>
-        <a href="#lernen" class="button" onclick="showSection('lernen', this)"><span class="emoji">📚</span></a>
-        <a href="#resourcen" class="button" onclick="showSection('resourcen', this)"><span class="emoji">📁</span></a>
-        <a href="#simulator" class="button" onclick="showSection('simulator', this)"><span class="emoji">🛠️</span></a>
-        <a href="#unsere-mission" class="button" onclick="showSection('unsere-mission', this)"><span class="emoji">🌍</span></a>
-        <a href="#profile" class="button" onclick="handleProfileClick(this)"><span class="emoji">👤</span></a>
+        <a href="#home" class="button" onclick="showSection('home', this)">
+            <img src="house2.png" alt="Home" class="emoji-image">
+            <!-- <span class="nav-label">Home</span> --> <!-- Removed label -->
+        </a>
+        <!-- Lernen Button -->
+        <a href="#lernen" class="button" onclick="showSection('lernen', this)">
+            <img src="lernen.jpg" alt="Lernen" class="emoji-image">
+            <!-- <span class="nav-label">Lernen</span> --> <!-- Removed label -->
+        </a>
+        <!-- Resourcen Button -->
+        <a href="#resourcen" class="button" onclick="showSection('resourcen', this)">
+            <img src="ressourcen.png" alt="Ressourcen" class="emoji-image">
+            <!-- <span class="nav-label">Ressourcen</span> --> <!-- Removed label -->
+        </a>
+        <!-- Simulator Button -->
+        <a href="#simulator" class="button" onclick="showSection('simulator', this)">
+            <img src="simulator.png" alt="Simulator" class="emoji-image">
+            <!-- <span class="nav-label">Simulator</span> --> <!-- Removed label -->
+        </a>
+        <!-- Unsere Mission Button -->
+        <a href="#unsere-mission" class="button" onclick="showSection('unsere-mission', this)">
+            <img src="mission.png" alt="Unsere Mission" class="emoji-image">
+            <!-- <span class="nav-label">Unsere Mission</span> --> <!-- Removed label -->
+        </a>
+        <!-- Account Button with student.png placed directly after Mission Button -->
+        <a href="#account" class="button account" onclick="openModal('loginModal')">
+            <img src="student.png" alt="Account" class="emoji-image">
+            <!-- <span class="nav-label">Account</span> --> <!-- Removed label -->
+        </a>
     </div>
 
     <!-- Login Modal -->
@@ -383,14 +469,6 @@
         </div>
     </div>
 
-    <!-- Profile Modal -->
-    <div id="profileModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('profileModal')">&times;</span>
-            <div id="profileModalContent"></div>
-        </div>
-    </div>
-
     <!-- Loader -->
     <div id="loader"><i class="fas fa-spinner fa-spin"></i></div>
 
@@ -399,17 +477,33 @@
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
 
+    <!-- Service Worker Registration -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('ServiceWorker registration failed:', error);
+                    });
+            });
+        }
+    </script>
+
+    <!-- Main JavaScript -->
     <script>
         // Your Firebase configuration
         const firebaseConfig = {
             apiKey: "AIzaSyDmEUCl7sWzBI7N78HgcgBRcRAkTYbtm5g",
-  authDomain: "jugendinvestiert-5f6eb.firebaseapp.com",
-  databaseURL: "https://jugendinvestiert-5f6eb-default-rtdb.firebaseio.com",
-  projectId: "jugendinvestiert-5f6eb",
-  storageBucket: "jugendinvestiert-5f6eb.appspot.com",
-  messagingSenderId: "432595310987",
-  appId: "1:432595310987:web:fd9f7975d5e87f1fe1378e",
-  measurementId: "G-5ENQC9KQBY"
+            authDomain: "jugendinvestiert-5f6eb.firebaseapp.com",
+            databaseURL: "https://jugendinvestiert-5f6eb-default-rtdb.firebaseio.com",
+            projectId: "jugendinvestiert-5f6eb",
+            storageBucket: "jugendinvestiert-5f6eb.appspot.com",
+            messagingSenderId: "432595310987",
+            appId: "1:432595310987:web:fd9f7975d5e87f1fe1378e",
+            measurementId: "G-5ENQC9KQBY"
         };
 
         // Initialize Firebase
@@ -481,28 +575,6 @@
                 });
         }
 
-        // Handle Profile Click
-        function handleProfileClick(element) {
-            const user = auth.currentUser;
-            const profileModalContent = document.getElementById('profileModalContent');
-            if (user) {
-                // User is logged in
-                profileModalContent.innerHTML = `
-                    <h2>Profil</h2>
-                    <p>Angemeldet als: ${user.email}</p>
-                    <button onclick="logout(); closeModal('profileModal');">Abmelden</button>
-                `;
-            } else {
-                // User is not logged in
-                profileModalContent.innerHTML = `
-                    <h2>Willkommen!</h2>
-                    <button onclick="openModal('loginModal'); closeModal('profileModal');">Anmelden</button>
-                    <button onclick="openModal('signupModal'); closeModal('profileModal');">Registrieren</button>
-                `;
-            }
-            openModal('profileModal');
-        }
-
         // Observe Authentication State
         auth.onAuthStateChanged(user => {
             const loginButton = document.querySelector('.sidebar a.login');
@@ -513,12 +585,12 @@
                 // User is signed in
                 loginButton.style.display = 'none';
                 signupButton.style.display = 'none';
-                logoutButton.style.display = 'block';
+                logoutButton.style.display = 'flex'; // Changed to 'flex' to align items properly
                 loadUserData(user.uid);
             } else {
                 // User is signed out
-                loginButton.style.display = 'block';
-                signupButton.style.display = 'block';
+                loginButton.style.display = 'flex'; // Changed to 'flex' to align items properly
+                signupButton.style.display = 'flex'; // Changed to 'flex' to align items properly
                 logoutButton.style.display = 'none';
                 budget = 10000;
                 portfolio = {};
@@ -645,7 +717,10 @@
 
         // Initialization on Page Load
         document.addEventListener('DOMContentLoaded', () => {
-            showSection('home', document.querySelector('.sidebar a[href="#home"]'));
+            const initialButton = document.querySelector('.sidebar a[href="#home"]');
+            if (initialButton) {
+                showSection('home', initialButton);
+            }
         });
 
         // Display Success Message
