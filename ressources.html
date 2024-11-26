@@ -6,6 +6,11 @@
     <title>Ressourcen</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
     <style>
+        /* Globales Box-Sizing */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Poppins', Arial, sans-serif;
             margin: 0;
@@ -14,63 +19,72 @@
             background-color: #101820;
             color: white;
             flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden; /* Verhindert horizontales Scrollen */
+            padding-bottom: 40px; /* Mehr Padding unten hinzugefügt */
         }
+
         .container {
             padding: 20px;
             max-width: 1200px;
             margin: auto;
         }
+
         h1 {
             text-align: center;
             font-size: 36px;
             margin-bottom: 20px;
             color: white;
         }
+
         h2 {
             font-size: 28px;
             margin: 20px 0 10px;
             color: whitesmoke;
         }
+
         .resource-section {
             display: flex;
             flex-wrap: wrap;
             justify-content: space-between;
         }
+
         .resource-card {
             background-color: #1B2631;
             border: 2px solid #34495e;
             border-radius: 10px;
             padding: 15px;
             margin: 10px;
-            flex: 1 1 30%; /* 3 items per row */
+            flex: 1 1 30%; /* 3 Elemente pro Zeile */
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease; /* Smooth transition for scaling */
+            transition: transform 0.3s ease;
         }
+
         .resource-card:hover {
-            transform: scale(1.05); /* Scale the card on hover */
+            transform: scale(1.05);
         }
+
         .resource-card h3 {
             font-size: 24px;
             margin: 10px 0;
             color: whitesmoke;
         }
+
+        .resource-card p {
+            font-size: 16px;
+            margin: 0;
+        }
+
         .resource-card a {
             color: #007bff;
             text-decoration: none;
         }
+
         .resource-card a:hover {
             text-decoration: underline;
         }
-        @media (max-width: 768px) {
-            .resource-card {
-                flex: 1 1 45%; /* 2 items per row */
-            }
-        }
-        @media (max-width: 480px) {
-            .resource-card {
-                flex: 1 1 100%; /* 1 item per row */
-            }
-        }
+
+        /* Block "Unsere Empfehlungen" */
         .recommendations {
             background-color: #1B2631;
             border: 2px solid #34495e;
@@ -81,16 +95,15 @@
             flex-direction: column;
             align-items: center;
         }
-        .recommendations h2 {
-            margin-bottom: 20px;
-            color: whitesmoke;
-        }
+
+        /* Empfehlungen-Elemente */
         .recommendation-items {
             display: flex;
             justify-content: space-around;
             width: 100%;
             margin-top: 10px;
         }
+
         .recommendation-item {
             display: flex;
             align-items: center;
@@ -98,25 +111,91 @@
             text-align: center;
             margin: 0 20px;
         }
+
         .recommendation-item img {
-            width: 200px; /* Adjust the size as needed */
+            width: 200px; /* Größe anpassen */
             height: auto;
             margin-bottom: 10px;
-            border-radius: 10px; /* Rounded edges */
+            border-radius: 10px;
         }
+
+        .recommendation-item h3 {
+            font-size: 24px;
+            margin: 10px 0;
+        }
+
+        .recommendation-item p {
+            font-size: 16px;
+            margin: 0;
+        }
+
         .recommendation-item a {
-            color: white; /* White links */
+            color: white;
             text-decoration: none;
         }
+
         .recommendation-item a:hover {
             text-decoration: underline;
+        }
+
+        /* Anpassungen für Tablets */
+        @media (max-width: 1024px) {
+            .resource-card {
+                flex: 1 1 45%; /* 2 Elemente pro Zeile */
+            }
+            .recommendation-item img {
+                width: 150px;
+            }
+        }
+
+        /* Anpassungen für Mobilgeräte */
+        @media (max-width: 768px) {
+            .resource-card {
+                flex: 1 1 100%; /* 1 Element pro Zeile */
+            }
+            h1 {
+                font-size: 28px;
+            }
+            h2 {
+                font-size: 24px;
+                text-align: center; /* Titel zentrieren */
+            }
+            /* Entfernt den "Unsere Empfehlungen"-Block auf Mobilgeräten */
+            .recommendations {
+                display: none;
+            }
+            .container {
+                padding: 15px;
+            }
+            .resource-card {
+                padding: 15px;
+                margin: 10px 0; /* Gleichmäßiges Margin links und rechts */
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 24px;
+            }
+            h2 {
+                font-size: 20px;
+            }
+            .resource-card h3 {
+                font-size: 20px;
+            }
+            .resource-card p {
+                font-size: 14px;
+            }
+            .recommendation-item img {
+                width: 120px;
+            }
         }
     </style>
 </head>
 <body>
     <h1>Nützliche Ressourcen 💡</h1>
     <div class="container">
-
+        <!-- "Unsere Empfehlungen"-Block (wird auf Mobilgeräten ausgeblendet) -->
         <div class="recommendations">
             <h2>Unsere Empfehlungen</h2>
             <div class="recommendation-items">
@@ -126,7 +205,7 @@
                     <p>Aktuelle Nachrichten und Analysen zu globalen Finanzmärkten.</p>
                 </div>
                 <div class="recommendation-item">
-                    <img src="jisim.jpg" alt="ft.jpg">
+                    <img src="jisim.jpg" alt="Unser Simulator">
                     <h3><a href="simulator.html">Unser Simulator</a></h3>
                     <p>Eine interaktive Plattform für das Üben von Investitionsstrategien.</p>
                 </div>
@@ -138,7 +217,7 @@
             </div>
         </div>
 
-        
+        <!-- Ressourcenkarten -->
         <h2>Finanzanalyse</h2>
         <div class="resource-section">
             <div class="resource-card">
@@ -222,9 +301,6 @@
                 <p>Kostenlose Bildungsressourcen zu verschiedenen Finanzthemen.</p>
             </div>
         </div>
-
     </div>
-
 </body>
 </html>
-

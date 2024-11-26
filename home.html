@@ -6,6 +6,11 @@
     <title>JugendInvestiert</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
     <style>
+        /* Apply box-sizing globally for consistent sizing */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
         /* Allgemeine Stile */
         body {
             font-family: 'Poppins', Arial, sans-serif;
@@ -17,8 +22,7 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            overflow-x: hidden;
-            overflow-y: auto; /* Allow vertical scrolling */
+            overflow-x: hidden; /* Prevent horizontal scrolling */
             scrollbar-width: none; /* Firefox: Hide scrollbar */
         }
 
@@ -30,15 +34,15 @@
         /* Header-Stile */
         .header {
             width: 100%;
+            max-width: 100%; /* Ensure no overflow */
             background-color: #1B2631;
             display: flex;
             align-items: center;
             justify-content: center;
             padding: 20px;
-            box-sizing: border-box;
             flex-wrap: wrap;
             text-align: center;
-            position: fixed; /* Fixed header */
+            position: fixed;
             top: 0;
             left: 0;
             z-index: 1000;
@@ -64,18 +68,18 @@
             flex-direction: column;
             align-items: center;
             width: 100%;
+            max-width: 100%; /* Ensure no horizontal overflow */
             padding: 20px;
             text-align: center;
             gap: 15px;
             margin-top: 100px; /* Offset content for fixed header */
         }
 
-        .cube {
+        .cube, .text-cube, .rocket-cube {
             background-color: #1B2631;
-            padding: 40px;
-            width: 90%;
-            max-width: 300px;
-            min-height: 300px;
+            padding: 40px 20px;
+            width: 100%;
+            max-width: 100%; /* Ensure no overflow */
             box-sizing: border-box;
             display: flex;
             flex-direction: column;
@@ -109,6 +113,8 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
+            width: 100%;
+            max-width: 400px; /* Optional: limit the max width to maintain readability */
         }
 
         .bamboo-logo {
@@ -117,15 +123,7 @@
         }
 
         .text-cube {
-            background-color: #1B2631;
             padding: 20px;
-            width: 90%;
-            max-width: 300px;
-            box-sizing: border-box;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             text-align: center;
             min-height: 300px;
             height: auto;
@@ -139,25 +137,11 @@
         }
 
         .rocket-cube {
-            background-color: #1B2631;
-            padding: 40px;
-            width: 90%;
-            max-width: 300px;
-            min-height: 300px;
-            box-sizing: border-box;
-            border-radius: 15px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            gap: 10px;
+            padding: 40px 20px;
         }
 
-        .rocket-emoji {
-            font-size: 120px;
-            line-height: 1;
-            color: #007bff;
+        .rocket-image {
+            width: 120px;
             animation: bounce 2s infinite;
         }
 
@@ -180,15 +164,28 @@
         }
 
         /* Responsive Stile */
-        @media (max-width: 400px) {
+        @media (max-width: 600px) {
             .header h1 {
-                white-space: normal;
+                font-size: 24px;
             }
             .number-and-logo {
-                flex-direction: column;
+                max-width: 100%;
+            }
+            .number-square {
+                font-size: 60px;
             }
             .bamboo-logo {
-                margin-top: 10px;
+                height: 60px;
+            }
+            .rocket-text {
+                font-size: 20px;
+            }
+        }
+
+        /* Ensure that .number-and-logo remains in a row */
+        @media (max-width: 600px) {
+            .number-and-logo {
+                flex-direction: row;
             }
         }
     </style>
@@ -203,7 +200,6 @@
 
     <!-- Hauptinhalt -->
     <div class="content">
-        <!-- 10% Cube mit Bamboo Logo -->
         <div class="cube">
             <div class="number-and-logo">
                 <div class="number-square">10%</div>
@@ -215,26 +211,22 @@
             </p>
         </div>
 
-        <!-- #1 Cube -->
         <div class="cube">
             <div class="number-square">#1</div>
             <p class="description-text">bei der Vermittlung von Finanzwissen</p>
         </div>
 
-        <!-- Erklärungstext Cube -->
         <div class="text-cube">
             <p>
-                Unsere Plattform ist eine Quelle für umfassendes Finanzwissen 💡, das gezielt auf die Bedürfnisse der Jugend zugeschnitten ist. Wir bieten eine Vielzahl von Ressourcen 📖, Schulungen 📝 und Tools, um jungen Menschen dabei zu helfen, ein solides Verständnis für Finanzen aufzubauen. Von Budgetierung und Sparen bis hin zu Investitionen 📈 und Finanzplanung – wir sind hier, um dich auf deinem Weg zu unterstützen.
+                Unsere Plattform ist eine Quelle für umfassendes Finanzwissen 💡, das gezielt auf die Bedürfnisse der Jugend zugeschnitten ist.
             </p>
         </div>
 
-        <!-- Rocket Cube -->
         <div class="rocket-cube">
-            <div class="rocket-emoji">🚀</div>
+            <img src="rocket.png" alt="Rocket" class="rocket-image">
             <h2 class="rocket-text">Steigere dein</h2>
             <h2 class="rocket-text">Finanzwissen! 💪</h2>
         </div>
-
     </div>
 
 </body>

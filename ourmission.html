@@ -2,10 +2,15 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width">
     <title>JugendInvestiert - Unsere Mission</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
     <style>
+        /* Globales Box-Sizing */
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Poppins', Arial, sans-serif;
             margin: 0;
@@ -16,27 +21,64 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            height: 100vh;
-            box-sizing: border-box;
+            min-height: 100vh;
+            overflow-x: hidden; /* Verhindert horizontales Scrollen */
+            padding-bottom: 40px; /* Mehr Padding unten hinzugefügt */
         }
+
+        .container {
+            max-width: 800px;
+            margin: 0 20px; /* Gleichmäßige Margins auf beiden Seiten */
+            text-align: center;
+        }
+
         h1 {
             font-size: 32px;
             margin-bottom: 20px;
-            text-align: center;
         }
+
+        /* Neues Styling für das Bild */
+        .container img {
+            max-width: 100%; /* Bild passt sich der Containerbreite an */
+            height: auto;
+            margin: 20px 0; /* Abstand oberhalb und unterhalb des Bildes */
+        }
+
         p {
             font-size: 18px;
             line-height: 1.6;
-            text-align: center;
-            max-width: 800px;
+        }
+
+        /* Mobile Styles */
+        @media (max-width: 600px) {
+            body {
+                padding: 0;
+                min-height: auto; /* Erlaubt dem Body, sich zu erweitern */
+                justify-content: flex-start; /* Inhalt nach oben ausrichten */
+                padding-bottom: 40px; /* Mehr Padding unten auf Mobilgeräten */
+            }
+            .container {
+                margin: 20px 15px; /* Leichtes Padding auf den Seiten */
+            }
+            h1 {
+                font-size: 36px; /* Text etwas größer */
+            }
+            p {
+                font-size: 20px; /* Text etwas größer */
+            }
+            /* Optional: Bildgröße auf mobilen Geräten anpassen */
+            .container img {
+                margin: 15px 0;
+            }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <h1>Unsere Mission</h1>
-        <p>Wir sind eine Gruppe junger Menschen, die vor dem Mangel an finanzieller Bildung in Deutschland nicht die Augen verschließen wollen. Als kleines deutsches Start-Up fing bei uns sozusagen alles "in der Garage" an, mit einer gesunden Mischung aus Tech-Expertise, künstlicher Intelligenz und Finanz-Wissen, bloß von der Aussicht auf einen Finanzmarkt für ALLE angetrieben. Zusammen haben wir diese Plattform aufgebaut, um allen jungen Menschen einen guten und erfolgreichen Start in die finanzielle Unabhängigkeit zu ermöglichen. Wir hoffen, dass wir gemeinsam unser Ziel erreichen können und finanzielle Bildung in Deutschland revolutionieren werden.</p>
+        <h1>Unsere Mission 🌍</h1>
+        <img src="earth.gif" alt="Erde">
+        <p>Wir sind eine Gruppe junger Menschen, die vor dem Mangel an finanzieller Bildung in Deutschland nicht die Augen verschließen wollen. 🙈 Als kleines deutsches Start-Up fing bei uns sozusagen alles "in der Garage" an, mit einer gesunden Mischung aus Tech-Expertise 💻, künstlicher Intelligenz 🤖 und Finanz-Wissen 💰, bloß von der Aussicht auf einen Finanzmarkt für ALLE angetrieben. Zusammen haben wir diese Plattform aufgebaut, um allen jungen Menschen einen guten und erfolgreichen Start in die finanzielle Unabhängigkeit zu ermöglichen. 🎯 Wir hoffen, dass wir gemeinsam unser Ziel erreichen können und finanzielle Bildung in Deutschland revolutionieren werden. 🌟</p>
     </div>
 
 </body>
