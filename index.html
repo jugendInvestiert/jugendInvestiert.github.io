@@ -1,756 +1,688 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <!-- Add viewport meta tag for responsive design -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JugendInvestiert</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
-    <!-- Include Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <!-- Link to Manifest for PWA -->
-    <link rel="manifest" href="manifest.json">
-    <style>
-        /* Reset and Base Styles */
-        * {
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Poppins', Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            background-color: #101820;
-            color: white;
-        }
-
-        /* Hide bottom navigation on larger screens */
-        .bottom-nav {
-            display: none;
-        }
-
-        .sidebar {
-            width: 300px;
-            background-color: #1B2631;
-            height: 100vh;
-            padding: 0 2px;
-            position: fixed;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .sidebar h2 {
-            text-align: center;
-            font-size: 26px;
-            color: white;
-            margin-bottom: 20px;
-            padding: 0 10px;
-        }
-
-        .sidebar a {
-            display: flex;
-            align-items: center;
-            color: white;
-            padding: 12px 16px; /* Increased padding for larger buttons */
-            text-decoration: none;
-            font-size: 16px; /* Increased font size */
-            box-sizing: border-box;
-            border: 2px solid transparent;
-            border-radius: 15px;
-            margin: 10px 0; /* Increased margin for spacing */
-            transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
-            text-transform: uppercase;
-            width: 90%;
-            justify-content: flex-start;
-        }
-
-        .sidebar a:hover {
-            background-color: #34495e;
-        }
-
-        .sidebar a.active {
-            border-color: #a2e5ff;
-        }
-
-        .sidebar a .emoji {
-            /* Removed font-size and font-family since we're using images */
-            margin-right: 12px; /* Increased margin for spacing */
-        }
-
-        /* Standard Icon Size */
-        .emoji-image {
-            width: 36px; /* Fixed width */
-            height: 36px; /* Fixed height */
-            margin-right: 12px;
-            object-fit: fill; /* Forces the image to fill the dimensions, causing distortion if necessary */
-        }
-
-        /* Slightly Larger Icon Size for Specific Icons */
-        .emoji-image-large {
-            width: 42px; /* Slightly increased width */
-            height: 42px; /* Slightly increased height */
-            object-fit: contain; /* Maintains aspect ratio */
-        }
-
-        .sidebar a.login,
-        .sidebar a.signup {
-            display: flex;
-            align-items: center;
-            justify-content: center; /* Centers content horizontally */
-            text-align: center; /* Centers text horizontally */
-            padding: 12px 0; /* Increased padding */
-            border-radius: 15px;
-            font-size: 18px;
-            width: 90%;
-            margin-top: 12px; /* Increased margin */
-            transition: transform 0.3s ease, background-color 0.3s ease;
-        }
-
-        .sidebar a.login {
-            background-color: #007ce2;
-            margin-bottom: 0px;
-        }
-
-        .sidebar a.signup {
-            background-color: #7F8C8D;
-        }
-
-        .sidebar a.logout {
-            display: flex;
-            align-items: center;
-            justify-content: center; /* Centers content horizontally */
-            background-color: #E74C3C;
-            margin-top: 12px; /* Increased margin */
-            display: none; /* Initially hidden */
-        }
-
-        .sidebar a.login:hover,
-        .sidebar a.signup:hover,
-        .sidebar a.logout:hover {
-            transform: scale(1.05);
-        }
-
-        .bottom-buttons {
-            margin-top: auto;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding-bottom: 20px;
-        }
-
-        .content {
-            margin-left: 300px;
-            width: calc(100% - 300px);
-            box-sizing: border-box;
-            color: white;
-        }
-
-        .content h1 {
-            font-size: 32px;
-        }
-
-        .content section {
-            display: none;
-            width: 100%;
-            height: 100vh;
-        }
-
-        .content section.active {
-            display: block;
-        }
-
-        .content iframe {
-            width: 100%;
-            height: 100vh;
-            border: none;
-            /* Remove padding if any */
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            background-color: rgba(0,0,0,0.8);
-            padding-top: 60px;
-        }
-
-        .modal-content {
-            background-color: #1e1e1e;
-            margin: 5% auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 300px;
-            border-radius: 10px;
-            position: relative;
-            color: white;
-        }
-
-        .close {
-            color: #aaa;
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 28px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: white;
-            text-decoration: none;
-        }
-
-        .modal-content h2 {
-            margin-top: 0;
-            text-align: center;
-            color: #008cba;
-        }
-
-        .modal-content label {
-            display: block;
-            margin-top: 15px;
-            color: #fff;
-        }
-
-        .modal-content input {
-            width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            background-color: #2a2a2a;
-            border: none;
-            border-radius: 5px;
-            color: #fff;
-            box-sizing: border-box;
-        }
-
-        .modal-content button {
-            width: 100%;
-            padding: 10px;
-            margin-top: 20px;
-            background-color: #008cba;
-            border: none;
-            border-radius: 20px;
-            color: #fff;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-
-        .modal-content button:hover {
-            background-color: #007bb5;
-        }
-
-        /* Loader Styles */
-        #loader {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            color: #fff;
-            font-size: 1.5rem;
-        }
-
-        /* Success and Error Messages */
-        .message {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background-color: #4CAF50; /* Green */
-            color: white;
-            padding: 15px;
-            border-radius: 5px;
-            z-index: 3000;
-            opacity: 0.9;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            animation: fadeInOut 4s forwards;
-        }
-
-        .message.error {
-            background-color: #f44336; /* Red */
-        }
-
-        .message i {
-            font-size: 1.5rem;
-        }
-
-        @keyframes fadeInOut {
-            0% { opacity: 0; transform: translateY(-20px); }
-            10% { opacity: 1; transform: translateY(0); }
-            90% { opacity: 1; transform: translateY(0); }
-            100% { opacity: 0; transform: translateY(-20px); }
-        }
-
-        /* Mobile Styles */
-        @media (max-width: 768px) {
-            body {
-                flex-direction: column;
-            }
-
-            .sidebar {
-                display: none;
-            }
-
-            .content {
-                margin-left: 0;
-                width: 100%;
-                padding: 0; /* Removed extra padding */
-            }
-
-            .bottom-nav {
-                display: flex;
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                width: 100%;
-                background-color: #1B2631;
-                justify-content: space-evenly; /* Evenly distribute space between icons */
-                padding: 15px 0; /* Reduced padding for a smaller bottom bar */
-                box-shadow: 0 -2px 5px rgba(0,0,0,0.3); /* Optional: Add shadow for depth */
-            }
-
-            .bottom-nav a {
-                color: white;
-                text-decoration: none;
-                font-size: 0; /* Remove font size since labels are removed */
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                transition: color 0.3s ease;
-            }
-
-            .bottom-nav a.active {
-                color: #a2e5ff;
-            }
-
-            /* Reduced Emoji Sizes in Bottom Navigation */
-            .bottom-nav a .emoji-image {
-                margin-right: 0; /* Remove margin in bottom-nav */
-                width: 36px; /* Reduced width from 48px */
-                height: 36px; /* Reduced height from 48px */
-                object-fit: contain; /* Maintains aspect ratio */
-            }
-
-            /* Remove Labels in Bottom Navigation */
-            .bottom-nav a .nav-label {
-                display: none;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <title>JugendInvestiert</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link rel="manifest" href="manifest.json">
+  <style>
+    /* RESET & BASE */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Poppins', Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      background-color: #101820;
+      color: white;
+    }
+    .bottom-nav {
+      display: none;
+    }
+    .sidebar {
+      width: 300px;
+      background-color: #1B2631;
+      height: 100vh;
+      padding: 0 2px;
+      position: fixed;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .sidebar h2 {
+      text-align: center;
+      font-size: 26px;
+      color: white;
+      margin-bottom: 20px;
+      padding: 0 10px;
+    }
+    .sidebar a {
+      display: flex;
+      align-items: center;
+      color: white;
+      padding: 12px 16px;
+      text-decoration: none;
+      font-size: 16px;
+      box-sizing: border-box;
+      border: 2px solid transparent;
+      border-radius: 15px;
+      margin: 10px 0;
+      /* Updated Transition to include transform */
+      transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+      text-transform: uppercase;
+      width: 90%;
+      justify-content: flex-start;
+    }
+    /* Added transform scaling on hover for all sidebar links */
+    .sidebar a:hover {
+      background-color: #34495e;
+      transform: scale(1.05); /* Hover Effect: Enlarges the button */
+    }
+    .sidebar a.active {
+      border-color: #a2e5ff;
+    }
+    .sidebar a .emoji {
+      margin-right: 12px;
+    }
+    .emoji-image {
+      width: 36px;
+      height: 36px;
+      margin-right: 12px;
+      object-fit: fill;
+    }
+    .emoji-image-large {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+    }
+    .sidebar a.login,
+    .sidebar a.signup {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 12px 0;
+      border-radius: 15px;
+      font-size: 18px;
+      width: 90%;
+      margin-top: 12px;
+      transition: transform 0.3s ease, background-color 0.3s ease;
+    }
+    .sidebar a.login {
+      background-color: #007ce2;
+      margin-bottom: 0px;
+    }
+    .sidebar a.signup {
+      background-color: #7F8C8D;
+    }
+    .sidebar a.logout {
+      display: flex; /* Ensures the logout button is flex when displayed */
+      align-items: center;
+      justify-content: center;
+      background-color: #E74C3C;
+      margin-top: 12px;
+      /* Removed duplicate 'display: none;' */
+    }
+    .sidebar a.login:hover,
+    .sidebar a.signup:hover,
+    .sidebar a.logout:hover {
+      transform: scale(1.05);
+    }
+    .bottom-buttons {
+      margin-top: auto;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 20px;
+    }
+    .content {
+      margin-left: 300px;
+      width: calc(100% - 300px);
+      box-sizing: border-box;
+      color: white;
+    }
+    .content h1 {
+      font-size: 32px;
+    }
+    .content section {
+      display: none;
+      width: 100%;
+      height: 100vh;
+    }
+    .content section.active {
+      display: block;
+    }
+    .content iframe {
+      width: 100%;
+      height: 100vh;
+      border: none;
+    }
+    /* MODALS */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background-color: rgba(0,0,0,0.8);
+      padding-top: 60px;
+    }
+    .modal-content {
+      background-color: #1e1e1e;
+      margin: 5% auto;
+      padding: 20px 30px;
+      border: 1px solid #888;
+      width: 350px;
+      max-width: 90%;
+      border-radius: 10px;
+      position: relative;
+      color: white;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    }
+    .close {
+      color: #aaa;
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .close:hover,
+    .close:focus {
+      color: white;
+      text-decoration: none;
+    }
+    .modal-content h2 {
+      margin-top: 0;
+      text-align: center;
+      color: #007ce2;
+      font-size: 24px;
+    }
+    .modal-content label {
+      display: block;
+      margin-top: 15px;
+      color: #ccc;
+      font-size: 14px;
+    }
+    .modal-content input {
+      width: 100%;
+      padding: 12px 15px;
+      margin-top: 5px;
+      background-color: #2a2a2a;
+      border: none;
+      border-radius: 5px;
+      color: #fff;
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+    .modal-content button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 20px;
+      background-color: #007ce2;
+      border: none;
+      border-radius: 20px;
+      color: #fff;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 18px;
+      transition: background-color 0.3s;
+    }
+    .modal-content button:hover {
+      background-color: #005fa3;
+    }
+    /* LOADER */
+    #loader {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      color: #fff;
+      font-size: 1.5rem;
+    }
+    /* MESSAGES */
+    .message {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #4CAF50;
+      color: white;
+      padding: 15px;
+      border-radius: 5px;
+      z-index: 3000;
+      opacity: 0.9;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      animation: fadeInOut 4s forwards;
+    }
+    .message.error {
+      background-color: #f44336;
+    }
+    .message i {
+      font-size: 1.5rem;
+    }
+    @keyframes fadeInOut {
+      0% { opacity: 0; transform: translateY(-20px); }
+      10% { opacity: 1; transform: translateY(0); }
+      90% { opacity: 1; transform: translateY(0); }
+      100% { opacity: 0; transform: translateY(-20px); }
+    }
+    /* MOBILE BOTTOM NAV */
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
+      .sidebar {
+        display: none;
+      }
+      .content {
+        margin-left: 0;
+        width: 100%;
+        padding: 0;
+      }
+      .bottom-nav {
+        display: flex;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: #1B2631;
+        justify-content: space-evenly;
+        padding: 15px 0;
+        box-shadow: 0 -2px 5px rgba(0,0,0,0.3);
+      }
+      .bottom-nav a {
+        color: white;
+        text-decoration: none;
+        font-size: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* Updated Transition to include transform */
+        transition: transform 0.3s ease, color 0.3s ease;
+      }
+      /* Added transform scaling on hover for all bottom-nav links */
+      .bottom-nav a:hover {
+        transform: scale(1.05); /* Hover Effect: Enlarges the button */
+      }
+      .bottom-nav a.active {
+        color: #a2e5ff;
+      }
+      .bottom-nav a .emoji-image {
+        margin-right: 0;
+        width: 36px;
+        height: 36px;
+        object-fit: contain;
+      }
+      .bottom-nav a .nav-label {
+        display: none;
+      }
+    }
+  </style>
 </head>
 <body>
 
-    <!-- Sidebar (hidden on mobile) -->
-    <div class="sidebar">
-        <h2>JugendInvestiert</h2>
-        <a href="#home" class="button" onclick="showSection('home', this)">
-            <img src="house2.png" alt="Home" class="emoji-image"> Home
-        </a>
-        <a href="#lernen" class="button" onclick="showSection('lernen', this)">
-            <!-- Apply the large class to Lernen image -->
-            <img src="lernen.jpg" alt="Lernen" class="emoji-image emoji-image-large"> Lernen
-        </a>
-        <a href="#resourcen" class="button" onclick="showSection('resourcen', this)">
-            <img src="ressourcen.png" alt="Ressourcen" class="emoji-image"> Ressourcen
-        </a>
-        <a href="#simulator" class="button" onclick="showSection('simulator', this)">
-            <!-- Apply the large class to Simulator image -->
-            <img src="simulator.png" alt="Simulator" class="emoji-image emoji-image-large"> Simulator
-        </a>
-        <a href="#unsere-mission" class="button" onclick="showSection('unsere-mission', this)">
-            <!-- Apply the large class to Unsere Mission image -->
-            <img src="mission.png" alt="Unsere Mission" class="emoji-image emoji-image-large"> Unsere Mission
-        </a>
-        <div class="bottom-buttons">
-            <!-- Updated Login Button with Image -->
-            <a href="#login" class="button login" onclick="openModal('loginModal')">
-                <img src="login.png" alt="Anmelden" class="emoji-image"> Anmelden
-            </a>
-            <!-- Updated Signup Button with Image -->
-            <a href="#signup" class="button signup" onclick="openModal('signupModal')">
-                <img src="register.png" alt="Registrieren" class="emoji-image"> Registrieren
-            </a>
-            <!-- Logout Button remains unchanged, but you can also replace the emoji if desired -->
-            <a href="#logout" class="button logout" onclick="logout()" style="display: none;">
-                <img src="logout.png" alt="Abmelden" class="emoji-image"> Abmelden
-            </a>
-        </div>
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <h2>JugendInvestiert</h2>
+    <a href="#home" class="button" onclick="showSection('home', this)">
+      <img src="house2.png" alt="Home" class="emoji-image"> Home
+    </a>
+    <a href="#lernen" class="button" onclick="showSection('lernen', this)">
+      <img src="lernen.jpg" alt="Lernen" class="emoji-image emoji-image-large"> Lernen
+    </a>
+    <a href="#resourcen" class="button" onclick="showSection('resourcen', this)">
+      <img src="ressourcen.png" alt="Ressourcen" class="emoji-image"> Ressourcen
+    </a>
+    <a href="#simulator" class="button" onclick="showSection('simulator', this)">
+      <img src="simulator.png" alt="Simulator" class="emoji-image emoji-image-large"> Simulator
+    </a>
+    <a href="#unsere-mission" class="button" onclick="showSection('unsere-mission', this)">
+      <img src="mission.png" alt="Unsere Mission" class="emoji-image emoji-image-large"> Unsere Mission
+    </a>
+
+    <div class="bottom-buttons">
+      <a href="#login" class="button login" onclick="openModal('loginModal')">
+        <img src="login.png" alt="Anmelden" class="emoji-image"> Anmelden
+      </a>
+      <a href="#signup" class="button signup" onclick="openModal('signupModal')">
+        <img src="register.png" alt="Registrieren" class="emoji-image"> Registrieren
+      </a>
+      <a href="#logout" class="button logout" onclick="logout()" style="display: none;">
+        <!-- Changed the image source from 'logout.png' to 'abmelden.jpg' -->
+        <img src="abmelden.jpg" alt="Abmelden" class="emoji-image"> Abmelden
+      </a>
     </div>
+  </div>
 
-    <!-- Content -->
-    <div class="content">
-        <section id="home" class="active">
-            <iframe src="home.html"></iframe>
-        </section>
-        <section id="lernen">
-            <iframe src="lessons.html"></iframe>
-        </section>
-        <section id="resourcen">
-            <iframe src="ressources.html"></iframe>
-        </section>
-        <section id="simulator">
-            <iframe src="simulator.html" id="simulator-iframe"></iframe>
-        </section>
-        <section id="unsere-mission">
-            <iframe src="ourmission.html"></iframe>
-        </section>
+  <!-- MAIN CONTENT -->
+  <div class="content">
+    <section id="home" class="active">
+      <iframe src="home.html"></iframe>
+    </section>
+    <section id="lernen">
+      <iframe src="lessons.html"></iframe>
+    </section>
+    <section id="resourcen">
+      <iframe src="ressources.html"></iframe>
+    </section>
+    <section id="simulator">
+      <iframe src="simulator.html" id="simulator-iframe"></iframe>
+    </section>
+    <section id="unsere-mission">
+      <iframe src="ourmission.html"></iframe>
+    </section>
+  </div>
+
+  <!-- MOBILE BOTTOM NAV -->
+  <div class="bottom-nav">
+    <a href="#home" class="button" onclick="showSection('home', this)">
+      <img src="house2.png" alt="Home" class="emoji-image">
+    </a>
+    <a href="#lernen" class="button" onclick="showSection('lernen', this)">
+      <img src="lernen.jpg" alt="Lernen" class="emoji-image">
+    </a>
+    <a href="#resourcen" class="button" onclick="showSection('resourcen', this)">
+      <img src="ressourcen.png" alt="Ressourcen" class="emoji-image">
+    </a>
+    <a href="#simulator" class="button" onclick="showSection('simulator', this)">
+      <img src="simulator.png" alt="Simulator" class="emoji-image">
+    </a>
+    <a href="#unsere-mission" class="button" onclick="showSection('unsere-mission', this)">
+      <img src="mission.png" alt="Unsere Mission" class="emoji-image">
+    </a>
+    <a href="#account" class="button account" onclick="openModal('loginModal')">
+      <img src="student.png" alt="Account" class="emoji-image">
+    </a>
+  </div>
+
+  <!-- LOGIN MODAL -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('loginModal')">&times;</span>
+      <h2>Anmelden</h2>
+      <label for="login-email">Email:</label>
+      <input type="email" id="login-email" placeholder="Deine Email">
+      <label for="login-password">Passwort:</label>
+      <input type="password" id="login-password" placeholder="Dein Passwort">
+      <button onclick="login()">Anmelden</button>
     </div>
+  </div>
 
-    <!-- Bottom Navigation (visible on mobile) -->
-    <div class="bottom-nav">
-        <a href="#home" class="button" onclick="showSection('home', this)">
-            <img src="house2.png" alt="Home" class="emoji-image">
-            <!-- <span class="nav-label">Home</span> --> <!-- Removed label -->
-        </a>
-        <!-- Lernen Button -->
-        <a href="#lernen" class="button" onclick="showSection('lernen', this)">
-            <img src="lernen.jpg" alt="Lernen" class="emoji-image">
-            <!-- <span class="nav-label">Lernen</span> --> <!-- Removed label -->
-        </a>
-        <!-- Resourcen Button -->
-        <a href="#resourcen" class="button" onclick="showSection('resourcen', this)">
-            <img src="ressourcen.png" alt="Ressourcen" class="emoji-image">
-            <!-- <span class="nav-label">Ressourcen</span> --> <!-- Removed label -->
-        </a>
-        <!-- Simulator Button -->
-        <a href="#simulator" class="button" onclick="showSection('simulator', this)">
-            <img src="simulator.png" alt="Simulator" class="emoji-image">
-            <!-- <span class="nav-label">Simulator</span> --> <!-- Removed label -->
-        </a>
-        <!-- Unsere Mission Button -->
-        <a href="#unsere-mission" class="button" onclick="showSection('unsere-mission', this)">
-            <img src="mission.png" alt="Unsere Mission" class="emoji-image">
-            <!-- <span class="nav-label">Unsere Mission</span> --> <!-- Removed label -->
-        </a>
-        <!-- Account Button with student.png placed directly after Mission Button -->
-        <a href="#account" class="button account" onclick="openModal('loginModal')">
-            <img src="student.png" alt="Account" class="emoji-image">
-            <!-- <span class="nav-label">Account</span> --> <!-- Removed label -->
-        </a>
+  <!-- SIGNUP MODAL -->
+  <div id="signupModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('signupModal')">&times;</span>
+      <h2>Registrieren</h2>
+      <label for="signup-email">Email:</label>
+      <input type="email" id="signup-email" placeholder="Deine Email">
+      <label for="signup-password">Passwort:</label>
+      <input type="password" id="signup-password" placeholder="Dein Passwort">
+      <button onclick="signup()">Registrieren</button>
     </div>
+  </div>
 
-    <!-- Login Modal -->
-    <div id="loginModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('loginModal')">&times;</span>
-            <h2>Anmelden</h2>
-            <label for="login-email">Email:</label>
-            <input type="email" id="login-email" placeholder="Deine Email">
-            <label for="login-password">Passwort:</label>
-            <input type="password" id="login-password" placeholder="Dein Passwort">
-            <button onclick="login()">Anmelden</button>
-        </div>
-    </div>
+  <!-- LOADER -->
+  <div id="loader"><i class="fas fa-spinner fa-spin"></i></div>
 
-    <!-- Signup Modal -->
-    <div id="signupModal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="closeModal('signupModal')">&times;</span>
-            <h2>Registrieren</h2>
-            <label for="signup-email">Email:</label>
-            <input type="email" id="signup-email" placeholder="Deine Email">
-            <label for="signup-password">Passwort:</label>
-            <input type="password" id="signup-password" placeholder="Dein Passwort">
-            <button onclick="signup()">Registrieren</button>
-        </div>
-    </div>
+  <!-- Firebase SDKs -->
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
 
-    <!-- Loader -->
-    <div id="loader"><i class="fas fa-spinner fa-spin"></i></div>
+  <script>
+    /********************************************************
+     * 1) INITIALIZE FIREBASE (YOUR CONFIG)
+     ********************************************************/
+    const firebaseConfig = {
+      apiKey: "AIzaSyDmEUCl7sWzBI7N78HgcgBRcRAkTYbtm5g",
+      authDomain: "jugendinvestiert-5f6eb.firebaseapp.com",
+      databaseURL: "https://jugendinvestiert-5f6eb-default-rtdb.firebaseio.com",
+      projectId: "jugendinvestiert-5f6eb",
+      storageBucket: "jugendinvestiert-5f6eb.firebasestorage.app",
+      messagingSenderId: "432595310987",
+      appId: "1:432595310987:web:fd9f7975d5e87f1fe1378e",
+      measurementId: "G-5ENQC9KQBY"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+    const database = firebase.database();
 
-    <!-- Firebase SDKs -->
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+    // Make sure auth persists if user closes tab
+    auth.setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+      .catch(e => console.error("Error setting persistence:", e));
 
-    <!-- Service Worker Registration -->
-    <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/service-worker.js')
-                    .then(registration => {
-                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                    })
-                    .catch(error => {
-                        console.log('ServiceWorker registration failed:', error);
-                    });
-            });
+    let budget = 10000;
+    let portfolio = {};
+
+    /********************************************************
+     * 2) MODAL HANDLING
+     ********************************************************/
+    function openModal(modalId) {
+      document.getElementById(modalId).style.display = "block";
+    }
+    function closeModal(modalId) {
+      document.getElementById(modalId).style.display = "none";
+    }
+    window.onclick = function(event) {
+      const modals = document.querySelectorAll('.modal');
+      modals.forEach(modal => {
+        if (event.target == modal) {
+          modal.style.display = "none";
         }
-    </script>
+      });
+    };
 
-    <!-- Main JavaScript -->
-    <script>
-        // Your Firebase configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyDmEUCl7sWzBI7N78HgcgBRcRAkTYbtm5g",
-            authDomain: "jugendinvestiert-5f6eb.firebaseapp.com",
-            databaseURL: "https://jugendinvestiert-5f6eb-default-rtdb.firebaseio.com",
-            projectId: "jugendinvestiert-5f6eb",
-            storageBucket: "jugendinvestiert-5f6eb.appspot.com",
-            messagingSenderId: "432595310987",
-            appId: "1:432595310987:web:fd9f7975d5e87f1fe1378e",
-            measurementId: "G-5ENQC9KQBY"
+    /********************************************************
+     * 3) AUTH: LOGIN, SIGNUP, LOGOUT
+     ********************************************************/
+    function login() {
+      const email = document.getElementById('login-email').value.trim();
+      const password = document.getElementById('login-password').value.trim();
+      if (!email || !password) {
+        displayErrorMessage("Bitte Email und Passwort eingeben.");
+        return;
+      }
+      auth.signInWithEmailAndPassword(email, password)
+        .then(() => {
+          displaySuccessMessage("Erfolgreich angemeldet!");
+          closeModal('loginModal');
+        })
+        .catch(error => {
+          displayErrorMessage(error.message);
+        });
+    }
+    function signup() {
+      const email = document.getElementById('signup-email').value.trim();
+      const password = document.getElementById('signup-password').value.trim();
+      if (!email || !password) {
+        displayErrorMessage("Bitte Email und Passwort eingeben.");
+        return;
+      }
+      auth.createUserWithEmailAndPassword(email, password)
+        .then(() => {
+          displaySuccessMessage("Erfolgreich registriert!");
+          closeModal('signupModal');
+        })
+        .catch(error => {
+          displayErrorMessage(error.message);
+        });
+    }
+    function logout() {
+      auth.signOut()
+        .then(() => {
+          displaySuccessMessage("Erfolgreich abgemeldet!");
+        })
+        .catch(error => {
+          displayErrorMessage(error.message);
+        });
+    }
+
+    /********************************************************
+     * 4) AUTH STATE CHANGES
+     ********************************************************/
+    let userRef = null;
+    let userRefListener = null;
+
+    auth.onAuthStateChanged(user => {
+      const loginButton = document.querySelector('.sidebar a.login');
+      const signupButton = document.querySelector('.sidebar a.signup');
+      const logoutButton = document.querySelector('.sidebar a.logout');
+
+      if (user) {
+        console.log("User signed in:", user.uid);
+        loginButton.style.display = 'none';
+        signupButton.style.display = 'none';
+        logoutButton.style.display = 'flex';
+
+        // load user data from DB
+        loadUserData(user.uid);
+
+      } else {
+        console.log("User signed out");
+        loginButton.style.display = 'flex';
+        signupButton.style.display = 'flex';
+        logoutButton.style.display = 'none';
+
+        // local guest data for simulator
+        budget = 10000;
+        portfolio = {};
+        sendDataToSimulator();
+      }
+    });
+
+    // Function to load user data from DB
+    function loadUserData(userId) {
+      // detach previous listener if any
+      if (userRefListener && userRef) {
+        userRef.off('value', userRefListener);
+      }
+      userRef = database.ref('users/' + userId);
+
+      userRefListener = snapshot => {
+        if (snapshot.exists()) {
+          const data = snapshot.val();
+          console.log("Snapshot data:", data);
+          budget = typeof data.budget === 'number' ? data.budget : 10000;
+          portfolio = data.portfolio ? data.portfolio : {};
+
+          // ensure uppercase
+          let newPortfolio = {};
+          for (let sym in portfolio) {
+            newPortfolio[sym.toUpperCase()] = portfolio[sym];
+          }
+          portfolio = newPortfolio;
+        } else {
+          console.log("No data found for user, defaulting to budget=10000, empty portfolio");
+          budget = 10000;
+          portfolio = {};
+        }
+        // now that we have real data, send to simulator
+        sendDataToSimulator();
+      };
+
+      userRef.on('value', userRefListener, error => {
+        console.error("Fehler beim Laden der Benutzerdaten:", error);
+        displayErrorMessage("Fehler beim Laden der Benutzerdaten.");
+      });
+    }
+
+    /********************************************************
+     * 5) COMMUNICATION: SEND/RECEIVE IFRAME MESSAGES
+     ********************************************************/
+    function sendDataToSimulator() {
+      const iframe = document.getElementById('simulator-iframe');
+      if (iframe && iframe.contentWindow) {
+        const data = {
+          type: 'AUTH_DATA',
+          budget: budget,
+          portfolio: portfolio
         };
+        console.log("Sending AUTH_DATA to simulator:", data);
+        iframe.contentWindow.postMessage(data, '*');
+      } else {
+        console.warn("Simulator iframe not loaded yet.");
+      }
+    }
 
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-        const database = firebase.database();
+    window.addEventListener('message', (event) => {
+      if (event.data.type === 'PORTFOLIO_UPDATE') {
+        const { budget: updatedBudget, portfolio: updatedPortfolio } = event.data;
+        budget = updatedBudget;
 
-        let budget = 10000;
-        let portfolio = {};
-
-        // Open Modal
-        function openModal(modalId) {
-            document.getElementById(modalId).style.display = "block";
+        // ensure uppercase
+        let newPortfolio = {};
+        for (let sym in updatedPortfolio) {
+          newPortfolio[sym.toUpperCase()] = updatedPortfolio[sym];
         }
+        portfolio = newPortfolio;
 
-        // Close Modal
-        function closeModal(modalId) {
-            document.getElementById(modalId).style.display = "none";
-        }
+        console.log("Received PORTFOLIO_UPDATE:", event.data);
+        saveUserData();
+      }
+    });
 
-        // Login Function
-        function login() {
-            const email = document.getElementById('login-email').value.trim();
-            const password = document.getElementById('login-password').value.trim();
-
-            if (!email || !password) {
-                displayErrorMessage("Bitte Email und Passwort eingeben.");
-                return;
-            }
-
-            auth.signInWithEmailAndPassword(email, password)
-                .then(() => {
-                    displaySuccessMessage("Erfolgreich angemeldet!");
-                    closeModal('loginModal');
-                })
-                .catch(error => {
-                    displayErrorMessage(error.message);
-                });
-        }
-
-        // Signup Function
-        function signup() {
-            const email = document.getElementById('signup-email').value.trim();
-            const password = document.getElementById('signup-password').value.trim();
-
-            if (!email || !password) {
-                displayErrorMessage("Bitte Email und Passwort eingeben.");
-                return;
-            }
-
-            auth.createUserWithEmailAndPassword(email, password)
-                .then(() => {
-                    displaySuccessMessage("Erfolgreich registriert!");
-                    closeModal('signupModal');
-                })
-                .catch(error => {
-                    displayErrorMessage(error.message);
-                });
-        }
-
-        // Logout Function
-        function logout() {
-            auth.signOut()
-                .then(() => {
-                    displaySuccessMessage("Erfolgreich abgemeldet!");
-                })
-                .catch(error => {
-                    displayErrorMessage(error.message);
-                });
-        }
-
-        // Observe Authentication State
-        auth.onAuthStateChanged(user => {
-            const loginButton = document.querySelector('.sidebar a.login');
-            const signupButton = document.querySelector('.sidebar a.signup');
-            const logoutButton = document.querySelector('.sidebar a.logout');
-
-            if (user) {
-                // User is signed in
-                loginButton.style.display = 'none';
-                signupButton.style.display = 'none';
-                logoutButton.style.display = 'flex'; // Changed to 'flex' to align items properly
-                loadUserData(user.uid);
-            } else {
-                // User is signed out
-                loginButton.style.display = 'flex'; // Changed to 'flex' to align items properly
-                signupButton.style.display = 'flex'; // Changed to 'flex' to align items properly
-                logoutButton.style.display = 'none';
-                budget = 10000;
-                portfolio = {};
-                sendDataToSimulator();
-            }
+    // Save user data to DB
+    function saveUserData() {
+      const user = auth.currentUser;
+      if (user) {
+        const userId = user.uid;
+        const userRef = database.ref('users/' + userId);
+        userRef.set({
+          budget: budget,
+          portfolio: portfolio
+        }, (error) => {
+          if (error) {
+            console.error("Fehler beim Speichern der Daten:", error);
+            displayErrorMessage("Fehler beim Speichern der Benutzerdaten.");
+          } else {
+            console.log("Daten erfolgreich gespeichert");
+          }
         });
+      }
+    }
 
-        let userRef = null;
-        let userRefListener = null;
+    /********************************************************
+     * 6) NAVIGATION LOGIC
+     ********************************************************/
+    function showSection(id, element) {
+      const sections = document.querySelectorAll('.content section');
+      const buttons = document.querySelectorAll('.sidebar a.button, .bottom-nav a.button');
+      sections.forEach(section => section.classList.remove('active'));
+      buttons.forEach(button => button.classList.remove('active'));
+      document.getElementById(id).classList.add('active');
+      element.classList.add('active');
+      // If simulator is selected, re-send data
+      if (id === 'simulator') {
+        sendDataToSimulator();
+      }
+    }
 
-        // Load User Data
-        function loadUserData(userId) {
-            // Remove previous listener if any
-            if (userRefListener && userRef) {
-                userRef.off('value', userRefListener);
-            }
-            userRef = database.ref('users/' + userId);
+    document.addEventListener('DOMContentLoaded', () => {
+      const initialButton = document.querySelector('.sidebar a[href="#home"]');
+      if (initialButton) {
+        showSection('home', initialButton);
+      }
+      const simulatorIframe = document.getElementById('simulator-iframe');
+      simulatorIframe.addEventListener('load', () => {
+        console.log("Simulator iframe loaded. Sending AUTH_DATA again...");
+        sendDataToSimulator();
+      });
+    });
 
-            userRefListener = (snapshot) => {
-                const data = snapshot.val();
-                if (data) {
-                    budget = typeof data.budget === 'number' ? data.budget : 10000;
-                    portfolio = data.portfolio ? data.portfolio : {};
-                    // Normalize portfolio symbols to uppercase
-                    portfolio = normalizePortfolioSymbols(portfolio);
-                    sendDataToSimulator();
-                } else {
-                    budget = 10000;
-                    portfolio = {};
-                    sendDataToSimulator();
-                }
-            };
-
-            userRef.on('value', userRefListener, (error) => {
-                console.error("Fehler beim Laden der Benutzerdaten:", error);
-                displayErrorMessage("Fehler beim Laden der Benutzerdaten.");
-            });
-        }
-
-        // Function to Normalize Portfolio Symbols
-        function normalizePortfolioSymbols(originalPortfolio) {
-            const normalizedPortfolio = {};
-            for (const symbol in originalPortfolio) {
-                const upperSymbol = symbol.toUpperCase();
-                if (!normalizedPortfolio[upperSymbol]) {
-                    normalizedPortfolio[upperSymbol] = {
-                        quantity: originalPortfolio[symbol].quantity,
-                        totalInvested: originalPortfolio[symbol].totalInvested
-                    };
-                } else {
-                    normalizedPortfolio[upperSymbol].quantity += originalPortfolio[symbol].quantity;
-                    normalizedPortfolio[upperSymbol].totalInvested += originalPortfolio[symbol].totalInvested;
-                }
-            }
-            console.log("Portfolio nach Normalisierung:", normalizedPortfolio);
-            return normalizedPortfolio;
-        }
-
-        // Send Data to Simulator
-        function sendDataToSimulator() {
-            const iframe = document.getElementById('simulator-iframe');
-            if (iframe && iframe.contentWindow) {
-                const data = {
-                    type: 'AUTH_DATA',
-                    budget: budget,
-                    portfolio: portfolio
-                };
-                iframe.contentWindow.postMessage(data, '*'); // For security: Replace '*' with your specific origin
-                console.log("AUTH_DATA gesendet an Simulator:", data);
-            }
-        }
-
-        // Receive Messages from Simulator
-        window.addEventListener('message', (event) => {
-            // Security check: Ensure the message is from your own domain
-            // if (event.origin !== 'https://your-domain.com') return;
-
-            if (event.data.type === 'PORTFOLIO_UPDATE') {
-                const { budget: updatedBudget, portfolio: updatedPortfolio } = event.data;
-                budget = updatedBudget;
-                portfolio = updatedPortfolio;
-                // Normalize portfolio symbols to uppercase
-                portfolio = normalizePortfolioSymbols(portfolio);
-                console.log("PORTFOLIO_UPDATE empfangen:", event.data);
-                saveUserData(); // Save updated data to Firebase
-            }
-        });
-
-        // Save User Data
-        function saveUserData() {
-            const user = auth.currentUser;
-            if (user) {
-                const userId = user.uid;
-                const userRef = database.ref('users/' + userId);
-                userRef.set({
-                    budget: budget,
-                    portfolio: portfolio
-                }, (error) => {
-                    if (error) {
-                        console.error("Fehler beim Speichern der Daten:", error);
-                        displayErrorMessage("Fehler beim Speichern der Benutzerdaten.");
-                    } else {
-                        console.log("Daten erfolgreich gespeichert");
-                    }
-                });
-            }
-        }
-
-        // Show Specific Section
-        function showSection(id, element) {
-            const sections = document.querySelectorAll('.content section');
-            const buttons = document.querySelectorAll('.sidebar a.button, .bottom-nav a.button');
-
-            sections.forEach(section => section.classList.remove('active'));
-            buttons.forEach(button => button.classList.remove('active'));
-
-            document.getElementById(id).classList.add('active');
-            element.classList.add('active');
-
-            if (id === 'simulator') {
-                sendDataToSimulator();
-            }
-        }
-
-        // Initialization on Page Load
-        document.addEventListener('DOMContentLoaded', () => {
-            const initialButton = document.querySelector('.sidebar a[href="#home"]');
-            if (initialButton) {
-                showSection('home', initialButton);
-            }
-        });
-
-        // Display Success Message
-        function displaySuccessMessage(message) {
-            const messageDiv = document.createElement('div');
-            messageDiv.classList.add('message');
-            messageDiv.innerHTML = `<i class="fas fa-check-circle"></i><span>${message}</span>`;
-            document.body.appendChild(messageDiv);
-            setTimeout(() => messageDiv.remove(), 4000);
-        }
-
-        // Display Error Message
-        function displayErrorMessage(message) {
-            const messageDiv = document.createElement('div');
-            messageDiv.classList.add('message', 'error');
-            messageDiv.innerHTML = `<i class="fas fa-exclamation-circle"></i><span>${message}</span>`;
-            document.body.appendChild(messageDiv);
-            setTimeout(() => messageDiv.remove(), 5000);
-        }
-
-        // Close Modal when Clicking Outside
-        window.onclick = function(event) {
-            const modals = document.querySelectorAll('.modal');
-            modals.forEach(modal => {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            });
-        }
-    </script>
-
+    /********************************************************
+     * 7) MESSAGES
+     ********************************************************/
+    function displaySuccessMessage(message) {
+      const messageDiv = document.createElement('div');
+      messageDiv.classList.add('message');
+      messageDiv.innerHTML = `
+        <i class="fas fa-check-circle"></i><span>${message}</span>
+      `;
+      document.body.appendChild(messageDiv);
+      setTimeout(() => messageDiv.remove(), 4000);
+    }
+    function displayErrorMessage(message) {
+      const messageDiv = document.createElement('div');
+      messageDiv.classList.add('message', 'error');
+      messageDiv.innerHTML = `
+        <i class="fas fa-exclamation-circle"></i><span>${message}</span>
+      `;
+      document.body.appendChild(messageDiv);
+      setTimeout(() => messageDiv.remove(), 5000);
+    }
+  </script>
 </body>
 </html>
