@@ -2,16 +2,17 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
+    <!-- Viewport meta tag for responsive design -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>JugendInvestiert</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
     <style>
-        /* Apply box-sizing globally for consistent sizing */
+        /* ========================= Global Styles ========================= */
+        /* Global box-sizing */
         *, *::before, *::after {
             box-sizing: border-box;
         }
 
-        /* Allgemeine Stile */
         body {
             font-family: 'Poppins', Arial, sans-serif;
             margin: 0;
@@ -22,19 +23,328 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            overflow-x: hidden; /* Prevent horizontal scrolling */
-            scrollbar-width: none; /* Firefox: Hide scrollbar */
+            overflow-x: hidden;
+            padding-bottom: 20px;
         }
 
-        /* Hide scrollbar for Chrome, Safari, and Opera */
-        body::-webkit-scrollbar {
+        /* ========================= Desktop Layout ========================= */
+        .desktop-layout {
+            width: 100%;
+            display: block;
+        }
+
+        /* Hide mobile layout by default */
+        .mobile-layout {
             display: none;
         }
 
-        /* Header-Stile */
-        .header {
+        /* Media Query for Mobile Devices */
+        @media (max-width: 768px) {
+            /* Hide Desktop Layout on Mobile */
+            .desktop-layout {
+                display: none;
+            }
+
+            /* Show Mobile Layout on Mobile */
+            .mobile-layout {
+                display: block;
+            }
+        }
+
+        /* ------------------------- Desktop Styles ------------------------- */
+        .desktop-layout .header {
             width: 100%;
-            max-width: 100%; /* Ensure no overflow */
+            background-color: #1B2631;
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            padding-bottom: 20px; /* Extra padding below the header */
+            box-sizing: border-box;
+            margin-bottom: 0;
+            flex-wrap: wrap; /* Allows wrapping if necessary */
+        }
+
+        .desktop-layout .header img {
+            height: 120px;
+            width: 120px;
+            margin-right: 20px;
+            border-radius: 15px;
+            object-fit: cover;
+        }
+
+        .desktop-layout .header h1 {
+            font-size: 56px;
+            margin: 0;
+            white-space: nowrap;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .desktop-layout .content {
+            width: 100%;
+            max-width: 1200px;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .desktop-layout .container {
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .desktop-layout .slogan {
+            background-color: #2E4053;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+            max-width: 100%;
+        }
+
+        .desktop-layout .squares-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .desktop-layout .squares-row {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            gap: 20px;
+        }
+
+        .desktop-layout .square {
+            flex: 1;
+            padding: 10px;
+            background-color: #1B2631;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            text-align: center;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            min-height: 350px;
+            transition: transform 0.3s ease-in-out;
+            position: relative;
+        }
+
+        .desktop-layout .square:hover {
+            transform: scale(1.05);
+        }
+
+        .desktop-layout .number-square {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 100px;
+            color: #007bff;
+        }
+
+        .desktop-layout .text-square {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 40px;
+            color: #ffffff;
+            gap: 5px; /* Reduced gap between words */
+        }
+
+        .desktop-layout .text-square p {
+            margin: 0;
+            padding: 0;
+            line-height: 1.2; /* Reduced line height for closer spacing */
+        }
+
+        .desktop-layout .slogan-square {
+            background-color: #2E4053;
+            color: #ffffff;
+            font-size: 30px;
+            text-align: center;
+            padding: 20px;
+            border-radius: 15px;
+            box-sizing: border-box;
+            /* Changed from square to slim rectangle */
+            min-height: 100px; /* Adjust height as needed */
+            width: 100%; /* Full width */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .desktop-layout .additional-text {
+            margin-top: 20px;
+            font-size: 20px;
+            color: #cccccc;
+            text-align: center;
+        }
+
+        .desktop-layout .iframe-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .desktop-layout .overlay {
+            display: none; /* Hidden by default */
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            border-radius: 15px;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 1;
+        }
+
+        .desktop-layout .overlay-text {
+            color: #fff;
+            font-size: 24px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            border-radius: 8px;
+        }
+
+        .desktop-layout iframe {
+            width: 100%;
+            height: 350px;
+            border: none;
+            border-radius: 15px;
+        }
+
+        .desktop-layout .square.text-square img {
+            width: 50%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* New styles for rocket image in desktop */
+        .desktop-layout .rocket-image-desktop {
+            width: 150px; /* Adjust size as needed */
+            height: auto;
+            margin-bottom: 10px;
+            animation: bounce 2s infinite;
+        }
+
+        /* Specific styling for rocket square to center content */
+        .desktop-layout .rocket-square {
+            align-items: center; /* Centers items horizontally */
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-30px);
+            }
+            60% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .desktop-layout .bottom-cubes-container {
+            display: flex;
+            gap: 20px;
+            width: 100%;
+        }
+
+        .desktop-layout .left-bottom, .desktop-layout .right-bottom {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            flex: 1;
+        }
+
+        /* Slideshow Styles */
+        .desktop-layout .slideshow {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            overflow: hidden;
+            border-radius: 15px;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+
+        .desktop-layout .slides {
+            display: flex;
+            transition: transform 0.5s ease;
+            width: calc(100% * 3); /* Adjusted to match the number of slides */
+        }
+
+        .desktop-layout .slide {
+            width: 100%;
+            flex-shrink: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .desktop-layout .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .desktop-layout .arrow.left {
+            left: 10px;
+        }
+
+        .desktop-layout .arrow.right {
+            right: 10px;
+        }
+
+        .desktop-layout .glowing-button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
+            cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s;
+            outline: none;
+        }
+
+        .desktop-layout .glowing-button:hover {
+            background-color: #0056b3;
+            box-shadow: 0 0 30px rgba(0, 123, 255, 0.7);
+        }
+
+        .desktop-layout .glowing-button:active {
+            background-color: #004080;
+            box-shadow: 0 0 40px rgba(0, 123, 255, 0.9);
+        }
+
+        /* ========================= Mobile Layout ========================= */
+        .mobile-layout .header {
+            width: 100%;
             background-color: #1B2631;
             display: flex;
             align-items: center;
@@ -48,186 +358,394 @@
             z-index: 1000;
         }
 
-        .header img {
+        .mobile-layout .header img {
             height: 70px;
             width: 70px;
             margin-right: 15px;
             border-radius: 15px;
         }
 
-        .header h1 {
+        .mobile-layout .header h1 {
             font-size: 28px;
             margin: 0;
             font-weight: bold;
             white-space: nowrap;
         }
 
-        /* Hauptinhalt-Stile */
-        .content {
+        .mobile-layout .content {
             display: flex;
             flex-direction: column;
             align-items: center;
             width: 100%;
-            max-width: 100%; /* Ensure no horizontal overflow */
             padding: 20px;
+            padding-bottom: 60px; /* Increased extra padding at the bottom */
             text-align: center;
-            gap: 15px;
-            margin-top: 100px; /* Offset content for fixed header */
+            gap: 15px; 
+            margin-top: 100px; /* Space for fixed header */
         }
 
-        .cube, .text-cube, .rocket-cube {
+        /* Updated grouped selector excluding .slogan-square-mobile */
+        .mobile-layout .cube, 
+        .mobile-layout .text-cube, 
+        .mobile-layout .rocket-cube { 
             background-color: #1B2631;
-            padding: 40px 20px;
-            width: 100%;
-            max-width: 100%; /* Ensure no overflow */
-            box-sizing: border-box;
+            width: 90vw;              /* Fill most of the screen width */
+            aspect-ratio: 1 / 1;      /* Enforce a square shape */
+            border-radius: 15px;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             gap: 10px;
-            border-radius: 15px;
+            padding: 20px;
+            box-sizing: border-box;
         }
 
-        .number-square {
-            font-size: 80px;
+        /* Updated .slogan-square-mobile to be a thin rectangle */
+        .mobile-layout .slogan-square-mobile { 
+            background-color: #2E4053;
+            color: #ffffff;
+            font-size: 20px;
+            padding: 15px 20px; /* Added horizontal padding for elegance */
+            border-radius: 15px;
+            box-sizing: border-box;
+            min-height: 60px; /* Reduced height for a thinner rectangle */
+            width: 90vw; /* Ensures it spans most of the mobile screen */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Removed margin-bottom to ensure consistent spacing via Flexbox gap */
+        }
+
+        .mobile-layout .cube {
+            /* Existing styles */
+        }
+
+        .mobile-layout .number-square {
+            font-size: 100px;
             color: #007bff;
             font-weight: bold;
             margin: 0;
         }
 
-        .description-text {
-            font-size: 16px;
+        .mobile-layout .description-text {
+            font-size: 18px;
             color: #cccccc;
             margin: 0;
             line-height: 1.5;
         }
 
-        .description-text a {
+        .mobile-layout .description-text a {
             color: #007bff;
             text-decoration: none;
         }
 
-        .number-and-logo {
+        .mobile-layout .number-and-logo {
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 10px;
             width: 100%;
-            max-width: 400px; /* Optional: limit the max width to maintain readability */
+            max-width: 250px;
         }
 
-        .bamboo-logo {
-            height: 80px;
+        .mobile-layout .bamboo-logo {
+            height: 100px;
             width: auto;
         }
 
-        .text-cube {
-            padding: 20px;
-            text-align: center;
-            min-height: 300px;
-            height: auto;
-        }
-
-        .text-cube p {
-            font-size: 16px;
+        .mobile-layout .text-cube p {
+            font-size: 18px;
             color: #cccccc;
             margin: 0;
             line-height: 1.5;
+            padding: 0 10px;
         }
 
-        .rocket-cube {
-            padding: 40px 20px;
-        }
-
-        .rocket-image {
-            width: 120px;
+        .mobile-layout .rocket-image {
+            width: 150px; /* Increased size from 120px to 150px */
             animation: bounce 2s infinite;
         }
 
+        /* Added padding to rocket-cube */
+        .mobile-layout .rocket-cube {
+            padding: 30px; /* Added padding */
+        }
+
+        .mobile-layout .rocket-text {
+            font-size: 26px;
+            color: #ffffff;
+            margin: 0;
+        }
+
+        /* Glowing "Jetzt starten" Button */
+        .mobile-layout .glow-button-container {
+            margin-top: 10px; /* Small gap from the rocket cube */
+            display: flex;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .mobile-layout .start-button {
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 20px; 
+            cursor: pointer;
+            outline: none;
+            box-shadow:
+                0 0 10px rgba(0, 123, 255, 0.7),
+                0 0 20px rgba(0, 123, 255, 0.5),
+                0 0 30px rgba(0, 123, 255, 0.3);
+            animation: glowing 1.5s infinite alternate;
+        }
+
+        @keyframes glowing {
+            from {
+                box-shadow:
+                    0 0 10px rgba(0, 123, 255, 0.7),
+                    0 0 20px rgba(0, 123, 255, 0.5),
+                    0 0 30px rgba(0, 123, 255, 0.3);
+            }
+            to {
+                box-shadow:
+                    0 0 20px rgba(0, 123, 255, 0.7),
+                    0 0 40px rgba(0, 123, 255, 0.5),
+                    0 0 60px rgba(0, 123, 255, 0.3);
+            }
+        }
+
+        /* Additional Mobile Enhancements */
+        @media (max-width: 768px) {
+            .mobile-layout .mobile-layout-body {
+                background-color: #0d1117;
+            }
+
+            .mobile-layout .square {
+                background-color: #161b22;
+            }
+
+            .mobile-layout .slogan-square {
+                background-color: #21262d;
+            }
+
+            .mobile-layout .start-button {
+                animation: pulse 2s infinite;
+            }
+
+            @keyframes pulse {
+                0% {
+                    box-shadow:
+                        0 0 0px rgba(0, 123, 255, 0.5);
+                }
+                50% {
+                    box-shadow:
+                        0 0 20px rgba(0, 123, 255, 1);
+                }
+                100% {
+                    box-shadow:
+                        0 0 0px rgba(0, 123, 255, 0.5);
+                }
+            }
+        }
+
+        /* Keyframes for rocket bounce */
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% {
                 transform: translateY(0);
             }
             40% {
-                transform: translateY(-20px);
+                transform: translateY(-30px);
             }
             60% {
-                transform: translateY(-10px);
-            }
-        }
-
-        .rocket-text {
-            font-size: 24px;
-            color: #ffffff;
-            margin: 0;
-        }
-
-        /* Responsive Stile */
-        @media (max-width: 600px) {
-            .header h1 {
-                font-size: 24px;
-            }
-            .number-and-logo {
-                max-width: 100%;
-            }
-            .number-square {
-                font-size: 60px;
-            }
-            .bamboo-logo {
-                height: 60px;
-            }
-            .rocket-text {
-                font-size: 20px;
-            }
-        }
-
-        /* Ensure that .number-and-logo remains in a row */
-        @media (max-width: 600px) {
-            .number-and-logo {
-                flex-direction: row;
+                transform: translateY(-15px);
             }
         }
     </style>
 </head>
 <body>
+    <!-- ========================= Desktop Layout ========================= -->
+    <div class="desktop-layout">
+        <div class="header">
+            <img src="logo.jpg" alt="JugendInvestiert Logo">
+            <h1>JugendInvestiert</h1>
+        </div>
 
-    <!-- Header-Bereich -->
-    <div class="header">
-        <img src="logo.jpg" alt="JugendInvestiert Logo">
-        <h1>JugendInvestiert</h1>
-    </div>
+        <div class="content">
+            <div class="container">
+                <div class="slideshow">
+                    <button class="arrow left" onclick="changeSlide(-1)">&#10094;</button>
+                    <div class="slides" id="slides">
+                        <div class="slide">
+                            <iframe src="littlebamboo.html"></iframe>
+                        </div>
+                        <div class="slide">
+                            <iframe src="littlebamboo.html"></iframe>
+                        </div>
+                        <div class="slide">
+                            <iframe src="littlebamboo.html"></iframe>
+                        </div>
+                    </div>
+                    <button class="arrow right" onclick="changeSlide(1)">&#10095;</button>
+                </div>
+                <div class="slogan">
+                    <h1>Finanzwissen für alle - Investiere in deine Zukunft!</h1>
+                </div>
 
-    <!-- Hauptinhalt -->
-    <div class="content">
-        <div class="cube">
-            <div class="number-and-logo">
-                <div class="number-square">10%</div>
-                <img src="bamboologo.jpg" alt="Little Bamboo Logo" class="bamboo-logo">
+                <div class="squares-container">
+                    <div class="squares-row">
+                        <div class="square">
+                            <p>Unsere Plattform ist eine Quelle für umfassendes Finanzwissen, das gezielt auf die Bedürfnisse der Jugend zugeschnitten ist. Wir bieten eine Vielzahl von Ressourcen, Schulungen und Tools an, um jungen Menschen dabei zu helfen, ein solides Verständnis für Finanzen aufzubauen. Von Budgetierung und Sparen bis hin zu Investitionen und Finanzplanung – wir sind hier, um dich auf deinem Weg zu unterstützen.</p>
+                        </div>
+                        <div class="square number-square">
+                            #1
+                            <p class="additional-text">bei der Vermittlung von Finanzwissen</p>
+                        </div>
+                    </div>
+
+                    <div class="slogan-square">
+                        Gratis, Effizient und macht Spaß
+                    </div>
+
+                    <div class="bottom-cubes-container">
+                        <div class="left-bottom">
+                            <div class="square">
+                                <div class="iframe-wrapper">
+                                    <iframe src="displaycourse.html"></iframe>
+                                    <div class="overlay" onclick="removeOverlay(this)">
+                                        <div class="overlay-text">Try Demo</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="square">
+                                <div class="iframe-wrapper">
+                                    <iframe src="section1.html"></iframe>
+                                    <div class="overlay" onclick="removeOverlay(this)">
+                                        <div class="overlay-text">Try Demo</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="right-bottom">
+                            <div class="square text-square">
+                                <p>Umfassend</p>
+                                <p>Einzigartig</p>
+                                <p>Innovativ</p>
+                            </div>
+                            <!-- Replaced rocket emoji with rocket.png image and added 'rocket-square' class -->
+                            <div class="square rocket-square">
+                                <img src="rocket.png" alt="Rocket" class="rocket-image-desktop">
+                                <h2 style="margin: 0;">Steigere dein</h2>
+                                <h2 style="margin: 0;">Finanzwissen!</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <p class="description-text">
-                Der Einnahmen gehen an die Spendenorganisation
-                <a href="https://www.littlebamboo.info/" target="_blank">Little Bamboo</a>
-            </p>
-        </div>
-
-        <div class="cube">
-            <div class="number-square">#1</div>
-            <p class="description-text">bei der Vermittlung von Finanzwissen</p>
-        </div>
-
-        <div class="text-cube">
-            <p>
-                Unsere Plattform ist eine Quelle für umfassendes Finanzwissen 💡, das gezielt auf die Bedürfnisse der Jugend zugeschnitten ist.
-            </p>
-        </div>
-
-        <div class="rocket-cube">
-            <img src="rocket.png" alt="Rocket" class="rocket-image">
-            <h2 class="rocket-text">Steigere dein</h2>
-            <h2 class="rocket-text">Finanzwissen! 💪</h2>
+            <button class="glowing-button" id="confetti-button">
+                🎉 Jetzt starten
+            </button>
         </div>
     </div>
 
+    <!-- ========================= Mobile Layout ========================= -->
+    <div class="mobile-layout">
+        <!-- Header -->
+        <div class="header">
+            <img src="logo.jpg" alt="JugendInvestiert Logo">
+            <h1>JugendInvestiert</h1>
+        </div>
+
+        <div class="content">
+            <!-- First Cube: 10% -->
+            <div class="cube">
+                <div class="number-and-logo">
+                    <div class="number-square">10%</div>
+                    <img src="bamboologo.jpg" alt="Little Bamboo Logo" class="bamboo-logo">
+                </div>
+                <p class="description-text">
+                    Der Einnahmen gehen an die Spendenorganisation
+                    <a href="https://www.littlebamboo.info/" target="_blank">Little Bamboo</a>
+                </p>
+            </div>
+
+            <!-- Slogan Rectangle: Finanzwissen -->
+            <div class="slogan-square-mobile">
+                <p>Finanzwissen für alle - Investiere in deine Zukunft!</p>
+            </div>
+
+            <!-- Second Cube: #1 -->
+            <div class="cube">
+                <div class="number-square">#1</div>
+                <p class="description-text">bei der Vermittlung von Finanzwissen</p>
+            </div>
+
+            <!-- Text Cube: Unsere Plattform ist... -->
+            <div class="text-cube">
+                <p>
+                    Unsere Plattform ist eine Quelle für umfassendes Finanzwissen 💡,
+                    das gezielt auf die Bedürfnisse der Jugend zugeschnitten ist.
+                </p>
+            </div>
+
+            <!-- Second Slogan Rectangle: Gratis, Effizient und macht Spaß -->
+            <div class="slogan-square-mobile">
+                <p>Gratis, Effizient und macht Spaß</p>
+            </div>
+
+            <!-- Rocket Cube -->
+            <div class="rocket-cube">
+                <img src="rocket.png" alt="Rocket" class="rocket-image">
+                <h2 class="rocket-text">Steigere dein</h2>
+                <h2 class="rocket-text">Finanzwissen! 💪</h2>
+            </div>
+
+            <!-- Glowing "Jetzt starten" Button -->
+            <div class="glow-button-container">
+                <button class="start-button" onclick="requestParentToOpenSignup()">
+                    Jetzt starten
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        /* ========================= Desktop Scripts ========================= */
+        let currentSlide = 0;
+
+        function changeSlide(direction) {
+            const slides = document.querySelector('.desktop-layout .slides');
+            const totalSlides = document.querySelectorAll('.desktop-layout .slide').length;
+
+            currentSlide += direction;
+
+            if (currentSlide < 0) {
+                currentSlide = totalSlides - 1;
+            } else if (currentSlide >= totalSlides) {
+                currentSlide = 0;
+            }
+
+            const slideWidth = 100;
+            slides.style.transform = `translateX(-${currentSlide * slideWidth}%)`;
+        }
+
+        document.getElementById('confetti-button').addEventListener('click', function () {
+            // Redirect to register.html
+            window.location.href = 'register.html';
+        });
+
+        function removeOverlay(element) {
+            element.style.display = 'none';
+        }
+
+        /* ========================= Mobile Scripts ========================= */
+        function requestParentToOpenSignup() {
+            // Sends a postMessage to the parent window
+            window.parent.postMessage({ action: 'openSignupModal' }, '*');
+        }
+    </script>
 </body>
 </html>

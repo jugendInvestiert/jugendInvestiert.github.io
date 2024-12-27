@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>JugendInvestiert Courses</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+        rel="stylesheet"
+    />
     <style>
         body {
             font-family: 'Poppins', Arial, sans-serif;
@@ -19,8 +22,10 @@
             padding: 40px;
             display: flex;
             flex-direction: column;
-            align-items: center; /* Center align content */
+            align-items: flex-start; /* Align content to the left */
             max-width: 420px;
+            padding-left: 20px;
+            padding-right: 20px; /* Corrected duplicate padding-left */
         }
 
         .header {
@@ -28,7 +33,7 @@
             display: flex;
             padding: 15px;
             align-items: center;
-            background-color: #1B2631; /* Blue background color for header */
+            background-color: #1B2631;
             border-radius: 10px;
             margin-bottom: 20px;
             width: 100%;
@@ -36,21 +41,20 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             transition: background-color 0.3s ease;
         }
-
         .header:hover {
-            background-color: #1B2631; /* Slightly darker blue on hover */
+            /* Optional: Slightly darker on hover */
+            background-color: #1A2233;
         }
 
         .arrow {
             cursor: pointer;
             margin-right: 15px;
             font-size: 20px;
-            transition: transform 0.3s ease, font-size 0.3s ease; /* Add transition for smooth hover effect */
+            transition: transform 0.3s ease, font-size 0.3s ease;
         }
-
         .arrow:hover {
-            transform: scale(1.2); /* Increase the size of the arrow on hover */
-            font-size: 24px; /* Optional: increase the font size for better visual effect */
+            transform: scale(1.2);
+            font-size: 24px; 
         }
 
         .header-text {
@@ -59,7 +63,7 @@
         }
 
         .course {
-            background-color: #1B2631; /* Dark blue tone */
+            background-color: #1B2631;
             margin-bottom: 25px;
             padding: 20px;
             border-radius: 15px;
@@ -69,30 +73,10 @@
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
         .course:hover {
             transform: translateY(-8px);
             box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
         }
-
-        .banner {
-            padding: 15px;
-            border-radius: 10px 10px 10px 10px;
-            color: #fff;
-            text-align: center;
-            font-size: 20px;
-            font-weight: bold;
-            position: relative;
-            background-color: #444; /* Default banner color */
-            margin-bottom: 15px;
-        }
-
-        .banner-1 { background-color: #007bff; }
-        .banner-2 { background-color: #28a745; }
-        .banner-3 { background-color: #ffc107; }
-        .banner-4 { background-color: #17a2b8; }
-        .banner-5 { background-color: #dc3545; }
-        .banner-6 { background-color: #6f42c1; }
 
         .course-content {
             display: flex;
@@ -105,10 +89,9 @@
             justify-content: space-between;
             align-items: center;
         }
-
         .text-container p {
             margin: 0;
-            font-size: 16px; /* Slightly larger text for better readability */
+            font-size: 16px;
             flex: 1;
         }
 
@@ -125,26 +108,145 @@
             font-size: 16px;
             cursor: pointer;
             border-radius: 8px;
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            transition: transform 0.3s ease, background 0.3s ease;
             margin-left: 10px;
+            background: none; /* Initial state */
         }
-
-        .anzeigen-button {
-            background-color: #28a745; /* Green for "Anzeigen" */
-        }
-
-        .minimieren-button {
-            background-color: #dc3545; /* Red for "Minimieren" */
-        }
-
         .action-button:hover {
             transform: scale(1.05);
+            /* Background handled via specific button classes */
+        }
+
+        /* Specific Anzeigen Button Gradients Matching Banners */
+        /* Anzeigen Button 1: Pink to Light Pink */
+        .anzeigen-button-1 {
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+        }
+        .anzeigen-button-1:hover {
+            background: linear-gradient(135deg, #ff5f6d, #ffc3a0);
+        }
+
+        /* Anzeigen Button 2: Deep Blue to Teal */
+        .anzeigen-button-2 {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+        }
+        .anzeigen-button-2:hover {
+            background: linear-gradient(135deg, #16335f, #1e6fb8);
+        }
+
+        /* Anzeigen Button 3: Orange to Yellow */
+        .anzeigen-button-3 {
+            background: linear-gradient(135deg, #f7971e, #ffd200);
+        }
+        .anzeigen-button-3:hover {
+            background: linear-gradient(135deg, #f37021, #fbb034);
+        }
+
+        /* Anzeigen Button 4: Purple to Dark Purple */
+        .anzeigen-button-4 {
+            background: linear-gradient(135deg, #8e2de2, #4a00e0);
+        }
+        .anzeigen-button-4:hover {
+            background: linear-gradient(135deg, #7b1fd1, #3a00b8);
+        }
+
+        /* Anzeigen Button 5: Red to Orange */
+        .anzeigen-button-5 {
+            background: linear-gradient(135deg, #f12711, #f5af19);
+        }
+        .anzeigen-button-5:hover {
+            background: linear-gradient(135deg, #d6170e, #e6a316);
+        }
+
+        /* Anzeigen Button 6: Green to Lime */
+        .anzeigen-button-6 {
+            background: linear-gradient(135deg, #00b09b, #96c93d);
+        }
+        .anzeigen-button-6:hover {
+            background: linear-gradient(135deg, #009a85, #84b62e);
+        }
+
+        /*********************************************************
+         * BANNER STYLES (UNIQUE GRADIENTS + HOVER SHIFT)
+         * 
+         * - Each banner has a unique two-color gradient.
+         * - Hover effect includes a slight upward move and color shift.
+         *********************************************************/
+        .banner {
+            padding: 15px;
+            border-radius: 10px;
+            color: #fff;
+            text-align: left; /* Changed from center to left */
+            font-size: 20px;
+            font-weight: bold;
+            position: relative;
+            margin-bottom: 15px;
+            transition: background 0.3s, transform 0.2s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Banner 1: Pink to Light Pink */
+        .banner-1 {
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+        }
+        .banner-1:hover {
+            background: linear-gradient(135deg, #ff5f6d, #ffc3a0);
+            transform: translateY(-2px);
+        }
+
+        /* Banner 2: Deep Blue to Teal */
+        .banner-2 {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+        }
+        .banner-2:hover {
+            background: linear-gradient(135deg, #16335f, #1e6fb8);
+            transform: translateY(-2px);
+        }
+
+        /* Banner 3: Orange to Yellow */
+        .banner-3 {
+            background: linear-gradient(135deg, #f7971e, #ffd200);
+        }
+        .banner-3:hover {
+            background: linear-gradient(135deg, #f37021, #fbb034);
+            transform: translateY(-2px);
+        }
+
+        /* Banner 4: Purple to Dark Purple */
+        .banner-4 {
+            background: linear-gradient(135deg, #8e2de2, #4a00e0);
+        }
+        .banner-4:hover {
+            background: linear-gradient(135deg, #7b1fd1, #3a00b8);
+            transform: translateY(-2px);
+        }
+
+        /* Banner 5: Red to Orange */
+        .banner-5 {
+            background: linear-gradient(135deg, #f12711, #f5af19);
+        }
+        .banner-5:hover {
+            background: linear-gradient(135deg, #d6170e, #e6a316);
+            transform: translateY(-2px);
+        }
+
+        /* Banner 6: Green to Lime */
+        .banner-6 {
+            background: linear-gradient(135deg, #00b09b, #96c93d);
+        }
+        .banner-6:hover {
+            background: linear-gradient(135deg, #009a85, #84b62e);
+            transform: translateY(-2px);
         }
 
         @media (max-width: 600px) {
             .header, .course {
                 width: 95%;
                 padding: 15px;
+            }
+
+            .banner {
+                text-align: left; /* Ensure banners remain left-aligned on small screens */
             }
 
             .text-container {
@@ -165,6 +267,8 @@
             <div class="arrow" onclick="location.href='lessons.html'">←</div>
             <div class="header-text">📚 Section 1: Wie investiere ich mein Geld</div>
         </div>
+
+        <!-- Course 1 (Anzeigen button gradient) -->
         <div class="course" id="course1">
             <div class="banner banner-1">
                 💹 Wie lege ich mein Geld in Aktien an?
@@ -173,11 +277,13 @@
                 <div class="text-container">
                     <p>Entdecke die besten Methoden, um Geld gewinnbringend und sicher in Aktien zu investieren.</p>
                     <div class="button-container">
-                        <button class="action-button anzeigen-button" onclick="location.href='course1.html'">Anzeigen</button>
+                        <button class="action-button anzeigen-button-1" onclick="location.href='course1.html'">Anzeigen</button>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Course 2 -->
         <div class="course" id="course2">
             <div class="banner banner-2">
                 🏦 Wie lege ich mein Geld in Anleihen an?
@@ -186,11 +292,13 @@
                 <div class="text-container">
                     <p>Erfahre mehr über die Investition in Anleihen und ihre Vorteile.</p>
                     <div class="button-container">
-                        <button class="action-button anzeigen-button" onclick="location.href='course2.html'">Anzeigen</button>
+                        <button class="action-button anzeigen-button-2" onclick="location.href='course2.html'">Anzeigen</button>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Course 3 -->
         <div class="course" id="course3">
             <div class="banner banner-3">
                 🚀 Wie investiere ich mein Geld in Krypto?
@@ -199,11 +307,13 @@
                 <div class="text-container">
                     <p>Erlerne die Grundlagen und Strategien für das Investieren in Kryptowährungen.</p>
                     <div class="button-container">
-                        <button class="action-button anzeigen-button" onclick="location.href='course3.html'">Anzeigen</button>
+                        <button class="action-button anzeigen-button-3" onclick="location.href='course3.html'">Anzeigen</button>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Course 4 -->
         <div class="course" id="course4">
             <div class="banner banner-4">
                 💰 Wie lege ich mein Geld in Rohstoffe an?
@@ -212,11 +322,13 @@
                 <div class="text-container">
                     <p>Verstehe wie du in verschiedene Rohstoffe investieren kannst.</p>
                     <div class="button-container">
-                        <button class="action-button anzeigen-button" onclick="location.href='course4.html'">Anzeigen</button>
+                        <button class="action-button anzeigen-button-4" onclick="location.href='course4.html'">Anzeigen</button>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Course 5 -->
         <div class="course" id="course5">
             <div class="banner banner-5">
                 🏠 Wie lege ich mein Geld in Immobilien an?
@@ -225,11 +337,13 @@
                 <div class="text-container">
                     <p>Erforsche die verschiedenen Möglichkeiten der Immobilieninvestition.</p>
                     <div class="button-container">
-                        <button class="action-button anzeigen-button" onclick="location.href='course5.html'">Anzeigen</button>
+                        <button class="action-button anzeigen-button-5" onclick="location.href='course5.html'">Anzeigen</button>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Course 6 -->
         <div class="course" id="course6">
             <div class="banner banner-6">
                 📈 Wie lege ich mein Geld in ETFs an?
@@ -238,7 +352,7 @@
                 <div class="text-container">
                     <p>Erfahren wie du Geld sicher und gewinnbringend in ETFs anlegen kannst.</p>
                     <div class="button-container">
-                        <button class="action-button anzeigen-button" onclick="location.href='course6.html'">Anzeigen</button>
+                        <button class="action-button anzeigen-button-6" onclick="location.href='course6.html'">Anzeigen</button>
                     </div>
                 </div>
             </div>

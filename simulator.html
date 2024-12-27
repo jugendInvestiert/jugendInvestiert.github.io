@@ -20,10 +20,9 @@
             box-sizing: border-box;
         }
         html, body {
-            height: 100%;
             font-family: 'Poppins', Arial, sans-serif;
             margin: 0;
-            padding: 0;
+            padding: 0 0 30px 0;            /* Added padding-bottom: 30px */
             background-color: #101820;
             color: white;
             overflow-x: hidden;
@@ -63,7 +62,7 @@
         .container {
             display: flex;
             flex-direction: column;
-            padding: 15px;
+            padding: 15px 15px 30px 15px;   /* Added padding-bottom: 30px */
             gap: 15px;
             margin-top: 80px;
             align-items: center;
@@ -209,6 +208,8 @@
         }
         /* TradingView Widget Styles */
         #tradingview-widget {
+            border: none;                   /* Removed border */
+            box-shadow: none;               /* Removed box-shadow */
             border-radius: 15px;
             overflow: hidden;
             flex: 1;
@@ -217,6 +218,9 @@
             max-width: 600px;
             display: block;
             order: 2;
+            background-color: #1B2631;      /* Matches the container's background */
+            padding: 0;                      /* Ensure no padding */
+            margin-bottom: 0;                /* Removed margin-bottom */
         }
         /* Portfolio Section Styles */
         .portfolio-section {
@@ -226,6 +230,7 @@
             width: 100%;
             max-width: 1200px;
             box-sizing: border-box;
+            overflow-x: auto; /* Added to allow horizontal scrolling */
         }
         .portfolio-section h2 {
             font-size: 1.5rem;
@@ -236,6 +241,7 @@
         .portfolio-table {
             width: 100%;
             border-collapse: collapse;
+            min-width: 600px; /* Ensures table can be wider than viewport */
         }
         .portfolio-table th, .portfolio-table td {
             padding: 8px;
@@ -251,16 +257,31 @@
             font-size: 0.9rem;
         }
         .portfolio-table button {
-            padding: 5px 8px;
+            padding: 8px 12px; /* Increased padding for larger size */
             background-color: #f44336;
             color: #fff;
             border: none;
             border-radius: 3px;
             cursor: pointer;
-            font-size: 0.8rem;
+            font-size: 0.9rem; /* Increased font size */
+            font-weight: bold; /* Made text bold */
+            width: auto; /* Default width */
         }
         .portfolio-table button:hover {
             background-color: #d32f2f;
+        }
+        /* Make the 'Aktion' (Action) column sticky */
+        .portfolio-table th:last-child,
+        .portfolio-table td:last-child {
+            position: sticky;
+            right: 0;
+            background-color: #1B2631; /* Same as table background */
+            z-index: 2; /* Ensures it stays above other cells */
+            /* Option A: Remove box-shadow */
+            /* box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5); */
+            
+            /* Option B: Reduce box-shadow */
+            box-shadow: -1px 0 3px rgba(0, 0, 0, 0.3);
         }
         /* Message Styles */
         .message {
@@ -319,7 +340,7 @@
             }
             .container {
                 margin-top: 70px;
-                padding: 10px;
+                padding: 10px 10px 30px 10px; /* Ensure padding-bottom remains */
             }
             .account-summary {
                 display: grid;
@@ -339,10 +360,12 @@
             }
             #tradingview-widget {
                 order: 1;
-                margin-bottom: 20px;
+                /* Removed margin-bottom: 20px; */
+                margin-bottom: 0;                /* Set margin-bottom to 0 */
                 width: 100%;
                 height: 300px;
                 max-width: 600px;
+                padding: 0;                      /* Ensure no padding */
             }
             .portfolio-section {
                 padding: 10px;
@@ -354,6 +377,17 @@
             .portfolio-table th, .portfolio-table td {
                 padding: 6px;
                 font-size: 0.8rem;
+            }
+            /* Remove sticky positioning for 'Aktion' column on mobile */
+            .portfolio-table th:last-child,
+            .portfolio-table td:last-child {
+                position: static;            /* Changed from sticky to static */
+                box-shadow: none;            /* Remove box-shadow */
+            }
+            /* Make 'Verkaufen' button full width on mobile */
+            .portfolio-table button {
+                width: 100%;                 /* Set button to full width */
+                box-sizing: border-box;
             }
         }
     </style>
@@ -435,7 +469,8 @@
                     <tr>
                         <th>Symbol</th>
                         <th>Anzahl</th>
-                        <th>Durchschn. Preis</th>
+                        <!-- Changed "Durchschn. Preis" to "Kaufpreis" -->
+                        <th>Kaufpreis</th>
                         <th>Akt. Preis</th>
                         <th>Gewinn/Verlust</th>
                         <th>Aktion</th>
@@ -652,7 +687,7 @@ function createTradingViewWidget(symbol) {
         trendLineColor: "#2196F3",
         fontColor: "#787B86",
         underLineColor: "rgba(55, 166, 239, 0.15)",
-        isTransparent: false,
+        isTransparent: true, /* Changed to true to remove default background */
         autosize: true,
         container_id: "tradingview-widget"
     });
@@ -780,11 +815,11 @@ async function sellStockWithQuantity(symbol, quantity) {
         budget += totalRevenue;
 
         // Calculate average purchase price
-        const averagePurchasePrice = portfolio[symbol].totalInvested / portfolio[symbol].quantity;
+        const purchasePrice = portfolio[symbol].totalInvested / portfolio[symbol].quantity;
 
         // Update the portfolio
         portfolio[symbol].quantity -= quantity;
-        portfolio[symbol].totalInvested -= averagePurchasePrice * quantity;
+        portfolio[symbol].totalInvested -= purchasePrice * quantity;
 
         // Wenn die Menge null ist, entferne das Symbol aus dem Portfolio
         if (portfolio[symbol].quantity === 0) {
@@ -841,12 +876,12 @@ async function updatePortfolioTable() {
     symbols.forEach((symbol, index) => {
         const stockData = portfolio[symbol];
         const totalQuantity = stockData.quantity;
-        const averagePurchasePrice = stockData.totalInvested / totalQuantity;
+        const purchasePrice = stockData.totalInvested / totalQuantity; // Renamed from averagePurchasePrice
 
         const currentPrice = prices[index];
         const totalCurrentValue = currentPrice * totalQuantity;
-        const profit = (currentPrice - averagePurchasePrice) * totalQuantity;
-        const percentageProfit = ((currentPrice - averagePurchasePrice) / averagePurchasePrice) * 100;
+        const profit = (currentPrice - purchasePrice) * totalQuantity;
+        const percentageProfit = ((currentPrice - purchasePrice) / purchasePrice) * 100;
 
         // Create table row
         const row = document.createElement('tr');
@@ -861,19 +896,19 @@ async function updatePortfolioTable() {
         quantityCell.innerText = totalQuantity;
         row.appendChild(quantityCell);
 
-        // Avg. Purchase Price
-        const avgPurchasePriceCell = document.createElement('td');
-        avgPurchasePriceCell.innerText = `$${averagePurchasePrice.toFixed(2)}`;
-        row.appendChild(avgPurchasePriceCell);
+        // Kaufpreis (Purchase Price) - Updated from Durchschnittlicher Preis
+        const purchasePriceCell = document.createElement('td');
+        purchasePriceCell.innerText = `$${purchasePrice.toFixed(2)}`;
+        row.appendChild(purchasePriceCell);
 
         // Current Price
         const currentPriceCell = document.createElement('td');
         currentPriceCell.innerText = `$${currentPrice.toFixed(2)}`;
         row.appendChild(currentPriceCell);
 
-        // Profit/Loss
+        // Gewinn/Verlust - Now includes both amount and percentage
         const profitCell = document.createElement('td');
-        profitCell.innerText = `$${profit.toFixed(2)}`;
+        profitCell.innerHTML = `$${profit.toFixed(2)} (${percentageProfit.toFixed(2)}%)`;
         profitCell.classList.add(profit >= 0 ? 'profit-positive' : 'profit-negative');
         row.appendChild(profitCell);
 
@@ -916,10 +951,10 @@ async function calculateTotalProfit() {
     symbols.forEach((symbol, index) => {
         const stockData = portfolio[symbol];
         const totalQuantity = stockData.quantity;
-        const averagePurchasePrice = stockData.totalInvested / totalQuantity;
+        const purchasePrice = stockData.totalInvested / totalQuantity; // Renamed from averagePurchasePrice
 
         const currentPrice = prices[index];
-        const profit = (currentPrice - averagePurchasePrice) * totalQuantity;
+        const profit = (currentPrice - purchasePrice) * totalQuantity;
         totalProfit += profit;
         totalPortfolioValue += currentPrice * totalQuantity;
     });
@@ -1024,7 +1059,6 @@ window.onload = async function() {
     currentSymbol = 'AAPL';
     await fetchStockList();
 };
-
     </script>
 </body>
 </html>

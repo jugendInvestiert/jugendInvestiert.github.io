@@ -1,167 +1,240 @@
-<!DOCTYPE html>
+√<!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JugendInvestiert Courses</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Poppins', Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #101820;
-            color: white;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JugendInvestiert Courses</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    body {
+      font-family: "Poppins", Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #101820;
+      color: white;
+      padding-bottom: 50px;
+      overflow: hidden; /* Added to remove the scrollbar */
+    }
 
-        .description {
-            margin-top: 20px;
-            margin-left: 20px;
-            margin-right: 10px;
-            margin-bottom: 15px;
-            font-size: 18px;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-            background: #007bff;
-            border-radius: 15px;
-            max-width: 500px;
-            position: relative;
-            display: inline-block;
-            overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+    /*********************************************
+     * DESCRIPTION SECTION (TOP EXPLANATION BOX)
+     * Now uses a GRADIENT + hover shift
+     *********************************************/
+    .description {
+      margin: 20px 10px 15px 20px;
+      font-size: 18px;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      /* Gradient background (blue) */
+      background: linear-gradient(45deg, #007bff, #2998ff);
+      border-radius: 15px;
+      max-width: 500px;
+      position: relative;
+      display: inline-block;
+      overflow: hidden;
+      /* Add transitions for a smooth hover effect */
+      transition: background 0.3s, transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .description:hover {
+      /* On hover, slightly change the gradient + scale + box-shadow */
+      background: linear-gradient(45deg, #2998ff, #0056b3);
+      transform: scale(1.05);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
 
-        .content {
-            padding-right: 30px;
-            padding-left: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: left;
-            margin-right: 20px;
-        }
+    .content {
+      padding: 0 20px 0 20px; /* Adjusted padding to prevent overflow */
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start; /* Changed 'left' to 'flex-start' */
+      margin-right: 20px;
+    }
 
-        .course {
-            background-color: #2C3E50;
-            margin-bottom: 20px;
-            padding: 20px;
-            border-radius: 10px;
-            max-width: 500px;
-            width: 100%;
-            position: relative;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
+    .course {
+      background-color: #2C3E50;
+      margin-bottom: 20px;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 500px;
+      width: 100%;
+      position: relative;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .course:hover {
+      transform: scale(1.05);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
 
-        .course:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
+    .course h3 {
+      margin: 20px 0 10px 0;
+      font-size: 24px;
+      padding-top: 20px;
+    }
 
-        .description:hover {
-            transform: scale(1.05);
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
+    .course p {
+      margin: 0;
+      font-size: 16px;
+    }
 
-        .course h3 {
-            margin: 20px 0 10px 0;
-            font-size: 24px;
-            padding-top: 20px;
-        }
+    /* 
+     * Base button style (no background here; 
+     * we'll apply gradient classes below).
+     */
+    .course button {
+      margin-top: 10px;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: background 0.3s, transform 0.2s;
+    }
+    .course button:disabled {
+      cursor: not-allowed;
+    }
 
-        .course p {
-            margin: 0;
-            font-size: 16px;
-        }
+    /* 
+     * BANNER STYLES + Matching Buttons
+     * 
+     * Each banner + button pair use the same gradient 
+     * & slight shift on hover
+     */
+    .banner {
+      padding: 10px;
+      border-radius: 10px 10px 0 0;
+      color: #fff;
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      transition: background 0.3s, transform 0.2s;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
 
-        .course button {
-            margin-top: 10px;
-            background-color: #1dd05d;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
-            border-radius: 5px;
-            font-weight: bold;
-        }
+    /* === Section 1 (banner + button) ================================= */
+    .banner1 {
+      background: linear-gradient(45deg, #6A82FB, #FC5C7D);
+    }
+    .banner1:hover {
+      background: linear-gradient(45deg, #5a73d1, #e04c5c);
+      transform: translateY(-2px);
+    }
+    .btn1 {
+      background: linear-gradient(45deg, #6A82FB, #FC5C7D);
+    }
+    .btn1:hover {
+      background: linear-gradient(45deg, #5a73d1, #e04c5c);
+      transform: translateY(-2px);
+    }
 
-        .course button:hover {
-            background-color: #16a045;
-        }
+    /* === Section 2 (banner + button) ================================= */
+    .banner2 {
+      background: linear-gradient(45deg, #F7971E, #FFD200);
+    }
+    .banner2:hover {
+      background: linear-gradient(45deg, #e08917, #e6c803);
+      transform: translateY(-2px);
+    }
+    .btn2 {
+      background: linear-gradient(45deg, #F7971E, #FFD200);
+    }
+    .btn2:hover {
+      background: linear-gradient(45deg, #e08917, #e6c803);
+      transform: translateY(-2px);
+    }
 
-        .banner1 {
-            background-color: #007bff; /* Blue for Section 1 */
-        }
+    /* === Section 3 (banner + button) ================================= */
+    .banner3 {
+      background: linear-gradient(45deg, #2193b0, #6dd5ed);
+    }
+    .banner3:hover {
+      background: linear-gradient(45deg, #1a7f95, #4bb9db);
+      transform: translateY(-2px);
+    }
+    .btn3 {
+      background: linear-gradient(45deg, #2193b0, #6dd5ed);
+    }
+    .btn3:hover {
+      background: linear-gradient(45deg, #1a7f95, #4bb9db);
+      transform: translateY(-2px);
+    }
 
-        .banner2 {
-            background-color: #28a745; /* Green for Section 2 */
-        }
+    /* Dimmed effect for locked courses, plus the centered lock icon */
+    .dimmed {
+      opacity: 0.5;
+      pointer-events: none;
+      position: relative;
+    }
+    .lock-icon {
+      width: 200px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 2;
+      opacity: 1;
+    }
 
-        .banner3 {
-            background-color: #dc3545; /* Red for Section 3 */
-        }
-
-        .banner {
-            padding: 10px;
-            border-radius: 10px 10px 0 0;
-            color: white;
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            text-align: center;
-            font-size: 20px;
-            font-weight: bold;
-        }
-
-        .dimmed {
-            opacity: 0.5; /* Dim effect */
-            pointer-events: none; /* Disable interaction */
-            position: relative; /* Position relative for the lock icon */
-        }
-
-        .lock-icon {
-            width: 200px; /* Size for the lock image */
-            position: absolute;
-            top: 50%; /* Center vertically */
-            left: 50%; /* Center horizontally */
-            transform: translate(-50%, -50%); /* Centering */
-            z-index: 2; /* Ensure it appears above the dimmed section */
-            opacity: 1;
-        }
-    </style>
+    /* Optional: Prevent horizontal overflow */
+    html, body {
+      overflow-x: hidden;
+    }
+  </style>
 </head>
 <body>
-    <div class="description">
-        <span>Hier finden Sie unsere verschiedenen Lektionen zum Thema Finanzen. Entdecke wertvolle Informationen und Lernmaterialien die Ihnen helfen, Ihr Wissen über Geldanlage, Investitionen und finanzielle Planung zu erweitern.</span>
+  <!-- DESCRIPTION (blue explanation) with gradient -->
+  <div class="description">
+    <span>
+      Hier finden Sie unsere verschiedenen Lektionen zum Thema Finanzen.
+      Entdecke wertvolle Informationen und Lernmaterialien, die Ihnen
+      helfen, Ihr Wissen über Geldanlage, Investitionen und finanzielle
+      Planung zu erweitern.
+    </span>
+  </div>
+
+  <div class="content">
+    <!-- Section 1 (Unlocked) -->
+    <div class="course">
+      <div class="banner banner1">Section 1</div>
+      <h3>Wie investiere ich mein Geld?</h3>
+      <p>
+        Entdecken Sie die besten Methoden, um Ihr Geld gewinnbringend zu
+        investieren.
+      </p>
+      <button class="btn1" onclick="location.href='section1.html'">Start</button>
     </div>
-    <div class="content">
-        <div class="course">
-            <div class="banner banner1">
-                Section 1
-            </div>
-            <h3>Wie investiere ich mein Geld?</h3>
-            <p>Entdecken Sie die besten Methoden, um Ihr Geld gewinnbringend zu investieren.</p>
-            <button onclick="location.href='section1.html'">Start</button>
-        </div>
-        <div class="course dimmed">
-            <div class="banner banner2">
-                Section 2
-            </div>
-            <img src="lock.jpg" alt="Lock" class="lock-icon" /> <!-- Lock image centered above section -->
-            <h3>Wie funktioniert die deutsche Wirtschaft?</h3>
-            <p>Erfahren Sie mehr über die Mechanismen und Strukturen der deutschen Wirtschaft.</p>
-            <button disabled>Bald erhältlich</button> <!-- Button disabled for unavailable section -->
-        </div>
-        <div class="course dimmed">
-            <div class="banner banner3">
-                Section 3
-            </div>
-            <img src="lock.jpg" alt="Lock" class="lock-icon" /> <!-- Lock image centered above section -->
-            <h3>Investieren im Simulator</h3>
-            <p>Testen Sie Ihre Investmentstrategien in einem sicheren Umfeld.</p>
-            <button disabled>Bald erhältlich</button> <!-- Button disabled for unavailable section -->
-        </div>
+
+    <!-- Section 2 (Locked) -->
+    <div class="course dimmed">
+      <div class="banner banner2">Section 2</div>
+      <img src="lock.jpg" alt="Lock" class="lock-icon" />
+      <h3>Wie funktioniert die deutsche Wirtschaft?</h3>
+      <p>
+        Erfahren Sie mehr über die Mechanismen und Strukturen der
+        deutschen Wirtschaft.
+      </p>
+      <button class="btn2" disabled>Bald erhältlich</button>
     </div>
+
+    <!-- Section 3 (Locked) -->
+    <div class="course dimmed">
+      <div class="banner banner3">Section 3</div>
+      <img src="lock.jpg" alt="Lock" class="lock-icon" />
+      <h3>Investieren im Simulator</h3>
+      <p>
+        Testen Sie Ihre Investmentstrategien in einem sicheren Umfeld.
+      </p>
+      <button class="btn3" disabled>Bald erhältlich</button>
+    </div>
+  </div>
 </body>
 </html>
