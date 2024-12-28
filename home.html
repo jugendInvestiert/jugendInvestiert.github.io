@@ -131,13 +131,15 @@
             flex-direction: column;
             justify-content: center;
             min-height: 350px;
-            transition: transform 0.3s ease-in-out;
+            /* Removed transition to prevent scaling on hover */
+            /* transition: transform 0.3s ease-in-out; */
             position: relative;
         }
 
-        .desktop-layout .square:hover {
+        /* Removed hover effect to prevent scaling */
+        /* .desktop-layout .square:hover {
             transform: scale(1.05);
-        }
+        } */
 
         .desktop-layout .number-square {
             display: flex;
@@ -231,12 +233,12 @@
             margin: 0 auto;
         }
 
-        /* New styles for rocket image in desktop */
+        /* Removed bounce animation to stop rocket from moving */
         .desktop-layout .rocket-image-desktop {
             width: 150px; /* Adjust size as needed */
             height: auto;
             margin-bottom: 10px;
-            animation: bounce 2s infinite;
+            /* animation: bounce 2s infinite; */
         }
 
         /* Specific styling for rocket square to center content */
@@ -244,6 +246,8 @@
             align-items: center; /* Centers items horizontally */
         }
 
+        /* Removed @keyframes bounce since it's no longer used */
+        /*
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% {
                 transform: translateY(0);
@@ -255,6 +259,7 @@
                 transform: translateY(-15px);
             }
         }
+        */
 
         .desktop-layout .bottom-cubes-container {
             display: flex;
@@ -462,9 +467,10 @@
             padding: 0 10px;
         }
 
+        /* Removed bounce animation to stop rocket from moving */
         .mobile-layout .rocket-image {
             width: 150px; /* Increased size from 120px to 150px */
-            animation: bounce 2s infinite;
+            /* animation: bounce 2s infinite; */
         }
 
         /* Added padding to rocket-cube */
@@ -500,25 +506,21 @@
                 0 0 10px rgba(0, 123, 255, 0.7),
                 0 0 20px rgba(0, 123, 255, 0.5),
                 0 0 30px rgba(0, 123, 255, 0.3);
-            animation: glowing 1.5s infinite alternate;
+            /* Removed animation to stop glowing effect */
+            /* animation: glowing 1.5s infinite alternate; */
         }
 
-        @keyframes glowing {
-            from {
-                box-shadow:
-                    0 0 10px rgba(0, 123, 255, 0.7),
-                    0 0 20px rgba(0, 123, 255, 0.5),
-                    0 0 30px rgba(0, 123, 255, 0.3);
-            }
-            to {
-                box-shadow:
-                    0 0 20px rgba(0, 123, 255, 0.7),
-                    0 0 40px rgba(0, 123, 255, 0.5),
-                    0 0 60px rgba(0, 123, 255, 0.3);
-            }
+        .mobile-layout .start-button:hover {
+            background-color: #0056b3;
+            box-shadow: 0 0 30px rgba(0, 123, 255, 0.7);
         }
 
-        /* Additional Mobile Enhancements */
+        .mobile-layout .start-button:active {
+            background-color: #004080;
+            box-shadow: 0 0 40px rgba(0, 123, 255, 0.9);
+        }
+
+        /* ========================= Mobile Enhancements ========================= */
         @media (max-width: 768px) {
             .mobile-layout .mobile-layout-body {
                 background-color: #0d1117;
@@ -533,9 +535,12 @@
             }
 
             .mobile-layout .start-button {
-                animation: pulse 2s infinite;
+                /* Removed pulse animation */
+                /* animation: pulse 2s infinite; */
             }
 
+            /* Removed pulse keyframes */
+            /*
             @keyframes pulse {
                 0% {
                     box-shadow:
@@ -550,9 +555,11 @@
                         0 0 0px rgba(0, 123, 255, 0.5);
                 }
             }
+            */
         }
 
-        /* Keyframes for rocket bounce */
+        /* Removed duplicate keyframes bounce */
+        /*
         @keyframes bounce {
             0%, 20%, 50%, 80%, 100% {
                 transform: translateY(0);
@@ -564,6 +571,7 @@
                 transform: translateY(-15px);
             }
         }
+        */
     </style>
 </head>
 <body>
