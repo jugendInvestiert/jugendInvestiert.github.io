@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Stock Price Viewer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+        .search-container {
+            position: relative;
+            display: inline-block;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 1em;
+            width: 300px;
+        }
+        button {
+            padding: 10px 15px;
+            font-size: 1em;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        /* Suggestion Dropdown */
+        .suggestions {
+            position: absolute;
+            border: 1px solid #ccc;
+            border-top: none;
+            max-height: 200px;
+            overflow-y: auto;
+            width: 300px;
+            background-color: #fff;
+            z-index: 1000;
+        }
+        .suggestion-item {
+            padding: 10px;
+            cursor: pointer;
+        }
+        .suggestion-item:hover {
+            background-color: #f0f0f0;
+        }
+        /* Loading Spinner */
+        #loading {
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1>Stock Price Viewer</h1>
+    <div class="search-container">
+        <input type="text" id="symbol" placeholder="Enter Stock Symbol or Company Name" autocomplete="off">
+        <div id="suggestions" class="suggestions" style="display: none;"></div>
+    </div>
+    <button onclick="getStockPrice()">Get Price</button>
+    <div id="loading">
+        <img src="spinner.gif" alt="Loading..." width="50">
+    </div>
+    <div id="result"></div>
+
+    <script>
+        const symbolInput = document.getElementById('symbol');
+        const suggestionsBox = document.getElementById('suggestions');
+        const loadingDiv = document.getElementById('loading');
+
+        // Debounce function to limit API calls
+        function debounce(func, delay) {
+            let timeout;
+            return function(...args) {
+                clearTimeout(timeout);
+                timeout = setTimeout(() => func.apply(this, args), delay);
+            };
+        }
+
+        // Fetch suggestions from backend
+        async function fetchSuggestions(query) {
+            if (!query) {
+                suggestionsBox.style.display = 'none';
+                suggestionsBox.innerHTML = '';
+                return;
+            }
+
+            loadingDiv.style.display = 'block';
+
+            try {
+                const response = await fetch(`https://jugendinvestiertback.onrender.com/api/search?q=${encodeURIComponent(query)}`);
+                if (!response.ok) {
+                    throw new Error(`Server error: ${response.status}`);
+                }
+                const data = await response.json();
+
+                if (data.suggestions && data.suggestions.length > 0) {
+                    displaySuggestions(data.suggestions);
+                } else {
+                    suggestionsBox.style.display = 'none';
+                    suggestionsBox.innerHTML = '';
+                    document.getElementById('result').innerHTML = 'No matching symbols found.';
+                }
+            } catch (error) {
+                console.error('Error fetching suggestions:', error);
+                suggestionsBox.style.display = 'none';
+                suggestionsBox.innerHTML = '';
+                document.getElementById('result').innerHTML = `Error: ${error.message}`;
+            } finally {
+                loadingDiv.style.display = 'none';
+            }
+        }
+
+        // Display suggestions in the dropdown
+        function displaySuggestions(suggestions) {
+            suggestionsBox.innerHTML = '';
+            suggestions.forEach(item => {
+                const div = document.createElement('div');
+                div.classList.add('suggestion-item');
+                div.textContent = `${item.Symbol} - ${item['Company Name']} (${item.Tape})`;
+                div.addEventListener('click', () => {
+                    symbolInput.value = item.Symbol;
+                    suggestionsBox.style.display = 'none';
+                    suggestionsBox.innerHTML = '';
+                });
+                suggestionsBox.appendChild(div);
+            });
+            suggestionsBox.style.display = 'block';
+        }
+
+        // Event listener for input changes with debounce
+        symbolInput.addEventListener('input', debounce(function() {
+            const query = this.value.trim();
+            fetchSuggestions(query);
+        }, 300));
+
+        // Hide suggestions when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.search-container')) {
+                suggestionsBox.style.display = 'none';
+                suggestionsBox.innerHTML = '';
+            }
+        });
+
+        // Fetch and display stock price
+        async function getStockPrice() {
+            const symbol = symbolInput.value.trim();
+            const resultDiv = document.getElementById('result');
+
+            if (!symbol) {
+                resultDiv.innerHTML = 'Please enter a stock symbol or company name.';
+                return;
+            }
+
+            resultDiv.innerHTML = 'Loading...';
+
+            try {
+                const response = await fetch(`https://jugendinvestiertback.onrender.com/api/stock?symbol=${encodeURIComponent(symbol)}`);
+                const data = await response.json();
+
+                if (response.ok) {
+                    resultDiv.innerHTML = `
+                        <strong>${data.symbol}</strong><br>
+                        Price: $${data.price}<br>
+                        Date: ${data.date} ${data.time}
+                    `;
+                } else {
+                    resultDiv.innerHTML = `Error: ${data.error}`;
+                }
+            } catch (error) {
+                resultDiv.innerHTML = `Error: ${error.message}`;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -8,23 +8,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
     <style>
         /* ========================= Global Styles ========================= */
-        /* Global box-sizing */
+        
+        html, body {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden; /* Prevent any horizontal scroll */
+        }
+        
         *, *::before, *::after {
             box-sizing: border-box;
         }
 
         body {
             font-family: 'Poppins', Arial, sans-serif;
-            margin: 0;
-            padding: 0;
             background-color: #101820;
             color: white;
             display: flex;
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            overflow-x: hidden;
-            padding-bottom: 20px;
         }
 
         /* ========================= Desktop Layout ========================= */
@@ -44,7 +46,6 @@
             .desktop-layout {
                 display: none;
             }
-
             /* Show Mobile Layout on Mobile */
             .mobile-layout {
                 display: block;
@@ -75,7 +76,7 @@
         .desktop-layout .header h1 {
             font-size: 56px;
             margin: 0;
-            white-space: nowrap;
+            /* Removed white-space: nowrap; to avoid forced horizontal overflow */
             overflow: hidden;
             display: inline-block;
         }
@@ -131,15 +132,8 @@
             flex-direction: column;
             justify-content: center;
             min-height: 350px;
-            /* Removed transition to prevent scaling on hover */
-            /* transition: transform 0.3s ease-in-out; */
             position: relative;
         }
-
-        /* Removed hover effect to prevent scaling */
-        /* .desktop-layout .square:hover {
-            transform: scale(1.05);
-        } */
 
         .desktop-layout .number-square {
             display: flex;
@@ -157,13 +151,13 @@
             align-items: center;
             font-size: 40px;
             color: #ffffff;
-            gap: 5px; /* Reduced gap between words */
+            gap: 5px; 
         }
 
         .desktop-layout .text-square p {
             margin: 0;
             padding: 0;
-            line-height: 1.2; /* Reduced line height for closer spacing */
+            line-height: 1.2;
         }
 
         .desktop-layout .slogan-square {
@@ -174,9 +168,8 @@
             padding: 20px;
             border-radius: 15px;
             box-sizing: border-box;
-            /* Changed from square to slim rectangle */
-            min-height: 100px; /* Adjust height as needed */
-            width: 100%; /* Full width */
+            min-height: 100px;
+            width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -233,33 +226,15 @@
             margin: 0 auto;
         }
 
-        /* Removed bounce animation to stop rocket from moving */
         .desktop-layout .rocket-image-desktop {
-            width: 150px; /* Adjust size as needed */
+            width: 150px;
             height: auto;
             margin-bottom: 10px;
-            /* animation: bounce 2s infinite; */
         }
 
-        /* Specific styling for rocket square to center content */
         .desktop-layout .rocket-square {
-            align-items: center; /* Centers items horizontally */
+            align-items: center;
         }
-
-        /* Removed @keyframes bounce since it's no longer used */
-        /*
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-30px);
-            }
-            60% {
-                transform: translateY(-15px);
-            }
-        }
-        */
 
         .desktop-layout .bottom-cubes-container {
             display: flex;
@@ -274,12 +249,12 @@
             flex: 1;
         }
 
-        /* Slideshow Styles */
+        /* Slideshow container hides overflow to prevent horizontal scrolling */
         .desktop-layout .slideshow {
             position: relative;
             width: 100%;
             max-width: 800px;
-            overflow: hidden;
+            overflow: hidden; 
             border-radius: 15px;
             margin-top: 0;
             margin-bottom: 20px;
@@ -288,7 +263,7 @@
         .desktop-layout .slides {
             display: flex;
             transition: transform 0.5s ease;
-            width: calc(100% * 3); /* Adjusted to match the number of slides */
+            width: calc(100% * 3); 
         }
 
         .desktop-layout .slide {
@@ -374,7 +349,6 @@
             font-size: 28px;
             margin: 0;
             font-weight: bold;
-            white-space: nowrap;
         }
 
         .mobile-layout .content {
@@ -382,20 +356,24 @@
             flex-direction: column;
             align-items: center;
             width: 100%;
-            padding: 20px;
-            padding-bottom: 60px; /* Increased extra padding at the bottom */
+            /* Keep horizontal padding minimal to avoid overflow */
+            padding: 20px 10px;
+            /*
+             * Updated bottom padding from 60px -> 80px 
+             * to give more space at the bottom of mobile layout
+             */
+            padding-bottom: 80px;
             text-align: center;
             gap: 15px; 
             margin-top: 100px; /* Space for fixed header */
         }
 
-        /* Updated grouped selector excluding .slogan-square-mobile */
         .mobile-layout .cube, 
         .mobile-layout .text-cube, 
         .mobile-layout .rocket-cube { 
             background-color: #1B2631;
-            width: 90vw;              /* Fill most of the screen width */
-            aspect-ratio: 1 / 1;      /* Enforce a square shape */
+            width: 90vw;             
+            aspect-ratio: 1 / 1;     
             border-radius: 15px;
             display: flex;
             flex-direction: column;
@@ -404,26 +382,21 @@
             gap: 10px;
             padding: 20px;
             box-sizing: border-box;
+            margin: 0 auto; 
         }
 
-        /* Updated .slogan-square-mobile to be a thin rectangle */
         .mobile-layout .slogan-square-mobile { 
             background-color: #2E4053;
             color: #ffffff;
             font-size: 20px;
-            padding: 15px 20px; /* Added horizontal padding for elegance */
+            padding: 15px 20px; 
             border-radius: 15px;
             box-sizing: border-box;
-            min-height: 60px; /* Reduced height for a thinner rectangle */
-            width: 90vw; /* Ensures it spans most of the mobile screen */
+            min-height: 60px; 
+            width: 90vw;      
             display: flex;
             align-items: center;
             justify-content: center;
-            /* Removed margin-bottom to ensure consistent spacing via Flexbox gap */
-        }
-
-        .mobile-layout .cube {
-            /* Existing styles */
         }
 
         .mobile-layout .number-square {
@@ -467,15 +440,12 @@
             padding: 0 10px;
         }
 
-        /* Removed bounce animation to stop rocket from moving */
         .mobile-layout .rocket-image {
-            width: 150px; /* Increased size from 120px to 150px */
-            /* animation: bounce 2s infinite; */
+            width: 150px; 
         }
 
-        /* Added padding to rocket-cube */
         .mobile-layout .rocket-cube {
-            padding: 30px; /* Added padding */
+            padding: 30px; 
         }
 
         .mobile-layout .rocket-text {
@@ -484,9 +454,8 @@
             margin: 0;
         }
 
-        /* Glowing "Jetzt starten" Button */
         .mobile-layout .glow-button-container {
-            margin-top: 10px; /* Small gap from the rocket cube */
+            margin-top: 10px; 
             display: flex;
             justify-content: center;
             width: 100%;
@@ -506,8 +475,6 @@
                 0 0 10px rgba(0, 123, 255, 0.7),
                 0 0 20px rgba(0, 123, 255, 0.5),
                 0 0 30px rgba(0, 123, 255, 0.3);
-            /* Removed animation to stop glowing effect */
-            /* animation: glowing 1.5s infinite alternate; */
         }
 
         .mobile-layout .start-button:hover {
@@ -520,58 +487,17 @@
             box-shadow: 0 0 40px rgba(0, 123, 255, 0.9);
         }
 
-        /* ========================= Mobile Enhancements ========================= */
         @media (max-width: 768px) {
             .mobile-layout .mobile-layout-body {
                 background-color: #0d1117;
             }
-
             .mobile-layout .square {
                 background-color: #161b22;
             }
-
             .mobile-layout .slogan-square {
                 background-color: #21262d;
             }
-
-            .mobile-layout .start-button {
-                /* Removed pulse animation */
-                /* animation: pulse 2s infinite; */
-            }
-
-            /* Removed pulse keyframes */
-            /*
-            @keyframes pulse {
-                0% {
-                    box-shadow:
-                        0 0 0px rgba(0, 123, 255, 0.5);
-                }
-                50% {
-                    box-shadow:
-                        0 0 20px rgba(0, 123, 255, 1);
-                }
-                100% {
-                    box-shadow:
-                        0 0 0px rgba(0, 123, 255, 0.5);
-                }
-            }
-            */
         }
-
-        /* Removed duplicate keyframes bounce */
-        /*
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-30px);
-            }
-            60% {
-                transform: translateY(-15px);
-            }
-        }
-        */
     </style>
 </head>
 <body>
@@ -599,6 +525,7 @@
                     </div>
                     <button class="arrow right" onclick="changeSlide(1)">&#10095;</button>
                 </div>
+
                 <div class="slogan">
                     <h1>Finanzwissen für alle - Investiere in deine Zukunft!</h1>
                 </div>
@@ -606,7 +533,14 @@
                 <div class="squares-container">
                     <div class="squares-row">
                         <div class="square">
-                            <p>Unsere Plattform ist eine Quelle für umfassendes Finanzwissen, das gezielt auf die Bedürfnisse der Jugend zugeschnitten ist. Wir bieten eine Vielzahl von Ressourcen, Schulungen und Tools an, um jungen Menschen dabei zu helfen, ein solides Verständnis für Finanzen aufzubauen. Von Budgetierung und Sparen bis hin zu Investitionen und Finanzplanung – wir sind hier, um dich auf deinem Weg zu unterstützen.</p>
+                            <p>
+                                Unsere Plattform ist eine Quelle für umfassendes Finanzwissen, das gezielt auf 
+                                die Bedürfnisse der Jugend zugeschnitten ist. Wir bieten eine Vielzahl von 
+                                Ressourcen, Schulungen und Tools an, um jungen Menschen dabei zu helfen, ein 
+                                solides Verständnis für Finanzen aufzubauen. Von Budgetierung und Sparen bis 
+                                hin zu Investitionen und Finanzplanung – wir sind hier, um dich auf deinem Weg 
+                                zu unterstützen.
+                            </p>
                         </div>
                         <div class="square number-square">
                             #1
@@ -643,7 +577,6 @@
                                 <p>Einzigartig</p>
                                 <p>Innovativ</p>
                             </div>
-                            <!-- Replaced rocket emoji with rocket.png image and added 'rocket-square' class -->
                             <div class="square rocket-square">
                                 <img src="rocket.png" alt="Rocket" class="rocket-image-desktop">
                                 <h2 style="margin: 0;">Steigere dein</h2>
