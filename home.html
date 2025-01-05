@@ -59,6 +59,7 @@
             display: flex;
             align-items: center;
             padding: 20px;
+            padding-bottom: 20px; /* Extra padding below the header */
             box-sizing: border-box;
             margin-bottom: 0;
             flex-wrap: wrap; /* Allows wrapping if necessary */
@@ -167,9 +168,8 @@
             padding: 20px;
             border-radius: 15px;
             box-sizing: border-box;
-            /* Changed from square to slim rectangle */
-            min-height: 100px; /* Adjust height as needed */
-            width: 100%; /* Full width */
+            min-height: 100px;
+            width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -233,23 +233,8 @@
         }
 
         .desktop-layout .rocket-square {
-            align-items: center; /* Centers items horizontally */
+            align-items: center;
         }
-
-        /* Removed @keyframes bounce since it's no longer used */
-        /*
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateY(0);
-            }
-            40% {
-                transform: translateY(-30px);
-            }
-            60% {
-                transform: translateY(-15px);
-            }
-        }
-        */
 
         .desktop-layout .bottom-cubes-container {
             display: flex;
@@ -278,7 +263,7 @@
         .desktop-layout .slides {
             display: flex;
             transition: transform 0.5s ease;
-            width: calc(100% * 3); /* Adjusted to match the number of slides */
+            width: calc(100% * 3); 
         }
 
         .desktop-layout .slide {
@@ -323,6 +308,7 @@
             gap: 10px;
             box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
             cursor: pointer;
+            transition: background-color 0.3s, box-shadow 0.3s;
             outline: none;
         }
 
@@ -455,8 +441,7 @@
         }
 
         .mobile-layout .rocket-image {
-            width: 150px; /* Increased size from 120px to 150px */
-            /* animation: bounce 2s infinite; */
+            width: 150px; 
         }
 
         .mobile-layout .rocket-cube {
@@ -684,7 +669,6 @@
                 currentSlide = 0;
             }
 
-            // Directly jump to the desired slide without transition
             const slideWidth = 100;
             slides.style.transform = `translateX(-${currentSlide * slideWidth}%)`;
         }
