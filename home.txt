@@ -11,7 +11,7 @@
         body {
             font-family: 'Poppins', Arial, sans-serif;
             margin: 0;
-            padding: 0 0 20px 0; /* Added padding-bottom */
+            padding: 0 0 50px 0; /* Added padding-bottom */
             background-color: #101820;
             color: white;
             display: flex;
