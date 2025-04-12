@@ -2,15 +2,26 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width">
-    <title>JugendInvestiert - Unsere Mission</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-translate-key="title">JugendInvestiert - Unsere Mission</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <style>
-        /* Globales Box-Sizing */
         *, *::before, *::after {
             box-sizing: border-box;
         }
-
+        html {
+            /* Ensure smooth scrolling behavior */
+            scroll-behavior: smooth;
+            /* Hide scrollbars at the HTML level for consistency */
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
+        }
+        html::-webkit-scrollbar {
+            /* Chrome, Safari, Edge */
+            display: none;
+        }
         body {
             font-family: 'Poppins', Arial, sans-serif;
             margin: 0;
@@ -20,66 +31,361 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            /* Use min-height to allow content to expand beyond viewport */
             min-height: 100vh;
-            overflow-x: hidden; /* Verhindert horizontales Scrollen */
-            padding-bottom: 40px; /* Mehr Padding unten hinzugefügt */
+            /* Increased padding-bottom for spacious look */
+            padding-bottom: 100px;
+            /* Allow vertical scrolling, hide horizontal */
+            overflow-x: hidden;
+            overflow-y: auto;
+            /* Reinforce scrollbar hiding */
+            -ms-overflow-style: none; /* IE and Edge */
+            scrollbar-width: none; /* Firefox */
         }
-
+        /* Ensure no scrollbar on body */
+        body::-webkit-scrollbar {
+            display: none;
+        }
         .container {
             max-width: 800px;
-            margin: 0 20px; /* Gleichmäßige Margins auf beiden Seiten */
+            margin: 0 20px;
             text-align: center;
         }
-
         h1 {
             font-size: 32px;
             margin-bottom: 20px;
         }
-
-        /* Neues Styling für das Bild */
         .container img {
-            max-width: 100%; /* Bild passt sich der Containerbreite an */
+            max-width: 100%;
             height: auto;
-            margin: 20px 0; /* Abstand oberhalb und unterhalb des Bildes */
+            margin: 20px 0;
         }
-
         p {
             font-size: 18px;
             line-height: 1.6;
         }
-
-        /* Mobile Styles */
+        .contact-button {
+            display: inline-block;
+            background-color: #007bff;
+            color: white;
+            padding: 15px 30px;
+            font-size: 20px;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .contact-button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+            /* Allow scrolling in modal if needed, hide scrollbar */
+            overflow: auto;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .modal::-webkit-scrollbar {
+            display: none;
+        }
+        .modal-content {
+            background-color: #1B2631;
+            padding: 20px;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+        }
+        .modal-content h2 {
+            margin-top: 0;
+            font-size: 24px;
+            text-align: center;
+        }
+        .modal-content label {
+            display: block;
+            margin: 10px 0 5px;
+            font-size: 16px;
+        }
+        .modal-content input,
+        .modal-content textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #2e2e2e;
+            border-radius: 5px;
+            background-color: #101820;
+            color: white;
+            font-size: 16px;
+        }
+        .modal-content textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        .modal-content button[type="submit"] {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+        }
+        .modal-content button[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #cccccc;
+        }
+        .close:hover {
+            color: #ffffff;
+        }
+        .message {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1B2631;
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: #fff;
+            z-index: 2000;
+            animation: fadeInOut 4s forwards;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            font-size: 16px;
+        }
+        .message.success {
+            border-left: 5px solid #4caf50;
+        }
+        .message.error {
+            border-left: 5px solid #f44336;
+        }
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+            10% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            90% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            100% { opacity: 0; transform: translateX(-50%) translateY(20px); }
+        }
         @media (max-width: 600px) {
             body {
                 padding: 0;
-                min-height: auto; /* Erlaubt dem Body, sich zu erweitern */
-                justify-content: flex-start; /* Inhalt nach oben ausrichten */
-                padding-bottom: 40px; /* Mehr Padding unten auf Mobilgeräten */
+                min-height: auto;
+                justify-content: flex-start;
+                /* Increased padding-bottom for mobile */
+                padding-bottom: 80px;
             }
             .container {
-                margin: 20px 15px; /* Leichtes Padding auf den Seiten */
+                margin: 20px 15px;
             }
             h1 {
-                font-size: 36px; /* Text etwas größer */
+                font-size: 36px;
             }
             p {
-                font-size: 20px; /* Text etwas größer */
+                font-size: 20px;
             }
-            /* Optional: Bildgröße auf mobilen Geräten anpassen */
             .container img {
                 margin: 15px 0;
+            }
+            .contact-button {
+                width: 100%;
+                font-size: 18px;
+                padding: 12px 20px;
+            }
+            .modal-content {
+                width: 95%;
+                padding: 15px;
+            }
+            .modal-content h2 {
+                font-size: 20px;
+            }
+            .modal-content input,
+            .modal-content textarea {
+                font-size: 14px;
+            }
+            .modal-content button[type="submit"] {
+                font-size: 14px;
             }
         }
     </style>
 </head>
 <body>
-
     <div class="container">
-        <h1>Unsere Mission 🌍</h1>
+        <h1 data-translate-key="title">Unsere Mission</h1>
         <img src="earth.gif" alt="Erde">
-        <p>Wir sind eine Gruppe junger Menschen, die vor dem Mangel an finanzieller Bildung in Deutschland nicht die Augen verschließen wollen. 🙈 Als kleines deutsches Start-Up fing bei uns sozusagen alles "in der Garage" an, mit einer gesunden Mischung aus Tech-Expertise 💻, künstlicher Intelligenz 🤖 und Finanz-Wissen 💰, bloß von der Aussicht auf einen Finanzmarkt für ALLE angetrieben. Zusammen haben wir diese Plattform aufgebaut, um allen jungen Menschen einen guten und erfolgreichen Start in die finanzielle Unabhängigkeit zu ermöglichen. 🎯 Wir hoffen, dass wir gemeinsam unser Ziel erreichen können und finanzielle Bildung in Deutschland revolutionieren werden. 🌟</p>
+        <p data-translate-key="description">Wir sind eine Gruppe junger Menschen, die vor dem Mangel an finanzieller Bildung in Deutschland nicht die Augen verschließen wollen. Als kleines deutsches Start-Up fing bei uns sozusagen alles in der Garage an, mit einer gesunden Mischung aus Tech-Expertise, künstlicher Intelligenz und Finanz-Wissen, bloß von der Aussicht auf einen Finanzmarkt für ALLE angetrieben. Zusammen haben wir diese Plattform aufgebaut, um allen jungen Menschen einen guten und erfolgreichen Start in die finanzielle Unabhängigkeit zu ermöglichen. Wir hoffen, dass wir gemeinsam unser Ziel erreichen können und finanzielle Bildung in Deutschland revolutionieren werden.</p>
+        <button class="contact-button" onclick="openContactForm()" data-translate-key="contact_button">Kontakt Aufnehmen</button>
     </div>
 
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeContactForm()">×</span>
+            <h2 data-translate-key="contact_form_title">Kontaktieren Sie uns</h2>
+            <form id="contactForm">
+                <label for="name" data-translate-key="name_label">Name</label>
+                <input type="text" id="name" name="name" required>
+                <label for="email" data-translate-key="email_label">E-Mail</label>
+                <input type="email" id="email" name="email" required>
+                <label for="message" data-translate-key="message_label">Nachricht</label>
+                <textarea id="message" name="message" required></textarea>
+                <button type="submit" data-translate-key="submit_button">Nachricht Senden</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="message-container"></div>
+
+    <script>
+        // Initialize EmailJS with your public key
+        (function(){
+            emailjs.init("Zw39o2PKqhQ9D2le6");
+        })();
+
+        // Translation dictionary
+        const translations = {
+            "de": {
+                "title": "Unsere Mission",
+                "description": "Wir sind eine Gruppe junger Menschen, die vor dem Mangel an finanzieller Bildung in Deutschland nicht die Augen verschließen wollen. Als kleines deutsches Start-Up fing bei uns sozusagen alles in der Garage an, mit einer gesunden Mischung aus Tech-Expertise, künstlicher Intelligenz und Finanz-Wissen, bloß von der Aussicht auf einen Finanzmarkt für ALLE angetrieben. Zusammen haben wir diese Plattform aufgebaut, um allen jungen Menschen einen guten und erfolgreichen Start in die finanzielle Unabhängigkeit zu ermöglichen. Wir hoffen, dass wir gemeinsam unser Ziel erreichen können und finanzielle Bildung in Deutschland revolutionieren werden.",
+                "contact_button": "Kontakt Aufnehmen",
+                "contact_form_title": "Kontaktieren Sie uns",
+                "name_label": "Name",
+                "email_label": "E-Mail",
+                "message_label": "Nachricht",
+                "submit_button": "Nachricht Senden",
+                "success_message": "Nachricht erfolgreich gesendet!",
+                "error_message": "Fehler beim Senden der Nachricht. Bitte versuche es erneut."
+            },
+            "en": {
+                "title": "Our Mission",
+                "description": "We are a group of young people who refuse to ignore the lack of financial education in Germany. As a small German start-up, everything started, so to speak, in the garage, with a healthy mix of tech expertise, artificial intelligence, and financial knowledge, driven solely by the vision of a financial market for EVERYONE. Together, we built this platform to enable all young people to have a good and successful start toward financial independence. We hope that together we can achieve our goal and revolutionize financial education in Germany.",
+                "contact_button": "Get in Touch",
+                "contact_form_title": "Contact Us",
+                "name_label": "Name",
+                "email_label": "Email",
+                "message_label": "Message",
+                "submit_button": "Send Message",
+                "success_message": "Message sent successfully!",
+                "error_message": "Error sending message. Please try again."
+            },
+            "fr": {
+                "title": "Notre Mission",
+                "description": "Nous sommes un groupe de jeunes qui refusons d’ignorer le manque d’éducation financière en Allemagne. En tant que petite start-up allemande, tout a commencé, pour ainsi dire, dans un garage, avec un mélange sain d’expertise technologique, d’intelligence artificielle et de connaissances financières, motivés uniquement par la vision d’un marché financier accessible à TOUS. Ensemble, nous avons construit cette plateforme pour permettre à tous les jeunes de démarrer avec succès leur chemin vers l’indépendance financière. Nous espérons qu’ensemble, nous atteindrons notre objectif et révolutionnerons l’éducation financière en Allemagne.",
+                "contact_button": "Nous Contacter",
+                "contact_form_title": "Contactez-nous",
+                "name_label": "Nom",
+                "email_label": "Email",
+                "message_label": "Message",
+                "submit_button": "Envoyer le Message",
+                "success_message": "Message envoyé avec succès !",
+                "error_message": "Erreur lors de l'envoi du message. Veuillez réessayer."
+            }
+        };
+
+        let currentLang = 'de';
+
+        function applyTranslations(targetLang) {
+            if (!translations[targetLang]) return;
+            const elements = document.querySelectorAll('[data-translate-key]');
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate-key');
+                if (translations[targetLang][key]) {
+                    element.innerHTML = translations[targetLang][key];
+                }
+            });
+            document.title = translations[targetLang].title || "JugendInvestiert - Unsere Mission";
+        }
+
+        function translatePage(targetLang) {
+            if (targetLang === currentLang) return;
+            applyTranslations(targetLang);
+            document.documentElement.lang = targetLang;
+            currentLang = targetLang;
+        }
+
+        // Apply default language on load
+        window.addEventListener('DOMContentLoaded', () => {
+            applyTranslations('de');
+            const storedLang = localStorage.getItem('preferredLanguage');
+            if (storedLang && translations[storedLang] && storedLang !== 'de') {
+                translatePage(storedLang);
+            }
+        });
+
+        // Listen for language change messages from parent (index.html)
+        window.addEventListener('message', (event) => {
+            if (event.data.type === 'LANGUAGE_CHANGE') {
+                translatePage(event.data.language);
+            }
+        });
+
+        // Contact Form Functions
+        function openContactForm() {
+            document.getElementById('contactModal').style.display = 'flex';
+        }
+
+        function closeContactForm() {
+            document.getElementById('contactModal').style.display = 'none';
+            document.getElementById('contactForm').reset();
+        }
+
+        function displayMessage(message, type) {
+            const container = document.getElementById('message-container');
+            const div = document.createElement('div');
+            div.classList.add('message', type);
+            div.innerText = message;
+            container.appendChild(div);
+            setTimeout(() => div.remove(), 4000);
+        }
+
+        // Handle form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message').value;
+            const time = new Date().toLocaleString('de-DE', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                second: '2-digit'
+            });
+
+            const templateParams = {
+                from_name: name,
+                from_email: email,
+                message: message,
+                time: time,
+                reply_to: email
+            };
+
+            emailjs.send('service_mxrrx4n', 'template_sbk1tvv', templateParams)
+                .then(function(response) {
+                    displayMessage(translations[currentLang].success_message, 'success');
+                    closeContactForm();
+                }, function(error) {
+                    console.error('EmailJS Error:', error);
+                    displayMessage(translations[currentLang].error_message, 'error');
+                });
+        });
+    </script>
 </body>
 </html>

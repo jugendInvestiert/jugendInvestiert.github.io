@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Course 1: Aktien</title>
+    <title data-translate-key="title">Course 1: Aktien</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -12,8 +12,8 @@
             padding: 0;
             background-color: #101820;
             color: white;
-            overflow-x: hidden; /* Prevent horizontal scroll */
-            margin-top: 40px; /* Ensure content is below the navbar */
+            overflow-x: hidden;
+            margin-top: 40px;
             padding-bottom: 50px;
         }
         .navbar {
@@ -27,14 +27,14 @@
             justify-content: space-between;
             align-items: center;
             padding: 10px;
-            z-index: 1000; /* Make sure it stays on top */
+            z-index: 1000;
         }
         .navbar .cross {
             font-size: 1.5em;
             cursor: pointer;
         }
         .navbar .cross:hover {
-            color: grey; /* Miami blue */
+            color: grey;
         }
         .scroll-bar-container {
             position: fixed;
@@ -43,7 +43,7 @@
             width: 100%;
             height: 5px;
             background-color: #444;
-            z-index: 1000; /* Make sure it stays on top */
+            z-index: 1000;
         }
         .scroll-bar {
             height: 100%;
@@ -63,24 +63,22 @@
             border-radius: 10px;
         }
         .example {
-            background-color: #1B2631; /* Dark blue tone */
+            background-color: #1B2631;
             padding: 15px;
             border-radius: 8px;
             margin-top: 10px;
         }
-        /* Ensure images scale properly and have rounded edges */
         img {
             width: 100%;
             max-width: 500px;
             height: auto;
             display: block;
-            border-radius: 10px; /* Adjust the radius as needed */
+            border-radius: 10px;
             align-self: left;
         }
     </style>
 </head>
 <body>
-
     <div class="navbar">
         <div class="cross" onclick="window.location.href='section1.html'">✖</div>
     </div>
@@ -91,38 +89,145 @@
 
     <div id="course-details">
         <div class="container">
-            <h2>Lektion 1: Wie lege ich mein Geld in Aktien an?</h2>
-            <p>Bei Investitionen bevorzugen wir langfristige, risikoarme Anlagen. Im Folgenden werden wir einige dieser Anlageklassen genauer betrachten:</p>
-            <h3>A. Die Aktie</h3>
-            <p>Eine Aktie repräsentiert einen Anteil am Eigenkapital eines Unternehmens. Durch den Kauf von Aktien erwirbt man ein Stück des Unternehmens und wird damit zum Miteigentümer. Der Wert einer Aktie kann sich je nach der finanziellen Performance des Unternehmens sowie Angebot und Nachfrage ändern.</p>
+            <h2 data-translate-key="lesson1_title">Lektion 1: Wie lege ich mein Geld in Aktien an?</h2>
+            <p data-translate-key="intro">Bei Investitionen bevorzugen wir langfristige, risikoarme Anlagen. Im Folgenden werden wir einige dieser Anlageklassen genauer betrachten:</p>
+            <h3 data-translate-key="section_a_title">A. Die Aktie</h3>
+            <p data-translate-key="section_a_desc">Eine Aktie repräsentiert einen Anteil am Eigenkapital eines Unternehmens. Durch den Kauf von Aktien erwirbt man ein Stück des Unternehmens und wird damit zum Miteigentümer. Der Wert einer Aktie kann sich je nach der finanziellen Performance des Unternehmens sowie Angebot und Nachfrage ändern.</p>
             <div class="example">
-                <h4>Beispiel:</h4>
+                <h4 data-translate-key="example_title">Beispiel:</h4>
                 <img src="apple.jpg" alt="Apple">
-                <p>Stellen Sie sich vor, Sie entscheiden sich, in Apple-Aktien zu investieren. Sie kaufen Aktien von Apple (AAPL) für 150 US-Dollar pro Aktie. Wenn der Preis der Apple-Aktie nach Ihrem Kauf steigt, sagen wir auf 200 US-Dollar pro Aktie, können Sie Ihre Aktien zu einem höheren Preis verkaufen und einen Gewinn von 50 US-Dollar pro Aktie erzielen. Wenn jedoch der Preis der Apple-Aktie nach Ihrem Kauf fällt, sagen wir auf 120 US-Dollar pro Aktie, und Sie entscheiden sich, Ihre Aktien zu diesem Preis zu verkaufen, würden Sie einen Verlust von 30 US-Dollar pro Aktie erleiden.</p>
-                <p>Zusammenfassend: Beim Investieren in Apple-Aktien oder jede andere Aktie können Sie Geld verdienen, wenn der Aktienkurs steigt, indem Sie Ihre Aktien zu einem höheren Preis verkaufen. Wenn jedoch der Aktienkurs fällt, können Sie einen Verlust erleiden, wenn Sie Ihre Aktien zu einem niedrigeren Preis verkaufen als dem, den Sie dafür bezahlt haben.</p>
+                <p data-translate-key="example_apple_1">Stellen Sie sich vor, Sie entscheiden sich, in Apple-Aktien zu investieren. Sie kaufen Aktien von Apple (AAPL) für 150 US-Dollar pro Aktie. Wenn der Preis der Apple-Aktie nach Ihrem Kauf steigt, sagen wir auf 200 US-Dollar pro Aktie, können Sie Ihre Aktien zu einem höheren Preis verkaufen und einen Gewinn von 50 US-Dollar pro Aktie erzielen. Wenn jedoch der Preis der Apple-Aktie nach Ihrem Kauf fällt, sagen wir auf 120 US-Dollar pro Aktie, und Sie entscheiden sich, Ihre Aktien zu diesem Preis zu verkaufen, würden Sie einen Verlust von 30 US-Dollar pro Aktie erleiden.</p>
+                <p data-translate-key="example_apple_2">Zusammenfassend: Beim Investieren in Apple-Aktien oder jede andere Aktie können Sie Geld verdienen, wenn der Aktienkurs steigt, indem Sie Ihre Aktien zu einem höheren Preis verkaufen. Wenn jedoch der Aktienkurs fällt, können Sie einen Verlust erleiden, wenn Sie Ihre Aktien zu einem niedrigeren Preis verkaufen als dem, den Sie dafür bezahlt haben.</p>
             </div>
-            <h3>B. Diversifizieren</h3>
-            <p>Wie bereits gezeigt, kann das Investieren in nur eine Aktie riskant sein. Daher ist es ratsam, das Risiko zu streuen, indem man sein Kapital auf verschiedene Anlagen verteilt. Dies nennt man Diversifizierung. Durch die Diversifizierung kann man das Risiko mindern, da Verluste in einer Anlage durch Gewinne in anderen Anlagen ausgeglichen werden können. Auf diese Weise kann man sein Portfolio stabilisieren und langfristig erfolgreich sein.</p>
-            <p>Hier spricht man von einem Aktion Portfolio.</p>
-            <img src="portfolio.jpg">
-            <p>Mit einem breit diversifizierten Aktienportfolio investieren wir nun in mehrere Aktien aus verschiedenen Branchen. Dadurch wird das Risiko gestreut, da Verluste in einer Branche durch Gewinne in anderen Branchen ausgeglichen werden können. Obwohl die potenziellen Gewinne möglicherweise nicht so hoch sind wie bei der Investition in eine einzelne Aktie, ist das Risiko insgesamt geringer. Es ist jedoch wichtig, Aktien aus verschiedenen Sektoren auszuwählen, um das Risiko weiter zu minimieren und langfristig stabile Renditen zu erzielen.</p>
-            <h3>Der Index</h3>
-            <p>Das Erstellen eines eigenen Aktienportfolios ist besonders für Anfänger eine Herausforderung, da die richtigen Aktien auszuwählen und ein ausgewogenes Portfolio zusammenzustellen äußerst anspruchsvoll ist. Eine einfachere Option für Anfänger ist es, in einen Index zu investieren. Im Grunde ist ein Index ein großes Aktion Portfolio was von anderen geleitet wird.</p>
+            <h3 data-translate-key="section_b_title">B. Diversifizieren</h3>
+            <p data-translate-key="section_b_desc_1">Wie bereits gezeigt, kann das Investieren in nur eine Aktie riskant sein. Daher ist es ratsam, das Risiko zu streuen, indem man sein Kapital auf verschiedene Anlagen verteilt. Dies nennt man Diversifizierung. Durch die Diversifizierung kann man das Risiko mindern, da Verluste in einer Anlage durch Gewinne in anderen Anlagen ausgeglichen werden können. Auf diese Weise kann man sein Portfolio stabilisieren und langfristig erfolgreich sein.</p>
+            <p data-translate-key="section_b_desc_2">Hier spricht man von einem Aktion Portfolio.</p>
+            <img src="portfolio.jpg" alt="Portfolio">
+            <p data-translate-key="portfolio_desc">Mit einem breit diversifizierten Aktienportfolio investieren wir nun in mehrere Aktien aus verschiedenen Branchen. Dadurch wird das Risiko gestreut, da Verluste in einer Branche durch Gewinne in anderen Branchen ausgeglichen werden können. Obwohl die potenziellen Gewinne möglicherweise nicht so hoch sind wie bei der Investition in eine einzelne Aktie, ist das Risiko insgesamt geringer. Es ist jedoch wichtig, Aktien aus verschiedenen Sektoren auszuwählen, um das Risiko weiter zu minimieren und langfristig stabile Renditen zu erzielen.</p>
+            <h3 data-translate-key="section_c_title">Der Index</h3>
+            <p data-translate-key="section_c_desc_1">Das Erstellen eines eigenen Aktienportfolios ist besonders für Anfänger eine Herausforderung, da die richtigen Aktien auszuwählen und ein ausgewogenes Portfolio zusammenzustellen äußerst anspruchsvoll ist. Eine einfachere Option für Anfänger ist es, in einen Index zu investieren. Im Grunde ist ein Index ein großes Aktion Portfolio was von anderen geleitet wird.</p>
             <div class="example">
-                <h4>Beispiel: Der S&P500</h4>
-                <img src="sp500.jpg">
-                <p>Der S&P 500 ist einer der bekanntesten Aktienindizes weltweit und gilt als Maßstab für die allgemeine Performance des US-Aktienmarktes. Er umfasst die 500 größten börsennotierten Unternehmen in den USA und spiegelt somit die Performance eines breiten Querschnitts der US-Wirtschaft wider. Ein Investment im S&P 500 bietet eine breite Diversifizierung und reduziert das Risiko im Vergleich zum Investieren in einzelne Aktien. Da der Index aus 500 Unternehmen besteht, gleichen sich einzelne Gewinne und Verluste aus, was zu einer insgesamt stabileren Performance führt.</p>
+                <h4 data-translate-key="example_sp500_title">Beispiel: Der S&P500</h4>
+                <img src="sp500.jpg" alt="S&P500">
+                <p data-translate-key="example_sp500_desc">Der S&P 500 ist einer der bekanntesten Aktienindizes weltweit und gilt als Maßstab für die allgemeine Performance des US-Aktienmarktes. Er umfasst die 500 größten börsennotierten Unternehmen in den USA und spiegelt somit die Performance eines breiten Querschnitts der US-Wirtschaft wider. Ein Investment im S&P 500 bietet eine breite Diversifizierung und reduziert das Risiko im Vergleich zum Investieren in einzelne Aktien. Da der Index aus 500 Unternehmen besteht, gleichen sich einzelne Gewinne und Verluste aus, was zu einer insgesamt stabileren Performance führt.</p>
             </div>
-            <p>Hier sind einige andere Beispiele für Aktienindizes:</p>
+            <p data-translate-key="indices_intro">Hier sind einige andere Beispiele für Aktienindizes:</p>
             <ul>
-                <li>Dow Jones Industrial Average (DJIA): Ein Index, der die Performance von 30 bedeutenden Industrieunternehmen in den USA verfolgt.</li>
-                <li>NASDAQ Composite: Ein Index, der die Performance aller Aktien an der NASDAQ-Börse widerspiegelt, darunter viele Technologieunternehmen.</li>
-                <li>DAX: Der wichtigste deutsche Aktienindex, der die Performance der 30 größten Unternehmen an der Frankfurter Wertpapierbörse widerspiegelt.</li>
+                <li data-translate-key="index_djia">Dow Jones Industrial Average (DJIA): Ein Index, der die Performance von 30 bedeutenden Industrieunternehmen in den USA verfolgt.</li>
+                <li data-translate-key="index_nasdaq">NASDAQ Composite: Ein Index, der die Performance aller Aktien an der NASDAQ-Börse widerspiegelt, darunter viele Technologieunternehmen.</li>
+                <li data-translate-key="index_dax">DAX: Der wichtigste deutsche Aktienindex, der die Performance der 30 größten Unternehmen an der Frankfurter Wertpapierbörse widerspiegelt.</li>
             </ul>
         </div>
     </div>
 
     <script>
+        const translations = {
+            "de": {
+                "title": "Course 1: Aktien",
+                "lesson1_title": "Lektion 1: Wie lege ich mein Geld in Aktien an?",
+                "intro": "Bei Investitionen bevorzugen wir langfristige, risikoarme Anlagen. Im Folgenden werden wir einige dieser Anlageklassen genauer betrachten:",
+                "section_a_title": "A. Die Aktie",
+                "section_a_desc": "Eine Aktie repräsentiert einen Anteil am Eigenkapital eines Unternehmens. Durch den Kauf von Aktien erwirbt man ein Stück des Unternehmens und wird damit zum Miteigentümer. Der Wert einer Aktie kann sich je nach der finanziellen Performance des Unternehmens sowie Angebot und Nachfrage ändern.",
+                "example_title": "Beispiel:",
+                "example_apple_1": "Stellen Sie sich vor, Sie entscheiden sich, in Apple-Aktien zu investieren. Sie kaufen Aktien von Apple (AAPL) für 150 US-Dollar pro Aktie. Wenn der Preis der Apple-Aktie nach Ihrem Kauf steigt, sagen wir auf 200 US-Dollar pro Aktie, können Sie Ihre Aktien zu einem höheren Preis verkaufen und einen Gewinn von 50 US-Dollar pro Aktie erzielen. Wenn jedoch der Preis der Apple-Aktie nach Ihrem Kauf fällt, sagen wir auf 120 US-Dollar pro Aktie, und Sie entscheiden sich, Ihre Aktien zu diesem Preis zu verkaufen, würden Sie einen Verlust von 30 US-Dollar pro Aktie erleiden.",
+                "example_apple_2": "Zusammenfassend: Beim Investieren in Apple-Aktien oder jede andere Aktie können Sie Geld verdienen, wenn der Aktienkurs steigt, indem Sie Ihre Aktien zu einem höheren Preis verkaufen. Wenn jedoch der Aktienkurs fällt, können Sie einen Verlust erleiden, wenn Sie Ihre Aktien zu einem niedrigeren Preis verkaufen als dem, den Sie dafür bezahlt haben.",
+                "section_b_title": "B. Diversifizieren",
+                "section_b_desc_1": "Wie bereits gezeigt, kann das Investieren in nur eine Aktie riskant sein. Daher ist es ratsam, das Risiko zu streuen, indem man sein Kapital auf verschiedene Anlagen verteilt. Dies nennt man Diversifizierung. Durch die Diversifizierung kann man das Risiko mindern, da Verluste in einer Anlage durch Gewinne in anderen Anlagen ausgeglichen werden können. Auf diese Weise kann man sein Portfolio stabilisieren und langfristig erfolgreich sein.",
+                "section_b_desc_2": "Hier spricht man von einem Aktion Portfolio.",
+                "portfolio_desc": "Mit einem breit diversifizierten Aktienportfolio investieren wir nun in mehrere Aktien aus verschiedenen Branchen. Dadurch wird das Risiko gestreut, da Verluste in einer Branche durch Gewinne in anderen Branchen ausgeglichen werden können. Obwohl die potenziellen Gewinne möglicherweise nicht so hoch sind wie bei der Investition in eine einzelne Aktie, ist das Risiko insgesamt geringer. Es ist jedoch wichtig, Aktien aus verschiedenen Sektoren auszuwählen, um das Risiko weiter zu minimieren und langfristig stabile Renditen zu erzielen.",
+                "section_c_title": "Der Index",
+                "section_c_desc_1": "Das Erstellen eines eigenen Aktienportfolios ist besonders für Anfänger eine Herausforderung, da die richtigen Aktien auszuwählen und ein ausgewogenes Portfolio zusammenzustellen äußerst anspruchsvoll ist. Eine einfachere Option für Anfänger ist es, in einen Index zu investieren. Im Grunde ist ein Index ein großes Aktion Portfolio was von anderen geleitet wird.",
+                "example_sp500_title": "Beispiel: Der S&P500",
+                "example_sp500_desc": "Der S&P 500 ist einer der bekanntesten Aktienindizes weltweit und gilt als Maßstab für die allgemeine Performance des US-Aktienmarktes. Er umfasst die 500 größten börsennotierten Unternehmen in den USA und spiegelt somit die Performance eines breiten Querschnitts der US-Wirtschaft wider. Ein Investment im S&P 500 bietet eine breite Diversifizierung und reduziert das Risiko im Vergleich zum Investieren in einzelne Aktien. Da der Index aus 500 Unternehmen besteht, gleichen sich einzelne Gewinne und Verluste aus, was zu einer insgesamt stabileren Performance führt.",
+                "indices_intro": "Hier sind einige andere Beispiele für Aktienindizes:",
+                "index_djia": "Dow Jones Industrial Average (DJIA): Ein Index, der die Performance von 30 bedeutenden Industrieunternehmen in den USA verfolgt.",
+                "index_nasdaq": "NASDAQ Composite: Ein Index, der die Performance aller Aktien an der NASDAQ-Börse widerspiegelt, darunter viele Technologieunternehmen.",
+                "index_dax": "DAX: Der wichtigste deutsche Aktienindex, der die Performance der 30 größten Unternehmen an der Frankfurter Wertpapierbörse widerspiegelt."
+            },
+            "en": {
+                "title": "Course 1: Stocks",
+                "lesson1_title": "Lesson 1: How do I invest in stocks?",
+                "intro": "When investing, we prefer long-term, low-risk investments. Below, we will take a closer look at some of these asset classes:",
+                "section_a_title": "A. The Stock",
+                "section_a_desc": "A stock represents a share in a company's equity. By purchasing stocks, you acquire a piece of the company and become a co-owner. The value of a stock can change based on the company's financial performance as well as supply and demand.",
+                "example_title": "Example:",
+                "example_apple_1": "Imagine you decide to invest in Apple stocks. You buy Apple (AAPL) stocks for $150 per share. If the price of Apple stock rises after your purchase, say to $200 per share, you can sell your stocks at a higher price and make a profit of $50 per share. However, if the price of Apple stock falls after your purchase, say to $120 per share, and you decide to sell your stocks at that price, you would incur a loss of $30 per share.",
+                "example_apple_2": "In summary: When investing in Apple stocks or any other stock, you can make money if the stock price rises by selling your stocks at a higher price. However, if the stock price falls, you may incur a loss if you sell your stocks at a lower price than what you paid for them.",
+                "section_b_title": "B. Diversification",
+                "section_b_desc_1": "As shown, investing in just one stock can be risky. Therefore, it is advisable to spread the risk by distributing your capital across different investments. This is called diversification. Through diversification, you can reduce risk, as losses in one investment can be offset by gains in others. This way, you can stabilize your portfolio and achieve long-term success.",
+                "section_b_desc_2": "This is referred to as a stock portfolio.",
+                "portfolio_desc": "With a broadly diversified stock portfolio, we now invest in multiple stocks from different industries. This spreads the risk, as losses in one industry can be offset by gains in others. While the potential gains may not be as high as investing in a single stock, the overall risk is lower. However, it is important to select stocks from different sectors to further minimize risk and achieve stable long-term returns.",
+                "section_c_title": "The Index",
+                "section_c_desc_1": "Creating your own stock portfolio is particularly challenging for beginners, as selecting the right stocks and building a balanced portfolio is highly complex. A simpler option for beginners is to invest in an index. Essentially, an index is a large stock portfolio managed by others.",
+                "example_sp500_title": "Example: The S&P 500",
+                "example_sp500_desc": "The S&P 500 is one of the most well-known stock indices worldwide and is considered a benchmark for the overall performance of the US stock market. It includes the 500 largest publicly traded companies in the US, thus reflecting the performance of a broad cross-section of the US economy. Investing in the S&P 500 offers broad diversification and reduces risk compared to investing in individual stocks. Since the index consists of 500 companies, individual gains and losses balance out, leading to more stable overall performance.",
+                "indices_intro": "Here are some other examples of stock indices:",
+                "index_djia": "Dow Jones Industrial Average (DJIA): An index that tracks the performance of 30 major industrial companies in the US.",
+                "index_nasdaq": "NASDAQ Composite: An index that reflects the performance of all stocks listed on the NASDAQ stock exchange, including many technology companies.",
+                "index_dax": "DAX: The most important German stock index, which reflects the performance of the 30 largest companies on the Frankfurt Stock Exchange."
+            },
+            "fr": {
+                "title": "Cours 1 : Actions",
+                "lesson1_title": "Leçon 1 : Comment investir en actions ?",
+                "intro": "Lorsqu'il s'agit d'investir, nous privilégions les investissements à long terme et à faible risque. Ci-dessous, nous examinerons de plus près certaines de ces classes d'actifs :",
+                "section_a_title": "A. L'Action",
+                "section_a_desc": "Une action représente une part du capital d'une entreprise. En achetant des actions, vous acquérez une partie de l'entreprise et devenez ainsi copropriétaire. La valeur d'une action peut varier en fonction des performances financières de l'entreprise ainsi que de l'offre et de la demande.",
+                "example_title": "Exemple :",
+                "example_apple_1": "Imaginez que vous décidiez d'investir dans des actions Apple. Vous achetez des actions Apple (AAPL) à 150 dollars par action. Si le prix de l'action Apple augmente après votre achat, disons à 200 dollars par action, vous pouvez vendre vos actions à un prix plus élevé et réaliser un bénéfice de 50 dollars par action. Cependant, si le prix de l'action Apple baisse après votre achat, disons à 120 dollars par action, et que vous décidez de vendre vos actions à ce prix, vous subiriez une perte de 30 dollars par action.",
+                "example_apple_2": "En résumé : En investissant dans des actions Apple ou toute autre action, vous pouvez gagner de l'argent si le cours de l'action augmente en vendant vos actions à un prix plus élevé. Cependant, si le cours de l'action baisse, vous pouvez subir une perte si vous vendez vos actions à un prix inférieur à celui que vous avez payé.",
+                "section_b_title": "B. Diversification",
+                "section_b_desc_1": "Comme montré, investir dans une seule action peut être risqué. Il est donc conseillé de répartir le risque en distribuant votre capital sur différents investissements. Cela s'appelle la diversification. Grâce à la diversification, vous pouvez réduire le risque, car les pertes dans un investissement peuvent être compensées par des gains dans d'autres. De cette manière, vous pouvez stabiliser votre portefeuille et réussir à long terme.",
+                "section_b_desc_2": "On parle ici d'un portefeuille d'actions.",
+                "portfolio_desc": "Avec un portefeuille d'actions largement diversifié, nous investissons maintenant dans plusieurs actions de différentes industries. Cela répartit le risque, car les pertes dans une industrie peuvent être compensées par des gains dans d'autres. Bien que les gains potentiels puissent ne pas être aussi élevés qu'en investissant dans une seule action, le risque global est plus faible. Cependant, il est important de sélectionner des actions de différents secteurs pour minimiser davantage le risque et obtenir des rendements stables à long terme.",
+                "section_c_title": "L'Indice",
+                "section_c_desc_1": "Créer son propre portefeuille d'actions est particulièrement difficile pour les débutants, car choisir les bonnes actions et constituer un portefeuille équilibré est très complexe. Une option plus simple pour les débutants est d'investir dans un indice. En gros, un indice est un grand portefeuille d'actions géré par d'autres.",
+                "example_sp500_title": "Exemple : Le S&P 500",
+                "example_sp500_desc": "Le S&P 500 est l'un des indices boursiers les plus connus au monde et est considéré comme une référence pour la performance globale du marché boursier américain. Il regroupe les 500 plus grandes entreprises cotées en bourse aux États-Unis, reflétant ainsi la performance d'un large éventail de l'économie américaine. Investir dans le S&P 500 offre une large diversification et réduit le risque par rapport à l'investissement dans des actions individuelles. Comme l'indice est composé de 500 entreprises, les gains et les pertes individuels s'équilibrent, ce qui conduit à une performance globale plus stable.",
+                "indices_intro": "Voici quelques autres exemples d'indices boursiers :",
+                "index_djia": "Dow Jones Industrial Average (DJIA) : Un indice qui suit la performance de 30 grandes entreprises industrielles aux États-Unis.",
+                "index_nasdaq": "NASDAQ Composite : Un indice qui reflète la performance de toutes les actions cotées à la bourse NASDAQ, y compris de nombreuses entreprises technologiques.",
+                "index_dax": "DAX : L'indice boursier allemand le plus important, qui reflète la performance des 30 plus grandes entreprises de la Bourse de Francfort."
+            }
+        };
+
+        let currentLang = 'de';
+
+        function applyTranslations(targetLang) {
+            const elements = document.querySelectorAll('[data-translate-key]');
+            if (!translations[targetLang]) return;
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate-key');
+                if (translations[targetLang][key]) {
+                    element.innerHTML = translations[targetLang][key];
+                }
+            });
+            document.title = translations[targetLang].title || "Course 1: Aktien";
+        }
+
+        function translatePage(targetLang) {
+            if (targetLang === currentLang) return;
+            applyTranslations(targetLang);
+            document.documentElement.lang = targetLang;
+            currentLang = targetLang;
+        }
+
+        // Apply default language on load
+        window.addEventListener('DOMContentLoaded', () => {
+            applyTranslations('de');
+            const storedLang = localStorage.getItem('preferredLanguage');
+            if (storedLang && translations[storedLang] && storedLang !== 'de') {
+                translatePage(storedLang);
+            }
+        });
+
+        // Listen for language change messages from parent (index.html)
+        window.addEventListener('message', (event) => {
+            if (event.data.type === 'LANGUAGE_CHANGE') {
+                translatePage(event.data.language);
+            }
+        });
+
+        // Scroll bar functionality
         function updateScrollBar() {
             const scrollBar = document.getElementById('scroll-bar');
             const scrollHeight = document.documentElement.scrollHeight;

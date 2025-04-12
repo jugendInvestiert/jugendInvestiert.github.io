@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>JugendInvestiert - Mobile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Base styles */
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      font-family: 'Poppins', Arial, sans-serif;
+      background-color: #101820;
+      color: white;
+      min-height: 100vh;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    /* Mobile Layout */
+    .mobile-layout {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      padding: 10px 5px;
+      padding-bottom: 120px;
+      text-align: center;
+      gap: 15px;
+      margin-top: 80px;
+    }
+
+    /* Header */
+    .mobile-layout .header {
+      width: 100%;
+      background-color: #1B2631;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+
+    /* Brand Container */
+    .brand-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .mobile-layout .header img {
+      height: 60px;
+      width: 60px;
+      border-radius: 12px;
+    }
+
+    .mobile-layout .header h1 {
+      font-size: 24px;
+      margin: 0;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    /* Updated Flag Styles - More rectangular */
+    .flag-container {
+      position: relative;
+    }
+    .flag-icon {
+      width: 45px; /* Increased width */
+      height: 30px; /* Adjusted height for proper flag ratio */
+      border-radius: 4px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      object-fit: cover;
+      border: 1px solid #ffffff33;
+    }
+    .flag-icon:hover {
+      transform: scale(1.1);
+    }
+
+    /* Updated Language Dropdown */
+    .language-dropdown {
+      display: none;
+      position: absolute;
+      top: 110%;
+      right: 0;
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      overflow: hidden;
+      flex-direction: column;
+      align-items: center;
+      padding: 0.75rem;
+      z-index: 1001;
+    }
+    .language-dropdown.open {
+      display: flex;
+    }
+    .language-dropdown img {
+      width: 45px; /* Match main flag width */
+      height: 30px; /* Match main flag height */
+      border-radius: 4px;
+      margin: 0.5rem;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      object-fit: cover;
+      border: 1px solid #00000033;
+    }
+    .language-dropdown img:hover {
+      transform: scale(1.1);
+    }
+
+    /* Regular Geometric Cubes */
+    .mobile-layout .cube, 
+    .mobile-layout .text-cube, 
+    .mobile-layout .rocket-cube {
+      background-color: #1B2631;
+      width: 90vw;
+      aspect-ratio: 1 / 1;
+      border-radius: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 5px 8px;
+      box-sizing: border-box;
+      margin: 0 auto;
+      margin-bottom: 15px;
+      overflow: hidden;
+    }
+
+    /* Slogan Squares */
+    .mobile-layout .slogan-square-mobile {
+      background-color: #2E4053;
+      color: #ffffff;
+      font-size: 18px;
+      padding: 8px 10px;
+      border-radius: 15px;
+      box-sizing: border-box;
+      min-height: 50px;
+      width: 90vw;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 15px;
+    }
+
+    /* Number Square */
+    .mobile-layout .number-square {
+      font-size: 100px;
+      color: #007bff;
+      font-weight: bold;
+      margin: 0;
+      text-align: center;
+    }
+
+    /* Bamboo Text */
+    .mobile-layout .bamboo-text {
+      font-size: 24px;
+      color: white;
+      font-weight: normal;
+      text-align: center;
+      line-height: 1.4;
+      margin: 0;
+    }
+    .mobile-layout .bamboo-text a {
+      text-decoration: underline;
+      color: #007bff;
+      font-weight: bold;
+    }
+
+    /* Description Text */
+    .mobile-layout .description-text {
+      font-size: 20px;
+      color: #cccccc;
+      margin: 0;
+      line-height: 1.5;
+    }
+    .mobile-layout .description-text a {
+      color: #007bff;
+      text-decoration: underline;
+    }
+
+    /* Number and Logo */
+    .mobile-layout .number-and-logo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+    }
+
+    /* Bamboo Logo */
+    .mobile-layout .bamboo-logo {
+      height: 150px;
+      width: auto;
+      max-width: 100%;
+    }
+
+    /* Text Cube */
+    .mobile-layout .text-cube p {
+      font-size: 16px;
+      color: #cccccc;
+      margin: 0;
+      line-height: 1.5;
+      padding: 0 8px;
+    }
+
+    /* Rocket Image and Cube */
+    .mobile-layout .rocket-image {
+      width: 160px;
+      animation: bounceRocket 2s infinite;
+      max-width: 100%;
+    }
+    .mobile-layout .rocket-cube {
+      padding: 5px 8px;
+      margin-bottom: 15px;
+    }
+    .mobile-layout .rocket-text {
+      font-size: 26px;
+      color: #ffffff;
+      margin: 0;
+    }
+
+    /* Glowing Button Container */
+    .mobile-layout .glow-button-container {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    /* Start Button */
+    .mobile-layout .start-button {
+      background-color: #007bff;
+      color: #ffffff;
+      border: none;
+      padding: 12px 25px;
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 20px;
+      cursor: pointer;
+      outline: none;
+      box-shadow:
+        0 0 10px rgba(0, 123, 255, 0.7),
+        0 0 20px rgba(0, 123, 255, 0.5),
+        0 0 30px rgba(0, 123, 255, 0.3);
+      transition: background-color 0.3s, box-shadow 0.3s;
+    }
+    .mobile-layout .start-button:hover {
+      background-color: #0056b3;
+      box-shadow: 0 0 30px rgba(0, 123, 255, 0.7);
+    }
+    .mobile-layout .start-button:active {
+      background-color: #004080;
+      box-shadow: 0 0 40px rgba(0, 123, 255, 0.9);
+    }
+
+    /* Rocket Animation */
+    @keyframes bounceRocket {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-20px);
+      }
+      60% {
+        transform: translateY(-10px);
+      }
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 480px) {
+      .mobile-layout .header h1 {
+        font-size: 20px;
+      }
+      .mobile-layout .header img {
+        height: 50px;
+        width: 50px;
+      }
+      .brand-container {
+        gap: 8px;
+      }
+      .flag-icon,
+      .language-dropdown img {
+        width: 40px;
+        height: 27px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="mobile-layout">
+    <!-- Header -->
+    <div class="header">
+      <div class="brand-container">
+        <img src="logo.jpg" alt="JugendInvestiert Logo">
+        <h1>JugendInvestiert</h1>
+      </div>
+      <div class="flag-container">
+        <img src="https://flagcdn.com/de.svg" alt="German Flag" class="flag-icon" id="flagIcon" />
+        <div class="language-dropdown" id="languageDropdown">
+          <img src="https://flagcdn.com/de.svg" alt="German Flag" data-lang="de" />
+          <img src="https://flagcdn.com/fr.svg" alt="French Flag" data-lang="fr" />
+          <img src="https://flagcdn.com/es.svg" alt="Spanish Flag" data-lang="es" />
+          <img src="https://flagcdn.com/gb.svg" alt="British Flag" data-lang="gb" />
+          <img src="https://flagcdn.com/dk.svg" alt="Danish Flag" data-lang="da" />
+          <img src="https://flagcdn.com/it.svg" alt="Italian Flag" data-lang="it" />
+          <img src="https://flagcdn.com/nl.svg" alt="Dutch Flag" data-lang="nl" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+      <!-- 1) First Cube (Bamboo Cube) -->
+      <div class="cube">
+        <div class="number-and-logo">
+          <img src="bamboologo.jpg" alt="Little Bamboo Logo" class="bamboo-logo">
+          <div class="bamboo-text">
+            Wir unterstützen die Spendenorganisation<br>
+            <a href="https://www.littlebamboo.info/" target="_blank">
+              Little Bamboo
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slogan -->
+      <div class="slogan-square-mobile">
+        <p>Finanzwissen für alle - Investiere in deine Zukunft!</p>
+      </div>
+
+      <!-- #1 Cube -->
+      <div class="cube">
+        <div class="number-square">#1</div>
+        <p class="description-text">bei der Vermittlung von Finanzwissen</p>
+      </div>
+
+      <!-- Text Cube -->
+      <div class="text-cube">
+        <p>
+          Unsere Plattform ist eine Quelle für umfassendes Finanzwissen 💡,
+          das gezielt auf die Bedürfnisse der Jugend zugeschnitten ist.
+        </p>
+      </div>
+
+      <!-- Slogan Square -->
+      <div class="slogan-square-mobile">
+        <p>Gratis, Effizient und macht Spaß</p>
+      </div>
+
+      <!-- Rocket Cube -->
+      <div class="rocket-cube">
+        <img src="rocket.png" alt="Rocket" class="rocket-image">
+        <h2 class="rocket-text">Steigere dein</h2>
+        <h2 class="rocket-text">Finanzwissen! 💪</h2>
+      </div>
+
+      <!-- Glowing Button -->
+      <div class="glow-button-container">
+        <button class="start-button" onclick="requestParentToOpenSignup()" aria-label="Starten Sie jetzt">
+          Jetzt starten
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function requestParentToOpenSignup() {
+      window.parent.postMessage({ action: 'openSignupModal' }, '*');
+    }
+
+    const flagIcon = document.getElementById('flagIcon');
+    const languageDropdown = document.getElementById('languageDropdown');
+
+    flagIcon.addEventListener('click', (e) => {
+      e.stopPropagation();
+      languageDropdown.classList.toggle('open');
+    });
+
+    const changeLanguage = (language) => {
+      const flagIcon = document.getElementById('flagIcon');
+      flagIcon.src = `https://flagcdn.com/${language}.svg`;
+      flagIcon.alt = `${language.toUpperCase()} Flag`;
+      languageDropdown.classList.remove('open');
+    };
+
+    const flagImages = languageDropdown.querySelectorAll('img');
+    flagImages.forEach(flag => {
+      flag.addEventListener('click', () => {
+        const selectedLang = flag.getAttribute('data-lang');
+        changeLanguage(selectedLang);
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!languageDropdown.contains(e.target) && e.target !== flagIcon) {
+        languageDropdown.classList.remove('open');
+      }
+    });
+  </script>
+</body>
+</html>

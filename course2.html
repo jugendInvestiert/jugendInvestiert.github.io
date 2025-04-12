@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Course2: Anleihen</title>
+    <title data-translate-key="title">Course 2: Anleihen</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -12,11 +12,10 @@
             padding: 0;
             background-color: #101820;
             color: white;
-            overflow-x: hidden; /* Prevent horizontal scroll */
-            margin-top: 40px; /* Ensure content is below the navbar */
+            overflow-x: hidden;
+            margin-top: 40px;
             padding-bottom: 50px;
         }
-
         .navbar {
             position: fixed;
             top: 0;
@@ -28,14 +27,14 @@
             justify-content: space-between;
             align-items: center;
             padding: 10px;
-            z-index: 1000; /* Make sure it stays on top */
+            z-index: 1000;
         }
         .navbar .cross {
             font-size: 1.5em;
             cursor: pointer;
         }
         .navbar .cross:hover {
-            color: grey; /* Miami blue */
+            color: grey;
         }
         .scroll-bar-container {
             position: fixed;
@@ -44,7 +43,7 @@
             width: 100%;
             height: 5px;
             background-color: #444;
-            z-index: 1000; /* Make sure it stays on top */
+            z-index: 1000;
         }
         .scroll-bar {
             height: 100%;
@@ -64,24 +63,22 @@
             border-radius: 10px;
         }
         .example {
-            background-color: #1B2631; /* Dark blue tone */
+            background-color: #1B2631;
             padding: 15px;
             border-radius: 8px;
             margin-top: 10px;
         }
-        /* Ensure images scale properly and have rounded edges */
         img {
             width: 100%;
             max-width: 500px;
             height: auto;
             display: block;
-            border-radius: 10px; /* Adjust the radius as needed */
+            border-radius: 10px;
             align-self: left;
         }
     </style>
 </head>
 <body>
-
     <div class="navbar">
         <div class="cross" onclick="window.location.href='section1.html'">✖</div>
     </div>
@@ -92,49 +89,168 @@
 
     <div id="course-details">
         <div class="container">
-            <h1>Lektion 2: Wie investiere ich in Anleihen?</h1>
-            <p>Anleihen bieten eine solide Möglichkeit, regelmäßige Erträge zu erzielen und das Kapital langfristig zu sichern. In diesem Kurs erfährst du, was Anleihen sind, wie sie funktionieren und wie du sie als Teil einer diversifizierten Anlagestrategie nutzen kannst.</p>
+            <h1 data-translate-key="lesson_title">Lektion 2: Wie investiere ich in Anleihen?</h1>
+            <p data-translate-key="intro">Anleihen bieten eine solide Möglichkeit, regelmäßige Erträge zu erzielen und das Kapital langfristig zu sichern. In diesem Kurs erfährst du, was Anleihen sind, wie sie funktionieren und wie du sie als Teil einer diversifizierten Anlagestrategie nutzen kannst.</p>
             
-            <h2>Was sind Anleihen?</h2>
-            <p>Anleihen sind Schuldtitel, bei denen du als Anleger einem Emittenten (z.B. einem Unternehmen oder einer Regierung) Geld leihst. Im Gegenzug erhältst du regelmäßige Zinszahlungen und am Ende der Laufzeit dein investiertes Kapital zurück. Anleihen gelten als sicherere Anlageform, besonders im Vergleich zu Aktien.</p>
+            <h2 data-translate-key="what_are_bonds_title">Was sind Anleihen?</h2>
+            <p data-translate-key="what_are_bonds_desc">Anleihen sind Schuldtitel, bei denen du als Anleger einem Emittenten (z.B. einem Unternehmen oder einer Regierung) Geld leihst. Im Gegenzug erhältst du regelmäßige Zinszahlungen und am Ende der Laufzeit dein investiertes Kapital zurück. Anleihen gelten als sicherere Anlageform, besonders im Vergleich zu Aktien.</p>
             
             <div class="example">
-                <h3>Beispiel: Investieren in Anleihen</h3>
-                <p>Stell dir vor, du investierst 1000 Euro in eine 10-jährige Anleihe mit einem jährlichen Zinssatz von 5%. Das bedeutet, dass du jedes Jahr 50 Euro an Zinsen erhältst. Nach 10 Jahren bekommst du zusätzlich zu den Zinsen auch deine ursprünglichen 1000 Euro zurück. Dieses Beispiel verdeutlicht, wie Anleihen ein stabiler Bestandteil deines Portfolios sein können, insbesondere in Zeiten niedriger Zinsen.</p>
-                <p><strong>Zusätzliches Beispiel:</strong> Wenn du 10.000 Euro in eine Unternehmensanleihe mit einem Zinssatz von 7% pro Jahr investierst, bekommst du jedes Jahr 700 Euro an Zinsen. Nach 5 Jahren würdest du 3.500 Euro an Zinsen erhalten und am Ende der Laufzeit die 10.000 Euro zurückbekommen.</p>
+                <h3 data-translate-key="example_bonds_title">Beispiel: Investieren in Anleihen</h3>
+                <p data-translate-key="example_bonds_1">Stell dir vor, du investierst 1000 Euro in eine 10-jährige Anleihe mit einem jährlichen Zinssatz von 5%. Das bedeutet, dass du jedes Jahr 50 Euro an Zinsen erhältst. Nach 10 Jahren bekommst du zusätzlich zu den Zinsen auch deine ursprünglichen 1000 Euro zurück. Dieses Beispiel verdeutlicht, wie Anleihen ein stabiler Bestandteil deines Portfolios sein können, insbesondere in Zeiten niedriger Zinsen.</p>
+                <p data-translate-key="example_bonds_2"><strong>Zusätzliches Beispiel:</strong> Wenn du 10.000 Euro in eine Unternehmensanleihe mit einem Zinssatz von 7% pro Jahr investierst, bekommst du jedes Jahr 700 Euro an Zinsen. Nach 5 Jahren würdest du 3.500 Euro an Zinsen erhalten und am Ende der Laufzeit die 10.000 Euro zurückbekommen.</p>
             </div>
             
-            <h2>Arten von Anleihen</h2>
-            <h3>Staatsanleihen</h3>
-            <p>Staatsanleihen werden von Regierungen herausgegeben, um öffentliche Projekte zu finanzieren. Aufgrund der Steuerkraft der Emittenten gelten sie als besonders sicher. Bekannte Beispiele sind US-Treasuries und deutsche Bundesanleihen. Solche Anleihen sind ideal für Anleger, die Wert auf Sicherheit legen.</p>
+            <h2 data-translate-key="types_of_bonds_title">Arten von Anleihen</h2>
+            <h3 data-translate-key="gov_bonds_title">Staatsanleihen</h3>
+            <p data-translate-key="gov_bonds_desc">Staatsanleihen werden von Regierungen herausgegeben, um öffentliche Projekte zu finanzieren. Aufgrund der Steuerkraft der Emittenten gelten sie als besonders sicher. Bekannte Beispiele sind US-Treasuries und deutsche Bundesanleihen. Solche Anleihen sind ideal für Anleger, die Wert auf Sicherheit legen.</p>
             <img src="gov_bond.jpg" alt="Ein Zertifikat für eine Staatsanleihe">
             <div class="example">
-                <h3>Beispiel: Investieren in Staatsanleihen</h3>
-                <p>Angenommen, du investierst 5000 Euro in eine 15-jährige deutsche Bundesanleihe mit einem Zinssatz von 2%. Jedes Jahr erhältst du 100 Euro Zinsen. Nach 15 Jahren hast du 1.500 Euro an Zinsen verdient und bekommst deine 5000 Euro zurück.</p>
-                <p><strong>Praktische Überlegung:</strong> Da Staatsanleihen oft als besonders sicher gelten, sind die Zinsen niedriger. Dies ist ein Kompromiss zwischen Sicherheit und Ertrag.</p>
+                <h3 data-translate-key="example_gov_bonds_title">Beispiel: Investieren in Staatsanleihen</h3>
+                <p data-translate-key="example_gov_bonds_1">Angenommen, du investierst 5000 Euro in eine 15-jährige deutsche Bundesanleihe mit einem Zinssatz von 2%. Jedes Jahr erhältst du 100 Euro Zinsen. Nach 15 Jahren hast du 1.500 Euro an Zinsen verdient und bekommst deine 5000 Euro zurück.</p>
+                <p data-translate-key="example_gov_bonds_2"><strong>Praktische Überlegung:</strong> Da Staatsanleihen oft als besonders sicher gelten, sind die Zinsen niedriger. Dies ist ein Kompromiss zwischen Sicherheit und Ertrag.</p>
             </div>
             
-            <h3>Unternehmensanleihen</h3>
-            <p>Unternehmensanleihen werden von Firmen ausgegeben, die Kapital für Investitionen und Expansionen benötigen. Sie bieten in der Regel höhere Zinsen als Staatsanleihen, bringen jedoch auch ein höheres Risiko mit sich. Unternehmen nutzen diese Mittel oft, um Innovationen voranzutreiben oder Marktanteile zu vergrößern.</p>
+            <h3 data-translate-key="corp_bonds_title">Unternehmensanleihen</h3>
+            <p data-translate-key="corp_bonds_desc">Unternehmensanleihen werden von Firmen ausgegeben, die Kapital für Investitionen und Expansionen benötigen. Sie bieten in der Regel höhere Zinsen als Staatsanleihen, bringen jedoch auch ein höheres Risiko mit sich. Unternehmen nutzen diese Mittel oft, um Innovationen voranzutreiben oder Marktanteile zu vergrößern.</p>
             <img src="corporate_bond.jpg" alt="Beispiel einer Unternehmensanleihe">
             <div class="example">
-                <h3>Beispiel: Investieren in Unternehmensanleihen</h3>
-                <p>Stell dir vor, du investierst 8000 Euro in eine 8-jährige Unternehmensanleihe eines großen Technologieunternehmens mit einem Zinssatz von 6%. Jedes Jahr erhältst du 480 Euro an Zinsen. Nach 8 Jahren hast du 3.840 Euro an Zinsen verdient und bekommst deine 8000 Euro zurück.</p>
-                <p><strong>Wichtige Anmerkung:</strong> Unternehmensanleihen bieten höhere Renditen, aber es besteht ein größeres Risiko, dass das Unternehmen in finanzielle Schwierigkeiten gerät und die Anleihe nicht wie geplant bedient wird.</p>
+                <h3 data-translate-key="example_corp_bonds_title">Beispiel: Investieren in Unternehmensanleihen</h3>
+                <p data-translate-key="example_corp_bonds_1">Stell dir vor, du investierst 8000 Euro in eine 8-jährige Unternehmensanleihe eines großen Technologieunternehmens mit einem Zinssatz von 6%. Jedes Jahr erhältst du 480 Euro an Zinsen. Nach 8 Jahren hast du 3.840 Euro an Zinsen verdient und bekommst deine 8000 Euro zurück.</p>
+                <p data-translate-key="example_corp_bonds_2"><strong>Wichtige Anmerkung:</strong> Unternehmensanleihen bieten höhere Renditen, aber es besteht ein größeres Risiko, dass das Unternehmen in finanzielle Schwierigkeiten gerät und die Anleihe nicht wie geplant bedient wird.</p>
             </div>
             
-            <h2>Diversifizieren: Eine wichtige Strategie</h2>
-            <p>Diversifikation bedeutet, dein Geld auf verschiedene Anleihen zu verteilen, um das Risiko zu minimieren. Falls eine Anleihe ausfällt, gleichen andere Anleihen mögliche Verluste aus. Eine diversifizierte Anlagestrategie ist essenziell, um langfristig stabile Renditen zu erzielen und gleichzeitig das Risiko zu steuern.</p>
+            <h2 data-translate-key="diversification_title">Diversifizieren: Eine wichtige Strategie</h2>
+            <p data-translate-key="diversification_desc_1">Diversifikation bedeutet, dein Geld auf verschiedene Anleihen zu verteilen, um das Risiko zu minimieren. Falls eine Anleihe ausfällt, gleichen andere Anleihen mögliche Verluste aus. Eine diversifizierte Anlagestrategie ist essenziell, um langfristig stabile Renditen zu erzielen und gleichzeitig das Risiko zu steuern.</p>
             <img src="bond_pie_chart.jpg" alt="Visuelle Darstellung von Diversifizierung">
             <div class="example">
-                <h3>Beispiel: Diversifizieren deiner Anleihe-Investitionen</h3>
-                <p>Angenommen, du hast 20.000 Euro, die du in Anleihen investieren möchtest. Anstatt alles in eine einzige Anleihe zu stecken, könntest du 10.000 Euro in Staatsanleihen, 5.000 Euro in Unternehmensanleihen und 5.000 Euro in Anleihen eines Schwellenlandes investieren. So profitierst du von der Sicherheit der Staatsanleihen, den höheren Zinsen der Unternehmensanleihen und der möglichen Wachstumsdynamik von Schwellenländern.</p>
-                <p><strong>Überlege:</strong> Wenn eine Anleihe im Schwellenland ausfällt, hast du trotzdem noch die Erträge aus den anderen beiden Anleihen. Diversifikation hilft dir, dein Risiko zu streuen und stabilere Erträge zu erzielen.</p>
+                <h3 data-translate-key="example_diversification_title">Beispiel: Diversifizieren deiner Anleihe-Investitionen</h3>
+                <p data-translate-key="example_diversification_1">Angenommen, du hast 20.000 Euro, die du in Anleihen investieren möchtest. Anstatt alles in eine einzige Anleihe zu stecken, könntest du 10.000 Euro in Staatsanleihen, 5.000 Euro in Unternehmensanleihen und 5.000 Euro in Anleihen eines Schwellenlandes investieren. So profitierst du von der Sicherheit der Staatsanleihen, den höheren Zinsen der Unternehmensanleihen und der möglichen Wachstumsdynamik von Schwellenländern.</p>
+                <p data-translate-key="example_diversification_2"><strong>Überlege:</strong> Wenn eine Anleihe im Schwellenland ausfällt, hast du trotzdem noch die Erträge aus den anderen beiden Anleihen. Diversifikation hilft dir, dein Risiko zu streuen und stabilere Erträge zu erzielen.</p>
             </div>
         </div>
     </div>
 
     <script>
+        const translations = {
+            "de": {
+                "title": "Course 2: Anleihen",
+                "lesson_title": "Lektion 2: Wie investiere ich in Anleihen?",
+                "intro": "Anleihen bieten eine solide Möglichkeit, regelmäßige Erträge zu erzielen und das Kapital langfristig zu sichern. In diesem Kurs erfährst du, was Anleihen sind, wie sie funktionieren und wie du sie als Teil einer diversifizierten Anlagestrategie nutzen kannst.",
+                "what_are_bonds_title": "Was sind Anleihen?",
+                "what_are_bonds_desc": "Anleihen sind Schuldtitel, bei denen du als Anleger einem Emittenten (z.B. einem Unternehmen oder einer Regierung) Geld leihst. Im Gegenzug erhältst du regelmäßige Zinszahlungen und am Ende der Laufzeit dein investiertes Kapital zurück. Anleihen gelten als sicherere Anlageform, besonders im Vergleich zu Aktien.",
+                "example_bonds_title": "Beispiel: Investieren in Anleihen",
+                "example_bonds_1": "Stell dir vor, du investierst 1000 Euro in eine 10-jährige Anleihe mit einem jährlichen Zinssatz von 5%. Das bedeutet, dass du jedes Jahr 50 Euro an Zinsen erhältst. Nach 10 Jahren bekommst du zusätzlich zu den Zinsen auch deine ursprünglichen 1000 Euro zurück. Dieses Beispiel verdeutlicht, wie Anleihen ein stabiler Bestandteil deines Portfolios sein können, insbesondere in Zeiten niedriger Zinsen.",
+                "example_bonds_2": "<strong>Zusätzliches Beispiel:</strong> Wenn du 10.000 Euro in eine Unternehmensanleihe mit einem Zinssatz von 7% pro Jahr investierst, bekommst du jedes Jahr 700 Euro an Zinsen. Nach 5 Jahren würdest du 3.500 Euro an Zinsen erhalten und am Ende der Laufzeit die 10.000 Euro zurückbekommen.",
+                "types_of_bonds_title": "Arten von Anleihen",
+                "gov_bonds_title": "Staatsanleihen",
+                "gov_bonds_desc": "Staatsanleihen werden von Regierungen herausgegeben, um öffentliche Projekte zu finanzieren. Aufgrund der Steuerkraft der Emittenten gelten sie als besonders sicher. Bekannte Beispiele sind US-Treasuries und deutsche Bundesanleihen. Solche Anleihen sind ideal für Anleger, die Wert auf Sicherheit legen.",
+                "example_gov_bonds_title": "Beispiel: Investieren in Staatsanleihen",
+                "example_gov_bonds_1": "Angenommen, du investierst 5000 Euro in eine 15-jährige deutsche Bundesanleihe mit einem Zinssatz von 2%. Jedes Jahr erhältst du 100 Euro Zinsen. Nach 15 Jahren hast du 1.500 Euro an Zinsen verdient und bekommst deine 5000 Euro zurück.",
+                "example_gov_bonds_2": "<strong>Praktische Überlegung:</strong> Da Staatsanleihen oft als besonders sicher gelten, sind die Zinsen niedriger. Dies ist ein Kompromiss zwischen Sicherheit und Ertrag.",
+                "corp_bonds_title": "Unternehmensanleihen",
+                "corp_bonds_desc": "Unternehmensanleihen werden von Firmen ausgegeben, die Kapital für Investitionen und Expansionen benötigen. Sie bieten in der Regel höhere Zinsen als Staatsanleihen, bringen jedoch auch ein höheres Risiko mit sich. Unternehmen nutzen diese Mittel oft, um Innovationen voranzutreiben oder Marktanteile zu vergrößern.",
+                "example_corp_bonds_title": "Beispiel: Investieren in Unternehmensanleihen",
+                "example_corp_bonds_1": "Stell dir vor, du investierst 8000 Euro in eine 8-jährige Unternehmensanleihe eines großen Technologieunternehmens mit einem Zinssatz von 6%. Jedes Jahr erhältst du 480 Euro an Zinsen. Nach 8 Jahren hast du 3.840 Euro an Zinsen verdient und bekommst deine 8000 Euro zurück.",
+                "example_corp_bonds_2": "<strong>Wichtige Anmerkung:</strong> Unternehmensanleihen bieten höhere Renditen, aber es besteht ein größeres Risiko, dass das Unternehmen in finanzielle Schwierigkeiten gerät und die Anleihe nicht wie geplant bedient wird.",
+                "diversification_title": "Diversifizieren: Eine wichtige Strategie",
+                "diversification_desc_1": "Diversifikation bedeutet, dein Geld auf verschiedene Anleihen zu verteilen, um das Risiko zu minimieren. Falls eine Anleihe ausfällt, gleichen andere Anleihen mögliche Verluste aus. Eine diversifizierte Anlagestrategie ist essenziell, um langfristig stabile Renditen zu erzielen und gleichzeitig das Risiko zu steuern.",
+                "example_diversification_title": "Beispiel: Diversifizieren deiner Anleihe-Investitionen",
+                "example_diversification_1": "Angenommen, du hast 20.000 Euro, die du in Anleihen investieren möchtest. Anstatt alles in eine einzige Anleihe zu stecken, könntest du 10.000 Euro in Staatsanleihen, 5.000 Euro in Unternehmensanleihen und 5.000 Euro in Anleihen eines Schwellenlandes investieren. So profitierst du von der Sicherheit der Staatsanleihen, den höheren Zinsen der Unternehmensanleihen und der möglichen Wachstumsdynamik von Schwellenländern.",
+                "example_diversification_2": "<strong>Überlege:</strong> Wenn eine Anleihe im Schwellenland ausfällt, hast du trotzdem noch die Erträge aus den anderen beiden Anleihen. Diversifikation hilft dir, dein Risiko zu streuen und stabilere Erträge zu erzielen."
+            },
+            "en": {
+                "title": "Course 2: Bonds",
+                "lesson_title": "Lesson 2: How do I invest in bonds?",
+                "intro": "Bonds offer a reliable way to generate regular income and secure capital over the long term. In this course, you’ll learn what bonds are, how they work, and how you can use them as part of a diversified investment strategy.",
+                "what_are_bonds_title": "What are bonds?",
+                "what_are_bonds_desc": "Bonds are debt securities where you, as an investor, lend money to an issuer (e.g., a company or government). In return, you receive regular interest payments and your invested capital back at the end of the term. Bonds are considered a safer investment, especially compared to stocks.",
+                "example_bonds_title": "Example: Investing in bonds",
+                "example_bonds_1": "Imagine you invest 1,000 euros in a 10-year bond with an annual interest rate of 5%. This means you receive 50 euros in interest each year. After 10 years, you get your original 1,000 euros back in addition to the interest. This example shows how bonds can be a stable part of your portfolio, especially in times of low interest rates.",
+                "example_bonds_2": "<strong>Additional example:</strong> If you invest 10,000 euros in a corporate bond with a 7% annual interest rate, you receive 700 euros in interest each year. After 5 years, you would have earned 3,500 euros in interest and get your 10,000 euros back at the end of the term.",
+                "types_of_bonds_title": "Types of bonds",
+                "gov_bonds_title": "Government bonds",
+                "gov_bonds_desc": "Government bonds are issued by governments to finance public projects. Due to the taxing power of the issuers, they are considered particularly safe. Well-known examples include US Treasuries and German Bundesanleihen. Such bonds are ideal for investors who value safety.",
+                "example_gov_bonds_title": "Example: Investing in government bonds",
+                "example_gov_bonds_1": "Suppose you invest 5,000 euros in a 15-year German Bundesanleihe with a 2% interest rate. Each year, you receive 100 euros in interest. After 15 years, you’ve earned 1,500 euros in interest and get your 5,000 euros back.",
+                "example_gov_bonds_2": "<strong>Practical consideration:</strong> Since government bonds are often considered particularly safe, their interest rates are lower. This is a trade-off between safety and return.",
+                "corp_bonds_title": "Corporate bonds",
+                "corp_bonds_desc": "Corporate bonds are issued by companies that need capital for investments and expansions. They typically offer higher interest rates than government bonds but come with higher risk. Companies often use these funds to drive innovation or increase market share.",
+                "example_corp_bonds_title": "Example: Investing in corporate bonds",
+                "example_corp_bonds_1": "Imagine you invest 8,000 euros in an 8-year corporate bond from a major technology company with a 6% interest rate. Each year, you receive 480 euros in interest. After 8 years, you’ve earned 3,840 euros in interest and get your 8,000 euros back.",
+                "example_corp_bonds_2": "<strong>Important note:</strong> Corporate bonds offer higher returns, but there’s a greater risk that the company could face financial difficulties and fail to service the bond as planned.",
+                "diversification_title": "Diversification: An important strategy",
+                "diversification_desc_1": "Diversification means spreading your money across different bonds to minimize risk. If one bond fails, other bonds can offset potential losses. A diversified investment strategy is essential for achieving stable long-term returns while managing risk.",
+                "example_diversification_title": "Example: Diversifying your bond investments",
+                "example_diversification_1": "Suppose you have 20,000 euros to invest in bonds. Instead of putting it all into one bond, you could invest 10,000 euros in government bonds, 5,000 euros in corporate bonds, and 5,000 euros in emerging market bonds. This way, you benefit from the safety of government bonds, the higher interest of corporate bonds, and the potential growth of emerging markets.",
+                "example_diversification_2": "<strong>Consider:</strong> If an emerging market bond fails, you still have returns from the other two bonds. Diversification helps you spread your risk and achieve more stable returns."
+            },
+            "fr": {
+                "title": "Cours 2 : Obligations",
+                "lesson_title": "Leçon 2 : Comment investir dans les obligations ?",
+                "intro": "Les obligations offrent un moyen fiable de générer des revenus réguliers et de sécuriser le capital à long terme. Dans ce cours, vous apprendrez ce que sont les obligations, comment elles fonctionnent et comment les utiliser dans le cadre d’une stratégie d’investissement diversifiée.",
+                "what_are_bonds_title": "Que sont les obligations ?",
+                "what_are_bonds_desc": "Les obligations sont des titres de créance où vous, en tant qu’investisseur, prêtez de l’argent à un émetteur (par exemple, une entreprise ou un gouvernement). En retour, vous recevez des paiements d’intérêts réguliers et, à la fin de la durée, votre capital investi vous est remboursé. Les obligations sont considérées comme un investissement plus sûr, notamment par rapport aux actions.",
+                "example_bonds_title": "Exemple : Investir dans les obligations",
+                "example_bonds_1": "Imaginez que vous investissez 1 000 euros dans une obligation de 10 ans avec un taux d’intérêt annuel de 5 %. Cela signifie que vous recevez 50 euros d’intérêts chaque année. Après 10 ans, vous récupérez vos 1 000 euros initiaux en plus des intérêts. Cet exemple montre comment les obligations peuvent être un élément stable de votre portefeuille, surtout en période de faibles taux d’intérêt.",
+                "example_bonds_2": "<strong>Exemple supplémentaire :</strong> Si vous investissez 10 000 euros dans une obligation d’entreprise avec un taux d’intérêt de 7 % par an, vous recevez 700 euros d’intérêts chaque année. Après 5 ans, vous aurez gagné 3 500 euros d’intérêts et récupérerez vos 10 000 euros à la fin de la durée.",
+                "types_of_bonds_title": "Types d’obligations",
+                "gov_bonds_title": "Obligations d’État",
+                "gov_bonds_desc": "Les obligations d’État sont émises par les gouvernements pour financer des projets publics. En raison du pouvoir fiscal des émetteurs, elles sont considérées comme particulièrement sûres. Des exemples bien connus incluent les Treasuries américains et les Bundesanleihen allemandes. Ces obligations sont idéales pour les investisseurs qui privilégient la sécurité.",
+                "example_gov_bonds_title": "Exemple : Investir dans les obligations d’État",
+                "example_gov_bonds_1": "Supposons que vous investissiez 5 000 euros dans une Bundesanleihe allemande de 15 ans avec un taux d’intérêt de 2 %. Chaque année, vous recevez 100 euros d’intérêts. Après 15 ans, vous avez gagné 1 500 euros d’intérêts et récupérez vos 5 000 euros.",
+                "example_gov_bonds_2": "<strong>Considération pratique :</strong> Les obligations d’État étant souvent considérées comme particulièrement sûres, leurs taux d’intérêt sont plus bas. C’est un compromis entre sécurité et rendement.",
+                "corp_bonds_title": "Obligations d’entreprise",
+                "corp_bonds_desc": "Les obligations d’entreprise sont émises par des entreprises qui ont besoin de capital pour des investissements et des expansions. Elles offrent généralement des taux d’intérêt plus élevés que les obligations d’État, mais comportent un risque plus élevé. Les entreprises utilisent souvent ces fonds pour stimuler l’innovation ou augmenter leurs parts de marché.",
+                "example_corp_bonds_title": "Exemple : Investir dans les obligations d’entreprise",
+                "example_corp_bonds_1": "Imaginez que vous investissiez 8 000 euros dans une obligation d’entreprise de 8 ans d’une grande entreprise technologique avec un taux d’intérêt de 6 %. Chaque année, vous recevez 480 euros d’intérêts. Après 8 ans, vous avez gagné 3 840 euros d’intérêts et récupérez vos 8 000 euros.",
+                "example_corp_bonds_2": "<strong>Note importante :</strong> Les obligations d’entreprise offrent des rendements plus élevés, mais il existe un risque plus important que l’entreprise rencontre des difficultés financières et ne puisse pas honorer l’obligation comme prévu.",
+                "diversification_title": "Diversification : Une stratégie importante",
+                "diversification_desc_1": "La diversification signifie répartir votre argent sur différentes obligations pour minimiser le risque. Si une obligation fait défaut, les autres obligations peuvent compenser les pertes potentielles. Une stratégie d’investissement diversifiée est essentielle pour obtenir des rendements stables à long terme tout en gérant le risque.",
+                "example_diversification_title": "Exemple : Diversifier vos investissements en obligations",
+                "example_diversification_1": "Supposons que vous ayez 20 000 euros à investir dans des obligations. Au lieu de tout mettre dans une seule obligation, vous pourriez investir 10 000 euros dans des obligations d’État, 5 000 euros dans des obligations d’entreprise et 5 000 euros dans des obligations de marchés émergents. Ainsi, vous bénéficiez de la sécurité des obligations d’État, des intérêts plus élevés des obligations d’entreprise et du potentiel de croissance des marchés émergents.",
+                "example_diversification_2": "<strong>Réfléchissez :</strong> Si une obligation de marché émergent fait défaut, vous avez toujours les rendements des deux autres obligations. La diversification vous aide à répartir votre risque et à obtenir des rendements plus stables."
+            }
+        };
+
+        let currentLang = 'de';
+
+        function applyTranslations(targetLang) {
+            const elements = document.querySelectorAll('[data-translate-key]');
+            if (!translations[targetLang]) return;
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate-key');
+                if (translations[targetLang][key]) {
+                    element.innerHTML = translations[targetLang][key];
+                }
+            });
+            document.title = translations[targetLang].title || "Course 2: Anleihen";
+        }
+
+        function translatePage(targetLang) {
+            if (targetLang === currentLang) return;
+            applyTranslations(targetLang);
+            document.documentElement.lang = targetLang;
+            currentLang = targetLang;
+        }
+
+        // Apply default language on load
+        window.addEventListener('DOMContentLoaded', () => {
+            applyTranslations('de');
+            const storedLang = localStorage.getItem('preferredLanguage');
+            if (storedLang && translations[storedLang] && storedLang !== 'de') {
+                translatePage(storedLang);
+            }
+        });
+
+        // Listen for language change messages from parent (index.html)
+        window.addEventListener('message', (event) => {
+            if (event.data.type === 'LANGUAGE_CHANGE') {
+                translatePage(event.data.language);
+            }
+        });
+
+        // Scroll bar functionality
         function updateScrollBar() {
             const scrollBar = document.getElementById('scroll-bar');
             const scrollHeight = document.documentElement.scrollHeight;

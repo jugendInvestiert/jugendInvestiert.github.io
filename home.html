@@ -1,692 +1,574 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <!-- Viewport meta tag for responsive design -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JugendInvestiert</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
-    <style>
-        /* ========================= Global Styles ========================= */
-        
-        html, body {
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden; /* Prevent any horizontal scroll */
-        }
-        
-        *, *::before, *::after {
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8" />
+  <title>JugendInvestiert - Mobile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700&display=swap" rel="stylesheet">
 
-        body {
-            font-family: 'Poppins', Arial, sans-serif;
-            background-color: #101820;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        /* ========================= Desktop Layout ========================= */
-        .desktop-layout {
-            width: 100%;
-            display: block;
-        }
-
-        /* Hide mobile layout by default */
-        .mobile-layout {
-            display: none;
-        }
-
-        /* Media Query for Mobile Devices */
-        @media (max-width: 768px) {
-            /* Hide Desktop Layout on Mobile */
-            .desktop-layout {
-                display: none;
-            }
-            /* Show Mobile Layout on Mobile */
-            .mobile-layout {
-                display: block;
-            }
-        }
-
-        /* ------------------------- Desktop Styles ------------------------- */
-        .desktop-layout .header {
-            width: 100%;
-            background-color: #1B2631;
-            display: flex;
-            align-items: center;
-            padding: 20px;
-            padding-bottom: 20px; /* Extra padding below the header */
-            box-sizing: border-box;
-            margin-bottom: 0;
-            flex-wrap: wrap; /* Allows wrapping if necessary */
-        }
-
-        .desktop-layout .header img {
-            height: 120px;
-            width: 120px;
-            margin-right: 20px;
-            border-radius: 15px;
-            object-fit: cover;
-        }
-
-        .desktop-layout .header h1 {
-            font-size: 56px;
-            margin: 0;
-            /* Removed white-space: nowrap; to avoid forced horizontal overflow */
-            overflow: hidden;
-            display: inline-block;
-        }
-
-        .desktop-layout .content {
-            width: 100%;
-            max-width: 1200px;
-            padding: 20px;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .desktop-layout .container {
-            width: 100%;
-            max-width: 800px;
-        }
-
-        .desktop-layout .slogan {
-            background-color: #2E4053;
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            box-sizing: border-box;
-            margin-bottom: 20px;
-            max-width: 100%;
-        }
-
-        .desktop-layout .squares-container {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .desktop-layout .squares-row {
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            gap: 20px;
-        }
-
-        .desktop-layout .square {
-            flex: 1;
-            padding: 10px;
-            background-color: #1B2631;
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            text-align: center;
-            box-sizing: border-box;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            min-height: 350px;
-            position: relative;
-        }
-
-        .desktop-layout .number-square {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            font-size: 100px;
-            color: #007bff;
-        }
-
-        .desktop-layout .text-square {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            font-size: 40px;
-            color: #ffffff;
-            gap: 5px; 
-        }
-
-        .desktop-layout .text-square p {
-            margin: 0;
-            padding: 0;
-            line-height: 1.2;
-        }
-
-        .desktop-layout .slogan-square {
-            background-color: #2E4053;
-            color: #ffffff;
-            font-size: 30px;
-            text-align: center;
-            padding: 20px;
-            border-radius: 15px;
-            box-sizing: border-box;
-            min-height: 100px;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 10px;
-        }
-
-        .desktop-layout .additional-text {
-            margin-top: 20px;
-            font-size: 20px;
-            color: #cccccc;
-            text-align: center;
-        }
-
-        .desktop-layout .iframe-wrapper {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-
-        .desktop-layout .overlay {
-            display: none; /* Hidden by default */
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            border-radius: 15px;
-            justify-content: center;
-            align-items: center;
-            cursor: pointer;
-            z-index: 1;
-        }
-
-        .desktop-layout .overlay-text {
-            color: #fff;
-            font-size: 24px;
-            padding: 10px 20px;
-            background-color: #007bff;
-            border-radius: 8px;
-        }
-
-        .desktop-layout iframe {
-            width: 100%;
-            height: 350px;
-            border: none;
-            border-radius: 15px;
-        }
-
-        .desktop-layout .square.text-square img {
-            width: 50%;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-        }
-
-        .desktop-layout .rocket-image-desktop {
-            width: 150px;
-            height: auto;
-            margin-bottom: 10px;
-        }
-
-        .desktop-layout .rocket-square {
-            align-items: center;
-        }
-
-        .desktop-layout .bottom-cubes-container {
-            display: flex;
-            gap: 20px;
-            width: 100%;
-        }
-
-        .desktop-layout .left-bottom, .desktop-layout .right-bottom {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            flex: 1;
-        }
-
-        /* Slideshow container hides overflow to prevent horizontal scrolling */
-        .desktop-layout .slideshow {
-            position: relative;
-            width: 100%;
-            max-width: 800px;
-            overflow: hidden; 
-            border-radius: 15px;
-            margin-top: 0;
-            margin-bottom: 20px;
-        }
-
-        .desktop-layout .slides {
-            display: flex;
-            transition: transform 0.5s ease;
-            width: calc(100% * 3); 
-        }
-
-        .desktop-layout .slide {
-            width: 100%;
-            flex-shrink: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .desktop-layout .arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: rgba(0, 0, 0, 0.6);
-            color: #fff;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-            z-index: 10;
-        }
-
-        .desktop-layout .arrow.left {
-            left: 10px;
-        }
-
-        .desktop-layout .arrow.right {
-            right: 10px;
-        }
-
-        .desktop-layout .glowing-button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            font-size: 24px;
-            font-weight: bold;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
-            cursor: pointer;
-            transition: background-color 0.3s, box-shadow 0.3s;
-            outline: none;
-        }
-
-        .desktop-layout .glowing-button:hover {
-            background-color: #0056b3;
-            box-shadow: 0 0 30px rgba(0, 123, 255, 0.7);
-        }
-
-        .desktop-layout .glowing-button:active {
-            background-color: #004080;
-            box-shadow: 0 0 40px rgba(0, 123, 255, 0.9);
-        }
-
-        /* ========================= Mobile Layout ========================= */
-        .mobile-layout .header {
-            width: 100%;
-            background-color: #1B2631;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-            flex-wrap: wrap;
-            text-align: center;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-        }
-
-        .mobile-layout .header img {
-            height: 70px;
-            width: 70px;
-            margin-right: 15px;
-            border-radius: 15px;
-        }
-
-        .mobile-layout .header h1 {
-            font-size: 28px;
-            margin: 0;
-            font-weight: bold;
-        }
-
-        .mobile-layout .content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            width: 100%;
-            /* Keep horizontal padding minimal to avoid overflow */
-            padding: 20px 10px;
-            /*
-             * Updated bottom padding from 60px -> 80px 
-             * to give more space at the bottom of mobile layout
-             */
-            padding-bottom: 80px;
-            text-align: center;
-            gap: 15px; 
-            margin-top: 100px; /* Space for fixed header */
-        }
-
-        .mobile-layout .cube, 
-        .mobile-layout .text-cube, 
-        .mobile-layout .rocket-cube { 
-            background-color: #1B2631;
-            width: 90vw;             
-            aspect-ratio: 1 / 1;     
-            border-radius: 15px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 20px;
-            box-sizing: border-box;
-            margin: 0 auto; 
-        }
-
-        .mobile-layout .slogan-square-mobile { 
-            background-color: #2E4053;
-            color: #ffffff;
-            font-size: 20px;
-            padding: 15px 20px; 
-            border-radius: 15px;
-            box-sizing: border-box;
-            min-height: 60px; 
-            width: 90vw;      
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .mobile-layout .number-square {
-            font-size: 100px;
-            color: #007bff;
-            font-weight: bold;
-            margin: 0;
-        }
-
-        .mobile-layout .description-text {
-            font-size: 18px;
-            color: #cccccc;
-            margin: 0;
-            line-height: 1.5;
-        }
-
-        .mobile-layout .description-text a {
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        .mobile-layout .number-and-logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            width: 100%;
-            max-width: 250px;
-        }
-
-        .mobile-layout .bamboo-logo {
-            height: 100px;
-            width: auto;
-        }
-
-        .mobile-layout .text-cube p {
-            font-size: 18px;
-            color: #cccccc;
-            margin: 0;
-            line-height: 1.5;
-            padding: 0 10px;
-        }
-
-        .mobile-layout .rocket-image {
-            width: 150px; 
-        }
-
-        .mobile-layout .rocket-cube {
-            padding: 30px; 
-        }
-
-        .mobile-layout .rocket-text {
-            font-size: 26px;
-            color: #ffffff;
-            margin: 0;
-        }
-
-        .mobile-layout .glow-button-container {
-            margin-top: 10px; 
-            display: flex;
-            justify-content: center;
-            width: 100%;
-        }
-
-        .mobile-layout .start-button {
-            background-color: #007bff;
-            color: #ffffff;
-            border: none;
-            padding: 15px 30px;
-            font-size: 18px;
-            font-weight: bold;
-            border-radius: 20px; 
-            cursor: pointer;
-            outline: none;
-            box-shadow:
-                0 0 10px rgba(0, 123, 255, 0.7),
-                0 0 20px rgba(0, 123, 255, 0.5),
-                0 0 30px rgba(0, 123, 255, 0.3);
-        }
-
-        .mobile-layout .start-button:hover {
-            background-color: #0056b3;
-            box-shadow: 0 0 30px rgba(0, 123, 255, 0.7);
-        }
-
-        .mobile-layout .start-button:active {
-            background-color: #004080;
-            box-shadow: 0 0 40px rgba(0, 123, 255, 0.9);
-        }
-
-        @media (max-width: 768px) {
-            .mobile-layout .mobile-layout-body {
-                background-color: #0d1117;
-            }
-            .mobile-layout .square {
-                background-color: #161b22;
-            }
-            .mobile-layout .slogan-square {
-                background-color: #21262d;
-            }
-        }
-    </style>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      font-family: 'Poppins', Arial, sans-serif;
+      background-color: #101820;
+      color: white;
+      min-height: 100vh;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+    }
+    body::-webkit-scrollbar { display: none; }
+    *, *::before, *::after { box-sizing: border-box; }
+    :root {
+      --primary: #2d3436;
+      --secondary: #0984e3;
+      --accent: white;
+      --text: #2d3436;
+      --light: #dfe6e9;
+      --gradient: linear-gradient(135deg, #6366f1, #3b82f6);
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .mobile-layout {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      padding: 10px 5px;
+      padding-bottom: 120px;
+      text-align: center;
+      gap: 15px;
+    }
+    .mobile-layout .header {
+      width: 100%;
+      background-color: #1B2631;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 15px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+    .brand-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .mobile-layout .header img {
+      height: 60px;
+      width: 60px;
+      border-radius: 12px;
+    }
+    .mobile-layout .header h1 {
+      font-size: 24px;
+      margin: 0;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+    .flag-container {
+      position: relative;
+      padding: 5px;
+    }
+    .flag-icon {
+      width: 45px;
+      height: 30px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      object-fit: cover;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    .flag-icon:hover {
+      transform: scale(1.1);
+      border-color: rgba(255, 255, 255, 0.5);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+    .language-dropdown {
+      display: none;
+      position: absolute;
+      top: 110%;
+      right: 0;
+      background: rgba(27, 38, 49, 0.95);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+      border-radius: 12px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      overflow: hidden;
+      flex-direction: column;
+      align-items: center;
+      padding: 0.75rem;
+      z-index: 1001;
+      animation: slideIn 0.3s ease-out;
+    }
+    @keyframes slideIn {
+      from { transform: translateY(-10px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .flag-container:hover .language-dropdown,
+    .language-dropdown.open {
+      display: flex;
+    }
+    .language-dropdown img {
+      width: 45px;
+      height: 30px;
+      border-radius: 6px;
+      margin: 0.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      object-fit: cover;
+      border: 2px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    }
+    .language-dropdown img:hover {
+      transform: scale(1.1);
+      border-color: rgba(255, 255, 255, 0.4);
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    }
+    .hero {
+      min-height: 100vh;
+      background: var(--gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 80px;
+      padding-bottom: 80px;
+      text-align: center;
+      width: 100%;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, transparent 20%, rgba(0, 0, 0, 0.3) 100%);
+      animation: pulse 15s infinite;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    @keyframes pulse {
+      0% { transform: translate(-50%, -50%) rotate(0deg); opacity: 0.5; }
+      50% { transform: translate(-50%, -50%) rotate(180deg); opacity: 0.8; }
+      100% { transform: translate(-50%, -50%) rotate(360deg); opacity: 0.5; }
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      color: white;
+      padding: 2rem;
+      max-width: 800px;
+      animation: fadeIn 1s ease-out;
+      text-align: center;
+      background: transparent;
+    }
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    .hero-title {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, white, var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer 3s infinite;
+      background-size: 200% auto;
+      font-weight: 700;
+      font-family: 'Baloo 2', sans-serif;
+    }
+    @keyframes shimmer {
+      to { background-position: 200% center; }
+    }
+    .hero-subtitle {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+      font-weight: 400;
+      line-height: 1.5;
+      font-family: 'Baloo 2', sans-serif;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: #fff;
+      color: var(--primary);
+      padding: 0.8rem 2rem;
+      border-radius: 25px;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 700;
+      transition: box-shadow 0.3s ease, background 0.3s ease;
+      animation: glow 2s infinite alternate;
+      border: none;
+      cursor: pointer;
+      font-family: 'Baloo 2', sans-serif;
+    }
+    .cta-btn:hover {
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+      background: var(--light);
+    }
+    @keyframes glow {
+      0% { box-shadow: 0 0 10px rgba(255, 255, 255, 0.6); }
+      100% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.8); }
+    }
+    .floating-shapes {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .shape {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      animation: float 20s infinite linear;
+    }
+    @keyframes float {
+      0% { transform: translate(0, 0) rotate(0deg); }
+      50% { transform: translate(100px, 100px) rotate(180deg); }
+      100% { transform: translate(0, 0) rotate(360deg); }
+    }
+    .mobile-layout .cube {
+      background-color: #1B2631;
+      width: 90vw;
+      height: 90vw;
+      border-radius: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 5px 8px;
+      box-sizing: border-box;
+      margin: 0 auto;
+      margin-bottom: 15px;
+      overflow: hidden;
+    }
+    .mobile-layout .text-cube {
+      background-color: #1B2631;
+      width: 90vw;
+      height: 90vw;
+      border-radius: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 5px 8px;
+      box-sizing: border-box;
+      margin: 0 auto;
+      margin-bottom: 15px;
+      overflow: hidden;
+    }
+    .mobile-layout .text-cube a {
+      color: #007bff;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .mobile-layout .text-cube a:hover {
+      text-decoration: underline;
+    }
+    .mobile-layout .rocket-cube {
+      background-color: #1B2631;
+      width: 90vw;
+      height: 90vw;
+      border-radius: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 5px 8px;
+      box-sizing: border-box;
+      margin: 0 auto;
+      margin-bottom: 15px;
+      overflow: hidden;
+    }
+    .mobile-layout .slogan-square {
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      width: 90vw;
+      border-radius: 15px;
+      padding: 1rem;
+      box-sizing: border-box;
+      text-align: center;
+      color: #fff;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+    }
+    .mobile-layout .number-square {
+      font-size: 180px;
+      color: #007bff;
+      font-weight: bold;
+      margin: 0;
+      text-align: center;
+    }
+    .mobile-layout .description-text {
+      font-size: 20px;
+      color: #cccccc;
+      margin: 0;
+      line-height: 1.5;
+    }
+    .mobile-layout .text-cube p {
+      font-size: 20px;
+      color: #cccccc;
+      margin: 0;
+      line-height: 1.5;
+      padding: 0 8px;
+      text-align: center;
+    }
+    .mobile-layout .rocket-image {
+      width: 200px;
+      animation: bounceRocket 2s infinite;
+      max-width: 100%;
+    }
+    .mobile-layout .rocket-text {
+      font-size: 26px;
+      color: #ffffff;
+      margin: 0;
+      text-align: center;
+    }
+    .mobile-layout .glow-button-container {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+    .mobile-layout .start-button {
+      background-color: #007bff;
+      color: #ffffff;
+      border: none;
+      padding: 18px 40px;
+      font-size: 22px;
+      font-weight: bold;
+      border-radius: 25px;
+      cursor: pointer;
+      outline: none;
+      box-shadow:
+        0 0 10px rgba(0, 123, 255, 0.7),
+        0 0 20px rgba(0, 123, 255, 0.5),
+        0 0 30px rgba(0, 123, 255, 0.3);
+      transition: background-color 0.3s, box-shadow 0.3s;
+    }
+    .mobile-layout .start-button:hover {
+      background-color: #0056b3;
+      box-shadow: 0 0 30px rgba(0, 123, 255, 0.7);
+    }
+    .mobile-layout .start-button:active {
+      background-color: #004080;
+      box-shadow: 0 0 40px rgba(0, 123, 255, 0.9);
+    }
+    @keyframes bounceRocket {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-20px); }
+      60% { transform: translateY(-10px); }
+    }
+    .loading-spinner {
+      display: none;
+      width: 20px;
+      height: 20px;
+      border: 3px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      border-top-color: #fff;
+      animation: spin 1s ease-in-out infinite;
+      margin: 0 auto;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    @media (max-width: 480px) {
+      .mobile-layout .header h1 { font-size: 20px; }
+      .mobile-layout .header img { height: 50px; width: 50px; }
+      .brand-container { gap: 8px; }
+      .flag-icon, .language-dropdown img { width: 40px; height: 27px; }
+      .hero-title { font-size: 2.5rem; }
+      .hero-subtitle { font-size: 1rem; }
+      .cta-btn { padding: 0.6rem 1.5rem; font-size: 1rem; }
+      .mobile-layout .number-square { font-size: 120px; }
+      .mobile-layout .description-text { font-size: 14px; }
+      .mobile-layout .text-cube p { font-size: 16px; }
+      .mobile-layout .rocket-image { width: 140px; }
+      .mobile-layout .rocket-text { font-size: 18px; }
+      .mobile-layout .start-button { 
+        padding: 14px 30px;
+        font-size: 18px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <!-- ========================= Desktop Layout ========================= -->
-    <div class="desktop-layout">
-        <div class="header">
-            <img src="logo.jpg" alt="JugendInvestiert Logo">
-            <h1>JugendInvestiert</h1>
+  <div class="mobile-layout">
+    <div class="header">
+      <div class="brand-container">
+        <img src="logo.jpg" alt="JugendInvestiert Logo">
+        <h1 data-translate-key="brand">JugendInvestiert</h1>
+      </div>
+      <div class="flag-container">
+        <img src="https://flagcdn.com/de.svg" alt="German Flag" class="flag-icon" id="currentFlag" />
+        <div class="language-dropdown" id="languageDropdown">
+          <img src="https://flagcdn.com/de.svg" alt="German Flag" data-lang="de" />
+          <img src="https://flagcdn.com/fr.svg" alt="French Flag" data-lang="fr" />
+          <img src="https://flagcdn.com/us.svg" alt="USA Flag" data-lang="en" />
         </div>
-
-        <div class="content">
-            <div class="container">
-                <div class="slideshow">
-                    <button class="arrow left" onclick="changeSlide(-1)">&#10094;</button>
-                    <div class="slides" id="slides">
-                        <div class="slide">
-                            <iframe src="littlebamboo.html"></iframe>
-                        </div>
-                        <div class="slide">
-                            <iframe src="littlebamboo.html"></iframe>
-                        </div>
-                        <div class="slide">
-                            <iframe src="littlebamboo.html"></iframe>
-                        </div>
-                    </div>
-                    <button class="arrow right" onclick="changeSlide(1)">&#10095;</button>
-                </div>
-
-                <div class="slogan">
-                    <h1>Finanzwissen für alle - Investiere in deine Zukunft!</h1>
-                </div>
-
-                <div class="squares-container">
-                    <div class="squares-row">
-                        <div class="square">
-                            <p>
-                                Unsere Plattform ist eine Quelle für umfassendes Finanzwissen, das gezielt auf 
-                                die Bedürfnisse der Jugend zugeschnitten ist. Wir bieten eine Vielzahl von 
-                                Ressourcen, Schulungen und Tools an, um jungen Menschen dabei zu helfen, ein 
-                                solides Verständnis für Finanzen aufzubauen. Von Budgetierung und Sparen bis 
-                                hin zu Investitionen und Finanzplanung – wir sind hier, um dich auf deinem Weg 
-                                zu unterstützen.
-                            </p>
-                        </div>
-                        <div class="square number-square">
-                            #1
-                            <p class="additional-text">bei der Vermittlung von Finanzwissen</p>
-                        </div>
-                    </div>
-
-                    <div class="slogan-square">
-                        Gratis, Effizient und macht Spaß
-                    </div>
-
-                    <div class="bottom-cubes-container">
-                        <div class="left-bottom">
-                            <div class="square">
-                                <div class="iframe-wrapper">
-                                    <iframe src="displaycourse.html"></iframe>
-                                    <div class="overlay" onclick="removeOverlay(this)">
-                                        <div class="overlay-text">Try Demo</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="square">
-                                <div class="iframe-wrapper">
-                                    <iframe src="section1.html"></iframe>
-                                    <div class="overlay" onclick="removeOverlay(this)">
-                                        <div class="overlay-text">Try Demo</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="right-bottom">
-                            <div class="square text-square">
-                                <p>Umfassend</p>
-                                <p>Einzigartig</p>
-                                <p>Innovativ</p>
-                            </div>
-                            <div class="square rocket-square">
-                                <img src="rocket.png" alt="Rocket" class="rocket-image-desktop">
-                                <h2 style="margin: 0;">Steigere dein</h2>
-                                <h2 style="margin: 0;">Finanzwissen!</h2>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <button class="glowing-button" id="confetti-button">
-                🎉 Jetzt starten
-            </button>
-        </div>
+      </div>
     </div>
 
-    <!-- ========================= Mobile Layout ========================= -->
-    <div class="mobile-layout">
-        <!-- Header -->
-        <div class="header">
-            <img src="logo.jpg" alt="JugendInvestiert Logo">
-            <h1>JugendInvestiert</h1>
-        </div>
+    <section class="hero">
+      <div class="floating-shapes">
+        <div class="shape" style="width: 50px; height: 50px; top: 20%; left: 20%;"></div>
+        <div class="shape" style="width: 80px; height: 80px; top: 60%; left: 80%;"></div>
+        <div class="shape" style="width: 30px; height: 30px; top: 80%; left: 30%;"></div>
+      </div>
+      <div class="hero-content">
+        <h1 class="hero-title" data-translate-key="heroTitle">Investiere in deine Zukunft</h1>
+        <p class="hero-subtitle" data-translate-key="heroSubtitle">Finanzwissen für alle</p>
+        <button class="cta-btn" onclick="requestParentToOpenSignup()" data-translate-key="startButton">
+          Jetzt starten
+          <span class="loading-spinner" id="heroButtonSpinner"></span>
+        </button>
+      </div>
+    </section>
 
-        <div class="content">
-            <!-- First Cube: 10% -->
-            <div class="cube">
-                <div class="number-and-logo">
-                    <div class="number-square">10%</div>
-                    <img src="bamboologo.jpg" alt="Little Bamboo Logo" class="bamboo-logo">
-                </div>
-                <p class="description-text">
-                    Der Einnahmen gehen an die Spendenorganisation
-                    <a href="https://www.littlebamboo.info/" target="_blank">Little Bamboo</a>
-                </p>
-            </div>
-
-            <!-- Slogan Rectangle: Finanzwissen -->
-            <div class="slogan-square-mobile">
-                <p>Finanzwissen für alle - Investiere in deine Zukunft!</p>
-            </div>
-
-            <!-- Second Cube: #1 -->
-            <div class="cube">
-                <div class="number-square">#1</div>
-                <p class="description-text">bei der Vermittlung von Finanzwissen</p>
-            </div>
-
-            <!-- Text Cube: Unsere Plattform ist... -->
-            <div class="text-cube">
-                <p>
-                    Unsere Plattform ist eine Quelle für umfassendes Finanzwissen 💡,
-                    das gezielt auf die Bedürfnisse der Jugend zugeschnitten ist.
-                </p>
-            </div>
-
-            <!-- Second Slogan Rectangle: Gratis, Effizient und macht Spaß -->
-            <div class="slogan-square-mobile">
-                <p>Gratis, Effizient und macht Spaß</p>
-            </div>
-
-            <!-- Rocket Cube -->
-            <div class="rocket-cube">
-                <img src="rocket.png" alt="Rocket" class="rocket-image">
-                <h2 class="rocket-text">Steigere dein</h2>
-                <h2 class="rocket-text">Finanzwissen! 💪</h2>
-            </div>
-
-            <!-- Glowing "Jetzt starten" Button -->
-            <div class="glow-button-container">
-                <button class="start-button" onclick="requestParentToOpenSignup()">
-                    Jetzt starten
-                </button>
-            </div>
-        </div>
+    <div class="content">
+      <div class="cube">
+        <div class="number-square">#1</div>
+        <p class="description-text" data-translate-key="numberOne">bei der Vermittlung von Finanzwissen</p>
+      </div>
+      <div class="slogan-square">
+        <p data-translate-key="slogan">Finanzwissen für alle - Investiere in deine Zukunft!</p>
+      </div>
+      <div class="text-cube">
+        <p data-translate-key="description">
+          Unsere Plattform ist eine Quelle für umfassendes Finanzwissen, das gezielt auf die Bedürfnisse der Jugend zugeschnitten ist. Laut Studien der <a href="OECD.pdf" target="_blank"><b>OECD</b></a> fehlt es vielen jungen Menschen an finanzieller Bildung. Wir bieten eine Vielzahl von Ressourcen, Schulungen und Tools an, um dir dabei zu helfen, ein solides Verständnis für Finanzen aufzubauen. Von Budgetierung und Sparen bis hin zu Investitionen und Finanzplanung – wir sind hier, um dich auf deinem Weg zu unterstützen.
+        </p>
+      </div>
+      <div class="slogan-square">
+        <p data-translate-key="benefits">Gratis, Effizient und macht Spaß</p>
+      </div>
+      <div class="rocket-cube">
+        <img src="rocket.png" alt="Rocket" class="rocket-image">
+        <h2 class="rocket-text" data-translate-key="rocketText1">Steigere dein</h2>
+        <h2 class="rocket-text" data-translate-key="rocketText2">Finanzwissen! 💪</h2>
+      </div>
+      <div class="glow-button-container">
+        <button class="start-button" onclick="requestParentToOpenSignup()" data-translate-key="startButton">
+          Jetzt starten
+          <span class="loading-spinner" id="contentButtonSpinner"></span>
+        </button>
+      </div>
     </div>
+  </div>
 
-    <script>
-        /* ========================= Desktop Scripts ========================= */
-        let currentSlide = 0;
+  <script>
+    const translations = {
+      "de": {
+        "brand": "JugendInvestiert",
+        "heroTitle": "Investiere in deine Zukunft",
+        "heroSubtitle": "Finanzwissen für alle",
+        "startButton": "Jetzt starten",
+        "numberOne": "bei der Vermittlung von Finanzwissen",
+        "slogan": "Finanzwissen für alle - Investiere in deine Zukunft!",
+        "description": "Unsere Plattform ist eine Quelle für umfassendes Finanzwissen, das gezielt auf die Bedürfnisse der Jugend zugeschnitten ist. Laut Studien der <a href=\"OECD.pdf\" target=\"_blank\"><b>OECD</b></a> fehlt es vielen jungen Menschen an finanzieller Bildung. Wir bieten eine Vielzahl von Ressourcen, Schulungen und Tools an, um dir dabei zu helfen, ein solides Verständnis für Finanzen aufzubauen. Von Budgetierung und Sparen bis hin zu Investitionen und Finanzplanung – wir sind hier, um dich auf deinem Weg zu unterstützen.",
+        "benefits": "Gratis, Effizient und macht Spaß",
+        "rocketText1": "Steigere dein",
+        "rocketText2": "Finanzwissen! 💪"
+      },
+      "en": {
+        "brand": "YouthInvests",
+        "heroTitle": "Invest in your future",
+        "heroSubtitle": "Financial knowledge for everyone",
+        "startButton": "Start now",
+        "numberOne": "in teaching financial knowledge",
+        "slogan": "Financial knowledge for everyone - Invest in your future!",
+        "description": "Our platform is a source of comprehensive financial knowledge tailored to the needs of young people. According to <a href=\"OECD.pdf\" target=\"_blank\"><b>OECD</b></a> studies, many youths lack financial education. We provide a variety of resources, training, and tools to help you build a solid understanding of finance. From budgeting and saving to investing and financial planning – we’re here to support you every step of the way.",
+        "benefits": "Free, Efficient and fun",
+        "rocketText1": "Boost your",
+        "rocketText2": "Financial knowledge! 💪"
+      },
+      "fr": {
+        "brand": "JeunesseInvestit",
+        "heroTitle": "Investissez dans votre avenir",
+        "heroSubtitle": "Connaissances financières pour tous",
+        "startButton": "Commencer maintenant",
+        "numberOne": "dans l'enseignement des connaissances financières",
+        "slogan": "Connaissances financières pour tous - Investissez dans votre avenir!",
+        "description": "Notre plateforme est une source de connaissances financières complètes adaptées aux besoins des jeunes. D’après les études de l'<a href=\"OECD.pdf\" target=\"_blank\"><b>OECD</b></a>, beaucoup de jeunes manquent d’éducation financière. Nous proposons une multitude de ressources, formations et outils pour t’aider à développer une compréhension solide des finances. De la gestion de budget et l’épargne aux investissements et à la planification financière – nous sommes là pour t’accompagner à chaque étape.",
+        "benefits": "Gratuit, Efficace et amusant",
+        "rocketText1": "Améliorez vos",
+        "rocketText2": "Connaissances financières! 💪"
+      }
+    };
 
-        function changeSlide(direction) {
-            const slides = document.querySelector('.desktop-layout .slides');
-            const totalSlides = document.querySelectorAll('.desktop-layout .slide').length;
+    function requestParentToOpenSignup() {
+      window.parent.postMessage({ action: 'openSignupModal' }, '*');
+    }
 
-            currentSlide += direction;
-
-            if (currentSlide < 0) {
-                currentSlide = totalSlides - 1;
-            } else if (currentSlide >= totalSlides) {
-                currentSlide = 0;
-            }
-
-            const slideWidth = 100;
-            slides.style.transform = `translateX(-${currentSlide * slideWidth}%)`;
+    function applyTranslations(targetLang) {
+      const elements = document.querySelectorAll('[data-translate-key]');
+      if (!translations[targetLang]) return;
+      elements.forEach(element => {
+        const key = element.getAttribute('data-translate-key');
+        if (translations[targetLang][key]) {
+          element.innerHTML = translations[targetLang][key];
         }
+      });
+    }
 
-        document.getElementById('confetti-button').addEventListener('click', function () {
-            // Redirect to register.html
-            window.location.href = 'register.html';
-        });
+    function translatePage(targetLang) {
+      if (targetLang === currentLang) return;
 
-        function removeOverlay(element) {
-            element.style.display = 'none';
-        }
+      applyTranslations(targetLang);
+      document.documentElement.lang = targetLang;
+      currentFlag.src = `https://flagcdn.com/${targetLang === 'en' ? 'us' : targetLang}.svg`;
+      currentFlag.alt = `${targetLang.toUpperCase()} Flag`;
+      currentLang = targetLang;
+      languageDropdown.classList.remove('open');
+      localStorage.setItem('preferredLanguage', targetLang);
 
-        /* ========================= Mobile Scripts ========================= */
-        function requestParentToOpenSignup() {
-            // Sends a postMessage to the parent window
-            window.parent.postMessage({ action: 'openSignupModal' }, '*');
-        }
-    </script>
+      window.parent.postMessage({
+        type: 'LANGUAGE_CHANGE',
+        language: targetLang,
+        source: 'home-iframe'
+      }, '*');
+    }
+
+    const currentFlag = document.getElementById('currentFlag');
+    const languageDropdown = document.getElementById('languageDropdown');
+    let currentLang = 'de';
+
+    window.addEventListener('DOMContentLoaded', () => {
+      applyTranslations('de');
+      const storedLang = localStorage.getItem('preferredLanguage');
+      if (storedLang && translations[storedLang] && storedLang !== 'de') {
+        translatePage(storedLang);
+      }
+    });
+
+    currentFlag.addEventListener('click', (e) => {
+      e.stopPropagation();
+      languageDropdown.classList.toggle('open');
+    });
+
+    languageDropdown.querySelectorAll('img').forEach(flag => {
+      flag.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const selectedLang = flag.getAttribute('data-lang');
+        translatePage(selectedLang);
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!languageDropdown.contains(e.target) && e.target !== currentFlag) {
+        languageDropdown.classList.remove('open');
+      }
+    });
+  </script>
 </body>
 </html>

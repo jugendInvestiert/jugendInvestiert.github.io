@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <title>JugendInvestiert - Mobile</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ========================= Base Site Styles ========================= */
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      font-family: 'Poppins', Arial, sans-serif;
+      background-color: #101820;
+      color: white;
+      min-height: 100vh;
+    }
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    /* ========================= Mobile Layout Styles ========================= */
+    .mobile-layout {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      padding: 10px 5px; /* Reduced overall padding from 20px 10px to 10px 5px */
+      padding-bottom: 120px; /* Increased padding-bottom from 80px to 120px */
+      text-align: center;
+      gap: 15px; /* Reduced gap for tighter spacing */
+      margin-top: 80px; /* Reduced margin-top from 130px to 80px */
+    }
+
+    /* Header */
+    .mobile-layout .header {
+      width: 100%;
+      background-color: #1B2631;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 15px; /* Reduced padding from 20px to 15px */
+      flex-wrap: wrap;
+      text-align: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+    }
+    .mobile-layout .header img {
+      height: 60px; /* Reduced height from 70px to 60px */
+      width: 60px;  /* Reduced width from 70px to 60px */
+      margin-right: 10px; /* Reduced margin-right from 15px to 10px */
+      border-radius: 12px; /* Slightly reduced border-radius from 15px to 12px */
+    }
+    .mobile-layout .header h1 {
+      font-size: 24px; /* Reduced font-size from 28px to 24px */
+      margin: 0;
+      font-weight: bold;
+    }
+
+    /* Regular Geometric Cubes */
+    .mobile-layout .cube, 
+    .mobile-layout .text-cube, 
+    .mobile-layout .rocket-cube {
+      background-color: #1B2631;
+      width: 90vw; /* Increased width from 80vw to 90vw for better fit */
+      aspect-ratio: 1 / 1; /* Ensures a square shape */
+      border-radius: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 5px 8px; /* Further reduced padding */
+      box-sizing: border-box;
+      margin: 0 auto;
+      margin-bottom: 15px; /* Reduced margin-bottom from 20px to 15px */
+      overflow: hidden; /* Prevents overflow */
+    }
+
+    /* Slogan Squares */
+    .mobile-layout .slogan-square-mobile {
+      background-color: #2E4053;
+      color: #ffffff;
+      font-size: 18px; /* Reduced font-size from 20px to 18px */
+      padding: 8px 10px; /* Further reduced padding from 10px 15px to 8px 10px */
+      border-radius: 15px;
+      box-sizing: border-box;
+      min-height: 50px; /* Reduced min-height from 60px to 50px */
+      width: 90vw; /* Increased width to match cubes */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 15px; /* Reduced margin-bottom from 20px to 15px */
+    }
+
+    /* Number Square */
+    .mobile-layout .number-square {
+      font-size: 100px; /* Increased font-size from 80px to 100px */
+      color: #007bff;
+      font-weight: bold;
+      margin: 0;
+      text-align: center;
+    }
+
+    /* Bamboo Text */
+    .mobile-layout .bamboo-text {
+      font-size: 24px; /* Increased font-size from 20px to 24px */
+      color: white;
+      font-weight: normal;
+      text-align: center;
+      line-height: 1.4;
+      margin: 0;
+    }
+    .mobile-layout .bamboo-text a {
+      text-decoration: underline;
+      color: #007bff;
+      font-weight: bold; 
+    }
+
+    /* Description Text */
+    .mobile-layout .description-text {
+      font-size: 20px; /* Increased font-size from 16px to 20px */
+      color: #cccccc;
+      margin: 0;
+      line-height: 1.5;
+    }
+    .mobile-layout .description-text a {
+      color: #007bff;
+      text-decoration: underline;
+    }
+
+    /* Number and Logo */
+    .mobile-layout .number-and-logo {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 10px; /* Reduced gap from 15px to 10px */
+      width: 100%;
+    }
+
+    /* Bamboo Logo */
+    .mobile-layout .bamboo-logo {
+      height: 150px; /* Increased height from 120px to 150px */
+      width: auto;
+      max-width: 100%; /* Ensures the image doesn't exceed container */
+    }
+
+    /* Text Cube */
+    .mobile-layout .text-cube p {
+      font-size: 16px; /* Reduced font-size from 18px to 16px */
+      color: #cccccc;
+      margin: 0;
+      line-height: 1.5;
+      padding: 0 8px; /* Further reduced padding */
+    }
+
+    /* Rocket Image and Cube */
+    .mobile-layout .rocket-image {
+      width: 160px;  /* Increased width from 120px to 160px */
+      animation: bounceRocket 2s infinite; 
+      max-width: 100%; /* Ensures the image doesn't exceed container */
+    }
+    .mobile-layout .rocket-cube {
+      padding: 5px 8px; /* Further reduced padding from 5px 10px to 5px 8px */
+      margin-bottom: 15px; /* Reduced margin-bottom from 20px to 15px */
+    }
+    .mobile-layout .rocket-text {
+      font-size: 26px; /* Increased font-size from 22px to 26px */
+      color: #ffffff;
+      margin: 0;
+    }
+
+    /* Glowing Button Container */
+    .mobile-layout .glow-button-container {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      width: 100%;
+    }
+
+    /* Start Button */
+    .mobile-layout .start-button {
+      background-color: #007bff;
+      color: #ffffff;
+      border: none;
+      padding: 12px 25px; /* Reduced padding from 15px 30px to 12px 25px */
+      font-size: 16px; /* Reduced font-size from 18px to 16px */
+      font-weight: bold;
+      border-radius: 20px;
+      cursor: pointer;
+      outline: none;
+      box-shadow:
+        0 0 10px rgba(0, 123, 255, 0.7),
+        0 0 20px rgba(0, 123, 255, 0.5),
+        0 0 30px rgba(0, 123, 255, 0.3);
+      transition: background-color 0.3s, box-shadow 0.3s;
+    }
+    .mobile-layout .start-button:hover {
+      background-color: #0056b3;
+      box-shadow: 0 0 30px rgba(0, 123, 255, 0.7);
+    }
+    .mobile-layout .start-button:active {
+      background-color: #004080;
+      box-shadow: 0 0 40px rgba(0, 123, 255, 0.9);
+    }
+
+    /* Code Snippet Cube */
+    .mobile-layout .code-cube {
+      background-color: #1B2631;
+      width: 90vw; /* Match regular cubes */
+      border-radius: 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start; /* Align content to the top */
+      gap: 10px;
+      padding: 5px 8px; /* Minimal padding */
+      box-sizing: border-box;
+      margin: 0 auto;
+      margin-bottom: 15px; /* Reduced margin-bottom from 20px to 15px */
+      overflow: hidden; /* Prevents overflow */
+      /* Removed aspect-ratio to allow dynamic height */
+    }
+
+    /* Code Wrapper Inside Code Cube */
+    .mobile-layout .code-wrapper {
+      background: #151515;
+      color: #93a1a1;
+      border-radius: 8px;
+      padding: 5px 8px; /* Further reduced padding */
+      width: 100%; /* Set to 100% to fit within the cube */
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      position: relative;
+      overflow: auto; /* Allows scrolling if content exceeds the cube */
+      margin: 0 auto; /* Center the code wrapper */
+      text-align: left; /* Align text to the left */
+      /* Removed fixed height to allow dynamic scaling */
+      min-height: 150px; /* Set a minimum height */
+    }
+    .mobile-layout .code-header {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .mobile-layout .code-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+    .mobile-layout .code-dot.red { background: #ff5f56; }
+    .mobile-layout .code-dot.yellow { background: #ffbd2e; }
+    .mobile-layout .code-dot.green { background: #27c93f; }
+
+    .mobile-layout .typed-code {
+      font-size: 14px; /* Reduced font-size from 15px to 14px */
+      font-family: "Fira Code", monospace;
+      white-space: pre-wrap; /* Allows line breaks */
+      word-wrap: break-word; /* Breaks long words */
+      line-height: 1.4;
+      text-align: left; /* Ensure left alignment */
+      overflow: hidden; /* Prevents scrollbar inside code */
+      padding-right: 4px; /* Small padding to prevent text from touching the scrollbar */
+    }
+    .mobile-layout .cursor {
+      display: inline-block;
+      width: 8px;
+      background: #ffffff;
+      margin-left: 2px;
+      animation: blink 1s infinite;
+    }
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      50.01%, 100% { opacity: 0; }
+    }
+
+    /* Rocket Animation */
+    @keyframes bounceRocket {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-20px);
+      }
+      60% {
+        transform: translateY(-10px);
+      }
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      .mobile-layout {
+        padding: 10px 5px; /* Ensure consistent padding on smaller screens */
+        padding-bottom: 120px; /* Match increased bottom padding */
+        margin-top: 80px; /* Match reduced top margin */
+        gap: 15px;
+      }
+      .mobile-layout .header img {
+        height: 60px;
+        width: 60px;
+        margin-right: 10px;
+      }
+      .mobile-layout .header h1 {
+        font-size: 24px;
+      }
+      .mobile-layout .number-square {
+        font-size: 100px; /* Updated to match new size */
+      }
+      .mobile-layout .bamboo-text {
+        font-size: 24px; /* Updated to match new size */
+      }
+      .mobile-layout .description-text {
+        font-size: 20px; /* Updated to match new size */
+      }
+      .mobile-layout .rocket-text {
+        font-size: 26px; /* Updated to match new size */
+      }
+      .mobile-layout .typed-code {
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .mobile-layout {
+        padding-bottom: 120px; /* Maintain increased bottom padding */
+        margin-top: 80px; /* Maintain reduced top margin */
+      }
+      .mobile-layout .header img {
+        height: 50px;
+        width: 50px;
+        margin-right: 8px;
+      }
+      .mobile-layout .header h1 {
+        font-size: 20px;
+      }
+      .mobile-layout .number-square {
+        font-size: 90px; /* Adjusted to accommodate smaller screens */
+      }
+      .mobile-layout .bamboo-text {
+        font-size: 22px; /* Slightly reduced for smaller screens */
+      }
+      .mobile-layout .description-text {
+        font-size: 18px; /* Slightly reduced for smaller screens */
+      }
+      .mobile-layout .rocket-text {
+        font-size: 24px; /* Slightly reduced for smaller screens */
+      }
+      .mobile-layout .typed-code {
+        font-size: 13px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ====================== MOBILE LAYOUT ====================== -->
+  <div class="mobile-layout">
+    <!-- Header -->
+    <div class="header">
+      <img src="logo.jpg" alt="JugendInvestiert Logo">
+      <h1>JugendInvestiert</h1>
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+      <!-- 1) First Cube (Bamboo Cube) -->
+      <div class="cube">
+        <div class="number-and-logo">
+          <img src="bamboologo.jpg" alt="Little Bamboo Logo" class="bamboo-logo">
+          <div class="bamboo-text">
+            Wir unterstützen die Spendenorganisation<br>
+            <a href="https://www.littlebamboo.info/" target="_blank">
+              Little Bamboo
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slogan -->
+      <div class="slogan-square-mobile">
+        <p>Finanzwissen für alle - Investiere in deine Zukunft!</p>
+      </div>
+
+      <!-- #1 Cube -->
+      <div class="cube">
+        <div class="number-square">#1</div>
+        <p class="description-text">bei der Vermittlung von Finanzwissen</p>
+      </div>
+
+      <!-- Text Cube -->
+      <div class="text-cube">
+        <p>
+          Unsere Plattform ist eine Quelle für umfassendes Finanzwissen 💡,
+          das gezielt auf die Bedürfnisse der Jugend zugeschnitten ist.
+        </p>
+      </div>
+
+      <!-- Slogan Square -->
+      <div class="slogan-square-mobile">
+        <p>Gratis, Effizient und macht Spaß</p>
+      </div>
+
+      <!-- Rocket Cube -->
+      <div class="rocket-cube">
+        <img src="rocket.png" alt="Rocket" class="rocket-image">
+        <h2 class="rocket-text">Steigere dein</h2>
+        <h2 class="rocket-text">Finanzwissen! 💪</h2>
+      </div>
+
+      <!-- Code Snippet Cube (Mobile) -->
+      <div class="code-cube">
+        <h2 style="font-size:22px; margin-bottom:10px;">Software die die Welt verbessert</h2>
+        <div class="code-wrapper">
+          <div class="code-header">
+            <div class="code-dot red"></div>
+            <div class="code-dot yellow"></div>
+            <div class="code-dot green"></div>
+          </div>
+          <div id="typedCodeMobile" class="typed-code"></div>
+        </div>
+      </div>
+
+      <!-- Glowing Button -->
+      <div class="glow-button-container">
+        <button class="start-button" onclick="requestParentToOpenSignup()" aria-label="Starten Sie jetzt">
+          Jetzt starten
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    /* ============ MOBILE: "Jetzt starten" ============ */
+    function requestParentToOpenSignup() {
+      window.parent.postMessage({ action: 'openSignupModal' }, '*');
+    }
+
+    /* ============ LIVE-TYPED CODE SNIPPET (LOOPS) ============ */
+    const codeSnippet = String.raw`
+function greetUser(name) {
+  console.log(\`Hello, \${name}!\`);
+}
+
+// Start local server:
+$ node server.js
+> Listening on port 3000...
+
+2025-01-10 12:34:56 [INFO] Server fully operational
+`;
+
+    // Mobile typed container
+    const typedMobile  = document.getElementById('typedCodeMobile');
+
+    // Make blinking cursor
+    let cursorMobile = document.createElement('span');
+    cursorMobile.className = 'cursor';
+    cursorMobile.textContent = ' ';
+
+    if (typedMobile) {
+      typedMobile.appendChild(cursorMobile);
+    }
+
+    let index = 0;
+    const speed = 35;     // ms per character
+    const resetDelay = 1000; // Wait 1s after finishing, then restart
+
+    function typeNextChar() {
+      if (index < codeSnippet.length) {
+        let nextChar = codeSnippet.charAt(index);
+        // Insert next char before the cursor in mobile
+        if (typedMobile) {
+          cursorMobile.insertAdjacentText('beforebegin', nextChar);
+        }
+        index++;
+        setTimeout(typeNextChar, speed);
+      } else {
+        // Done typing => wait, then reset
+        setTimeout(() => {
+          index = 0;
+          if (typedMobile) {
+            typedMobile.textContent = '';
+            typedMobile.appendChild(cursorMobile);
+          }
+          typeNextChar();
+        }, resetDelay);
+      }
+    }
+
+    // Start typing on page load
+    typeNextChar();
+  </script>
+</body>
+</html>

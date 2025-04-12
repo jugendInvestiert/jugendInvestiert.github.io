@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lektion 3: Wie investiere ich mein Geld in Krypto?</title>
+    <title data-translate-key="title">Lektion 3: Wie investiere ich mein Geld in Krypto?</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -12,8 +12,8 @@
             padding: 0;
             background-color: #101820;
             color: white;
-            overflow-x: hidden; /* Prevent horizontal scroll */
-            margin-top: 40px; /* Ensure content is below the navbar */
+            overflow-x: hidden;
+            margin-top: 40px;
             padding-bottom: 50px;
         }
         .navbar {
@@ -27,7 +27,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 10px;
-            z-index: 1000; /* Make sure it stays on top */
+            z-index: 1000;
         }
         .navbar .cross {
             font-size: 1.5em;
@@ -43,7 +43,7 @@
             width: 100%;
             height: 5px;
             background-color: #444;
-            z-index: 1000; /* Make sure it stays on top */
+            z-index: 1000;
         }
         .scroll-bar {
             height: 100%;
@@ -63,50 +63,41 @@
             border-radius: 10px;
         }
         .example {
-            background-color: #1B2631; /* Dark blue tone */
+            background-color: #1B2631;
             padding: 15px;
             border-radius: 8px;
             margin-top: 10px;
         }
-
-        /* Coin container styling */
         .coin-container {
             display: flex;
-            gap: 20px; /* Space between the two images */
+            gap: 20px;
         }
-        
         .coin-container img {
-            max-width: 150px; /* Increased size for both logos */
+            max-width: 150px;
             height: auto;
             border-radius: 10px;
         }
-
-        /* Exchange images container */
         .exchange-container {
             display: flex;
-            gap: 10px; /* Reduced space between the exchange images */
-            justify-content: 10px; /* Align images in a row */
+            gap: 10px;
+            justify-content: flex-start;
         }
-        
         .exchange-container img {
-            max-width: 30%; /* Adjusted size for better fit */
+            max-width: 30%;
             height: auto;
             border-radius: 10px;
         }
-
-        /* Ensure images scale properly and have rounded edges */
         img {
             width: 100%;
             max-width: 500px;
             height: auto;
             display: block;
-            border-radius: 10px; /* Adjust the radius as needed */
+            border-radius: 10px;
             align-self: left;
         }
     </style>
 </head>
 <body>
-
     <div class="navbar">
         <div class="cross" onclick="window.location.href='section1.html'">✖</div>
     </div>
@@ -117,86 +108,223 @@
 
     <div id="course-details">
         <div class="container">
-            <h2>Lektion 3: Wie investiere ich mein Geld in Krypto?</h2>
-            <p>Kryptowährungen sind eine aufstrebende Anlageklasse, die durch Blockchain-Technologie ermöglicht wird. Hier erfahren Sie, wie Sie in Kryptowährungen investieren können.</p>
+            <h2 data-translate-key="lesson_title">Lektion 3: Wie investiere ich mein Geld in Krypto?</h2>
+            <p data-translate-key="intro">Kryptowährungen sind eine aufstrebende Anlageklasse, die durch Blockchain-Technologie ermöglicht wird. Hier erfahren Sie, wie Sie in Kryptowährungen investieren können.</p>
 
-            <h3>A. Was ist eine Kryptowährung?</h3>
-            <p>Eine Kryptowährung ist eine digitale oder virtuelle Währung, die Kryptografie zur Sicherheit verwendet. Im Gegensatz zu traditionellen Währungen sind Kryptowährungen dezentralisiert und basieren auf der Blockchain-Technologie.</p>
+            <h3 data-translate-key="what_is_crypto_title">A. Was ist eine Kryptowährung?</h3>
+            <p data-translate-key="what_is_crypto_desc">Eine Kryptowährung ist eine digitale oder virtuelle Währung, die Kryptografie zur Sicherheit verwendet. Im Gegensatz zu traditionellen Währungen sind Kryptowährungen dezentralisiert und basieren auf der Blockchain-Technologie.</p>
 
             <div class="example">
-                <h4>Beispiel: Bitcoin & Ethereum</h4>
-                <!-- New container for Bitcoin and Ethereum logos -->
+                <h4 data-translate-key="example_coins_title">Beispiel: Bitcoin & Ethereum</h4>
                 <div class="coin-container">
                     <img src="bitcoin.jpg" alt="Bitcoin Logo">
                     <img src="ethereum.jpg" alt="Ethereum Logo">
                     <img src="tether.jpg" alt="Tether logo">
                 </div>
-                <p>Stellen Sie sich Bitcoin als digitales Gold und Ethereum als die führende Plattform für dezentrale Anwendungen vor. Beide Kryptowährungen haben unterschiedliche Anwendungsfälle und Funktionen.</p>
+                <p data-translate-key="example_coins_desc">Stellen Sie sich Bitcoin als digitales Gold und Ethereum als die führende Plattform für dezentrale Anwendungen vor. Beide Kryptowährungen haben unterschiedliche Anwendungsfälle und Funktionen.</p>
             </div>
 
-            <h3>B. Wie funktioniert eine Kryptowährung?</h3>
-            <p>Kryptowährungen funktionieren durch ein Netzwerk von Computern, die Transaktionen verifizieren und in der Blockchain aufzeichnen. Diese Technik sorgt für sichere, dezentralisierte Zahlungen.</p>
+            <h3 data-translate-key="how_crypto_works_title">B. Wie funktioniert eine Kryptowährung?</h3>
+            <p data-translate-key="how_crypto_works_desc">Kryptowährungen funktionieren durch ein Netzwerk von Computern, die Transaktionen verifizieren und in der Blockchain aufzeichnen. Diese Technik sorgt für sichere, dezentralisierte Zahlungen.</p>
 
             <div class="example">
-                <h4>Beispiel: Blockchain-Technologie</h4>
+                <h4 data-translate-key="example_blockchain_title">Beispiel: Blockchain-Technologie</h4>
                 <img src="blockchain.jpg" alt="Blockchain">
-                <p>Die Blockchain ist ein digitaler Ledger, der Transaktionen aufzeichnet. Jede neue Transaktion wird in einem Block gespeichert, der kryptografisch mit dem vorherigen Block verknüpft ist.</p>
+                <p data-translate-key="example_blockchain_desc">Die Blockchain ist ein digitaler Ledger, der Transaktionen aufzeichnet. Jede neue Transaktion wird in einem Block gespeichert, der kryptografisch mit dem vorherigen Block verknüpft ist.</p>
             </div>
 
-            <h3>C. Wie kann ich Kryptowährungen kaufen?</h3>
-            <p>Der Kauf von Kryptowährungen erfolgt in der Regel über Börsen wie Binance oder Coinbase. Sie erstellen ein Konto, zahlen Geld ein und kaufen die gewünschte Kryptowährung.</p>
+            <h3 data-translate-key="buying_crypto_title">C. Wie kann ich Kryptowährungen kaufen?</h3>
+            <p data-translate-key="buying_crypto_desc">Der Kauf von Kryptowährungen erfolgt in der Regel über Börsen wie Binance oder Coinbase. Sie erstellen ein Konto, zahlen Geld ein und kaufen die gewünschte Kryptowährung.</p>
             
-            <!-- Exchange images side by side -->
             <div class="example">
-                <h4>Beispiel: Kauf von Bitcoin</h4>
+                <h4 data-translate-key="example_buying_title">Beispiel: Kauf von Bitcoin</h4>
                 <div class="exchange-container">
                     <img src="binance.jpg" alt="Binance">
                     <img src="cryptoex.jpg" alt="Crypto Exchange">
-                    <img src="coinbase.jpg" alt="Coinbase"> 
+                    <img src="coinbase.jpg" alt="Coinbase">
                 </div>
-                <p>Wenn Sie Bitcoin kaufen möchten, registrieren Sie sich bei einer Kryptowährungsbörse, überweisen Geld auf Ihr Konto und führen den Kauf durch. Danach speichern Sie Ihre Bitcoin sicher in einer Wallet.</p>
+                <p data-translate-key="example_buying_desc">Wenn Sie Bitcoin kaufen möchten, registrieren Sie sich bei einer Kryptowährungsbörse, überweisen Geld auf Ihr Konto und führen den Kauf durch. Danach speichern Sie Ihre Bitcoin sicher in einer Wallet.</p>
             </div>
 
-            <h3>D. Was sind die Risiken?</h3>
-            <p>Investitionen in Kryptowährungen sind volatil und risikoreich. Preisschwankungen können extrem sein, und regulatorische oder technische Risiken können zu Verlusten führen.</p>
+            <h3 data-translate-key="risks_title">D. Was sind die Risiken?</h3>
+            <p data-translate-key="risks_desc">Investitionen in Kryptowährungen sind volatil und risikoreich. Preisschwankungen können extrem sein, und regulatorische oder technische Risiken können zu Verlusten führen.</p>
 
             <div class="example">
-                <h4>Beispiel: Volatilität</h4>
+                <h4 data-translate-key="example_volatility_title">Beispiel: Volatilität</h4>
                 <img src="volatility.jpg" alt="Krypto-Volatilität">
-                <p>Kryptowährungen sind bekannt für ihre extreme Volatilität. Der Wert kann innerhalb weniger Stunden stark schwanken, was sowohl Gewinn- als auch Verlustmöglichkeiten bietet.</p>
+                <p data-translate-key="example_volatility_desc">Kryptowährungen sind bekannt für ihre extreme Volatilität. Der Wert kann innerhalb weniger Stunden stark schwanken, was sowohl Gewinn- als auch Verlustmöglichkeiten bietet.</p>
             </div>
 
-            <h3>E. Wie funktioniert das Mining von Kryptowährungen?</h3>
-            <p>Beim Mining handelt es sich um den Prozess, bei dem neue Kryptowährungseinheiten erstellt und Transaktionen in der Blockchain verifiziert werden. Dies erfolgt durch komplexe mathematische Berechnungen, die von speziellen Computern ausgeführt werden.</p>
+            <h3 data-translate-key="mining_title">E. Wie funktioniert das Mining von Kryptowährungen?</h3>
+            <p data-translate-key="mining_desc">Beim Mining handelt es sich um den Prozess, bei dem neue Kryptowährungseinheiten erstellt und Transaktionen in der Blockchain verifiziert werden. Dies erfolgt durch komplexe mathematische Berechnungen, die von speziellen Computern ausgeführt werden.</p>
 
             <div class="example">
-                <h4>Beispiel: Bitcoin Mining</h4>
+                <h4 data-translate-key="example_mining_title">Beispiel: Bitcoin Mining</h4>
                 <img src="bitcoin_mining.jpg" alt="Bitcoin Mining">
-                <p>Beim Bitcoin-Mining konkurrieren Miner darum, komplexe kryptografische Probleme zu lösen. Der erste Miner, der das Problem löst, erhält neue Bitcoins als Belohnung. Dies erfordert erhebliche Rechenleistung und Energie.</p>
+                <p data-translate-key="example_mining_desc">Beim Bitcoin-Mining konkurrieren Miner darum, komplexe kryptografische Probleme zu lösen. Der erste Miner, der das Problem löst, erhält neue Bitcoins als Belohnung. Dies erfordert erhebliche Rechenleistung und Energie.</p>
             </div>
 
-            <h3>F. Was sind Wallets und wie bewahre ich meine Kryptowährungen sicher auf?</h3>
-            <p>Eine Wallet ist eine digitale Geldbörse, die es Ihnen ermöglicht, Kryptowährungen zu speichern, zu senden und zu empfangen. Es gibt verschiedene Arten von Wallets, darunter Hardware-Wallets, Software-Wallets und Paper Wallets.</p>
+            <h3 data-translate-key="wallets_title">F. Was sind Wallets und wie bewahre ich meine Kryptowährungen sicher auf?</h3>
+            <p data-translate-key="wallets_desc">Eine Wallet ist eine digitale Geldbörse, die es Ihnen ermöglicht, Kryptowährungen zu speichern, zu senden und zu empfangen. Es gibt verschiedene Arten von Wallets, darunter Hardware-Wallets, Software-Wallets und Paper Wallets.</p>
 
             <div class="example">
-                <h4>Beispiel: Hardware-Wallet</h4>
+                <h4 data-translate-key="example_wallet_title">Beispiel: Hardware-Wallet</h4>
                 <img src="usb.jpg" alt="Hardware Wallet">
-                <p>Ein Hardware-Wallet ist ein physisches Gerät, das Ihre privaten Schlüssel offline speichert und somit eine hohe Sicherheit bietet. Im Gegensatz zu Online-Wallets ist ein Hardware-Wallet weniger anfällig für Hacks.</p>
+                <p data-translate-key="example_wallet_desc">Ein Hardware-Wallet ist ein physisches Gerät, das Ihre privaten Schlüssel offline speichert und somit eine hohe Sicherheit bietet. Im Gegensatz zu Online-Wallets ist ein Hardware-Wallet weniger anfällig für Hacks.</p>
             </div>
 
-            <h3>G. Regulierung von Kryptowährungen</h3>
-            <p>Die Regulierung von Kryptowährungen variiert weltweit. Einige Länder unterstützen Kryptowährungen, während andere strikte Regeln oder sogar Verbote erlassen. Die rechtliche Landschaft entwickelt sich ständig weiter.</p>
+            <h3 data-translate-key="regulation_title">G. Regulierung von Kryptowährungen</h3>
+            <p data-translate-key="regulation_desc">Die Regulierung von Kryptowährungen variiert weltweit. Einige Länder unterstützen Kryptowährungen, während andere strikte Regeln oder sogar Verbote erlassen. Die rechtliche Landschaft entwickelt sich ständig weiter.</p>
 
             <div class="example">
-                <h4>Beispiel: Regulierung in der Europäischen Union</h4>
+                <h4 data-translate-key="example_regulation_title">Beispiel: Regulierung in der Europäischen Union</h4>
                 <img src="eu.jpg" alt="EU Regulierung">
-                <p>In der Europäischen Union arbeitet die EU an der Entwicklung eines einheitlichen Regelwerks für Kryptowährungen, das mehr Sicherheit und Vertrauen für Investoren schaffen soll. Dies beinhaltet Maßnahmen zur Bekämpfung von Geldwäsche und zur Verbesserung der Markttransparenz.</p>
+                <p data-translate-key="example_regulation_desc">In der Europäischen Union arbeitet die EU an der Entwicklung eines einheitlichen Regelwerks für Kryptowährungen, das mehr Sicherheit und Vertrauen für Investoren schaffen soll. Dies beinhaltet Maßnahmen zur Bekämpfung von Geldwäsche und zur Verbesserung der Markttransparenz.</p>
             </div>
-
         </div>
     </div>
 
     <script>
+        const translations = {
+            "de": {
+                "title": "Lektion 3: Wie investiere ich mein Geld in Krypto?",
+                "lesson_title": "Lektion 3: Wie investiere ich mein Geld in Krypto?",
+                "intro": "Kryptowährungen sind eine aufstrebende Anlageklasse, die durch Blockchain-Technologie ermöglicht wird. Hier erfahren Sie, wie Sie in Kryptowährungen investieren können.",
+                "what_is_crypto_title": "A. Was ist eine Kryptowährung?",
+                "what_is_crypto_desc": "Eine Kryptowährung ist eine digitale oder virtuelle Währung, die Kryptografie zur Sicherheit verwendet. Im Gegensatz zu traditionellen Währungen sind Kryptowährungen dezentralisiert und basieren auf der Blockchain-Technologie.",
+                "example_coins_title": "Beispiel: Bitcoin & Ethereum",
+                "example_coins_desc": "Stellen Sie sich Bitcoin als digitales Gold und Ethereum als die führende Plattform für dezentrale Anwendungen vor. Beide Kryptowährungen haben unterschiedliche Anwendungsfälle und Funktionen.",
+                "how_crypto_works_title": "B. Wie funktioniert eine Kryptowährung?",
+                "how_crypto_works_desc": "Kryptowährungen funktionieren durch ein Netzwerk von Computern, die Transaktionen verifizieren und in der Blockchain aufzeichnen. Diese Technik sorgt für sichere, dezentralisierte Zahlungen.",
+                "example_blockchain_title": "Beispiel: Blockchain-Technologie",
+                "example_blockchain_desc": "Die Blockchain ist ein digitaler Ledger, der Transaktionen aufzeichnet. Jede neue Transaktion wird in einem Block gespeichert, der kryptografisch mit dem vorherigen Block verknüpft ist.",
+                "buying_crypto_title": "C. Wie kann ich Kryptowährungen kaufen?",
+                "buying_crypto_desc": "Der Kauf von Kryptowährungen erfolgt in der Regel über Börsen wie Binance oder Coinbase. Sie erstellen ein Konto, zahlen Geld ein und kaufen die gewünschte Kryptowährung.",
+                "example_buying_title": "Beispiel: Kauf von Bitcoin",
+                "example_buying_desc": "Wenn Sie Bitcoin kaufen möchten, registrieren Sie sich bei einer Kryptowährungsbörse, überweisen Geld auf Ihr Konto und führen den Kauf durch. Danach speichern Sie Ihre Bitcoin sicher in einer Wallet.",
+                "risks_title": "D. Was sind die Risiken?",
+                "risks_desc": "Investitionen in Kryptowährungen sind volatil und risikoreich. Preisschwankungen können extrem sein, und regulatorische oder technische Risiken können zu Verlusten führen.",
+                "example_volatility_title": "Beispiel: Volatilität",
+                "example_volatility_desc": "Kryptowährungen sind bekannt für ihre extreme Volatilität. Der Wert kann innerhalb weniger Stunden stark schwanken, was sowohl Gewinn- als auch Verlustmöglichkeiten bietet.",
+                "mining_title": "E. Wie funktioniert das Mining von Kryptowährungen?",
+                "mining_desc": "Beim Mining handelt es sich um den Prozess, bei dem neue Kryptowährungseinheiten erstellt und Transaktionen in der Blockchain verifiziert werden. Dies erfolgt durch komplexe mathematische Berechnungen, die von speziellen Computern ausgeführt werden.",
+                "example_mining_title": "Beispiel: Bitcoin Mining",
+                "example_mining_desc": "Beim Bitcoin-Mining konkurrieren Miner darum, komplexe kryptografische Probleme zu lösen. Der erste Miner, der das Problem löst, erhält neue Bitcoins als Belohnung. Dies erfordert erhebliche Rechenleistung und Energie.",
+                "wallets_title": "F. Was sind Wallets und wie bewahre ich meine Kryptowährungen sicher auf?",
+                "wallets_desc": "Eine Wallet ist eine digitale Geldbörse, die es Ihnen ermöglicht, Kryptowährungen zu speichern, zu senden und zu empfangen. Es gibt verschiedene Arten von Wallets, darunter Hardware-Wallets, Software-Wallets und Paper Wallets.",
+                "example_wallet_title": "Beispiel: Hardware-Wallet",
+                "example_wallet_desc": "Ein Hardware-Wallet ist ein physisches Gerät, das Ihre privaten Schlüssel offline speichert und somit eine hohe Sicherheit bietet. Im Gegensatz zu Online-Wallets ist ein Hardware-Wallet weniger anfällig für Hacks.",
+                "regulation_title": "G. Regulierung von Kryptowährungen",
+                "regulation_desc": "Die Regulierung von Kryptowährungen variiert weltweit. Einige Länder unterstützen Kryptowährungen, während andere strikte Regeln oder sogar Verbote erlassen. Die rechtliche Landschaft entwickelt sich ständig weiter.",
+                "example_regulation_title": "Beispiel: Regulierung in der Europäischen Union",
+                "example_regulation_desc": "In der Europäischen Union arbeitet die EU an der Entwicklung eines einheitlichen Regelwerks für Kryptowährungen, das mehr Sicherheit und Vertrauen für Investoren schaffen soll. Dies beinhaltet Maßnahmen zur Bekämpfung von Geldwäsche und zur Verbesserung der Markttransparenz."
+            },
+            "en": {
+                "title": "Lesson 3: How do I invest in crypto?",
+                "lesson_title": "Lesson 3: How do I invest in crypto?",
+                "intro": "Cryptocurrencies are an emerging asset class enabled by blockchain technology. Here, you’ll learn how to invest in cryptocurrencies.",
+                "what_is_crypto_title": "A. What is a cryptocurrency?",
+                "what_is_crypto_desc": "A cryptocurrency is a digital or virtual currency that uses cryptography for security. Unlike traditional currencies, cryptocurrencies are decentralized and based on blockchain technology.",
+                "example_coins_title": "Example: Bitcoin & Ethereum",
+                "example_coins_desc": "Think of Bitcoin as digital gold and Ethereum as the leading platform for decentralized applications. Both cryptocurrencies have different use cases and functionalities.",
+                "how_crypto_works_title": "B. How does a cryptocurrency work?",
+                "how_crypto_works_desc": "Cryptocurrencies operate through a network of computers that verify transactions and record them on the blockchain. This technology ensures secure, decentralized payments.",
+                "example_blockchain_title": "Example: Blockchain technology",
+                "example_blockchain_desc": "The blockchain is a digital ledger that records transactions. Each new transaction is stored in a block, which is cryptographically linked to the previous block.",
+                "buying_crypto_title": "C. How can I buy cryptocurrencies?",
+                "buying_crypto_desc": "Buying cryptocurrencies is typically done through exchanges like Binance or Coinbase. You create an account, deposit money, and purchase the desired cryptocurrency.",
+                "example_buying_title": "Example: Buying Bitcoin",
+                "example_buying_desc": "If you want to buy Bitcoin, you register with a cryptocurrency exchange, transfer money to your account, and make the purchase. Afterward, you store your Bitcoin securely in a wallet.",
+                "risks_title": "D. What are the risks?",
+                "risks_desc": "Investing in cryptocurrencies is volatile and risky. Price fluctuations can be extreme, and regulatory or technical risks can lead to losses.",
+                "example_volatility_title": "Example: Volatility",
+                "example_volatility_desc": "Cryptocurrencies are known for their extreme volatility. Their value can fluctuate significantly within hours, offering both profit and loss opportunities.",
+                "mining_title": "E. How does cryptocurrency mining work?",
+                "mining_desc": "Mining is the process of creating new cryptocurrency units and verifying transactions on the blockchain. This is done through complex mathematical calculations performed by specialized computers.",
+                "example_mining_title": "Example: Bitcoin mining",
+                "example_mining_desc": "In Bitcoin mining, miners compete to solve complex cryptographic problems. The first miner to solve the problem receives new Bitcoins as a reward. This requires significant computational power and energy.",
+                "wallets_title": "F. What are wallets, and how do I securely store my cryptocurrencies?",
+                "wallets_desc": "A wallet is a digital purse that allows you to store, send, and receive cryptocurrencies. There are various types of wallets, including hardware wallets, software wallets, and paper wallets.",
+                "example_wallet_title": "Example: Hardware wallet",
+                "example_wallet_desc": "A hardware wallet is a physical device that stores your private keys offline, offering high security. Unlike online wallets, a hardware wallet is less vulnerable to hacks.",
+                "regulation_title": "G. Regulation of cryptocurrencies",
+                "regulation_desc": "The regulation of cryptocurrencies varies worldwide. Some countries support cryptocurrencies, while others impose strict rules or even bans. The legal landscape is constantly evolving.",
+                "example_regulation_title": "Example: Regulation in the European Union",
+                "example_regulation_desc": "In the European Union, the EU is working on developing a unified regulatory framework for cryptocurrencies to create more security and trust for investors. This includes measures to combat money laundering and improve market transparency."
+            },
+            "fr": {
+                "title": "Leçon 3 : Comment investir dans les cryptomonnaies ?",
+                "lesson_title": "Leçon 3 : Comment investir dans les cryptomonnaies ?",
+                "intro": "Les cryptomonnaies sont une classe d’actifs émergente rendue possible par la technologie blockchain. Ici, vous apprendrez comment investir dans les cryptomonnaies.",
+                "what_is_crypto_title": "A. Qu’est-ce qu’une cryptomonnaie ?",
+                "what_is_crypto_desc": "Une cryptomonnaie est une monnaie numérique ou virtuelle qui utilise la cryptographie pour assurer sa sécurité. Contrairement aux monnaies traditionnelles, les cryptomonnaies sont décentralisées et basées sur la technologie blockchain.",
+                "example_coins_title": "Exemple : Bitcoin & Ethereum",
+                "example_coins_desc": "Considérez Bitcoin comme de l’or numérique et Ethereum comme la principale plateforme pour les applications décentralisées. Ces deux cryptomonnaies ont des cas d’utilisation et des fonctionnalités différentes.",
+                "how_crypto_works_title": "B. Comment fonctionne une cryptomonnaie ?",
+                "how_crypto_works_desc": "Les cryptomonnaies fonctionnent grâce à un réseau d’ordinateurs qui vérifient les transactions et les enregistrent sur la blockchain. Cette technologie garantit des paiements sécurisés et décentralisés.",
+                "example_blockchain_title": "Exemple : Technologie blockchain",
+                "example_blockchain_desc": "La blockchain est un registre numérique qui enregistre les transactions. Chaque nouvelle transaction est stockée dans un bloc, qui est lié cryptographiquement au bloc précédent.",
+                "buying_crypto_title": "C. Comment puis-je acheter des cryptomonnaies ?",
+                "buying_crypto_desc": "L’achat de cryptomonnaies se fait généralement via des plateformes d’échange comme Binance ou Coinbase. Vous créez un compte, déposez de l’argent et achetez la cryptomonnaie souhaitée.",
+                "example_buying_title": "Exemple : Achat de Bitcoin",
+                "example_buying_desc": "Si vous souhaitez acheter du Bitcoin, inscrivez-vous sur une plateforme d’échange de cryptomonnaies, transférez de l’argent sur votre compte et effectuez l’achat. Ensuite, vous stockez vos Bitcoins en toute sécurité dans un portefeuille.",
+                "risks_title": "D. Quels sont les risques ?",
+                "risks_desc": "Investir dans les cryptomonnaies est volatile et risqué. Les fluctuations de prix peuvent être extrêmes, et les risques réglementaires ou techniques peuvent entraîner des pertes.",
+                "example_volatility_title": "Exemple : Volatilité",
+                "example_volatility_desc": "Les cryptomonnaies sont connues pour leur volatilité extrême. Leur valeur peut fluctuer fortement en quelques heures, offrant à la fois des opportunités de profit et de perte.",
+                "mining_title": "E. Comment fonctionne le minage de cryptomonnaies ?",
+                "mining_desc": "Le minage est le processus de création de nouvelles unités de cryptomonnaie et de vérification des transactions sur la blockchain. Cela se fait par des calculs mathématiques complexes effectués par des ordinateurs spécialisés.",
+                "example_mining_title": "Exemple : Minage de Bitcoin",
+                "example_mining_desc": "Dans le minage de Bitcoin, les mineurs s’affrontent pour résoudre des problèmes cryptographiques complexes. Le premier mineur à résoudre le problème reçoit de nouveaux Bitcoins en récompense. Cela nécessite une puissance de calcul et une énergie considérables.",
+                "wallets_title": "F. Que sont les portefeuilles et comment stocker mes cryptomonnaies en sécurité ?",
+                "wallets_desc": "Un portefeuille est un porte-monnaie numérique qui vous permet de stocker, envoyer et recevoir des cryptomonnaies. Il existe différents types de portefeuilles, y compris les portefeuilles matériels, logiciels et papier.",
+                "example_wallet_title": "Exemple : Portefeuille matériel",
+                "example_wallet_desc": "Un portefeuille matériel est un dispositif physique qui stocke vos clés privées hors ligne, offrant ainsi une sécurité élevée. Contrairement aux portefeuilles en ligne, un portefeuille matériel est moins vulnérable aux piratages.",
+                "regulation_title": "G. Réglementation des cryptomonnaies",
+                "regulation_desc": "La réglementation des cryptomonnaies varie à travers le monde. Certains pays soutiennent les cryptomonnaies, tandis que d’autres imposent des règles strictes ou même des interdictions. Le paysage juridique évolue constamment.",
+                "example_regulation_title": "Exemple : Réglementation dans l’Union européenne",
+                "example_regulation_desc": "Dans l’Union européenne, l’UE travaille à l’élaboration d’un cadre réglementaire unifié pour les cryptomonnaies afin de renforcer la sécurité et la confiance des investisseurs. Cela inclut des mesures pour lutter contre le blanchiment d’argent et améliorer la transparence du marché."
+            }
+        };
+
+        let currentLang = 'de';
+
+        function applyTranslations(targetLang) {
+            const elements = document.querySelectorAll('[data-translate-key]');
+            if (!translations[targetLang]) return;
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate-key');
+                if (translations[targetLang][key]) {
+                    element.innerHTML = translations[targetLang][key];
+                }
+            });
+            document.title = translations[targetLang].title || "Lektion 3: Wie investiere ich mein Geld in Krypto?";
+        }
+
+        function translatePage(targetLang) {
+            if (targetLang === currentLang) return;
+            applyTranslations(targetLang);
+            document.documentElement.lang = targetLang;
+            currentLang = targetLang;
+        }
+
+        // Apply default language on load
+        window.addEventListener('DOMContentLoaded', () => {
+            applyTranslations('de');
+            const storedLang = localStorage.getItem('preferredLanguage');
+            if (storedLang && translations[storedLang] && storedLang !== 'de') {
+                translatePage(storedLang);
+            }
+        });
+
+        // Listen for language change messages from parent (index.html)
+        window.addEventListener('message', (event) => {
+            if (event.data.type === 'LANGUAGE_CHANGE') {
+                translatePage(event.data.language);
+            }
+        });
+
+        // Scroll bar functionality
         function updateScrollBar() {
             const scrollBar = document.getElementById('scroll-bar');
             const scrollHeight = document.documentElement.scrollHeight;

@@ -1,0 +1,219 @@
+[
+    {
+      "term": "Aktie",
+      "definition": "Eine Aktie ist ein Wertpapier, das den Anteil an einer Aktiengesellschaft (AG) verbrieft. Anleger werden damit Mitinhaber des Unternehmens und können Dividenden und Stimmrechte erhalten."
+    },
+    {
+      "term": "Anleihe",
+      "definition": "Eine Anleihe ist ein festverzinsliches Wertpapier, das von Unternehmen oder Regierungen ausgegeben wird. Käufer von Anleihen leihen dem Emittenten Geld und erhalten dafür regelmäßige Zinsen."
+    },
+    {
+      "term": "ETF (Exchange Traded Fund)",
+      "definition": "Ein ETF ist ein börsengehandelter Fonds, der einen Index nachbildet und eine einfache und kostengünstige Möglichkeit bietet, in einen ganzen Markt zu investieren."
+    },
+    {
+      "term": "Liquidität",
+      "definition": "Die Fähigkeit eines Unternehmens oder Anlegers, Verpflichtungen fristgerecht zu erfüllen. Generell beschreibt es, wie schnell eine Anlage in Bargeld umgewandelt werden kann."
+    },
+    {
+      "term": "Volatilität",
+      "definition": "Ein Maß für die Schwankungsintensität von Wertpapierkursen oder Märkten. Hohe Volatilität bedeutet starke Preisschwankungen in kurzer Zeit."
+    },
+    {
+      "term": "Dividende",
+      "definition": "Ein Teil des Unternehmensgewinns, der an die Aktionäre ausgeschüttet wird. Dividenden können regelmäßig oder unregelmäßig ausgezahlt werden und variieren je nach Geschäftsergebnis."
+    },
+    {
+      "term": "Blue Chip",
+      "definition": "Aktien von großen, etablierten und finanziell soliden Unternehmen, die in ihrer Branche einen guten Ruf und eine stabile Gewinnentwicklung haben."
+    },
+    {
+      "term": "Derivat",
+      "definition": "Finanzinstrument, dessen Wert von einem Basiswert (z.B. Aktie, Rohstoff) abhängt. Beispiele sind Optionen, Futures oder Swaps."
+    },
+    {
+      "term": "Leverage (Hebelwirkung)",
+      "definition": "Die Möglichkeit, mit relativ wenig Kapital eine größere Marktposition zu kontrollieren. Dies kann Gewinne erhöhen, birgt jedoch auch ein höheres Verlustrisiko."
+    },
+    {
+      "term": "Rendite",
+      "definition": "Der Ertrag einer Kapitalanlage in Prozent des eingesetzten Kapitals pro Jahr. Berücksichtigt werden können dabei Kursgewinne, Dividenden oder Zinsen."
+    },
+    {
+      "term": "Portfolio",
+      "definition": "Die Gesamtheit aller Anlagen eines Investors. Ein Portfolio kann Aktien, Anleihen, Fonds, Immobilien und weitere Vermögenswerte umfassen."
+    },
+    {
+      "term": "Diversifikation",
+      "definition": "Die Verteilung von Kapital auf verschiedene Anlagen, um das Risiko zu reduzieren. So werden Verluste in einem Bereich durch Gewinne in einem anderen Bereich abgefedert."
+    },
+    {
+      "term": "Börsengang (IPO)",
+      "definition": "Die Erstnotierung eines Unternehmens an der Börse. Neue Aktien werden ausgegeben, um Kapital zu beschaffen, Unternehmen werden öffentlich handelbar."
+    },
+    {
+      "term": "Hedgefonds",
+      "definition": "Ein wenig regulierter Investmentfonds, der oft komplexe Strategien wie Leerverkäufe oder Derivate nutzt, um hohe Renditen zu erzielen. Damit geht jedoch auch ein höheres Risiko einher."
+    },
+    {
+      "term": "Sparplan",
+      "definition": "Ein systematisches Anlagekonzept, bei dem man regelmäßig einen festen Betrag investiert, zum Beispiel in einen Fonds oder ETF, um langfristig Vermögen aufzubauen."
+    },
+    {
+      "term": "Investmentstrategie",
+      "definition": "Ein Plan oder eine Methode, die ein Investor verwendet, um seine Investitionen zu tätigen und zu verwalten, um bestimmte finanzielle Ziele zu erreichen."
+    },
+    {
+      "term": "Marktkapitalisierung",
+      "definition": "Der Gesamtwert aller ausgegebenen Aktien eines Unternehmens, berechnet durch Multiplikation des Aktienkurses mit der Anzahl der ausgegebenen Aktien."
+    },
+    {
+      "term": "Dividendenrendite",
+      "definition": "Die Dividende eines Unternehmens im Verhältnis zum aktuellen Aktienkurs, ausgedrückt als Prozentsatz."
+    },
+    {
+      "term": "Bullenmarkt",
+      "definition": "Ein Markt, in dem die Preise von Wertpapieren allgemein steigen oder zu steigen erwartet werden."
+    },
+    {
+      "term": "Bärenmarkt",
+      "definition": "Ein Markt, in dem die Preise von Wertpapieren allgemein fallen oder zu fallen erwartet werden."
+    },
+    {
+      "term": "Rebalancing",
+      "definition": "Der Prozess der Anpassung des Gewichtungsportfolios einer Investition, um die ursprüngliche oder eine gewünschte Anlagestrategie wiederherzustellen."
+    },
+    {
+      "term": "Stop-Loss",
+      "definition": "Eine Order, ein Wertpapier zu verkaufen, wenn es einen bestimmten Preis erreicht, um Verluste zu begrenzen."
+    },
+    {
+      "term": "Anlagestrategie",
+      "definition": "Die spezifische Vorgehensweise oder der Plan, den ein Investor verwendet, um seine Investitionsziele zu erreichen, einschließlich der Auswahl von Anlageklassen und spezifischen Anlagen."
+    },
+    {
+      "term": "Indexfonds",
+      "definition": "Ein Fonds, der einen bestimmten Börsenindex nachbildet, indem er die gleichen Aktien in den gleichen Gewichtungen hält."
+    },
+    {
+      "term": "Risikomanagement",
+      "definition": "Der Prozess der Identifizierung, Bewertung und Priorisierung von Risiken sowie der Anwendung von Ressourcen zur Minimierung, Überwachung und Kontrolle der Wahrscheinlichkeit oder Auswirkungen unerwünschter Ereignisse."
+    },
+    {
+      "term": "Inflation",
+      "definition": "Der anhaltende Anstieg des allgemeinen Preisniveaus von Waren und Dienstleistungen in einer Volkswirtschaft über einen bestimmten Zeitraum."
+    },
+    {
+      "term": "Deflation",
+      "definition": "Der anhaltende Rückgang des allgemeinen Preisniveaus von Waren und Dienstleistungen in einer Volkswirtschaft über einen bestimmten Zeitraum."
+    },
+    {
+      "term": "Zinseszins",
+      "definition": "Die Verzinsung der bereits erzielten Zinsen auf eine Kapitalanlage, was zu exponentiellem Wachstum des investierten Kapitals führt."
+    },
+    {
+      "term": "Dividendenpolitik",
+      "definition": "Die Strategie eines Unternehmens bezüglich der Ausschüttung von Gewinnen an seine Aktionäre in Form von Dividenden."
+    },
+    {
+      "term": "Kapitalertragssteuer",
+      "definition": "Eine Steuer auf den Gewinn, der aus dem Verkauf von Kapitalanlagen wie Aktien, Anleihen oder Immobilien erzielt wird."
+    },
+    {
+      "term": "Reichtum",
+      "definition": "Ein Zustand des Überflusses oder der Fülle, oft in Bezug auf finanzielle Ressourcen und Vermögenswerte."
+    },
+    {
+      "term": "Finanzplanung",
+      "definition": "Der Prozess der Festlegung von finanziellen Zielen und der Entwicklung von Strategien zur Erreichung dieser Ziele durch Verwaltung von Ressourcen, Investitionen und Risiko."
+    },
+    {
+      "term": "Passives Investieren",
+      "definition": "Eine Anlagestrategie, bei der man ein Portfolio hält, das einen Marktindex nachbildet, ohne aktiv zu versuchen, den Markt zu schlagen."
+    },
+    {
+      "term": "Aktives Investieren",
+      "definition": "Eine Anlagestrategie, bei der Investoren versuchen, den Markt zu übertreffen, indem sie gezielt Wertpapiere auswählen und zeitliche Entscheidungen treffen."
+    },
+    {
+      "term": "Asset Allocation",
+      "definition": "Die Verteilung von Kapital auf verschiedene Anlageklassen wie Aktien, Anleihen und Immobilien, um ein ausgewogenes Portfolio zu erstellen."
+    },
+    {
+      "term": "Kreditrating",
+      "definition": "Eine Bewertung der Kreditwürdigkeit eines Schuldners, die von Rating-Agenturen wie Standard & Poor's oder Moody's vergeben wird."
+    },
+    {
+      "term": "Nachhaltige Investition",
+      "definition": "Investitionen, die Umwelt-, Sozial- und Governance-Kriterien (ESG) berücksichtigen, um langfristig nachhaltige Renditen zu erzielen."
+    },
+    {
+      "term": "Risikofaktor",
+      "definition": "Ein Element oder eine Bedingung, die das Risiko einer Investition oder eines Geschäfts beeinflussen kann."
+    },
+    {
+      "term": "Smart Beta",
+      "definition": "Ein Investmentansatz, der traditionelle marktkapitalisierungsgewichtete Indizes mit alternativen Gewichtungsstrategien kombiniert, um bessere Renditen oder geringeres Risiko zu erzielen."
+    },
+    {
+      "term": "Treasury Bond",
+      "definition": "Ein von der Regierung ausgegebener langfristiger Schuldtitel, der regelmäßig Zinsen zahlt und am Ende der Laufzeit den Nennwert zurückzahlt."
+    },
+    {
+      "term": "Venture Capital",
+      "definition": "Finanzierung, die von Investoren bereitgestellt wird, um Start-ups und kleine Unternehmen mit hohem Wachstumspotenzial zu unterstützen."
+    },
+    {
+      "term": "Yield Curve",
+      "definition": "Eine grafische Darstellung der Zinssätze von Anleihen gleicher Bonität, aber unterschiedlicher Laufzeiten, oft verwendet zur Vorhersage wirtschaftlicher Trends."
+    },
+    {
+      "term": "Liquidity Risk",
+      "definition": "Das Risiko, dass ein Unternehmen oder Investor nicht in der Lage ist, Vermögenswerte schnell genug in Bargeld umzuwandeln, ohne erhebliche Verluste zu erleiden."
+    },
+    {
+      "term": "Margin Trading",
+      "definition": "Der Kauf von Wertpapieren mit geliehenem Kapital, wobei die Wertpapiere als Sicherheit für das geliehene Geld dienen."
+    },
+    {
+      "term": "Over-the-Counter (OTC)",
+      "definition": "Handel mit Finanzinstrumenten direkt zwischen zwei Parteien ohne die Nutzung einer regulären Börse."
+    },
+    {
+      "term": "Quantitative Easing (QE)",
+      "definition": "Eine unkonventionelle Geldpolitik, bei der Zentralbanken große Mengen an Vermögenswerten kaufen, um die Wirtschaft zu stimulieren."
+    },
+    {
+      "term": "Risikokapital",
+      "definition": "Kapital, das in Start-ups oder junge Unternehmen mit hohem Wachstumspotenzial investiert wird, typischerweise gegen Eigenkapitalanteile."
+    },
+    {
+      "term": "Securities",
+      "definition": "Finanzinstrumente, die den Besitz eines Vermögenswerts oder eine Forderung repräsentieren, wie Aktien, Anleihen und Derivate."
+    },
+    {
+      "term": "Tax-Loss Harvesting",
+      "definition": "Eine Strategie zur Steueroptimierung, bei der Investoren Verluste aus Wertpapierverkäufen nutzen, um steuerpflichtige Gewinne auszugleichen."
+    },
+    {
+      "term": "Unsystematic Risk",
+      "definition": "Risiken, die spezifisch für ein einzelnes Unternehmen oder eine Branche sind und durch Diversifikation im Portfolio reduziert werden können."
+    },
+    {
+      "term": "Systematic Risk",
+      "definition": "Risiken, die den gesamten Markt oder eine große Marktsektion betreffen und nicht durch Diversifikation eliminiert werden können."
+    },
+    {
+      "term": "VIX (Volatility Index)",
+      "definition": "Ein Index, der die erwartete kurzfristige Volatilität des Marktes misst und oft als Angstindikator verwendet wird."
+    },
+    {
+      "term": "Wertpapier",
+      "definition": "Ein handelbares Finanzinstrument, das einen Vermögenswert oder eine Schuld verbrieft, wie Aktien, Anleihen oder Derivate."
+    },
+    {
+      "term": "Zero-Coupon Bond",
+      "definition": "Eine Anleihe, die keinen regelmäßigen Zinssatz zahlt, sondern zu einem Abschlag auf den Nennwert verkauft wird und bei Fälligkeit den vollen Nennwert auszahlt."
+    }
+  ]
+  

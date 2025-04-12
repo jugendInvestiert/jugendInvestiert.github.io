@@ -10,56 +10,49 @@
             font-family: 'Poppins', Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #101820; /* Dark background color */
+            background-color: #101820;
             color: white;
             overflow-x: hidden;
         }
-
         .content {
             padding: 40px;
             display: flex;
             flex-direction: column;
-            align-items: center; /* Center align content */
+            align-items: center;
             max-width: 420px;
         }
-
         .header {
             margin-top: -15px;
             display: flex;
             padding: 15px;
             align-items: center;
-            background-color: #1B2631; /* Blue background color for header */
+            background-color: #1B2631;
             border-radius: 10px;
             margin-bottom: 20px;
             width: 100%;
-            max-width: 800px; /* Restrict header width */
+            max-width: 800px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             transition: background-color 0.3s ease;
         }
-
         .header:hover {
-            background-color: #1B2631; /* Slightly darker blue on hover */
+            background-color: #1B2631;
         }
-
         .arrow {
             cursor: pointer;
             margin-right: 15px;
             font-size: 20px;
-            transition: transform 0.3s ease, font-size 0.3s ease; /* Add transition for smooth hover effect */
+            transition: transform 0.3s ease, font-size 0.3s ease;
         }
-
         .arrow:hover {
-            transform: scale(1.2); /* Increase the size of the arrow on hover */
-            font-size: 24px; /* Optional: increase the font size for better visual effect */
+            transform: scale(1.2);
+            font-size: 24px;
         }
-
         .header-text {
             font-size: 18px;
             font-weight: bold;
         }
-
         .course {
-            background-color: #1B2631; /* Dark blue tone */
+            background-color: #1B2631;
             margin-bottom: 25px;
             padding: 20px;
             border-radius: 15px;
@@ -69,12 +62,10 @@
             box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
         }
-
         .course:hover {
             transform: translateY(-8px);
             box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
         }
-
         .banner {
             padding: 15px;
             border-radius: 10px 10px 10px 10px;
@@ -83,40 +74,34 @@
             font-size: 20px;
             font-weight: bold;
             position: relative;
-            background-color: #444; /* Default banner color */
+            background-color: #444;
             margin-bottom: 15px;
         }
-
         .banner-1 { background-color: #007bff; }
         .banner-2 { background-color: #28a745; }
         .banner-3 { background-color: #ffc107; }
         .banner-4 { background-color: #17a2b8; }
         .banner-5 { background-color: #dc3545; }
         .banner-6 { background-color: #6f42c1; }
-
         .course-content {
             display: flex;
             flex-direction: column;
             gap: 15px;
         }
-
         .text-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-
         .text-container p {
             margin: 0;
-            font-size: 16px; /* Slightly larger text for better readability */
+            font-size: 16px;
             flex: 1;
         }
-
         .button-container {
             display: flex;
             justify-content: flex-end;
         }
-
         .action-button {
             font-weight: bold;
             color: #fff;
@@ -128,30 +113,24 @@
             transition: background-color 0.3s ease, transform 0.3s ease;
             margin-left: 10px;
         }
-
         .anzeigen-button {
-            background-color: #28a745; /* Green for "Anzeigen" */
+            background-color: #28a745;
         }
-
         .minimieren-button {
-            background-color: #dc3545; /* Red for "Minimieren" */
+            background-color: #dc3545;
         }
-
         .action-button:hover {
             transform: scale(1.05);
         }
-
         @media (max-width: 600px) {
             .header, .course {
                 width: 95%;
                 padding: 15px;
             }
-
             .text-container {
                 flex-direction: column;
                 align-items: flex-start;
             }
-
             .button-container {
                 justify-content: center;
                 margin-top: 10px;
@@ -163,86 +142,176 @@
     <div class="content">
         <div class="header">
             <div class="arrow" onclick="location.href='lessons.html'">←</div>
-            <div class="header-text">📚 Section 1: Wie investiere ich mein Geld</div>
+            <div class="header-text" data-translate-key="header">📚 Section 1: Wie investiere ich mein Geld</div>
         </div>
         <div class="course" id="course1">
             <div class="banner banner-1">
-                💹 Wie lege ich mein Geld in Aktien an?
+                <span data-translate-key="course1_title">💹 Wie lege ich mein Geld in Aktien an?</span>
             </div>
             <div class="course-content">
                 <div class="text-container">
-                    <p>Entdecke die besten Methoden, um Geld gewinnbringend und sicher in Aktien zu investieren.</p>
+                    <p data-translate-key="course1_desc">Entdecke die besten Methoden, um Geld gewinnbringend und sicher in Aktien zu investieren.</p>
                     <div class="button-container">
-                        <button class="action-button anzeigen-button" onclick="location.href='course1.html'">Anzeigen</button>
+                        <button class="action-button anzeigen-button" onclick="location.href='course1.html'" data-translate-key="view">Anzeigen</button>
                     </div>
                 </div>
             </div>
         </div>
         <div class="course" id="course2">
             <div class="banner banner-2">
-                🏦 Wie lege ich mein Geld in Anleihen an?
+                <span data-translate-key="course2_title">🏦 Wie lege ich mein Geld in Anleihen an?</span>
             </div>
             <div class="course-content">
                 <div class="text-container">
-                    <p>Erfahre mehr über die Investition in Anleihen und ihre Vorteile.</p>
+                    <p data-translate-key="course2_desc">Erfahre mehr über die Investition in Anleihen und ihre Vorteile.</p>
                     <div class="button-container">
-                        <button class="action-button anzeigen-button" onclick="location.href='course2.html'">Anzeigen</button>
+                        <button class="action-button anzeigen-button" onclick="location.href='course2.html'" data-translate-key="view">Anzeigen</button>
                     </div>
                 </div>
             </div>
         </div>
         <div class="course" id="course3">
             <div class="banner banner-3">
-                🚀 Wie investiere ich mein Geld in Krypto?
+                <span data-translate-key="course3_title">🚀 Wie investiere ich mein Geld in Krypto?</span>
             </div>
             <div class="course-content">
                 <div class="text-container">
-                    <p>Erlerne die Grundlagen und Strategien für das Investieren in Kryptowährungen.</p>
+                    <p data-translate-key="course3_desc">Erlerne die Grundlagen und Strategien für das Investieren in Kryptowährungen.</p>
                     <div class="button-container">
-                        <button class="action-button anzeigen-button" onclick="location.href='course3.html'">Anzeigen</button>
+                        <button class="action-button anzeigen-button" onclick="location.href='course3.html'" data-translate-key="view">Anzeigen</button>
                     </div>
                 </div>
             </div>
         </div>
         <div class="course" id="course4">
             <div class="banner banner-4">
-                💰 Wie lege ich mein Geld in Rohstoffe an?
+                <span data-translate-key="course4_title">💰 Wie lege ich mein Geld in Rohstoffe an?</span>
             </div>
             <div class="course-content">
                 <div class="text-container">
-                    <p>Verstehe wie du in verschiedene Rohstoffe investieren kannst.</p>
+                    <p data-translate-key="course4_desc">Verstehe wie du in verschiedene Rohstoffe investieren kannst.</p>
                     <div class="button-container">
-                        <button class="action-button anzeigen-button" onclick="location.href='course4.html'">Anzeigen</button>
+                        <button class="action-button anzeigen-button" onclick="location.href='course4.html'" data-translate-key="view">Anzeigen</button>
                     </div>
                 </div>
             </div>
         </div>
         <div class="course" id="course5">
             <div class="banner banner-5">
-                🏠 Wie lege ich mein Geld in Immobilien an?
+                <span data-translate-key="course5_title">🏠 Wie lege ich mein Geld in Immobilien an?</span>
             </div>
             <div class="course-content">
                 <div class="text-container">
-                    <p>Erforsche die verschiedenen Möglichkeiten der Immobilieninvestition.</p>
+                    <p data-translate-key="course5_desc">Erforsche die verschiedenen Möglichkeiten der Immobilieninvestition.</p>
                     <div class="button-container">
-                        <button class="action-button anzeigen-button" onclick="location.href='course5.html'">Anzeigen</button>
+                        <button class="action-button anzeigen-button" onclick="location.href='course5.html'" data-translate-key="view">Anzeigen</button>
                     </div>
                 </div>
             </div>
         </div>
         <div class="course" id="course6">
             <div class="banner banner-6">
-                📈 Wie lege ich mein Geld in ETFs an?
+                <span data-translate-key="course6_title">📈 Wie lege ich mein Geld in ETFs an?</span>
             </div>
             <div class="course-content">
                 <div class="text-container">
-                    <p>Erfahren wie du Geld sicher und gewinnbringend in ETFs anlegen kannst.</p>
+                    <p data-translate-key="course6_desc">Erfahren wie du Geld sicher und gewinnbringend in ETFs anlegen kannst.</p>
                     <div class="button-container">
-                        <button class="action-button anzeigen-button" onclick="location.href='course6.html'">Anzeigen</button>
+                        <button class="action-button anzeigen-button" onclick="location.href='course6.html'" data-translate-key="view">Anzeigen</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        const translations = {
+            "de": {
+                "header": "📚 Section 1: Wie investiere ich mein Geld",
+                "course1_title": "💹 Wie lege ich mein Geld in Aktien an?",
+                "course1_desc": "Entdecke die besten Methoden, um Geld gewinnbringend und sicher in Aktien zu investieren.",
+                "course2_title": "🏦 Wie lege ich mein Geld in Anleihen an?",
+                "course2_desc": "Erfahre mehr über die Investition in Anleihen und ihre Vorteile.",
+                "course3_title": "🚀 Wie investiere ich mein Geld in Krypto?",
+                "course3_desc": "Erlerne die Grundlagen und Strategien für das Investieren in Kryptowährungen.",
+                "course4_title": "💰 Wie lege ich mein Geld in Rohstoffe an?",
+                "course4_desc": "Verstehe wie du in verschiedene Rohstoffe investieren kannst.",
+                "course5_title": "🏠 Wie lege ich mein Geld in Immobilien an?",
+                "course5_desc": "Erforsche die verschiedenen Möglichkeiten der Immobilieninvestition.",
+                "course6_title": "📈 Wie lege ich mein Geld in ETFs an?",
+                "course6_desc": "Erfahren wie du Geld sicher und gewinnbringend in ETFs anlegen kannst.",
+                "view": "Anzeigen"
+            },
+            "en": {
+                "header": "📚 Section 1: How do I invest my money",
+                "course1_title": "💹 How do I invest in stocks?",
+                "course1_desc": "Discover the best methods to invest money profitably and safely in stocks.",
+                "course2_title": "🏦 How do I invest in bonds?",
+                "course2_desc": "Learn more about investing in bonds and their advantages.",
+                "course3_title": "🚀 How do I invest in crypto?",
+                "course3_desc": "Learn the basics and strategies for investing in cryptocurrencies.",
+                "course4_title": "💰 How do I invest in commodities?",
+                "course4_desc": "Understand how you can invest in various commodities.",
+                "course5_title": "🏠 How do I invest in real estate?",
+                "course5_desc": "Explore the various possibilities of real estate investment.",
+                "course6_title": "📈 How do I invest in ETFs?",
+                "course6_desc": "Learn how to invest money safely and profitably in ETFs.",
+                "view": "View"
+            },
+            "fr": {
+                "header": "📚 Section 1 : Comment investir mon argent",
+                "course1_title": "💹 Comment investir en actions ?",
+                "course1_desc": "Découvrez les meilleures méthodes pour investir de l'argent de manière rentable et sécurisée en actions.",
+                "course2_title": "🏦 Comment investir en obligations ?",
+                "course2_desc": "Apprenez-en davantage sur l'investissement en obligations et leurs avantages.",
+                "course3_title": "🚀 Comment investir en crypto ?",
+                "course3_desc": "Apprenez les bases et les stratégies pour investir dans les cryptomonnaies.",
+                "course4_title": "💰 Comment investir en matières premières ?",
+                "course4_desc": "Comprenez comment investir dans diverses matières premières.",
+                "course5_title": "🏠 Comment investir en immobilier ?",
+                "course5_desc": "Explorez les différentes possibilités d'investissement immobilier.",
+                "course6_title": "📈 Comment investir en ETF ?",
+                "course6_desc": "Apprenez comment investir de l'argent de manière sûre et rentable en ETF.",
+                "view": "Voir"
+            }
+        };
+
+        let currentLang = 'de';
+
+        function applyTranslations(targetLang) {
+            const elements = document.querySelectorAll('[data-translate-key]');
+            if (!translations[targetLang]) return;
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate-key');
+                if (translations[targetLang][key]) {
+                    element.innerHTML = translations[targetLang][key];
+                }
+            });
+        }
+
+        function translatePage(targetLang) {
+            if (targetLang === currentLang) return;
+            applyTranslations(targetLang);
+            document.documentElement.lang = targetLang;
+            currentLang = targetLang;
+        }
+
+        // Apply default language on load
+        window.addEventListener('DOMContentLoaded', () => {
+            applyTranslations('de');
+            const storedLang = localStorage.getItem('preferredLanguage');
+            if (storedLang && translations[storedLang] && storedLang !== 'de') {
+                translatePage(storedLang);
+            }
+        });
+
+        // Listen for language change messages from parent (index.html)
+        window.addEventListener('message', (event) => {
+            if (event.data.type === 'LANGUAGE_CHANGE') {
+                console.log(`Section1.html received LANGUAGE_CHANGE for ${event.data.language}`);
+                translatePage(event.data.language);
+            }
+        });
+    </script>
 </body>
 </html>

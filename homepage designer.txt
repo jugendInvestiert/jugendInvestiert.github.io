@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>jugendInvestiert - Duolingo-Like</title>
+
+  <!-- Google Font Import (Baloo 2) -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    /* RESET & GLOBALS */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --primary: #2d3436;
+      --secondary: #0984e3;
+      --accent: white;
+      --text: #2d3436;
+      --light: #dfe6e9;
+      --gradient: linear-gradient(135deg, #6366f1, #3b82f6);
+      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Body Styling */
+    body {
+      font-family: "Baloo 2", system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      line-height: 1.6;
+      color: var(--text);
+      overflow-x: hidden;
+      background: var(--light);
+    }
+
+    /* NAVBAR */
+    .navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.7);
+      backdrop-filter: blur(15px);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .brand-container {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .logo {
+      height: 60px;
+      width: auto;
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+    }
+    .logo:hover {
+      transform: scale(1.1);
+    }
+
+    .brand-text {
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--text);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+    }
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 600;
+      position: relative;
+      font-size: 1.1rem;
+      transition: color 0.3s ease;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 3px;
+      background: var(--secondary);
+      transition: width 0.3s ease;
+    }
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+    .nav-links a:hover {
+      color: var(--secondary);
+    }
+
+    /* Flag Icon */
+    .flag-container {
+      position: relative;
+    }
+    .flag-icon {
+      width: 50px;
+      height: 30px;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .flag-icon:hover {
+      transform: scale(1.1);
+    }
+
+    /* Language Dropdown */
+    .language-dropdown {
+      display: none;
+      position: absolute;
+      top: 110%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      border-radius: 8px;
+      overflow: hidden;
+      flex-direction: column;
+      align-items: center;
+      padding: 0.5rem;
+      z-index: 1001;
+    }
+    .language-dropdown.open {
+      display: flex;
+    }
+    .language-dropdown img {
+      width: 50px;
+      height: 30px;
+      border-radius: 4px;
+      margin: 0.5rem;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .language-dropdown img:hover {
+      transform: scale(1.1);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+    }
+
+    /* HERO SECTION */
+    .hero {
+      min-height: 100vh;
+      background: var(--gradient);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 80px;
+      text-align: center;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, transparent 20%, rgba(0, 0, 0, 0.3) 100%);
+      animation: pulse 15s infinite;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+    @keyframes pulse {
+      0% {
+        transform: translate(-50%, -50%) rotate(0deg);
+        opacity: 0.5;
+      }
+      50% {
+        transform: translate(-50%, -50%) rotate(180deg);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translate(-50%, -50%) rotate(360deg);
+        opacity: 0.5;
+      }
+    }
+    .content {
+      position: relative;
+      z-index: 1;
+      color: white;
+      padding: 2rem;
+      max-width: 800px;
+      animation: fadeIn 1s ease-out;
+      text-align: center;
+    }
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .title {
+      font-size: 3.5rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(45deg, white, var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer 3s infinite;
+      background-size: 200% auto;
+      font-weight: 700;
+    }
+    @keyframes shimmer {
+      to {
+        background-position: 200% center;
+      }
+    }
+    .subtitle {
+      font-size: 1.3rem;
+      margin-bottom: 2rem;
+      font-weight: 400;
+      line-height: 1.5;
+    }
+
+    /* CTA BUTTON */
+    .cta-btn {
+      display: inline-block;
+      background: #fff;
+      color: var(--primary);
+      padding: 0.8rem 2rem;
+      border-radius: 25px;
+      text-decoration: none;
+      font-size: 1.2rem;
+      font-weight: 700;
+      transition: box-shadow 0.3s ease, background 0.3s ease;
+      animation: glow 2s infinite alternate;
+    }
+    .cta-btn:hover {
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+      background: var(--light);
+    }
+    @keyframes glow {
+      0% {
+        box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+      }
+      100% {
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+      }
+    }
+
+    /* FLOATING SHAPES */
+    .floating-shapes {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .shape {
+      position: absolute;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      animation: float 20s infinite linear;
+    }
+    @keyframes float {
+      0% {
+        transform: translate(0, 0) rotate(0deg);
+      }
+      50% {
+        transform: translate(100px, 100px) rotate(180deg);
+      }
+      100% {
+        transform: translate(0, 0) rotate(360deg);
+      }
+    }
+
+    /* STATS SECTION */
+    .stats-section {
+      background: var(--gradient);
+      padding: 6rem 2rem;
+      color: white;
+      text-align: center;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 3rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .stat-card {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2rem;
+      border-radius: 15px;
+      backdrop-filter: blur(10px);
+      transform: translateY(50px);
+      opacity: 0;
+      animation: slideUp 0.5s ease-out forwards;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .stat-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    @keyframes slideUp {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    /* #1 BIG CUBE SECTION */
+    #big1-cube {
+      display: flex; 
+      justify-content: center; 
+      gap: 2rem; 
+      padding: 4rem 2rem; 
+      background: var(--gradient);
+    }
+    #big1-cube .cube {
+      width: 500px; 
+      aspect-ratio: 1;
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
+      justify-content: center; 
+      text-align: center; 
+      background: rgba(255,255,255,0.1); 
+      backdrop-filter: blur(10px); 
+      border-radius: 15px; 
+      padding: 2rem;
+    }
+    #big1-cube .number {
+      font-size: 7rem; 
+      font-weight: bold; 
+      color: white; 
+      margin-bottom: 0.5rem;
+    }
+    #big1-cube .text {
+      font-size: 1.4rem; 
+      color: white; 
+      line-height: 1.4;
+    }
+
+    /* CHART CUBE SECTION */
+    #chart-cube {
+      display: flex; 
+      justify-content: center; 
+      gap: 2rem; 
+      padding: 4rem 2rem; 
+      background: var(--gradient);
+    }
+    #chart-cube .cube {
+      width: 400px; 
+      aspect-ratio: 1;
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
+      justify-content: center; 
+      text-align: center; 
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 2rem;
+    }
+
+    /* Minimal Charts.css (for the column chart) */
+    table.charts-css {
+      --size: 1;       /* needed to avoid errors */
+      --color: #fff;   /* default color */
+      width: 100%;
+      height: 100%;
+      border-spacing: 0;
+    }
+    table.charts-css.hide-data .data {
+      display: none;
+    }
+    .charts-css.column tbody tr {
+      vertical-align: bottom;
+    }
+    .charts-css.column tbody tr td {
+      padding: 0 0.3rem;
+    }
+    .charts-css.column td span.data {
+      display: inline-block;
+      margin-top: 0.5rem;
+    }
+    .charts-css.column td {
+      background-color: var(--color);
+      width: 2rem;
+      position: relative;
+    }
+    .charts-css.column td::before {
+      content: "";
+      display: block;
+      height: 100%;
+      width: 100%;
+      background: var(--color);
+      transform-origin: bottom;
+      transform: scaleY(var(--size));
+      transition: transform 0.3s ease-in-out;
+    }
+    .charts-css.column td:hover::before {
+      filter: brightness(120%);
+    }
+
+    /* ======================== NEW: EXTRA CUBES SECTION ========================= */
+    .extra-cubes-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      background: var(--gradient);
+      padding: 4rem 2rem;
+      text-align: center;
+      color: white;
+    }
+
+    /* Re-usable "dark glassy" cube style matching your theme */
+    .extra-cube {
+      width: 90%;
+      max-width: 500px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 2rem;
+      box-sizing: border-box;
+      margin: 0 auto;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    /* (A) Bamboo Cube */
+    .bamboo-logo {
+      height: 120px;
+      width: auto;
+      margin-bottom: 1rem;
+    }
+    .bamboo-text {
+      font-size: 1.2rem;
+      line-height: 1.4;
+    }
+    .bamboo-text a {
+      color: #fff;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+
+    /* (B) #1 Cube (Already exists, but let's restyle a small version if desired) */
+    .mini-number-square {
+      font-size: 4rem;
+      color: var(--secondary);
+      font-weight: bold;
+      margin: 0 0 0.5rem;
+    }
+
+    /* (C) Text Cube */
+    .text-cube-content {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #fff;
+    }
+
+    /* (D) Rocket Cube */
+    .rocket-image {
+      width: 120px;
+      margin-bottom: 1rem;
+      animation: bounceRocket 2s infinite;
+    }
+    @keyframes bounceRocket {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-15px); }
+      60% { transform: translateY(-8px); }
+    }
+    .rocket-text {
+      font-size: 1.5rem;
+      margin: 0.3rem 0;
+      font-weight: 600;
+    }
+
+    /* (E) Code Snippet Cube */
+    .code-cube-title {
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+    .code-wrapper {
+      background: rgba(0, 0, 0, 0.5);
+      color: #93a1a1;
+      border-radius: 8px;
+      padding: 1rem;
+      width: 100%;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+      position: relative;
+      overflow: auto;
+      text-align: left;
+      min-height: 150px;
+    }
+    .code-header {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .code-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+    .code-dot.red { background: #ff5f56; }
+    .code-dot.yellow { background: #ffbd2e; }
+    .code-dot.green { background: #27c93f; }
+
+    .typed-code {
+      font-size: 0.9rem;
+      font-family: "Fira Code", monospace;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      line-height: 1.4;
+      text-align: left;
+      overflow: hidden;
+      color: #ffffff;
+    }
+    .cursor {
+      display: inline-block;
+      width: 6px;
+      background: #ffffff;
+      margin-left: 2px;
+      animation: blink 1s infinite;
+    }
+    @keyframes blink {
+      0%, 50% { opacity: 1; }
+      50.01%, 100% { opacity: 0; }
+    }
+
+    /* Slogan square or highlight area */
+    .slogan-square {
+      width: 90%;
+      max-width: 500px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(10px);
+      border-radius: 15px;
+      padding: 1rem;
+      box-sizing: border-box;
+      text-align: center;
+      color: #fff;
+      margin: 0 auto;
+      font-size: 1.1rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="brand-container">
+      <img src="logo.jpg" alt="Logo" class="logo" />
+      <span class="brand-text">jugendInvestiert</span>
+    </div>
+
+    <div class="nav-links">
+      <a href="#stats">Stats</a>
+    </div>
+
+    <!-- Flag Container -->
+    <div class="flag-container">
+      <img src="https://flagcdn.com/de.svg" alt="German Flag" class="flag-icon" id="flagIcon" />
+      <div class="language-dropdown" id="languageDropdown">
+        <img src="https://flagcdn.com/de.svg" alt="German Flag" data-lang="de" />
+        <img src="https://flagcdn.com/fr.svg" alt="French Flag" data-lang="fr" />
+        <img src="https://flagcdn.com/es.svg" alt="Spanish Flag" data-lang="es" />
+        <img src="https://flagcdn.com/gb.svg" alt="English Flag" data-lang="en" />
+        <img src="https://flagcdn.com/dk.svg" alt="Danish Flag" data-lang="da" />
+        <img src="https://flagcdn.com/it.svg" alt="Italian Flag" data-lang="it" />
+        <img src="https://flagcdn.com/nl.svg" alt="Dutch Flag" data-lang="nl" />
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <div class="floating-shapes">
+      <div class="shape" style="width: 50px; height: 50px; top: 20%; left: 20%;"></div>
+      <div class="shape" style="width: 80px; height: 80px; top: 60%; left: 80%;"></div>
+      <div class="shape" style="width: 30px; height: 30px; top: 80%; left: 30%;"></div>
+    </div>
+
+    <div class="content">
+      <h1 class="title" id="title">Investiere in deine Zukunft</h1>
+      <p class="subtitle" id="subtitle">Finanzwissen für alle</p>
+      <a href="#stats" class="cta-btn" id="ctaBtn">Jetzt starten</a>
+    </div>
+  </section>
+
+  <!-- BIG #1 CUBE (Already in your original code) -->
+  <section id="big1-cube">
+    <div class="cube">
+      <div class="number">#1</div>
+      <div class="text">Nummer eins bei der Vermittlung von Finanzwissen</div>
+    </div>
+  </section>
+
+  <!-- CHART CUBE -->
+  <section id="chart-cube">
+    <div class="cube">
+      <div id="column-example-2">
+        <table class="charts-css column hide-data">
+          <caption>Column Chart</caption>
+          <tbody>
+            <tr><td style="--size: 0.25;"><span class="data">$25K</span></td></tr>
+            <tr><td style="--size: 0.5;"><span class="data">$50K</span></td></tr>
+            <tr><td style="--size: 0.75;"><span class="data">$75K</span></td></tr>
+            <tr><td style="--size: 1;"><span class="data">$100K</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS SECTION -->
+  <section id="stats" class="stats-section">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-number" id="stat1">98%</div>
+        <p id="stat1-text">Customer Satisfaction</p>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="stat2">10K+</div>
+        <p id="stat2-text">Active Users</p>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number" id="stat3">50+</div>
+        <p id="stat3-text">Countries Served</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================== NEW CUBES SECTION (From Mobile Code) ========================= -->
+  <section class="extra-cubes-section" id="extra-cubes">
+    <!-- 1) Bamboo Cube -->
+    <div class="extra-cube">
+      <img src="bamboologo.jpg" alt="Little Bamboo Logo" class="bamboo-logo">
+      <div class="bamboo-text">
+        Wir unterstützen die Spendenorganisation
+        <br>
+        <a href="https://www.littlebamboo.info/" target="_blank">Little Bamboo</a>
+      </div>
+    </div>
+
+    <!-- 2) Small Slogan -->
+    <div class="slogan-square">
+      <p>Finanzwissen für alle - Investiere in deine Zukunft!</p>
+    </div>
+
+    <!-- 3) Another #1 Cube (mini version) -->
+    <div class="extra-cube">
+      <div class="mini-number-square">#1</div>
+      <p class="text-cube-content">bei der Vermittlung von Finanzwissen</p>
+    </div>
+
+    <!-- 4) Text Cube -->
+    <div class="extra-cube">
+      <p class="text-cube-content">
+        Unsere Plattform ist eine Quelle für umfassendes Finanzwissen 💡,
+        das gezielt auf die Bedürfnisse der Jugend zugeschnitten ist.
+      </p>
+    </div>
+
+    <!-- Another slogan square -->
+    <div class="slogan-square">
+      <p>Gratis, Effizient und macht Spaß</p>
+    </div>
+
+    <!-- 5) Rocket Cube -->
+    <div class="extra-cube">
+      <img src="rocket.png" alt="Rocket" class="rocket-image">
+      <h2 class="rocket-text">Steigere dein</h2>
+      <h2 class="rocket-text">Finanzwissen! 💪</h2>
+    </div>
+
+    <!-- 6) Code Snippet Cube -->
+    <div class="extra-cube">
+      <h2 class="code-cube-title">Software die die Welt verbessert</h2>
+      <div class="code-wrapper">
+        <div class="code-header">
+          <div class="code-dot red"></div>
+          <div class="code-dot yellow"></div>
+          <div class="code-dot green"></div>
+        </div>
+        <div id="typedCodeMobile" class="typed-code"></div>
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // =========================== Language Translation Logic ==========================
+    const flagIcon = document.getElementById('flagIcon');
+    const languageDropdown = document.getElementById('languageDropdown');
+
+    const translations = {
+      de: {
+        title: "Investiere in deine Zukunft",
+        subtitle: "Finanzwissen für alle",
+        ctaBtn: "Jetzt starten",
+        stat1: "Kundenzufriedenheit",
+        stat2: "Aktive Nutzer",
+        stat3: "Länder bedient",
+      },
+      fr: {
+        title: "Investissez dans votre avenir",
+        subtitle: "Connaissances financières pour tous",
+        ctaBtn: "Commencer maintenant",
+        stat1: "Satisfaction des clients",
+        stat2: "Utilisateurs actifs",
+        stat3: "Pays desservis",
+      },
+      es: {
+        title: "Invierte en tu futuro",
+        subtitle: "Conocimiento financiero para todos",
+        ctaBtn: "Empezar ahora",
+        stat1: "Satisfacción del cliente",
+        stat2: "Usuarios activos",
+        stat3: "Países atendidos",
+      },
+      en: {
+        title: "Invest in your future",
+        subtitle: "Financial knowledge for everyone",
+        ctaBtn: "Start now",
+        stat1: "Customer Satisfaction",
+        stat2: "Active Users",
+        stat3: "Countries Served",
+      },
+      da: {
+        title: "Invester i din fremtid",
+        subtitle: "Finansiel viden til alle",
+        ctaBtn: "Start nu",
+        stat1: "Kundetilfredshed",
+        stat2: "Aktive brugere",
+        stat3: "Lande dækket",
+      },
+      it: {
+        title: "Investi nel tuo futuro",
+        subtitle: "Conoscenza finanziaria per tutti",
+        ctaBtn: "Inizia ora",
+        stat1: "Soddisfazione del cliente",
+        stat2: "Utenti attivi",
+        stat3: "Paesi serviti",
+      },
+      nl: {
+        title: "Investeer in je toekomst",
+        subtitle: "Financiële kennis voor iedereen",
+        ctaBtn: "Start nu",
+        stat1: "Klanttevredenheid",
+        stat2: "Actieve gebruikers",
+        stat3: "Landen bediend",
+      },
+      pl: {
+        title: "Inwestuj w swoją przyszłość",
+        subtitle: "Wiedza finansowa dla wszystkich",
+        ctaBtn: "Zacznij teraz",
+        stat1: "Zadowolenie klientów",
+        stat2: "Aktywni użytkownicy",
+        stat3: "Obsługiwane kraje",
+      },
+      pt: {
+        title: "Invista no seu futuro",
+        subtitle: "Conhecimento financeiro para todos",
+        ctaBtn: "Comece agora",
+        stat1: "Satisfação do cliente",
+        stat2: "Usuários ativos",
+        stat3: "Países atendidos",
+      },
+      sv: {
+        title: "Investera i din framtid",
+        subtitle: "Finansiell kunskap för alla",
+        ctaBtn: "Börja nu",
+        stat1: "Kundnöjdhet",
+        stat2: "Aktiva användare",
+        stat3: "Länder betjänade",
+      },
+      fi: {
+        title: "Sijoita tulevaisuuteesi",
+        subtitle: "Rahoitustietoa kaikille",
+        ctaBtn: "Aloita nyt",
+        stat1: "Asiakastyytyväisyys",
+        stat2: "Aktiiviset käyttäjät",
+        stat3: "Palveltavat maat",
+      },
+    };
+
+    let currentLanguage = 'de';
+
+    // Toggle dropdown
+    flagIcon.addEventListener('click', (e) => {
+      e.stopPropagation();
+      languageDropdown.classList.toggle('open');
+    });
+
+    // Change language
+    const changeLanguage = (language) => {
+      currentLanguage = language;
+      document.getElementById('title').textContent = translations[language].title;
+      document.getElementById('subtitle').textContent = translations[language].subtitle;
+      document.getElementById('ctaBtn').textContent = translations[language].ctaBtn;
+      document.getElementById('stat1-text').textContent = translations[language].stat1;
+      document.getElementById('stat2-text').textContent = translations[language].stat2;
+      document.getElementById('stat3-text').textContent = translations[language].stat3;
+      
+      // Update flag icon
+      flagIcon.src = `https://flagcdn.com/${language}.svg`;
+      flagIcon.alt = `${getLanguageName(language)} Flag`;
+      
+      languageDropdown.classList.remove('open');
+    };
+
+    // Helper function to get language name
+    const getLanguageName = (langCode) => {
+      const languageNames = {
+        de: "German",
+        fr: "French",
+        es: "Spanish",
+        en: "English",
+        da: "Danish",
+        it: "Italian",
+        nl: "Dutch",
+        pl: "Polish",
+        pt: "Portuguese",
+        sv: "Swedish",
+        fi: "Finnish",
+      };
+      return languageNames[langCode] || "Unknown";
+    };
+
+    // Add event listeners to language flags
+    const flagImages = languageDropdown.querySelectorAll('img');
+    flagImages.forEach(flag => {
+      flag.addEventListener('click', () => {
+        const selectedLang = flag.getAttribute('data-lang');
+        changeLanguage(selectedLang);
+      });
+    });
+
+    // Close the dropdown when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!languageDropdown.contains(e.target) && e.target !== flagIcon) {
+        languageDropdown.classList.remove('open');
+      }
+    });
+
+    // Initialize default language on DOM load
+    window.addEventListener('DOMContentLoaded', () => {
+      changeLanguage(currentLanguage);
+    });
+
+    // ====================== CODE SNIPPET TYPING ======================
+    const codeSnippet = String.raw`
+function greetUser(name) {
+  console.log(\`Hello, \${name}!\`);
+}
+
+// Start local server:
+$ node server.js
+> Listening on port 3000...
+
+2025-01-10 12:34:56 [INFO] Server fully operational
+`;
+
+    const typedMobile  = document.getElementById('typedCodeMobile');
+
+    let cursorMobile = document.createElement('span');
+    cursorMobile.className = 'cursor';
+    cursorMobile.textContent = ' ';
+
+    if (typedMobile) {
+      typedMobile.appendChild(cursorMobile);
+    }
+
+    let index = 0;
+    const speed = 35;     // ms per character
+    const resetDelay = 1000; // Wait 1s after finishing, then restart
+
+    function typeNextChar() {
+      if (index < codeSnippet.length) {
+        let nextChar = codeSnippet.charAt(index);
+        if (typedMobile) {
+          cursorMobile.insertAdjacentText('beforebegin', nextChar);
+        }
+        index++;
+        setTimeout(typeNextChar, speed);
+      } else {
+        // Done typing => wait, then reset
+        setTimeout(() => {
+          index = 0;
+          if (typedMobile) {
+            typedMobile.textContent = '';
+            typedMobile.appendChild(cursorMobile);
+          }
+          typeNextChar();
+        }, resetDelay);
+      }
+    }
+
+    // Start typing on page load
+    typeNextChar();
+  </script>
+</body>
+</html>
