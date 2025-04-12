@@ -2,15 +2,26 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Optimized viewport for fullscreen -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <!-- iOS fullscreen support -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Android status bar color -->
+    <meta name="theme-color" content="#101820">
     <title>JugendInvestiert</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="/icon.png">
 
     <style>
-        /* [Previous CSS remains unchanged, included for completeness] */
-        * { box-sizing: border-box; }
+        html {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
         body {
             font-family: 'Poppins', Arial, sans-serif;
             margin: 0;
@@ -18,6 +29,13 @@
             display: flex;
             background-color: #101820;
             color: white;
+            min-height: 100vh;
+            width: 100%;
+            box-sizing: border-box;
+            padding-top: env(safe-area-inset-top);
+            padding-bottom: env(safe-area-inset-bottom);
+            padding-left: env(safe-area-inset-left);
+            padding-right: env(safe-area-inset-right);
             overflow-y: auto;
             -ms-overflow-style: none;
             scrollbar-width: none;
@@ -86,11 +104,21 @@
             margin-left: 300px;
             width: calc(100% - 300px);
             color: white;
+            min-height: 100vh;
         }
         .content h1 { font-size: 32px; }
-        .content section { display: none; width: 100%; height: 100vh; }
+        .content section {
+            display: none;
+            width: 100%;
+            min-height: 100vh;
+        }
         .content section.active { display: block; }
-        .content iframe { width: 100%; height: 100vh; border: none; }
+        .content iframe {
+            width: 100%;
+            height: 100vh;
+            border: none;
+            display: block;
+        }
         .modal {
             display: none;
             position: fixed;
@@ -230,7 +258,18 @@
         @media (max-width: 768px) {
             body { flex-direction: column; }
             .sidebar { display: none; }
-            .content { margin-left: 0; width: 100%; padding: 0; }
+            .content {
+                margin-left: 0;
+                width: 100%;
+                padding: 0;
+                min-height: calc(100vh - 60px);
+            }
+            .content section {
+                min-height: calc(100vh - 60px);
+            }
+            .content iframe {
+                height: calc(100vh - 60px);
+            }
             .bottom-nav {
                 display: flex;
                 position: fixed;
@@ -241,6 +280,8 @@
                 justify-content: space-evenly;
                 padding: 15px 0;
                 box-shadow: 0 -2px 5px rgba(0,0,0,0.3);
+                padding-bottom: env(safe-area-inset-bottom);
+                height: 60px;
             }
             .bottom-nav a {
                 color: white;
@@ -252,81 +293,98 @@
                 transition: color 0.3s ease;
             }
             .bottom-nav a.active { color: #a2e5ff; }
-            .bottom-nav a .emoji-image { margin-right: 0; width: 36px; height: 36px; object-fit: contain; }
+            .bottom-nav a .emoji-image {
+                margin-right: 0;
+                width: 36px;
+                height: 36px;
+                object-fit: contain;
+            }
         }
-        .password-check-row { display: flex; align-items: center; margin-top: 8px; gap: 8px; }
+        .password-check-row {
+            display: flex;
+            align-items: center;
+            margin-top: 8px;
+            gap: 8px;
+        }
+        .scroll-container {
+            min-height: 101vh;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
-    <div class="sidebar">
-        <h2 data-translate-key="brand">JugendInvestiert</h2>
-        <a href="#home" class="button active" onclick="showSection('home', this)">
-            <img src="house2.png" alt="Home" class="emoji-image"> <span data-translate-key="home">Home</span>
-        </a>
-        <a href="#lernen" class="button" onclick="showSection('lernen', this)">
-            <img src="lernen.jpg" alt="Lernen" class="emoji-image emoji-image-large"> <span data-translate-key="learn">Lernen</span>
-        </a>
-        <a href="#resourcen" class="button" onclick="showSection('resourcen', this)">
-            <img src="ressourcen.png" alt="Ressourcen" class="emoji-image"> <span data-translate-key="resources">Ressourcen</span>
-        </a>
-        <a href="#simulator" class="button" onclick="showSection('simulator', this)">
-            <img src="simulator.png" alt="Simulator" class="emoji-image emoji-image-large"> <span data-translate-key="simulator">Simulator</span>
-        </a>
-        <a href="#unsere-mission" class="button" onclick="showSection('unsere-mission', this)">
-            <img src="mission.png" alt="Unsere Mission" class="emoji-image emoji-image-large"> <span data-translate-key="mission">Unsere Mission</span>
-        </a>
-        <div class="bottom-buttons">
-            <a href="#login" class="button login" onclick="openModal('loginModal')">
-                <img src="login.png" alt="Anmelden" class="emoji-image"> <span data-translate-key="login">Anmelden</span>
+    <div class="scroll-container">
+        <div class="sidebar">
+            <h2 data-translate-key="brand">JugendInvestiert</h2>
+            <a href="#home" class="button active" onclick="showSection('home', this)">
+                <img src="house2.png" alt="Home" class="emoji-image"> <span data-translate-key="home">Home</span>
             </a>
-            <a href="#signup" class="button signup" onclick="openModal('signupModal')">
-                <img src="register.png" alt="Registrieren" class="emoji-image"> <span data-translate-key="signup">Registrieren</span>
+            <a href="#lernen" class="button" onclick="showSection('lernen', this)">
+                <img src="lernen.jpg" alt="Lernen" class="emoji-image emoji-image-large"> <span data-translate-key="learn">Lernen</span>
             </a>
-            <a href="#logout" class="button logout" onclick="logout()">
-                <img src="abmelden.jpg" alt="Abmelden" class="emoji-image"> <span data-translate-key="logout">Abmelden</span>
+            <a href="#resourcen" class="button" onclick="showSection('resourcen', this)">
+                <img src="ressourcen.png" alt="Ressourcen" class="emoji-image"> <span data-translate-key="resources">Ressourcen</span>
+            </a>
+            <a href="#simulator" class="button" onclick="showSection('simulator', this)">
+                <img src="simulator.png" alt="Simulator" class="emoji-image emoji-image-large"> <span data-translate-key="simulator">Simulator</span>
+            </a>
+            <a href="#unsere-mission" class="button" onclick="showSection('unsere-mission', this)">
+                <img src="mission.png" alt="Unsere Mission" class="emoji-image emoji-image-large"> <span data-translate-key="mission">Unsere Mission</span>
+            </a>
+            <div class="bottom-buttons">
+                <a href="#login" class="button login" onclick="openModal('loginModal')">
+                    <img src="login.png" alt="Anmelden" class="emoji-image"> <span data-translate-key="login">Anmelden</span>
+                </a>
+                <a href="#signup" class="button signup" onclick="openModal('signupModal')">
+                    <img src="register.png" alt="Registrieren" class="emoji-image"> <span data-translate-key="signup">Registrieren</span>
+                </a>
+                <a href="#logout" class="button logout" onclick="logout()">
+                    <img src="abmelden.jpg" alt="Abmelden" class="emoji-image"> <span data-translate-key="logout">Abmelden</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="content">
+            <section id="home" class="active">
+                <iframe src="home.html" id="home-iframe"></iframe>
+            </section>
+            <section id="lernen">
+                <iframe src="lessons.html" id="lernen-iframe"></iframe>
+            </section>
+            <section id="resourcen">
+                <iframe src="ressources.html" id="resourcen-iframe"></iframe>
+            </section>
+            <section id="simulator">
+                <iframe src="simulator.html" id="simulator-iframe"></iframe>
+            </section>
+            <section id="unsere-mission">
+                <iframe src="ourmission.html" id="mission-iframe"></iframe>
+            </section>
+        </div>
+
+        <div class="bottom-nav">
+            <a href="#home" class="button active" onclick="showSection('home', this)">
+                <img src="house2.png" alt="Home" class="emoji-image">
+            </a>
+            <a href="#lernen" class="button" onclick="showSection('lernen', this)">
+                <img src="lernen.jpg" alt="Lernen" class="emoji-image">
+            </a>
+            <a href="#resourcen" class="button" onclick="showSection('resourcen', this)">
+                <img src="ressourcen.png" alt="Ressourcen" class="emoji-image">
+            </a>
+            <a href="#simulator" class="button" onclick="showSection('simulator', this)">
+                <img src="simulator.png" alt="Simulator" class="emoji-image">
+            </a>
+            <a href="#unsere-mission" class="button" onclick="showSection('unsere-mission', this)">
+                <img src="mission.png" alt="Unsere Mission" class="emoji-image">
+            </a>
+            <a href="#account" class="button" onclick="openModal('loginModal')">
+                <img src="student.png" alt="Account" class="emoji-image">
             </a>
         </div>
     </div>
 
-    <div class="content">
-        <section id="home" class="active">
-            <iframe src="home.html" id="home-iframe"></iframe>
-        </section>
-        <section id="lernen">
-            <iframe src="lessons.html" id="lernen-iframe"></iframe>
-        </section>
-        <section id="resourcen">
-            <iframe src="ressources.html" id="resourcen-iframe"></iframe>
-        </section>
-        <section id="simulator">
-            <iframe src="simulator.html" id="simulator-iframe"></iframe>
-        </section>
-        <section id="unsere-mission">
-            <iframe src="ourmission.html" id="mission-iframe"></iframe>
-        </section>
-    </div>
-
-    <div class="bottom-nav">
-        <a href="#home" class="button active" onclick="showSection('home', this)">
-            <img src="house2.png" alt="Home" class="emoji-image">
-        </a>
-        <a href="#lernen" class="button" onclick="showSection('lernen', this)">
-            <img src="lernen.jpg" alt="Lernen" class="emoji-image">
-        </a>
-        <a href="#resourcen" class="button" onclick="showSection('resourcen', this)">
-            <img src="ressourcen.png" alt="Ressourcen" class="emoji-image">
-        </a>
-        <a href="#simulator" class="button" onclick="showSection('simulator', this)">
-            <img src="simulator.png" alt="Simulator" class="emoji-image">
-        </a>
-        <a href="#unsere-mission" class="button" onclick="showSection('unsere-mission', this)">
-            <img src="mission.png" alt="Unsere Mission" class="emoji-image">
-        </a>
-        <a href="#account" class="button" onclick="openModal('loginModal')">
-            <img src="student.png" alt="Account" class="emoji-image">
-        </a>
-    </div>
-
+    <!-- Modals unchanged -->
     <div id="loginModal" class="modal">
         <div class="modal-content" id="loginModalContent">
             <span class="close" onclick="closeModal('loginModal')">×</span>
@@ -397,7 +455,6 @@
     <div id="disclaimerModal" class="modal">
         <div class="modal-content">
             <h2 data-translate-key="disclaimerTitle">Haftungsausschluss</h2>
-            <!-- Disclaimer text remains static for simplicity; can be translated if needed -->
             <p>
                 Die Inhalte dieser Website, einschließlich Texte, Grafiken und Simulationen, dienen ausschließlich zu allgemeinen Informations- und Bildungszwecken und stellen ausdrücklich <strong>keine Finanz- oder Anlageberatung</strong> im Sinse des deutschen Rechts dar. Der Betreiber dieser Website übernimmt keine Haftung für finanzielle oder sonstige Entscheidungen, die auf Grundlage der bereitgestellten Informationen getroffen werden. Es werden keine individuellen Empfehlungen abgegeben.
             </p>
@@ -418,13 +475,61 @@
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
 
     <script>
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('/service-worker.js')
-                    .then(registration => console.log('ServiceWorker registration successful:', registration.scope))
-                    .catch(error => console.log('ServiceWorker registration failed:', error));
-            });
+        // Add to Home Screen Prompt
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            console.log('A2HS prompt available');
+            setTimeout(() => {
+                displayA2HSPrompt();
+            }, 5000);
+        });
+
+        window.addEventListener('appinstalled', () => {
+            console.log('PWA installed');
+            displaySuccessMessage('App erfolgreich installiert!');
+        });
+
+        function displayA2HSPrompt() {
+            const lang = document.documentElement.lang || 'de';
+            const message = lang === 'de' ? 'Füge JugendInvestiert zum Startbildschirm hinzu für ein besseres Erlebnis!' :
+                           lang === 'en' ? 'Add JugendInvestiert to your home screen for a better experience!' :
+                           'Ajoutez JugendInvestiert à votre écran d\'accueil pour une meilleure expérience !';
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message');
+            messageDiv.innerHTML = `<i class="fas fa-plus-circle"></i><span>${message} <button onclick="triggerA2HS()">Jetzt hinzufügen</button></span>`;
+            document.body.appendChild(messageDiv);
+            setTimeout(() => messageDiv.remove(), 10000);
         }
+
+        function triggerA2HS() {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then((choiceResult) => {
+                    if (choiceResult.outcome === 'accepted') {
+                        console.log('User accepted A2HS prompt');
+                    } else {
+                        console.log('User dismissed A2HS prompt');
+                    }
+                    deferredPrompt = null;
+                });
+            }
+        }
+
+        // Encourage browser bar auto-hide
+        document.addEventListener('DOMContentLoaded', () => {
+            const content = document.querySelector('.content');
+            if (content) {
+                content.style.minHeight = '101vh';
+            }
+        });
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                document.body.style.paddingTop = 'env(safe-area-inset-top)';
+            }
+        });
 
         const firebaseConfig = {
             apiKey: "AIzaSyDmEUCl7sWzBI7N78HgcgBRcRAkTYbtm5g",
@@ -536,7 +641,7 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            applyTranslations('de'); // Apply default German translations
+            applyTranslations('de');
             document.getElementById('disclaimerModal').style.display = "flex";
             document.body.style.overflow = "hidden";
             const signupPassword = document.getElementById('signup-password');
@@ -567,10 +672,9 @@
                         }, '*');
                     }
                 });
-                // Update language and translations for index.html
                 document.documentElement.lang = event.data.language;
                 applyTranslations(event.data.language);
-                updateLoginModal(); // Ensure modal reflects new language
+                updateLoginModal();
             } else if (event.data.action === 'openSignupModal') {
                 openModal('signupModal');
             } else if (event.data.type === 'PORTFOLIO_UPDATE') {
@@ -807,6 +911,7 @@
             document.getElementById(id).classList.add('active');
             element.classList.add('active');
             if (id === 'simulator') sendDataToSimulator();
+            document.querySelector('.scroll-container').style.minHeight = '101vh';
         }
 
         function displaySuccessMessage(message) {
