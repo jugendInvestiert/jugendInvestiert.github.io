@@ -2,19 +2,14 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <!-- Updated viewport tag as requested -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <!-- Enable standalone mode for iOS -->
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <!-- Set theme color for Android status bar -->
     <meta name="theme-color" content="#101820">
     <title>JugendInvestiert</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
-    <!-- Reference to manifest.json -->
     <link rel="manifest" href="manifest.json">
-    <!-- Apple Touch Icon for iOS home screen -->
     <link rel="apple-touch-icon" href="/icon.png">
 
     <style>
@@ -24,28 +19,25 @@
             width: 100%;
             margin: 0;
             padding: 0;
-            overflow: hidden; /* Prevent scrolling past content */
+            overflow: auto; /* Changed to allow scrolling */
         }
         body {
             font-family: 'Poppins', Arial, sans-serif;
             display: flex;
             background-color: #101820;
             color: white;
-            /* Use safe-area-inset for notched devices */
             padding-top: env(safe-area-inset-top);
             padding-bottom: env(safe-area-inset-bottom);
             padding-left: env(safe-area-inset-left);
             padding-right: env(safe-area-inset-right);
-            -ms-overflow-style: none;  /* IE and Edge */
-            scrollbar-width: none;     /* Firefox */
         }
         body::-webkit-scrollbar { display: none; }
         .bottom-nav { display: none; }
         .sidebar {
-            width: 300px;
+            width: 320px;
             background-color: #1B2631;
             height: 100vh;
-            padding: 0 2px;
+            padding: 0 10px;
             position: fixed;
             display: flex;
             flex-direction: column;
@@ -100,30 +92,16 @@
             padding-bottom: 20px;
         }
         .content {
-            margin-left: 300px;
-            width: calc(100% - 300px);
+            margin-left: 320px;
+            width: calc(100% - 320px);
             color: white;
-            height: 100vh; /* Ensure content fills height */
+            height: 100vh;
+            overflow-y: auto; /* Enable scrolling in content */
         }
         .content h1 { font-size: 32px; }
-        .content section {
-            display: none;
-            width: 100%;
-            min-height: 100vh; /* Use viewport height */
-            min-height: -webkit-fill-available; /* For iOS Safari */
-            height: 100%; /* Fallback */
-        }
-        @supports (-webkit-touch-callout: none) {
-            .content section {
-                height: -webkit-fill-available;
-            }
-        }
+        .content section { display: none; width: 100%; height: 100vh; }
         .content section.active { display: block; }
-        .content iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
+        .content iframe { width: 100%; height: 100%; border: none; }
         .modal {
             display: none;
             position: fixed;
@@ -141,7 +119,7 @@
             background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             border-radius: 15px;
-            padding: 30px;
+            padding: 24px;
             width: 90%;
             max-width: 400px;
             position: relative;
@@ -149,11 +127,35 @@
             box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
             animation: slideUp 0.3s ease-out;
             max-height: 90vh;
-            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
         .modal-content::-webkit-scrollbar { display: none; }
+        .modal-content form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .disclaimer-text {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding-bottom: 10px;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .disclaimer-text::-webkit-scrollbar { display: none; }
+        .disclaimer-copyright {
+            font-size: 12px;
+            color: #cccccc;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .disclaimer-button-container {
+            padding-top: 10px;
+        }
         .close {
             color: #fff;
             position: absolute;
@@ -173,20 +175,21 @@
             font-weight: 600;
         }
         .modal-content label {
-            display: block;
-            margin-top: 15px;
+            margin-top: 12px;
             color: #fff;
             font-weight: 500;
+            font-size: 14px;
         }
         .modal-content input {
             width: 100%;
-            padding: 12px 15px;
-            margin-top: 8px;
+            padding: 10px 12px;
+            margin-top: 6px;
             background-color: rgba(255, 255, 255, 0.2);
             border: none;
             border-radius: 8px;
             color: #fff;
-            font-size: 16px;
+            font-size: 14px;
+            box-sizing: border-box;
             transition: background-color 0.3s;
         }
         .modal-content input:focus {
@@ -195,14 +198,14 @@
         }
         .modal-content button {
             width: 100%;
-            padding: 14px;
-            margin-top: 25px;
+            padding: 12px;
+            margin-top: 16px;
             background: linear-gradient(45deg, #6A82FB, #FC5C7D);
             border: none;
             border-radius: 25px;
             color: #fff;
             font-weight: bold;
-            font-size: 16px;
+            font-size: 16px HAPPY;
             cursor: pointer;
             transition: background 0.3s, transform 0.2s;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -267,7 +270,8 @@
                 margin-left: 0; 
                 width: 100%; 
                 padding: 0; 
-                height: calc(100vh - 60px); /* Adjust for bottom nav */
+                height: calc(100vh - 60px);
+                overflow-y: auto; /* Enable scrolling on mobile */
             }
             .content iframe { height: 100%; }
             .bottom-nav {
@@ -280,7 +284,7 @@
                 justify-content: space-evenly;
                 padding: 15px 0;
                 box-shadow: 0 -2px 5px rgba(0,0,0,0.3);
-                padding-bottom: env(safe-area-inset-bottom);
+                padding-bottom: calc(15px + env(safe-area-inset-bottom));
             }
             .bottom-nav a {
                 color: white;
@@ -293,12 +297,32 @@
             }
             .bottom-nav a.active { color: #a2e5ff; }
             .bottom-nav a .emoji-image { margin-right: 0; width: 36px; height: 36px; object-fit: contain; }
+            .modal-content {
+                width: 85%;
+                max-width: 340px;
+                padding: 20px;
+                margin: 0 16px;
+            }
+            .modal-content input {
+                font-size: 13px;
+                padding: 8px 10px;
+            }
+            .modal-content label {
+                font-size: 13px;
+            }
+            .modal-content button {
+                padding: 10px;
+                font-size: 14px;
+            }
+            .modal-content h2 {
+                font-size: 20px;
+                margin-bottom: 20px;
+            }
         }
         .password-check-row { display: flex; align-items: center; margin-top: 8px; gap: 8px; }
     </style>
 </head>
 <body>
-    <!-- HTML structure remains unchanged -->
     <div class="sidebar">
         <h2 data-translate-key="brand">JugendInvestiert</h2>
         <a href="#home" class="button active" onclick="showSection('home', this)">
@@ -368,17 +392,18 @@
         </a>
     </div>
 
-    <!-- Modals remain unchanged -->
     <div id="loginModal" class="modal">
         <div class="modal-content" id="loginModalContent">
             <span class="close" onclick="closeModal('loginModal')">×</span>
             <h2 id="loginModalTitle" data-translate-key="login">Anmelden</h2>
             <div id="loginForm" style="display: block;">
-                <label for="login-email" data-translate-key="email">Email:</label>
-                <input type="email" id="login-email" placeholder="Deine Email" required>
-                <label for="login-password" data-translate-key="password">Passwort:</label>
-                <input type="password" id="login-password" placeholder="Dein Passwort" required>
-                <button onclick="login()" data-translate-key="login">Anmelden</button>
+                <form>
+                    <label for="login-email" data-translate-key="email">Email:</label>
+                    <input type="email" id="login-email" placeholder="Deine Email" required>
+                    <label for="login-password" data-translate-key="password">Passwort:</label>
+                    <input type="password" id="login-password" placeholder="Dein Passwort" required>
+                    <button type="button" onclick="login()" data-translate-key="login">Anmelden</button>
+                </form>
                 <p class="switch-link">
                     <a href="#" onclick="openModal('resetModal')" data-translate-key="forgotPassword">Passwort vergessen?</a>
                 </p>
@@ -388,7 +413,7 @@
             </div>
             <div id="logoutForm" style="display: none;">
                 <p data-translate-key="loggedIn">Du bist angemeldet.</p>
-                <button onclick="logout()" style="background: #E74C3C;" data-translate-key="logout">Abmelden</button>
+                <button type="button" onclick="logout()" style="background: #E74C3C;" data-translate-key="logout">Abmelden</button>
             </div>
         </div>
     </div>
@@ -397,29 +422,31 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal('signupModal')">×</span>
             <h2 data-translate-key="signup">Registrieren</h2>
-            <label for="signup-email" data-translate-key="email">Email:</label>
-            <input type="email" id="signup-email" placeholder="Deine Email" required>
-            <label for="signup-password" data-translate-key="password">Passwort:</label>
-            <input type="password" id="signup-password" placeholder="Dein Passwort" required>
-            <label for="signup-password-confirm" data-translate-key="confirmPassword">Passwort bestätigen:</label>
-            <input type="password" id="signup-password-confirm" placeholder="Passwort bestätigen" required>
-            <div class="password-check-row">
-                <i class="fas fa-times" id="password-check-length" style="color: red;"></i>
-                <span data-translate-key="passwordLength">Mehr als 6 Zeichen</span>
-            </div>
-            <div class="password-check-row">
-                <i class="fas fa-times" id="password-check-letter" style="color: red;"></i>
-                <span data-translate-key="passwordLetter">Mindestens ein Buchstabe</span>
-            </div>
-            <div class="password-check-row">
-                <i class="fas fa-times" id="password-check-number" style="color: red;"></i>
-                <span data-translate-key="passwordNumber">Mindestens eine Zahl</span>
-            </div>
-            <div class="password-check-row">
-                <i class="fas fa-times" id="password-check-match" style="color: red;"></i>
-                <span data-translate-key="passwordMatch">Passwörter stimmen überein</span>
-            </div>
-            <button onclick="signup()" data-translate-key="signup">Registrieren</button>
+            <form>
+                <label for="signup-email" data-translate-key="email">Email:</label>
+                <input type="email" id="signup-email" placeholder="Deine Email" required>
+                <label for="signup-password" data-translate-key="password">Passwort:</label>
+                <input type="password" id="signup-password" placeholder="Dein Passwort" required>
+                <label for="signup-password-confirm" data-translate-key="confirmPassword">Passwort bestätigen:</label>
+                <input type="password" id="signup-password-confirm" placeholder="Passwort bestätigen" required>
+                <div class="password-check-row">
+                    <i class="fas fa-times" id="password-check-length" style="color: red;"></i>
+                    <span data-translate-key="passwordLength">Mehr als 6 Zeichen</span>
+                </div>
+                <div class="password-check-row">
+                    <i class="fas fa-times" id="password-check-letter" style="color: red;"></i>
+                    <span data-translate-key="passwordLetter">Mindestens ein Buchstabe</span>
+                </div>
+                <div class="password-check-row">
+                    <i class="fas fa-times" id="password-check-number" style="color: red;"></i>
+                    <span data-translate-key="passwordNumber">Mindestens eine Zahl</span>
+                </div>
+                <div class="password-check-row">
+                    <i class="fas fa-times" id="password-check-match" style="color: red;"></i>
+                    <span data-translate-key="passwordMatch">Passwörter stimmen überein</span>
+                </div>
+                <button type="button" onclick="signup()" data-translate-key="signup">Registrieren</button>
+            </form>
             <p class="switch-link" data-translate-key="alreadyRegistered">
                 Bereits registriert? <a href="#" onclick="switchToLogin()">Zurück zum Anmelden</a>
             </p>
@@ -430,25 +457,34 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal('resetModal')">×</span>
             <h2 data-translate-key="resetPassword">Passwort zurücksetzen</h2>
-            <label for="reset-email" data-translate-key="email">Email:</label>
-            <input type="email" id="reset-email" placeholder="Deine Email" required>
-            <button onclick="resetPassword()" data-translate-key="resetPassword">Passwort zurücksetzen</button>
+            <form>
+                <label for="reset-email" data-translate-key="email">Email:</label>
+                <input type="email" id="reset-email" placeholder="Deine Email" required>
+                <button type="button" onclick="resetPassword()" data-translate-key="resetPassword">Passwort zurücksetzen</button>
+            </form>
         </div>
     </div>
 
     <div id="disclaimerModal" class="modal">
         <div class="modal-content">
             <h2 data-translate-key="disclaimerTitle">Haftungsausschluss</h2>
-            <p>
-                Die Inhalte dieser Website, einschließlich Texte, Grafiken und Simulationen, dienen ausschließlich zu allgemeinen Informations- und Bildungszwecken und stellen ausdrücklich <strong>keine Finanz- oder Anlageberatung</strong> im Sinse des deutschen Rechts dar. Der Betreiber dieser Website übernimmt keine Haftung für finanzielle oder sonstige Entscheidungen, die auf Grundlage der bereitgestellten Informationen getroffen werden. Es werden keine individuellen Empfehlungen abgegeben.
-            </p>
-            <p>
-                Alle Informationen wurden nach bestem Wissen und Gewissen erstellt. Dennoch wird keine Gewähr für die Aktualität, Richtigkeit, Vollständigkeit oder Qualität der bereitgestellten Inhalte übernommen. Investitionen in Finanzinstrumente sind mit erheblichen Risiken verbunden, einschließlich des möglichen Totalverlusts des eingesetzten Kapitals. Nutzer werden aufgefordert, sich vor jeder Investitionsentscheidung unabhängig und umfassend zu informieren und gegebenenfalls eine <strong>qualifizierte, individuelle Finanzberatung</strong> in Anspruch zu nehmen.
-            </p>
-            <p>
-                Durch das Klicken auf „Akzeptieren“ erklären Sie sich rechtsverbindlich damit einverstanden, dass Sie die alleinige Verantwortung für Ihre Handlungen und Entscheidungen tragen und den Betreiber dieser Website von jeglicher Haftung freistellen. Sie bestätigen, dass Sie den Haftungsausschluss sowie unsere <a href="https://www.privacypolicies.com/live/7b3f0632-4bb2-4278-ad12-d1a646c51c79" target="_blank" style="color: #a2e5ff; text-decoration: underline;">Datenschutzerklärung</a> gelesen und verstanden haben. Sind Sie mit diesen Bedingungen nicht einverstanden, bitten wir Sie, die Nutzung dieser Website unverzüglich einzustellen.
-            </p>
-            <button onclick="acceptDisclaimer()" data-translate-key="accept">Akzeptieren</button>
+            <div class="disclaimer-text">
+                <p>
+                    Die Inhalte dieser Website, einschließlich Texte, Grafiken und Simulationen, dienen ausschließlich zu allgemeinen Informations- und Bildungszwecken und stellen ausdrücklich <strong>keine Finanz- oder Anlageberatung</strong> im Sinse des deutschen Rechts dar. Der Betreiber dieser Website übernimmt keine Haftung für finanzielle oder sonstige Entscheidungen, die auf Grundlage der bereitgestellten Informationen getroffen werden. Es werden keine individuellen Empfehlungen abgegeben.
+                </p>
+                <p>
+                    Alle Informationen wurden nach bestem Wissen und Gewissen erstellt. Dennoch wird keine Gewähr für die Aktualität, Richtigkeit, Vollständigkeit oder Qualität der bereitgestellten Inhalte übernommen. Investitionen in Finanzinstrumente sind mit erheblichen Risiken verbunden, einschließlich des möglichen Totalverlusts des eingesetzten Kapitals. Nutzer werden aufgefordert, sich vor jeder Investitionsentscheidung unabhängig und umfassend zu informieren und gegebenenfalls eine <strong>qualifizierte, individuelle Finanzberatung</strong> in Anspruch zu nehmen.
+                </p>
+                <p>
+                    Durch das Klicken auf „Akzeptieren“ erklären Sie sich rechtsverbindlich damit einverstanden, dass Sie die alleinige Verantwortung für Ihre Handlungen und Entscheidungen tragen und den Betreiber dieser Website von jeglicher Haftung freistellen. Sie bestätigen, dass Sie den Haftungsausschluss sowie unsere <a href="https://www.privacypolicies.com/live/7b3f0632-4bb2-4278-ad12-d1a646c51c79" target="_blank" style="color: #a2e5ff; text-decoration: underline;">Datenschutzerklärung</a> gelesen und verstanden haben. Sind Sie mit diesen Bedingungen nicht einverstanden, bitten wir Sie, die Nutzung dieser Website unverzüglich einzustellen.
+                </p>
+                <p class="disclaimer-copyright">
+                    © 2025 JugendInvestiert. Alle Rechte vorbehalten.
+                </p>
+            </div>
+            <div class="disclaimer-button-container">
+                <button type="button" onclick="acceptDisclaimer()" data-translate-key="accept">Akzeptieren</button>
+            </div>
         </div>
     </div>
 
@@ -459,7 +495,6 @@
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
 
     <script>
-        // Service Worker Registration
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('/service-worker.js')
@@ -468,80 +503,59 @@
             });
         }
 
-        // Prompt for Add to Home Screen (A2HS)
         let deferredPrompt;
         window.addEventListener('beforeinstallprompt', (e) => {
-            // Prevent Chrome from showing the default prompt
             e.preventDefault();
             deferredPrompt = e;
-            // Optionally show a custom "Add to Home Screen" button
             console.log('A2HS prompt is available');
-            // You can add a UI element to trigger deferredPrompt.prompt()
         });
 
-        // Handle app installed event
         window.addEventListener('appinstalled', () => {
             console.log('PWA was installed');
         });
 
-        // Attempt to enable fullscreen mode (optional, limited support on mobile)
+        // Scroll-based browser nav hide
+        let lastScrollTop = 0;
+        let isFullscreen = false;
+
+        function handleScroll() {
+            const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const isMobile = window.innerWidth <= 768;
+
+            if (isMobile && !isFullscreen && currentScrollTop > lastScrollTop && currentScrollTop > 100) {
+                // Scrolling down on mobile, hide browser nav
+                document.documentElement.style.height = '100%';
+                document.body.style.height = '100%';
+                window.scrollTo(0, currentScrollTop); // Maintain scroll position
+                isFullscreen = true;
+            } else if (isMobile && currentScrollTop < lastScrollTop && currentScrollTop < 50) {
+                // Scrolling up near top, show browser nav
+                document.documentElement.style.height = '100%';
+                document.body.style.height = '100%';
+                isFullscreen = false;
+            }
+
+            lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
+        }
+
+        window.addEventListener('scroll', handleScroll);
+
         function requestFullscreen() {
             const elem = document.documentElement;
             if (elem.requestFullscreen) {
                 elem.requestFullscreen().catch(err => console.log('Fullscreen failed:', err));
-            } else if (elem.webkitRequestFullscreen) { /* Safari */
+            } else if (elem.webkitRequestFullscreen) {
                 elem.webkitRequestFullscreen();
-            } else if (elem.msRequestFullscreen) { /* IE11 */
+            } else if (elem.msRequestFullscreen) {
                 elem.msRequestFullscreen();
             }
         }
 
-        // Hide browser UI on scroll for mobile devices
-        let lastScrollPosition = 0;
-        const touchThreshold = 5; // Minimum scroll distance to trigger UI hiding
-
-        function hideAddressBar() {
-            if (document.documentElement.scrollTop > lastScrollPosition + touchThreshold) {
-                // Scrolling down, hide UI
-                window.scrollTo(0, 1);
-            }
-            lastScrollPosition = document.documentElement.scrollTop;
-        }
-
-        // Only activate for mobile devices
-        function setupMobileOptimizations() {
-            if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
-                // Initial attempt to hide address bar
-                setTimeout(function() {
-                    window.scrollTo(0, 1);
-                }, 0);
-                
-                // Hide address bar on scroll
-                window.addEventListener('scroll', hideAddressBar, false);
-                
-                // Handle orientation changes
-                window.addEventListener('orientationchange', function() {
-                    setTimeout(function() {
-                        window.scrollTo(0, 1);
-                    }, 100);
-                }, false);
-                
-                // Set full height on all content sections
-                const sections = document.querySelectorAll('.content section');
-                sections.forEach(section => {
-                    section.style.height = `${window.innerHeight}px`;
-                });
-            }
-        }
-
-        // Call this when the page loads
         document.addEventListener('DOMContentLoaded', () => {
-            setupMobileOptimizations();
-            // Uncomment to test fullscreen API (may not work consistently on mobile)
-            // requestFullscreen();
+            // Ensure initial scroll state
+            handleScroll();
         });
 
-        // Firebase configuration and initialization
         const firebaseConfig = {
             apiKey: "AIzaSyDmEUCl7sWzBI7N78HgcgBRcRAkTYbtm5g",
             authDomain: "jugendinvestiert-5f6eb.firebaseapp.com",
@@ -793,7 +807,7 @@
             if (password !== confirmPassword) return displayErrorMessage(translations[lang]['passwordMismatch'] || "Die Passwörter stimmen nicht überein!");
             if (password.length <= 6) return displayErrorMessage(translations[lang]['passwordTooShort'] || "Das Passwort muss mehr als 6 Zeichen haben!");
             if (!/[a-zA-Z]/.test(password)) return displayErrorMessage(translations[lang]['passwordNoLetter'] || "Das Passwort braucht mindestens einen Buchstaben!");
-            if (!/[0-9]/.test(password)) return displayErrorMessage(translations[lang]['passwordNoNumber'] || "Das Passwort needs at least one number!");
+            if (!/[0-9]/.test(password)) return displayErrorMessage(translations[lang]['passwordNoNumber'] || "Das Passwort braucht mindestens eine Zahl!");
             auth.createUserWithEmailAndPassword(email, password)
                 .then(userCredential => {
                     const user = userCredential.user;

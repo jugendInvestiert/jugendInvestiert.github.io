@@ -6,6 +6,15 @@
     <title>Course 1: Aktien</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <style>
+        html {
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none; /* IE and Edge */
+        }
+
+        html::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, and Webkit browsers */
+        }
+
         body {
             font-family: 'Poppins', Arial, sans-serif;
             margin: 0;
@@ -51,8 +60,6 @@
             color: grey; /* Miami blue */
         }
 
-        /* Removed .scroll-bar-container and .scroll-bar since we're hiding the scrollbar */
-
         .content {
             padding: 20px;
             display: flex;
@@ -94,9 +101,6 @@
         a img {
             pointer-events: auto;
         }
-
-        /* Optional: Additional styles to maintain layout after removing scrollbar elements */
-        /* If you had any styles related to .scroll-bar-container or .scroll-bar, remove or adjust them accordingly */
     </style>
 </head>
 <body>
@@ -104,8 +108,6 @@
     <div class="navbar">
         <div class="cross" onclick="window.location.href='section1.html'">✖</div>
     </div>
-
-    <!-- Removed the custom scroll-bar-container and scroll-bar -->
 
     <div id="course-details">
         <div class="container">
@@ -143,8 +145,6 @@
             </ul>
         </div>
     </div>
-
-    <!-- Removed the script related to the custom scrollbar since it's no longer needed -->
 
 </body>
 </html>

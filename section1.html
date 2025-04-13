@@ -15,7 +15,7 @@
             overflow-x: hidden;
         }
         .content {
-            padding: 40px;
+            padding: 40px 0 40px 60px; /* 60px left padding for desktop */
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -123,6 +123,9 @@
             transform: scale(1.05);
         }
         @media (max-width: 600px) {
+            .content {
+                padding: 40px 15px; /* Equal 15px padding on left and right for mobile */
+            }
             .header, .course {
                 width: 95%;
                 padding: 15px;
@@ -315,3 +318,4 @@
     </script>
 </body>
 </html>
+
