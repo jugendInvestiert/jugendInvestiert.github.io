@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#101820">
+    <title>JugendInvestiert</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="/icon.png">
+
+    <style>
+        /* Reset default margins and ensure full height */
+        html, body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: auto; /* Allow scrolling for address bar hiding */
+        }
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            display: flex;
+            background-color: #101820;
+            color: white;
+            padding-top: env(safe-area-inset-top);
+            padding-bottom: env(safe-area-inset-bottom);
+            padding-left: env(safe-area-inset-left);
+            padding-right: env(safe-area-inset-right);
+        }
+        body::-webkit-scrollbar { display: none; }
+        .bottom-nav { display: none; }
+        .sidebar {
+            width: 320px;
+            background-color: #1B2631;
+            height: 100vh;
+            padding: 0 10px;
+            position: fixed;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .sidebar h2 {
+            text-align: center;
+            font-size: 26px;
+            color: white;
+            margin-bottom: 20px;
+            padding: 0 10px;
+        }
+        .sidebar a {
+            display: flex;
+            align-items: center;
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            font-size: 16px;
+            border: 2px solid transparent;
+            border-radius: 15px;
+            margin: 10px 0;
+            transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+            text-transform: uppercase;
+            width: 90%;
+            justify-content: flex-start;
+        }
+        .sidebar a:hover { background-color: #34495e; }
+        .sidebar a.active { border-color: #a2e5ff; }
+        .sidebar a .emoji { margin-right: 12px; }
+        .emoji-image { width: 36px; height: 36px; margin-right: 12px; object-fit: fill; }
+        .emoji-image-large { width: 42px; height: 42px; object-fit: contain; }
+        .sidebar a.login, .sidebar a.signup, .sidebar a.logout {
+            justify-content: center;
+            text-align: center;
+            padding: 12px 0;
+            font-size: 18px;
+            width: 90%;
+            margin-top: 12px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        .sidebar a.login { background-color: #007ce2; margin-bottom: 0px; }
+        .sidebar a.signup { background-color: #7F8C8D; }
+        .sidebar a.logout { display: none; background-color: #E74C3C; }
+        .sidebar a.login:hover, .sidebar a.signup:hover, .sidebar a.logout:hover { transform: scale(1.05); }
+        .bottom-buttons {
+            margin-top: auto;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 20px;
+        }
+        .content {
+            margin-left: 320px;
+            width: calc(100% - 320px);
+            color: white;
+            height: 100vh;
+            overflow-y: auto; /* Enable scrolling in content */
+        }
+        .content h1 { font-size: 32px; }
+        .content section { display: none; width: 100%; height: 100vh; }
+        .content section.active { display: block; }
+        .content iframe { width: 100%; height: 100%; border: none; }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s;
+        }
+        .modal-content {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 24px;
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+            color: white;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            animation: slideUp 0.3s ease-out;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .modal-content::-webkit-scrollbar { display: none; }
+        .modal-content form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .disclaimer-text {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding-bottom: 10px;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .disclaimer-text::-webkit-scrollbar { display: none; }
+        .disclaimer-copyright {
+            font-size: 12px;
+            color: #cccccc;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .disclaimer-button-container {
+            padding-top: 10px;
+        }
+        .close {
+            color: #fff;
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .close:hover, .close:focus { color: #a2e5ff; }
+        .modal-content h2 {
+            margin-top: 0;
+            text-align: center;
+            color: #a2e5ff;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+        .modal-content label {
+            margin-top: 12px;
+            color: #fff;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        .modal-content input {
+            width: 100%;
+            padding: 10px 12px;
+            margin-top: 6px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 14px;
+            box-sizing: border-box;
+            transition: background-color 0.3s;
+        }
+        .modal-content input:focus {
+            background-color: rgba(255, 255, 255, 0.3);
+            outline: none;
+        }
+        .modal-content button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 16px;
+            background: linear-gradient(45deg, #6A82FB, #FC5C7D);
+            border: none;
+            border-radius: 25px;
+            color: #fff;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .modal-content button:hover {
+            background: linear-gradient(45deg, #5a73d1, #e04c5c);
+            transform: translateY(-2px);
+        }
+        .modal-content .switch-link {
+            text-align: center;
+            margin-top: 15px;
+            color: #a2e5ff;
+            font-size: 14px;
+        }
+        .modal-content .switch-link a {
+            color: #a2e5ff;
+            text-decoration: underline;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .modal-content .switch-link a:hover { color: #ffffff; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        #loader {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            font-size: 1.5rem;
+        }
+        .message {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            z-index: 3000;
+            opacity: 0.95;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: fadeInOut 4s forwards;
+        }
+        .message.error { background-color: #f44336; }
+        .message i { font-size: 1.5rem; }
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(-20px); }
+            10% { opacity: 1; transform: translateY(0); }
+            90% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-20px); }
+        }
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            .sidebar { display: none; }
+            .content { 
+                margin-left: 0; 
+                width: 100%; 
+                padding: 0; 
+                height: calc(100vh - 60px);
+                overflow-y: auto; /* Enable scrolling on mobile */
+            }
+            .content iframe { height: 100%; }
+            .bottom-nav {
+                display: flex;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                background-color: #1B2631;
+                justify-content: space-evenly;
+                padding: 15px 0;
+                box-shadow: 0 -2px 5px rgba(0,0,0,0.3);
+                padding-bottom: calc(15px + env(safe-area-inset-bottom));
+            }
+            .bottom-nav a {
+                color: white;
+                text-decoration: none;
+                font-size: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: color 0.3s ease;
+            }
+            .bottom-nav a.active { color: #a2e5ff; }
+            .bottom-nav a .emoji-image { margin-right: 0; width: 36px; height: 36px; object-fit: contain; }
+            .modal-content {
+                width: 85%;
+                max-width: 340px;
+                padding: 20px;
+                margin: 0 16px;
+            }
+            .modal-content input {
+                font-size: 13px;
+                padding: 8px 10px;
+            }
+            .modal-content label {
+                font-size: 13px;
+            }
+            .modal-content button {
+                padding: 10px;
+                font-size: 14px;
+            }
+            .modal-content h2 {
+                font-size: 20px;
+                margin-bottom: 20px;
+            }
+        }
+        .password-check-row { display: flex; align-items: center; margin-top: 8px; gap: 8px; }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2 data-translate-key="brand">JugendInvestiert</h2>
+        <a href="#home" class="button active" onclick="showSection('home', this)">
+            <img src="house2.png" alt="Home" class="emoji-image"> <span data-translate-key="home">Home</span>
+        </a>
+        <a href="#lernen" class="button" onclick="showSection('lernen', this)">
+            <img src="lernen.jpg" alt="Lernen" class="emoji-image emoji-image-large"> <span data-translate-key="learn">Lernen</span>
+        </a>
+        <a href="#resourcen" class="button" onclick="showSection('resourcen', this)">
+            <img src="ressourcen.png" alt="Ressourcen" class="emoji-image"> <span data-translate-key="resources">Ressourcen</span>
+        </a>
+        <a href="#simulator" class="button" onclick="showSection('simulator', this)">
+            <img src="simulator.png" alt="Simulator" class="emoji-image emoji-image-large"> <span data-translate-key="simulator">Simulator</span>
+        </a>
+        <a href="#unsere-mission" class="button" onclick="showSection('unsere-mission', this)">
+            <img src="mission.png" alt="Unsere Mission" class="emoji-image emoji-image-large"> <span data-translate-key="mission">Unsere Mission</span>
+        </a>
+        <div class="bottom-buttons">
+            <a href="#login" class="button login" onclick="openModal('loginModal')">
+                <img src="login.png" alt="Anmelden" class="emoji-image"> <span data-translate-key="login">Anmelden</span>
+            </a>
+            <a href="#signup" class="button signup" onclick="openModal('signupModal')">
+                <img src="register.png" alt="Registrieren" class="emoji-image"> <span data-translate-key="signup">Registrieren</span>
+            </a>
+            <a href="#logout" class="button logout" onclick="logout()">
+                <img src="abmelden.jpg" alt="Abmelden" class="emoji-image"> <span data-translate-key="logout">Abmelden</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="content">
+        <section id="home" class="active">
+            <iframe src="home.html" id="home-iframe"></iframe>
+        </section>
+        <section id="lernen">
+            <iframe src="lessons.html" id="lernen-iframe"></iframe>
+        </section>
+        <section id="resourcen">
+            <iframe src="ressources.html" id="resourcen-iframe"></iframe>
+        </section>
+        <section id="simulator">
+            <iframe src="simulator.html" id="simulator-iframe"></iframe>
+        </section>
+        <section id="unsere-mission">
+            <iframe src="ourmission.html" id="mission-iframe"></iframe>
+        </section>
+    </div>
+
+    <div class="bottom-nav">
+        <a href="#home" class="button active" onclick="showSection('home', this)">
+            <img src="house2.png" alt="Home" class="emoji-image">
+        </a>
+        <a href="#lernen" class="button" onclick="showSection('lernen', this)">
+            <img src="lernen.jpg" alt="Lernen" class="emoji-image">
+        </a>
+        <a href="#resourcen" class="button" onclick="showSection('resourcen', this)">
+            <img src="ressourcen.png" alt="Ressourcen" class="emoji-image">
+        </a>
+        <a href="#simulator" class="button" onclick="showSection('simulator', this)">
+            <img src="simulator.png" alt="Simulator" class="emoji-image">
+        </a>
+        <a href="#unsere-mission" class="button" onclick="showSection('unsere-mission', this)">
+            <img src="mission.png" alt="Unsere Mission" class="emoji-image">
+        </a>
+        <a href="#account" class="button" onclick="openModal('loginModal')">
+            <img src="student.png" alt="Account" class="emoji-image">
+        </a>
+    </div>
+
+    <div id="loginModal" class="modal">
+        <div class="modal-content" id="loginModalContent">
+            <span class="close" onclick="closeModal('loginModal')">×</span>
+            <h2 id="loginModalTitle" data-translate-key="login">Anmelden</h2>
+            <div id="loginForm" style="display: block;">
+                <form>
+                    <label for="login-email" data-translate-key="email">Email:</label>
+                    <input type="email" id="login-email" placeholder="Deine Email" required>
+                    <label for="login-password" data-translate-key="password">Passwort:</label>
+                    <input type="password" id="login-password" placeholder="Dein Passwort" required>
+                    <button type="button" onclick="login()" data-translate-key="login">Anmelden</button>
+                </form>
+                <p class="switch-link">
+                    <a href="#" onclick="openModal('resetModal')" data-translate-key="forgotPassword">Passwort vergessen?</a>
+                </p>
+                <p class="switch-link" data-translate-key="notRegistered">
+                    Noch nicht angemeldet? <a href="#" onclick="switchToSignup()">Jetzt Registrieren</a>
+                </p>
+            </div>
+            <div id="logoutForm" style="display: none;">
+                <p data-translate-key="loggedIn">Du bist angemeldet.</p>
+                <button type="button" onclick="logout()" style="background: #E74C3C;" data-translate-key="logout">Abmelden</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('signupModal')">×</span>
+            <h2 data-translate-key="signup">Registrieren</h2>
+            <form>
+                <label for="signup-email" data-translate-key="email">Email:</label>
+                <input type="email" id="signup-email" placeholder="Deine Email" required>
+                <label for="signup-password" data-translate-key="password">Passwort:</label>
+                <input type="password" id="signup-password" placeholder="Dein Passwort" required>
+                <label for="signup-password-confirm" data-translate-key="confirmPassword">Passwort bestätigen:</label>
+                <input type="password" id="signup-password-confirm" placeholder="Passwort bestätigen" required>
+                <div class="password-check-row">
+                    <i class="fas fa-times" id="password-check-length" style="color: red;"></i>
+                    <span data-translate-key="passwordLength">Mehr als 6 Zeichen</span>
+                </div>
+                <div class="password-check-row">
+                    <i class="fas fa-times" id="password-check-letter" style="color: red;"></i>
+                    <span data-translate-key="passwordLetter">Mindestens ein Buchstabe</span>
+                </div>
+                <div class="password-check-row">
+                    <i class="fas fa-times" id="password-check-number" style="color: red;"></i>
+                    <span data-translate-key="passwordNumber">Mindestens eine Zahl</span>
+                </div>
+                <div class="password-check-row">
+                    <i class="fas fa-times" id="password-check-match" style="color: red;"></i>
+                    <span data-translate-key="passwordMatch">Passwörter stimmen überein</span>
+                </div>
+                <button type="button" onclick="signup()" data-translate-key="signup">Registrieren</button>
+            </form>
+            <p class="switch-link" data-translate-key="alreadyRegistered">
+                Bereits registriert? <a href="#" onclick="switchToLogin()">Zurück zum Anmelden</a>
+            </p>
+        </div>
+    </div>
+
+    <div id="resetModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('resetModal')">×</span>
+            <h2 data-translate-key="resetPassword">Passwort zurücksetzen</h2>
+            <form>
+                <label for="reset-email" data-translate-key="email">Email:</label>
+                <input type="email" id="reset-email" placeholder="Deine Email" required>
+                <button type="button" onclick="resetPassword()" data-translate-key="resetPassword">Passwort zurücksetzen</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="disclaimerModal" class="modal">
+        <div class="modal-content">
+            <h2 data-translate-key="disclaimerTitle">Haftungsausschluss</h2>
+            <div class="disclaimer-text">
+                <p>
+                    Die Inhalte dieser Website, einschließlich Texte, Grafiken und Simulationen, dienen ausschließlich zu allgemeinen Informations- und Bildungszwecken und stellen ausdrücklich <strong>keine Finanz- oder Anlageberatung</strong> im Sinse des deutschen Rechts dar. Der Betreiber dieser Website übernimmt keine Haftung für finanzielle oder sonstige Entscheidungen, die auf Grundlage der bereitgestellten Informationen getroffen werden. Es werden keine individuellen Empfehlungen abgegeben.
+                </p>
+                <p>
+                    Alle Informationen wurden nach bestem Wissen und Gewissen erstellt. Dennoch wird keine Gewähr für die Aktualität, Richtigkeit, Vollständigkeit oder Qualität der bereitgestellten Inhalte übernommen. Investitionen in Finanzinstrumente sind mit erheblichen Risiken verbunden, einschließlich des möglichen Totalverlusts des eingesetzten Kapitals. Nutzer werden aufgefordert, sich vor jeder Investitionsentscheidung unabhängig und umfassend zu informieren und gegebenenfalls eine <strong>qualifizierte, individuelle Finanzberatung</strong> in Anspruch zu nehmen.
+                </p>
+                <p>
+                    Durch das Klicken auf „Akzeptieren“ erklären Sie sich rechtsverbindlich damit einverstanden, dass Sie die alleinige Verantwortung für Ihre Handlungen und Entscheidungen tragen und den Betreiber dieser Website von jeglicher Haftung freistellen. Sie bestätigen, dass Sie den Haftungsausschluss sowie unsere <a href="https://www.privacypolicies.com/live/7b3f0632-4bb2-4278-ad12-d1a646c51c79" target="_blank" style="color: #a2e5ff; text-decoration: underline;">Datenschutzerklärung</a> gelesen und verstanden haben. Sind Sie mit diesen Bedingungen nicht einverstanden, bitten wir Sie, die Nutzung dieser Website unverzüglich einzustellen.
+                </p>
+                <p class="disclaimer-copyright">
+                    © 2025 JugendInvestiert. Alle Rechte vorbehalten.
+                </p>
+            </div>
+            <div class="disclaimer-button-container">
+                <button type="button" onclick="acceptDisclaimer()" data-translate-key="accept">Akzeptieren</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="loader"><i class="fas fa-spinner fa-spin"></i></div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => console.log('ServiceWorker registration successful:', registration.scope))
+                    .catch(error => console.log('ServiceWorker registration failed:', error));
+            });
+        }
+
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            console.log('A2HS prompt is available');
+        });
+
+        window.addEventListener('appinstalled', () => {
+            console.log('PWA was installed');
+        });
+
+        // Scroll-based browser nav hide
+        let lastScrollTop = 0;
+
+        function handleScroll() {
+            const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const isMobile = window.innerWidth <= 768;
+
+            if (isMobile) {
+                // For hiding the browser's address bar
+                if (currentScrollTop > 100) {
+                    // Attempt to scroll a tiny bit to trigger browser UI hiding
+                    window.scrollTo({
+                        top: currentScrollTop + 1,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+
+            lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
+        }
+
+        window.addEventListener('scroll', handleScroll);
+
+        function requestFullscreen() {
+            const elem = document.documentElement;
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen().catch(err => console.log('Fullscreen failed:', err));
+            } else if (elem.webkitRequestFullscreen) {
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) {
+                elem.msRequestFullscreen();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Ensure initial scroll state
+            handleScroll();
+        });
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDmEUCl7sWzBI7N78HgcgBRcRAkTYbtm5g",
+            authDomain: "jugendinvestiert-5f6eb.firebaseapp.com",
+            databaseURL: "https://jugendinvestiert-5f6eb-default-rtdb.firebaseio.com",
+            projectId: "jugendinvestiert-5f6eb",
+            storageBucket: "jugendinvestiert-5f6eb.appspot.com",
+            messagingSenderId: "432595310987",
+            appId: "1:432595310987:web:fd9f7975d5e87f1fe1378e",
+            measurementId: "G-5ENQC9KQBY"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const database = firebase.database();
+
+        const translations = {
+            "de": {
+                "brand": "JugendInvestiert",
+                "home": "Home",
+                "learn": "Lernen",
+                "resources": "Ressourcen",
+                "simulator": "Simulator",
+                "mission": "Unsere Mission",
+                "login": "Anmelden",
+                "signup": "Registrieren",
+                "logout": "Abmelden",
+                "email": "Email:",
+                "password": "Passwort:",
+                "confirmPassword": "Passwort bestätigen:",
+                "passwordLength": "Mehr als 6 Zeichen",
+                "passwordLetter": "Mindestens ein Buchstabe",
+                "passwordNumber": "Mindestens eine Zahl",
+                "passwordMatch": "Passwörter stimmen überein",
+                "forgotPassword": "Passwort vergessen?",
+                "notRegistered": "Noch nicht angemeldet? <a href=\"#\" onclick=\"switchToSignup()\">Jetzt Registrieren</a>",
+                "alreadyRegistered": "Bereits registriert? <a href=\"#\" onclick=\"switchToLogin()\">Zurück zum Anmelden</a>",
+                "resetPassword": "Passwort zurücksetzen",
+                "loggedIn": "Du bist angemeldet.",
+                "disclaimerTitle": "Haftungsausschluss",
+                "accept": "Akzeptieren"
+            },
+            "en": {
+                "brand": "YouthInvests",
+                "home": "Home",
+                "learn": "Learn",
+                "resources": "Resources",
+                "simulator": "Simulator",
+                "mission": "Our Mission",
+                "login": "Login",
+                "signup": "Sign Up",
+                "logout": "Logout",
+                "email": "Email:",
+                "password": "Password:",
+                "confirmPassword": "Confirm Password:",
+                "passwordLength": "More than 6 characters",
+                "passwordLetter": "At least one letter",
+                "passwordNumber": "At least one number",
+                "passwordMatch": "Passwords match",
+                "forgotPassword": "Forgot Password?",
+                "notRegistered": "Not registered yet? <a href=\"#\" onclick=\"switchToSignup()\">Sign Up Now</a>",
+                "alreadyRegistered": "Already registered? <a href=\"#\" onclick=\"switchToLogin()\">Back to Login</a>",
+                "resetPassword": "Reset Password",
+                "loggedIn": "You are logged in.",
+                "disclaimerTitle": "Disclaimer",
+                "accept": "Accept"
+            },
+            "fr": {
+                "brand": "JeunesseInvestit",
+                "home": "Accueil",
+                "learn": "Apprendre",
+                "resources": "Ressources",
+                "simulator": "Simulateur",
+                "mission": "Notre Mission",
+                "login": "Connexion",
+                "signup": "S'inscrire",
+                "logout": "Déconnexion",
+                "email": "Email :",
+                "password": "Mot de passe :",
+                "confirmPassword": "Confirmer le mot de passe :",
+                "passwordLength": "Plus de 6 caractères",
+                "passwordLetter": "Au moins une lettre",
+                "passwordNumber": "Au moins un chiffre",
+                "passwordMatch": "Les mots de passe correspondent",
+                "forgotPassword": "Mot de passe oublié ?",
+                "notRegistered": "Pas encore inscrit ? <a href=\"#\" onclick=\"switchToSignup()\">S'inscrire maintenant</a>",
+                "alreadyRegistered": "Déjà inscrit ? <a href=\"#\" onclick=\"switchToLogin()\">Retour à la connexion</a>",
+                "resetPassword": "Réinitialiser le mot de passe",
+                "loggedIn": "Vous êtes connecté.",
+                "disclaimerTitle": "Avertissement",
+                "accept": "Accepter"
+            }
+        };
+
+        let budget = 10000;
+        let portfolio = {};
+        let lastLangChange = 0;
+        const debounceDelay = 500;
+
+        function applyTranslations(targetLang) {
+            const elements = document.querySelectorAll('[data-translate-key]');
+            if (!translations[targetLang]) return;
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate-key');
+                if (translations[targetLang][key]) {
+                    element.innerHTML = translations[targetLang][key];
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            applyTranslations('de');
+            document.getElementById('disclaimerModal').style.display = "flex";
+            document.body.style.overflow = "hidden";
+            const signupPassword = document.getElementById('signup-password');
+            const signupPasswordCheck = document.getElementById('signup-password-confirm');
+            if (signupPassword && signupPasswordCheck) {
+                signupPassword.addEventListener('input', validatePassword);
+                signupPasswordCheck.addEventListener('input', validatePassword);
+            }
+        });
+
+        window.addEventListener('message', (event) => {
+            if (event.data.type === 'LANGUAGE_CHANGE') {
+                const now = Date.now();
+                if (now - lastLangChange < debounceDelay) {
+                    console.log(`Debouncing LANGUAGE_CHANGE for ${event.data.language}`);
+                    return;
+                }
+                lastLangChange = now;
+                console.log(`Received LANGUAGE_CHANGE for ${event.data.language} from ${event.data.source || 'unknown'}`);
+                const iframes = document.querySelectorAll('iframe');
+                iframes.forEach(iframe => {
+                    if (iframe.contentWindow && iframe.id !== event.data.source) {
+                        console.log(`Forwarding LANGUAGE_CHANGE to ${iframe.id}`);
+                        iframe.contentWindow.postMessage({
+                            type: 'LANGUAGE_CHANGE',
+                            language: event.data.language,
+                            source: 'index'
+                        }, '*');
+                    }
+                });
+                document.documentElement.lang = event.data.language;
+                applyTranslations(event.data.language);
+                updateLoginModal();
+            } else if (event.data.action === 'openSignupModal') {
+                openModal('signupModal');
+            } else if (event.data.type === 'PORTFOLIO_UPDATE') {
+                budget = event.data.budget;
+                portfolio = event.data.portfolio;
+                portfolio = normalizePortfolioSymbols(portfolio);
+                saveUserData();
+            }
+        });
+
+        function acceptDisclaimer() {
+            closeModal('disclaimerModal');
+            const initialButton = document.querySelector('.sidebar a[href="#home"]');
+            if (initialButton) showSection('home', initialButton);
+        }
+
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = "flex";
+                document.body.style.overflow = "hidden";
+                if (modalId === 'loginModal') updateLoginModal();
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = "none";
+                document.body.style.overflow = "auto";
+            }
+        }
+
+        function switchToSignup() { closeModal('loginModal'); openModal('signupModal'); }
+        function switchToLogin() { closeModal('signupModal'); openModal('loginModal'); }
+
+        function updateLoginModal() {
+            const user = auth.currentUser;
+            const loginForm = document.getElementById('loginForm');
+            const logoutForm = document.getElementById('logoutForm');
+            const modalTitle = document.getElementById('loginModalTitle');
+            const currentLang = document.documentElement.lang || 'de';
+            if (user) {
+                loginForm.style.display = 'none';
+                logoutForm.style.display = 'block';
+                modalTitle.setAttribute('data-translate-key', 'account');
+                modalTitle.innerHTML = translations[currentLang]['account'] || 'Konto';
+            } else {
+                loginForm.style.display = 'block';
+                logoutForm.style.display = 'none';
+                modalTitle.setAttribute('data-translate-key', 'login');
+                modalTitle.innerHTML = translations[currentLang]['login'] || 'Anmelden';
+            }
+        }
+
+        function validatePassword() {
+            const password = document.getElementById('signup-password').value;
+            const confirmPassword = document.getElementById('signup-password-confirm').value;
+            const lengthCheckIcon = document.getElementById('password-check-length');
+            const letterCheckIcon = document.getElementById('password-check-letter');
+            const numberCheckIcon = document.getElementById('password-check-number');
+            const matchCheckIcon = document.getElementById('password-check-match');
+            const hasRequiredLength = password.length > 6;
+            const hasLetter = /[a-zA-Z]/.test(password);
+            const hasNumber = /[0-9]/.test(password);
+            const passwordsMatch = password === confirmPassword && password !== '';
+            lengthCheckIcon.classList.toggle('fa-check', hasRequiredLength);
+            lengthCheckIcon.classList.toggle('fa-times', !hasRequiredLength);
+            lengthCheckIcon.style.color = hasRequiredLength ? 'green' : 'red';
+            letterCheckIcon.classList.toggle('fa-check', hasLetter);
+            letterCheckIcon.classList.toggle('fa-times', !hasLetter);
+            letterCheckIcon.style.color = hasLetter ? 'green' : 'red';
+            numberCheckIcon.classList.toggle('fa-check', hasNumber);
+            numberCheckIcon.classList.toggle('fa-times', !hasNumber);
+            numberCheckIcon.style.color = hasNumber ? 'green' : 'red';
+            matchCheckIcon.classList.toggle('fa-check', passwordsMatch);
+            matchCheckIcon.classList.toggle('fa-times', !passwordsMatch);
+            matchCheckIcon.style.color = passwordsMatch ? 'green' : 'red';
+        }
+
+        function login() {
+            const email = document.getElementById('login-email').value.trim();
+            const password = document.getElementById('login-password').value.trim();
+            if (!email || !password) return displayErrorMessage(translations[document.documentElement.lang || 'de']['enterEmailPassword'] || "Bitte Email und Passwort eingeben.");
+            auth.signInWithEmailAndPassword(email, password)
+                .then(userCredential => {
+                    const user = userCredential.user;
+                    if (user.emailVerified) {
+                        displaySuccessMessage(translations[document.documentElement.lang || 'de']['loginSuccess'] || "Erfolgreich angemeldet!");
+                        closeModal('loginModal');
+                    } else {
+                        auth.signOut();
+                        displayErrorMessage(translations[document.documentElement.lang || 'de']['verifyEmail'] || "Bitte verifiziere zuerst deine E-Mail.");
+                    }
+                })
+                .catch(error => displayErrorMessage(error.message));
+        }
+
+        function signup() {
+            const email = document.getElementById('signup-email').value.trim();
+            const password = document.getElementById('signup-password').value.trim();
+            const confirmPassword = document.getElementById('signup-password-confirm').value.trim();
+            const lang = document.documentElement.lang || 'de';
+            if (!email || !password || !confirmPassword) return displayErrorMessage(translations[lang]['enterAllFields'] || "Bitte Email und beide Passwörter eingeben.");
+            if (password !== confirmPassword) return displayErrorMessage(translations[lang]['passwordMismatch'] || "Die Passwörter stimmen nicht überein!");
+            if (password.length <= 6) return displayErrorMessage(translations[lang]['passwordTooShort'] || "Das Passwort muss mehr als 6 Zeichen haben!");
+            if (!/[a-zA-Z]/.test(password)) return displayErrorMessage(translations[lang]['passwordNoLetter'] || "Das Passwort braucht mindestens einen Buchstaben!");
+            if (!/[0-9]/.test(password)) return displayErrorMessage(translations[lang]['passwordNoNumber'] || "Das Passwort braucht mindestens eine Zahl!");
+            auth.createUserWithEmailAndPassword(email, password)
+                .then(userCredential => {
+                    const user = userCredential.user;
+                    user.sendEmailVerification()
+                        .then(() => {
+                            displaySuccessMessage(translations[lang]['signupSuccess'] || "Erfolgreich registriert! Bitte überprüfe deine E-Mail.");
+                            closeModal('signupModal');
+                        })
+                        .catch(error => displayErrorMessage(translations[lang]['emailVerificationError'] || "Fehler beim Senden der Verifizierungs-E-Mail: " + error.message));
+                })
+                .catch(error => displayErrorMessage(error.message));
+        }
+
+        function resetPassword() {
+            const email = document.getElementById('reset-email').value.trim();
+            const lang = document.documentElement.lang || 'de';
+            if (!email) return displayErrorMessage(translations[lang]['enterEmail'] || "Bitte Email angeben.");
+            auth.sendPasswordResetEmail(email)
+                .then(() => {
+                    displaySuccessMessage(translations[lang]['resetEmailSent'] || "Password-Reset-E-Mail gesendet!");
+                    closeModal('resetModal');
+                })
+                .catch(error => displayErrorMessage(error.message));
+        }
+
+        function logout() {
+            const lang = document.documentElement.lang || 'de';
+            auth.signOut()
+                .then(() => {
+                    displaySuccessMessage(translations[lang]['logoutSuccess'] || "Erfolgreich abgemeldet!");
+                    closeModal('loginModal');
+                })
+                .catch(error => displayErrorMessage(error.message));
+        }
+
+        auth.onAuthStateChanged(user => {
+            const loginButton = document.querySelector('.sidebar a.login');
+            const signupButton = document.querySelector('.sidebar a.signup');
+            const logoutButton = document.querySelector('.sidebar a.logout');
+            if (user) {
+                loginButton.style.display = 'none';
+                signupButton.style.display = 'none';
+                logoutButton.style.display = 'flex';
+                loadUserData(user.uid);
+            } else {
+                loginButton.style.display = 'flex';
+                signupButton.style.display = 'flex';
+                logoutButton.style.display = 'none';
+                budget = 10000;
+                portfolio = {};
+                sendDataToSimulator();
+            }
+            updateLoginModal();
+        });
+
+        let userRef = null;
+        let userRefListener = null;
+
+        function loadUserData(userId) {
+            if (userRefListener && userRef) userRef.off('value', userRefListener);
+            userRef = database.ref('users/' + userId);
+            userRefListener = snapshot => {
+                const data = snapshot.val();
+                if (data) {
+                    budget = typeof data.budget === 'number' ? data.budget : 10000;
+                    portfolio = data.portfolio ? data.portfolio : {};
+                    portfolio = normalizePortfolioSymbols(portfolio);
+                    sendDataToSimulator();
+                } else {
+                    budget = 10000;
+                    portfolio = {};
+                    sendDataToSimulator();
+                }
+            };
+            userRef.on('value', userRefListener, error => {
+                console.error("Fehler beim Laden der Benutzerdaten:", error);
+                displayErrorMessage(translations[document.documentElement.lang || 'de']['dataLoadError'] || "Fehler beim Laden der Benutzerdaten.");
+            });
+        }
+
+        function normalizePortfolioSymbols(originalPortfolio) {
+            const normalizedPortfolio = {};
+            for (const symbol in originalPortfolio) {
+                const upperSymbol = symbol.toUpperCase();
+                if (!normalizedPortfolio[upperSymbol]) {
+                    normalizedPortfolio[upperSymbol] = {
+                        quantity: originalPortfolio[symbol].quantity,
+                        totalInvested: originalPortfolio[symbol].totalInvested
+                    };
+                } else {
+                    normalizedPortfolio[upperSymbol].quantity += originalPortfolio[symbol].quantity;
+                    normalizedPortfolio[upperSymbol].totalInvested += originalPortfolio[symbol].totalInvested;
+                }
+            }
+            return normalizedPortfolio;
+        }
+
+        function sendDataToSimulator() {
+            const iframe = document.getElementById('simulator-iframe');
+            if (iframe && iframe.contentWindow) {
+                const data = { type: 'AUTH_DATA', budget: budget, portfolio: portfolio };
+                iframe.contentWindow.postMessage(data, '*');
+            }
+        }
+
+        function saveUserData() {
+            const user = auth.currentUser;
+            const lang = document.documentElement.lang || 'de';
+            if (user) {
+                const userId = user.uid;
+                const userRef = database.ref('users/' + userId);
+                userRef.set({ budget: budget, portfolio: portfolio }, error => {
+                    if (error) {
+                        console.error("Fehler beim Speichern der Daten:", error);
+                        displayErrorMessage(translations[lang]['dataSaveError'] || "Fehler beim Speichern der Benutzerdaten.");
+                    }
+                });
+            }
+        }
+
+        function showSection(id, element) {
+            const sections = document.querySelectorAll('.content section');
+            const buttons = document.querySelectorAll('.sidebar a.button, .bottom-nav a.button');
+            sections.forEach(section => section.classList.remove('active'));
+            buttons.forEach(button => button.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            element.classList.add('active');
+            if (id === 'simulator') sendDataToSimulator();
+        }
+
+        function displaySuccessMessage(message) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message');
+            messageDiv.innerHTML = `<i class="fas fa-check-circle"></i><span>${message}</span>`;
+            document.body.appendChild(messageDiv);
+            setTimeout(() => messageDiv.remove(), 4000);
+        }
+
+        function displayErrorMessage(message) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message', 'error');
+            messageDiv.innerHTML = `<i class="fas fa-exclamation-circle"></i><span>${message}</span>`;
+            document.body.appendChild(messageDiv);
+            setTimeout(() => messageDiv.remove(), 5000);
+        }
+
+        window.onclick = event => {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                    document.body.style.overflow = "auto";
+                }
+            });
+        };
+
+        window.addEventListener('keydown', event => {
+            if (event.key === "Escape") {
+                const modals = document.querySelectorAll('.modal');
+                modals.forEach(modal => {
+                    if (modal.style.display === "flex") {
+                        modal.style.display = "none";
+                        document.body.style.overflow = "auto";
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
