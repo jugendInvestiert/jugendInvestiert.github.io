@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="mobile-web-app-capable" content="yes">
@@ -14,19 +14,13 @@
     <link rel="apple-touch-icon" href="/icon.png">
 
     <style>
-        :root {
-            --app-height: 100%;
-        }
-
-        /* Ensure scrollable page */
+        /* Reset default margins and ensure full height */
         html, body {
-            height: var(--app-height);
-            min-height: 100vh;
+            height: 100%;
             width: 100%;
             margin: 0;
             padding: 0;
-            overflow-x: hidden;
-            overflow-y: auto;
+            overflow: auto; /* Allow scrolling for address bar hiding */
         }
         body {
             font-family: 'Poppins', Arial, sans-serif;
@@ -43,14 +37,13 @@
         .sidebar {
             width: 320px;
             background-color: #1B2631;
+            height: 100vh;
             padding: 0 10px;
             position: fixed;
-            top: 0;
-            bottom: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
-            z-index: 10;
+            transition: transform 0.3s ease; /* Added for smooth slide */
         }
         .sidebar h2 {
             text-align: center;
@@ -66,7 +59,7 @@
             padding: 12px 16px;
             text-decoration: none;
             font-size: 16px;
-            border: 2px solid transparent;
+            border: 2px solid گرگ transparent;
             border-radius: 15px;
             margin: 10px 0;
             transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
@@ -104,18 +97,13 @@
             margin-left: 320px;
             width: calc(100% - 320px);
             color: white;
-            min-height: 200vh; /* Ensure scrollable height */
-            overflow-y: auto;
-            position: relative;
+            height: 100vh;
+            overflow-y: auto; /* Enable scrolling in content */
         }
-        .content section {
-            display: none;
-            width: 100%;
-            min-height: 200vh;
-            padding: 20px;
-            box-sizing: border-box;
-        }
+        .content h1 { font-size: 32px; }
+        .content section { display: none; width: 100%; height: 100vh; }
         .content section.active { display: block; }
+        .content iframe { width: 100%; height: 100%; border: none; }
         .modal {
             display: none;
             position: fixed;
@@ -280,13 +268,14 @@
         @media (max-width: 768px) {
             body { flex-direction: column; }
             .sidebar { display: none; }
-            .content {
-                margin-left: 0;
-                width: 100%;
-                padding: 0;
-                min-height: 200vh;
+            .content { 
+                margin-left: 0; 
+                width: 100%; 
+                padding: 0; 
+                height: calc(100vh - 60px);
+                overflow-y: auto; /* Enable scrolling on mobile */
             }
-            .content section { min-height: 200vh; }
+            .content iframe { height: 100%; }
             .bottom-nav {
                 display: flex;
                 position: fixed;
@@ -300,9 +289,6 @@
                 padding-bottom: calc(15px + env(safe-area-inset-bottom));
                 transition: transform 0.3s ease;
                 z-index: 100;
-            }
-            .bottom-nav.hidden {
-                transform: translateY(100%);
             }
             .bottom-nav a {
                 color: white;
@@ -373,59 +359,19 @@
 
     <div class="content">
         <section id="home" class="active">
-            <h2>Home</h2>
-            <p>Welcome to JugendInvestiert! This is the home section with lots of content to ensure scrolling works on iOS.</p>
-            <div style="min-height: 200vh;">
-                <!-- Replace with actual home.html content -->
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-                <!-- Add more content to ensure height -->
-                <p>More content here to make the section tall enough for scrolling...</p>
-            </div>
+            <iframe src="home.html" id="home-iframe"></iframe>
         </section>
         <section id="lernen">
-            <h2>Lernen</h2>
-            <p>Learn about investing with our educational resources.</p>
-            <div style="min-height: 200vh;">
-                <!-- Replace with actual lessons.html content -->
-                <p>Educational content goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium.</p>
-                <!-- Add more content -->
-                <p>More learning materials to ensure scrollability...</p>
-            </div>
+            <iframe src="lessons.html" id="lernen-iframe"></iframe>
         </section>
         <section id="resourcen">
-            <h2>Ressourcen</h2>
-            <p>Explore our collection of investing resources.</p>
-            <div style="min-height: 200vh;">
-                <!-- Replace with actual ressources.html content -->
-                <p>Resources content here. At vero eos et accusamus et iusto odio dignissimos ducimus.</p>
-                <p>Qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias.</p>
-                <!-- Add more content -->
-                <p>Additional resources to make the section tall...</p>
-            </div>
+            <iframe src="ressources.html" id="resourcen-iframe"></iframe>
         </section>
         <section id="simulator">
-            <h2>Simulator</h2>
-            <p>Try our investment simulator to practice trading.</p>
-            <div style="min-height: 200vh;">
-                <!-- Replace with actual simulator.html content -->
-                <p>Simulator interface placeholder. Nemo enim ipsam voluptatem quia voluptas sit aspernatur.</p>
-                <p>Aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.</p>
-                <!-- Add more content -->
-                <p>Simulator features to ensure scrolling...</p>
-            </div>
+            <iframe src="simulator.html" id="simulator-iframe"></iframe>
         </section>
         <section id="unsere-mission">
-            <h2>Unsere Mission</h2>
-            <p>Our mission is to educate young investors.</p>
-            <div style="min-height: 200vh;">
-                <!-- Replace with actual ourmission.html content -->
-                <p>Mission statement here. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet.</p>
-                <p>Consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore.</p>
-                <!-- Add more content -->
-                <p>More mission details to maintain height...</p>
-            </div>
+            <iframe src="ourmission.html" id="mission-iframe"></iframe>
         </section>
     </div>
 
@@ -572,30 +518,35 @@
             console.log('PWA was installed');
         });
 
-        // Height management for iOS
-        function setAppHeight() {
-            const doc = document.documentElement;
-            doc.style.setProperty('--app-height', `${window.innerHeight}px`);
-        }
-        window.addEventListener('resize', setAppHeight);
-        window.addEventListener('orientationchange', setAppHeight);
-        document.addEventListener('DOMContentLoaded', setAppHeight);
-
-        // Scroll handler for bottom nav
+        // Scroll-based navbar hide/show
         let lastScrollTop = 0;
-        window.addEventListener('scroll', () => {
+
+        function handleScroll() {
             const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
             const isMobile = window.innerWidth <= 768;
-            if (isMobile) {
-                const bottomNav = document.querySelector('.bottom-nav');
-                if (currentScrollTop > lastScrollTop && currentScrollTop > 50) {
-                    bottomNav.classList.add('hidden');
+            const sidebar = document.querySelector('.sidebar');
+            const bottomNav = document.querySelector('.bottom-nav');
+
+            if (currentScrollTop > lastScrollTop && currentScrollTop > 50) {
+                // Scrolling down
+                if (isMobile) {
+                    bottomNav.style.transform = 'translateY(100%)';
                 } else {
-                    bottomNav.classList.remove('hidden');
+                    sidebar.style.transform = 'translateX(-100%)';
+                }
+            } else {
+                // Scrolling up or at top
+                if (isMobile) {
+                    bottomNav.style.transform = 'translateY(0)';
+                } else {
+                    sidebar.style.transform = 'translateX(0)';
                 }
             }
+
             lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
-        });
+        }
+
+        window.addEventListener('scroll', handleScroll);
 
         function requestFullscreen() {
             const elem = document.documentElement;
@@ -609,7 +560,8 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            setAppHeight();
+            // Ensure initial scroll state
+            handleScroll();
         });
 
         const firebaseConfig = {
@@ -742,6 +694,17 @@
                 }
                 lastLangChange = now;
                 console.log(`Received LANGUAGE_CHANGE for ${event.data.language} from ${event.data.source || 'unknown'}`);
+                const iframes = document.querySelectorAll('iframe');
+                iframes.forEach(iframe => {
+                    if (iframe.contentWindow && iframe.id !== event.data.source) {
+                        console.log(`Forwarding LANGUAGE_CHANGE to ${iframe.id}`);
+                        iframe.contentWindow.postMessage({
+                            type: 'LANGUAGE_CHANGE',
+                            language: event.data.language,
+                            source: 'index'
+                        }, '*');
+                    }
+                });
                 document.documentElement.lang = event.data.language;
                 applyTranslations(event.data.language);
                 updateLoginModal();
@@ -903,7 +866,7 @@
                 logoutButton.style.display = 'none';
                 budget = 10000;
                 portfolio = {};
-                // No simulator iframe, so no sendDataToSimulator
+                sendDataToSimulator();
             }
             updateLoginModal();
         });
@@ -920,16 +883,11 @@
                     budget = typeof data.budget === 'number' ? data.budget : 10000;
                     portfolio = data.portfolio ? data.portfolio : {};
                     portfolio = normalizePortfolioSymbols(portfolio);
-                    // Update simulator section directly if needed
-                    const simulatorSection = document.getElementById('simulator');
-                    if (simulatorSection.classList.contains('active')) {
-                        // Example: Update simulator UI
-                        simulatorSection.querySelector('.simulator-data').textContent = 
-                            `Budget: ${budget} | Portfolio: ${JSON.stringify(portfolio)}`;
-                    }
+                    sendDataToSimulator();
                 } else {
                     budget = 10000;
                     portfolio = {};
+                    sendDataToSimulator();
                 }
             };
             userRef.on('value', userRefListener, error => {
@@ -955,6 +913,14 @@
             return normalizedPortfolio;
         }
 
+        function sendDataToSimulator() {
+            const iframe = document.getElementById('simulator-iframe');
+            if (iframe && iframe.contentWindow) {
+                const data = { type: 'AUTH_DATA', budget: budget, portfolio: portfolio };
+                iframe.contentWindow.postMessage(data, '*');
+            }
+        }
+
         function saveUserData() {
             const user = auth.currentUser;
             const lang = document.documentElement.lang || 'de';
@@ -977,7 +943,7 @@
             buttons.forEach(button => button.classList.remove('active'));
             document.getElementById(id).classList.add('active');
             element.classList.add('active');
-            setAppHeight();
+            if (id === 'simulator') sendDataToSimulator();
         }
 
         function displaySuccessMessage(message) {

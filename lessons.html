@@ -6,7 +6,6 @@
     <title>JugendInvestiert Courses</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Existing styles remain unchanged */
         :root {
             --primary-color: #007bff;
             --success-color: #28a745;
@@ -63,20 +62,22 @@
         .description {
             max-width: 700px;
             margin: 0 auto 50px;
-            padding: 25px;
-            background: var(--primary-color);
+            padding: 20px;
+            background: rgba(0, 123, 255, 0.2); /* Less vivid color */
             border-radius: 15px;
             text-align: center;
             box-shadow: var(--shadow);
             position: relative;
             overflow: hidden;
+            border: 1px solid rgba(0, 123, 255, 0.3); /* Subtle border */
         }
 
         .description span {
-            font-size: 20px;
+            font-size: 16px; /* Smaller text */
             font-weight: 500;
             position: relative;
             z-index: 1;
+            color: rgba(255, 255, 255, 0.9); /* Slightly muted text */
         }
 
         .courses-grid {
@@ -211,15 +212,48 @@
             .container {
                 padding: 0 15px;
             }
-            .courses-grid {
-                grid-template-columns: 1fr;
+            
+            header h1 {
+                font-size: 28px;
             }
+            
             .description {
-                margin: 0 auto 50px;
-                padding: 25px;
+                margin: 0 auto 30px;
+                padding: 15px;
                 max-width: none;
                 width: 100%;
                 box-sizing: border-box;
+                background: rgba(0, 123, 255, 0.15); /* Even more subtle on mobile */
+                border: 1px solid rgba(0, 123, 255, 0.2);
+            }
+            
+            .description span {
+                font-size: 14px; /* Smaller text on mobile */
+                line-height: 1.4;
+            }
+            
+            .courses-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .course-content {
+                padding: 20px;
+            }
+            
+            .course h3 {
+                font-size: 20px;
+                margin-bottom: 12px;
+            }
+            
+            .course p {
+                font-size: 15px;
+                margin-bottom: 15px;
+            }
+            
+            .course button {
+                padding: 10px 20px;
+                font-size: 15px;
             }
         }
     </style>
@@ -232,7 +266,7 @@
         </header>
         
         <div class="description">
-            <span data-translate-key="description">Entdecke hier unsere Finanzlektionen zu Geldanlagen und Investitionen. Lerne, wie du deine finanzielle Zukunft selbst gestalten kannst.</span>
+            <span data-translate-key="description">Entdecke unsere Finanzlektionen zu Geldanlagen und Investitionen.</span>
         </div>
         
         <div class="courses-grid">
@@ -242,7 +276,7 @@
                 </div>
                 <div class="course-content">
                     <h3 data-translate-key="course1Title">Wie investiere ich mein Geld?</h3>
-                    <p data-translate-key="course1Desc">Entdecke die besten Methoden, um dein Geld gewinnbringend zu investieren und deine finanziellen Ziele zu erreichen.</p>
+                    <p data-translate-key="course1Desc">Entdecke die besten Methoden, um dein Geld gewinnbringend zu investieren.</p>
                     <button onclick="location.href='section1.html'" data-translate-key="startButton">Jetzt starten</button>
                 </div>
             </div>
@@ -257,8 +291,8 @@
                     </svg>
                 </div>
                 <div class="course-content">
-                    <h3 data-translate-key="course2Title">Wie funktioniert die deutsche Wirtschaft?</h3>
-                    <p data-translate-key="course2Desc">Erfahre mehr über die Mechanismen und Strukturen der deutschen Wirtschaft und wie sie deine Finanzen beeinflusst.</p>
+                    <h3 data-translate-key="course2Title">Deutsche Wirtschaft</h3>
+                    <p data-translate-key="course2Desc">Erfahre mehr über die Mechanismen der deutschen Wirtschaft.</p>
                     <button disabled data-translate-key="comingSoon">Bald verfügbar</button>
                 </div>
             </div>
@@ -274,7 +308,7 @@
                 </div>
                 <div class="course-content">
                     <h3 data-translate-key="course3Title">Investieren im Simulator</h3>
-                    <p data-translate-key="course3Desc">Teste deine Investmentstrategien in einem sicheren Umfeld und lerne aus Erfahrungen ohne finanzielles Risiko.</p>
+                    <p data-translate-key="course3Desc">Teste deine Investmentstrategien ohne Risiko.</p>
                     <button disabled data-translate-key="comingSoon">Bald verfügbar</button>
                 </div>
             </div>
@@ -289,8 +323,8 @@
                     </svg>
                 </div>
                 <div class="course-content">
-                    <h3 data-translate-key="course4Title">Grundlagen der Kryptowährungen</h3>
-                    <p data-translate-key="course4Desc">Erlerne die Basics von Bitcoin, Ethereum und Co. und wie du sicher in Krypto investierst.</p>
+                    <h3 data-translate-key="course4Title">Kryptowährungen</h3>
+                    <p data-translate-key="course4Desc">Erlerne die Basics von Bitcoin und Ethereum.</p>
                     <button disabled data-translate-key="comingSoon">Bald verfügbar</button>
                 </div>
             </div>
@@ -306,7 +340,7 @@
                 </div>
                 <div class="course-content">
                     <h3 data-translate-key="course5Title">ETFs und Indexfonds</h3>
-                    <p data-translate-key="course5Desc">Verstehe, wie du durch ETFs und Indexfonds breit gestreut und kostengünstig investieren kannst.</p>
+                    <p data-translate-key="course5Desc">Kostengünstig investieren mit ETFs.</p>
                     <button disabled data-translate-key="comingSoon">Bald verfügbar</button>
                 </div>
             </div>
@@ -322,7 +356,7 @@
                 </div>
                 <div class="course-content">
                     <h3 data-translate-key="course6Title">Nachhaltiges Investieren</h3>
-                    <p data-translate-key="course6Desc">Entdecke, wie du dein Geld in umweltfreundliche und sozial verantwortliche Projekte anlegen kannst.</p>
+                    <p data-translate-key="course6Desc">Investiere in umweltfreundliche Projekte.</p>
                     <button disabled data-translate-key="comingSoon">Bald verfügbar</button>
                 </div>
             </div>
@@ -338,25 +372,25 @@
             "de": {
                 "brand": "JugendInvestiert",
                 "headerSubtitle": "Dein Weg zur finanziellen Bildung",
-                "description": "Entdecke hier unsere Finanzlektionen zu Geldanlagen und Investitionen. Lerne, wie du deine finanzielle Zukunft selbst gestalten kannst.",
+                "description": "Entdecke unsere Finanzlektionen zu Geldanlagen und Investitionen.",
                 "section1": "Section 1",
                 "course1Title": "Wie investiere ich mein Geld?",
-                "course1Desc": "Entdecke die besten Methoden, um dein Geld gewinnbringend zu investieren und deine finanziellen Ziele zu erreichen.",
+                "course1Desc": "Entdecke die besten Methoden, um dein Geld gewinnbringend zu investieren.",
                 "section2": "Section 2",
-                "course2Title": "Wie funktioniert die deutsche Wirtschaft?",
-                "course2Desc": "Erfahre mehr über die Mechanismen und Strukturen der deutschen Wirtschaft und wie sie deine Finanzen beeinflusst.",
+                "course2Title": "Deutsche Wirtschaft",
+                "course2Desc": "Erfahre mehr über die Mechanismen der deutschen Wirtschaft.",
                 "section3": "Section 3",
                 "course3Title": "Investieren im Simulator",
-                "course3Desc": "Teste deine Investmentstrategien in einem sicheren Umfeld und lerne aus Erfahrungen ohne finanzielles Risiko.",
+                "course3Desc": "Teste deine Investmentstrategien ohne Risiko.",
                 "crypto": "Kryptowährungen",
-                "course4Title": "Grundlagen der Kryptowährungen",
-                "course4Desc": "Erlerne die Basics von Bitcoin, Ethereum und Co. und wie du sicher in Krypto investierst.",
+                "course4Title": "Kryptowährungen",
+                "course4Desc": "Erlerne die Basics von Bitcoin und Ethereum.",
                 "passive": "Passive Investments",
                 "course5Title": "ETFs und Indexfonds",
-                "course5Desc": "Verstehe, wie du durch ETFs und Indexfonds breit gestreut und kostengünstig investieren kannst.",
+                "course5Desc": "Kostengünstig investieren mit ETFs.",
                 "section6": "Section 6",
                 "course6Title": "Nachhaltiges Investieren",
-                "course6Desc": "Entdecke, wie du dein Geld in umweltfreundliche und sozial verantwortliche Projekte anlegen kannst.",
+                "course6Desc": "Investiere in umweltfreundliche Projekte.",
                 "startButton": "Jetzt starten",
                 "comingSoon": "Bald verfügbar",
                 "footer": "© 2025 JugendInvestiert - Alle Rechte vorbehalten"
@@ -364,25 +398,25 @@
             "en": {
                 "brand": "YouthInvests",
                 "headerSubtitle": "Your Path to Financial Education",
-                "description": "Discover our financial lessons on investments and money management. Learn how to shape your financial future.",
+                "description": "Discover our financial lessons on investments.",
                 "section1": "Section 1",
                 "course1Title": "How Do I Invest My Money?",
-                "course1Desc": "Discover the best methods to invest your money profitably and achieve your financial goals.",
+                "course1Desc": "Discover the best methods to invest your money.",
                 "section2": "Section 2",
-                "course2Title": "How Does the German Economy Work?",
-                "course2Desc": "Learn more about the mechanisms and structures of the German economy and how they impact your finances.",
+                "course2Title": "German Economy",
+                "course2Desc": "Learn about the German economy mechanisms.",
                 "section3": "Section 3",
                 "course3Title": "Investing in a Simulator",
-                "course3Desc": "Test your investment strategies in a safe environment and learn from experiences without financial risk.",
+                "course3Desc": "Test your investment strategies risk-free.",
                 "crypto": "Cryptocurrencies",
-                "course4Title": "Basics of Cryptocurrencies",
-                "course4Desc": "Learn the fundamentals of Bitcoin, Ethereum, and more, and how to invest in crypto safely.",
+                "course4Title": "Cryptocurrencies",
+                "course4Desc": "Learn the basics of Bitcoin and Ethereum.",
                 "passive": "Passive Investments",
                 "course5Title": "ETFs and Index Funds",
-                "course5Desc": "Understand how to invest broadly and cost-effectively through ETFs and index funds.",
+                "course5Desc": "Invest cost-effectively with ETFs.",
                 "section6": "Section 6",
                 "course6Title": "Sustainable Investing",
-                "course6Desc": "Discover how to invest your money in environmentally friendly and socially responsible projects.",
+                "course6Desc": "Invest in eco-friendly projects.",
                 "startButton": "Start Now",
                 "comingSoon": "Coming Soon",
                 "footer": "© 2025 YouthInvests - All Rights Reserved"
@@ -390,25 +424,25 @@
             "fr": {
                 "brand": "JeunesseInvestit",
                 "headerSubtitle": "Votre chemin vers l'éducation financière",
-                "description": "Découvrez nos leçons financières sur les investissements et la gestion de l'argent. Apprenez à façonner votre avenir financier.",
+                "description": "Découvrez nos leçons financières sur les investissements.",
                 "section1": "Section 1",
                 "course1Title": "Comment investir mon argent ?",
-                "course1Desc": "Découvrez les meilleures méthodes pour investir votre argent de manière rentable et atteindre vos objectifs financiers.",
+                "course1Desc": "Découvrez les meilleures méthodes pour investir.",
                 "section2": "Section 2",
-                "course2Title": "Comment fonctionne l'économie allemande ?",
-                "course2Desc": "Apprenez-en davantage sur les mécanismes et les structures de l'économie allemande et leur impact sur vos finances.",
+                "course2Title": "Économie allemande",
+                "course2Desc": "Apprenez les mécanismes de l'économie allemande.",
                 "section3": "Section 3",
                 "course3Title": "Investir dans un simulateur",
-                "course3Desc": "Testez vos stratégies d'investissement dans un environnement sûr et apprenez de vos expériences sans risque financier.",
+                "course3Desc": "Testez vos stratégies sans risque.",
                 "crypto": "Cryptomonnaies",
-                "course4Title": "Bases des cryptomonnaies",
-                "course4Desc": "Apprenez les fondamentaux de Bitcoin, Ethereum et autres, et comment investir dans les cryptos en toute sécurité.",
+                "course4Title": "Cryptomonnaies",
+                "course4Desc": "Apprenez les bases du Bitcoin et Ethereum.",
                 "passive": "Investissements passifs",
                 "course5Title": "ETF et fonds indiciels",
-                "course5Desc": "Comprenez comment investir de manière diversifiée et économique grâce aux ETF et aux fonds indiciels.",
+                "course5Desc": "Investissez économiquement avec des ETF.",
                 "section6": "Section 6",
                 "course6Title": "Investissement durable",
-                "course6Desc": "Découvrez comment investir votre argent dans des projets respectueux de l'environnement et socialement responsables.",
+                "course6Desc": "Investissez dans des projets écologiques.",
                 "startButton": "Commencer maintenant",
                 "comingSoon": "Bientôt disponible",
                 "footer": "© 2025 JeunesseInvestit - Tous droits réservés"
