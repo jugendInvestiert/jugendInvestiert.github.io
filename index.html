@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
     <meta name="theme-color" content="#101820">
     <title>JugendInvestiert</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
@@ -19,7 +20,7 @@
             width: 100%;
             margin: 0;
             padding: 0;
-            overflow: auto; /* Changed to allow scrolling */
+            overflow: auto; /* Allow scrolling for address bar hiding */
         }
         body {
             font-family: 'Poppins', Arial, sans-serif;
@@ -205,7 +206,7 @@
             border-radius: 25px;
             color: #fff;
             font-weight: bold;
-            font-size: 16px HAPPY;
+            font-size: 16px;
             cursor: pointer;
             transition: background 0.3s, transform 0.2s;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -516,23 +517,20 @@
 
         // Scroll-based browser nav hide
         let lastScrollTop = 0;
-        let isFullscreen = false;
 
         function handleScroll() {
             const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
             const isMobile = window.innerWidth <= 768;
 
-            if (isMobile && !isFullscreen && currentScrollTop > lastScrollTop && currentScrollTop > 100) {
-                // Scrolling down on mobile, hide browser nav
-                document.documentElement.style.height = '100%';
-                document.body.style.height = '100%';
-                window.scrollTo(0, currentScrollTop); // Maintain scroll position
-                isFullscreen = true;
-            } else if (isMobile && currentScrollTop < lastScrollTop && currentScrollTop < 50) {
-                // Scrolling up near top, show browser nav
-                document.documentElement.style.height = '100%';
-                document.body.style.height = '100%';
-                isFullscreen = false;
+            if (isMobile) {
+                // For hiding the browser's address bar
+                if (currentScrollTop > 100) {
+                    // Attempt to scroll a tiny bit to trigger browser UI hiding
+                    window.scrollTo({
+                        top: currentScrollTop + 1,
+                        behavior: 'smooth'
+                    });
+                }
             }
 
             lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
