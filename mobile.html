@@ -17,9 +17,10 @@
       font-family: 'Poppins', Arial, sans-serif;
       background-color: #101820;
       color: white;
-      min-height: 100vh;
+      height: auto;
       scrollbar-width: none;
       -ms-overflow-style: none;
+      -webkit-overflow-scrolling: touch;
     }
     body::-webkit-scrollbar { display: none; }
     *, *::before, *::after { box-sizing: border-box; }
@@ -32,13 +33,20 @@
       --gradient: linear-gradient(135deg, #6366f1, #3b82f6);
       --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
+    .content-wrapper {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
     .mobile-layout {
       display: flex;
       flex-direction: column;
       align-items: center;
       width: 100%;
       padding: 10px 5px;
-      padding-bottom: 60px; /* Reduced bottom padding */
+      padding-bottom: 60px;
       text-align: center;
       gap: 15px;
     }
@@ -131,14 +139,14 @@
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     }
     .hero {
-      min-height: 100vh;
+      min-height: calc(100vh - 90px);
       background: var(--gradient);
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
       overflow: hidden;
-      padding-top: 80px;
+      padding-top: 90px;
       padding-bottom: 80px;
       text-align: center;
       width: 100%;
@@ -387,8 +395,8 @@
     .dark-contact-button {
       background-color: #1B2631;
       color: white;
-      padding: 14px 35px; /* Increased size */
-      font-size: 19px; /* Increased font size */
+      padding: 14px 35px;
+      font-size: 19px;
       font-weight: bold;
       border: none;
       border-radius: 25px;
@@ -466,7 +474,7 @@
       cursor: pointer;
       width: 100%;
     }
-    .modal-content button[type="submit"]:hover {
+    .modal-content button TypedArray
       background-color: #0056b3;
     }
     .close {
@@ -547,8 +555,8 @@
         font-size: 18px;
       }
       .dark-contact-button {
-        padding: 10px 20px; /* Adjusted for smaller screens */
-        font-size: 15px; /* Adjusted for smaller screens */
+        padding: 10px 20px;
+        font-size: 15px;
       }
       .copyright {
         font-size: 12px;
@@ -576,92 +584,94 @@
   </style>
 </head>
 <body>
-  <div class="mobile-layout">
-    <div class="header">
-      <div class="brand-container">
-        <img src="logo.jpg" alt="JugendInvestiert Logo">
-        <h1 data-translate-key="brand">JugendInvestiert</h1>
-      </div>
-      <div class="flag-container">
-        <img src="https://flagcdn.com/de.svg" alt="German Flag" class="flag-icon" id="currentFlag" />
-        <div class="language-dropdown" id="languageDropdown">
-          <img src="https://flagcdn.com/de.svg" alt="German Flag" data-lang="de" />
-          <img src="https://flagcdn.com/fr.svg" alt="French Flag" data-lang="fr" />
-          <img src="https://flagcdn.com/us.svg" alt="USA Flag" data-lang="en" />
+  <div class="content-wrapper">
+    <div class="mobile-layout">
+      <div class="header">
+        <div class="brand-container">
+          <img src="logo.jpg" alt="JugendInvestiert Logo">
+          <h1 data-translate-key="brand">JugendInvestiert</h1>
+        </div>
+        <div class="flag-container">
+          <img src="https://flagcdn.com/de.svg" alt="German Flag" class="flag-icon" id="currentFlag" />
+          <div class="language-dropdown" id="languageDropdown">
+            <img src="https://flagcdn.com/de.svg" alt="German Flag" data-lang="de" />
+            <img src="https://flagcdn.com/fr.svg" alt="French Flag" data-lang="fr" />
+            <img src="https://flagcdn.com/us.svg" alt="USA Flag" data-lang="en" />
+          </div>
         </div>
       </div>
+
+      <section class="hero">
+        <div class="floating-shapes">
+          <div class="shape" style="width: 50px; height: 50px; top: 20%; left: 20%;"></div>
+          <div class="shape" style="width: 80px; height: 80px; top: 60%; left: 80%;"></div>
+          <div class="shape" style="width: 30px; height: 30px; top: 80%; left: 30%;"></div>
+        </div>
+        <div class="hero-content">
+          <h1 class="hero-title" data-translate-key="heroTitle">Investiere in deine Zukunft</h1>
+          <p class="hero-subtitle" data-translate-key="heroSubtitle">Finanzwissen für alle</p>
+          <button class="cta-btn" onclick="requestParentToOpenSignup()" data-translate-key="startButton">
+            Jetzt starten
+            <span class="loading-spinner" id="heroButtonSpinner"></span>
+          </button>
+        </div>
+      </section>
+
+      <div class="content">
+        <div class="cube">
+          <div class="number-square">#1</div>
+          <p class="description-text" data-translate-key="numberOne">bei der Vermittlung von Finanzwissen</p>
+        </div>
+        <div class="slogan-square">
+          <p data-translate-key="slogan">Finanzwissen für alle - Investiere in deine Zukunft!</p>
+        </div>
+        <div class="text-cube">
+          <p data-translate-key="description">
+            Unsere Plattform ist eine Quelle für umfassendes Finanzwissen, das gezielt auf die Bedürfnisse der Jugend zugeschnitten ist. Laut Studien der <a href="OECD.pdf" target="_blank"><b>OECD</b></a> fehlt es vielen jungen Menschen an finanzieller Bildung. Wir bieten eine Vielzahl von Ressourcen, Schulungen und Tools an, um dir dabei zu helfen, ein solides Verständnis für Finanzen aufzubauen. Von Budgetierung und Sparen bis hin zu Investitionen und Finanzplanung – wir sind hier, um dich auf deinem Weg zu unterstützen.
+          </p>
+        </div>
+        <div class="slogan-square">
+          <p data-translate-key="benefits">Gratis, Effizient und macht Spaß</p>
+        </div>
+        <div class="rocket-cube">
+          <img src="rocket.png" alt="Rocket" class="rocket-image">
+          <h2 class="rocket-text" data-translate-key="rocketText1">Steigere dein</h2>
+          <h2 class="rocket-text" data-translate-key="rocketText2">Finanzwissen! 💪</h2>
+        </div>
+        <div class="footer-cube">
+          <p class="copyright" style="margin: 0; font-size: 14px; color: #cccccc;">
+            © 2025 JugendInvestiert.<br>Alle Rechte vorbehalten.
+          </p>
+          <button class="dark-contact-button" onclick="openContactForm()" data-translate-key="contact_button">
+            Kontakt Aufnehmen
+          </button>
+        </div>
+        <div class="glow-button-container">
+          <button class="start-button" onclick="requestParentToOpenSignup()" data-translate-key="startButton">
+            Jetzt starten
+            <span class="loading-spinner" id="contentButtonSpinner"></span>
+          </button>
+        </div>
+      </div>
+
+      <div id="contactModal" class="modal">
+        <div class="modal-content">
+          <span class="close" onclick="closeContactForm()">×</span>
+          <h2 data-translate-key="contact_form_title">Kontaktieren Sie uns</h2>
+          <form id="contactForm">
+            <label for="name" data-translate-key="name_label">Name</label>
+            <input type="text" id="name" name="name" required>
+            <label for="email" data-translate-key="email_label">E-Mail</label>
+            <input type="email" id="email" name="email" required>
+            <label for="message" data-translate-key="message_label">Nachricht</label>
+            <textarea id="message" name="message" required></textarea>
+            <button type="submit" data-translate-key="submit_button">Nachricht Senden</button>
+          </form>
+        </div>
+      </div>
+
+      <div id="message-container"></div>
     </div>
-
-    <section class="hero">
-      <div class="floating-shapes">
-        <div class="shape" style="width: 50px; height: 50px; top: 20%; left: 20%;"></div>
-        <div class="shape" style="width: 80px; height: 80px; top: 60%; left: 80%;"></div>
-        <div class="shape" style="width: 30px; height: 30px; top: 80%; left: 30%;"></div>
-      </div>
-      <div class="hero-content">
-        <h1 class="hero-title" data-translate-key="heroTitle">Investiere in deine Zukunft</h1>
-        <p class="hero-subtitle" data-translate-key="heroSubtitle">Finanzwissen für alle</p>
-        <button class="cta-btn" onclick="requestParentToOpenSignup()" data-translate-key="startButton">
-          Jetzt starten
-          <span class="loading-spinner" id="heroButtonSpinner"></span>
-        </button>
-      </div>
-    </section>
-
-    <div class="content">
-      <div class="cube">
-        <div class="number-square">#1</div>
-        <p class="description-text" data-translate-key="numberOne">bei der Vermittlung von Finanzwissen</p>
-      </div>
-      <div class="slogan-square">
-        <p data-translate-key="slogan">Finanzwissen für alle - Investiere in deine Zukunft!</p>
-      </div>
-      <div class="text-cube">
-        <p data-translate-key="description">
-          Unsere Plattform ist eine Quelle für umfassendes Finanzwissen, das gezielt auf die Bedürfnisse der Jugend zugeschnitten ist. Laut Studien der <a href="OECD.pdf" target="_blank"><b>OECD</b></a> fehlt es vielen jungen Menschen an finanzieller Bildung. Wir bieten eine Vielzahl von Ressourcen, Schulungen und Tools an, um dir dabei zu helfen, ein solides Verständnis für Finanzen aufzubauen. Von Budgetierung und Sparen bis hin zu Investitionen und Finanzplanung – wir sind hier, um dich auf deinem Weg zu unterstützen.
-        </p>
-      </div>
-      <div class="slogan-square">
-        <p data-translate-key="benefits">Gratis, Effizient und macht Spaß</p>
-      </div>
-      <div class="rocket-cube">
-        <img src="rocket.png" alt="Rocket" class="rocket-image">
-        <h2 class="rocket-text" data-translate-key="rocketText1">Steigere dein</h2>
-        <h2 class="rocket-text" data-translate-key="rocketText2">Finanzwissen! 💪</h2>
-      </div>
-      <div class="footer-cube">
-        <p class="copyright" style="margin: 0; font-size: 14px; color: #cccccc;">
-          © 2025 JugendInvestiert.<br>Alle Rechte vorbehalten.
-        </p>
-        <button class="dark-contact-button" onclick="openContactForm()" data-translate-key="contact_button">
-          Kontakt Aufnehmen
-        </button>
-      </div>
-      <div class="glow-button-container">
-        <button class="start-button" onclick="requestParentToOpenSignup()" data-translate-key="startButton">
-          Jetzt starten
-          <span class="loading-spinner" id="contentButtonSpinner"></span>
-        </button>
-      </div>
-    </div>
-
-    <div id="contactModal" class="modal">
-      <div class="modal-content">
-        <span class="close" onclick="closeContactForm()">×</span>
-        <h2 data-translate-key="contact_form_title">Kontaktieren Sie uns</h2>
-        <form id="contactForm">
-          <label for="name" data-translate-key="name_label">Name</label>
-          <input type="text" id="name" name="name" required>
-          <label for="email" data-translate-key="email_label">E-Mail</label>
-          <input type="email" id="email" name="email" required>
-          <label for="message" data-translate-key="message_label">Nachricht</label>
-          <textarea id="message" name="message" required></textarea>
-          <button type="submit" data-translate-key="submit_button">Nachricht Senden</button>
-        </form>
-      </div>
-    </div>
-
-    <div id="message-container"></div>
   </div>
 
   <script>
@@ -845,6 +855,16 @@
           console.error('EmailJS Error:', error);
           displayMessage(translations[currentLang].error_message, 'error');
         });
+    });
+
+    // Update iframe height to ensure full content is scrollable
+    window.addEventListener('load', () => {
+      function updateIframeHeight() {
+        const height = document.documentElement.scrollHeight;
+        window.parent.postMessage({ action: 'setIframeHeight', height: height }, '*');
+      }
+      updateIframeHeight();
+      window.addEventListener('resize', updateIframeHeight);
     });
   </script>
 </body>
