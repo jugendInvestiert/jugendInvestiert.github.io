@@ -1,851 +1,1003 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>JugendInvestiert - Mobile</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;600;700&display=swap" rel="stylesheet">
-  <!-- EmailJS SDK -->
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#101820">
+    <title>JugendInvestiert</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="/icon.png">
 
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
-      font-family: 'Poppins', Arial, sans-serif;
-      background-color: #101820;
-      color: white;
-      min-height: 100vh;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
-    }
-    body::-webkit-scrollbar { display: none; }
-    *, *::before, *::after { box-sizing: border-box; }
-    :root {
-      --primary: #2d3436;
-      --secondary: #0984e3;
-      --accent: white;
-      --text: #2d3436;
-      --light: #dfe6e9;
-      --gradient: linear-gradient(135deg, #6366f1, #3b82f6);
-      --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-    .mobile-layout {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      width: 100%;
-      padding: 10px 5px;
-      padding-bottom: 60px; /* Reduced bottom padding */
-      text-align: center;
-      gap: 15px;
-    }
-    .mobile-layout .header {
-      width: 100%;
-      background-color: #1B2631;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 15px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 1000;
-    }
-    .brand-container {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .mobile-layout .header img {
-      height: 60px;
-      width: 60px;
-      border-radius: 12px;
-    }
-    .mobile-layout .header h1 {
-      font-size: 24px;
-      margin: 0;
-      font-weight: bold;
-      white-space: nowrap;
-    }
-    .flag-container {
-      position: relative;
-      padding: 5px;
-    }
-    .flag-icon {
-      width: 45px;
-      height: 30px;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      object-fit: cover;
-      border: 2px solid rgba(255, 255, 255, 0.2);
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    }
-    .flag-icon:hover {
-      transform: scale(1.1);
-      border-color: rgba(255, 255, 255, 0.5);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    }
-    .language-dropdown {
-      display: none;
-      position: absolute;
-      top: 110%;
-      right: 0;
-      background: rgba(27, 38, 49, 0.95);
-      backdrop-filter: blur(12px);
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      overflow: hidden;
-      flex-direction: column;
-      align-items: center;
-      padding: 0.75rem;
-      z-index: 1001;
-      animation: slideIn 0.3s ease-out;
-    }
-    @keyframes slideIn {
-      from { transform: translateY(-10px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
-    }
-    .flag-container:hover .language-dropdown,
-    .language-dropdown.open {
-      display: flex;
-    }
-    .language-dropdown img {
-      width: 45px;
-      height: 30px;
-      border-radius: 6px;
-      margin: 0.5rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      object-fit: cover;
-      border: 2px solid rgba(255, 255, 255, 0.1);
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    }
-    .language-dropdown img:hover {
-      transform: scale(1.1);
-      border-color: rgba(255, 255, 255, 0.4);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-    }
-    .hero {
-      min-height: 100vh;
-      background: var(--gradient);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      overflow: hidden;
-      padding-top: 80px;
-      padding-bottom: 80px;
-      text-align: center;
-      width: 100%;
-    }
-    .hero::before {
-      content: '';
-      position: absolute;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, transparent 20%, rgba(0, 0, 0, 0.3) 100%);
-      animation: pulse 15s infinite;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-    }
-    @keyframes pulse {
-      0% { transform: translate(-50%, -50%) rotate(0deg); opacity: 0.5; }
-      50% { transform: translate(-50%, -50%) rotate(180deg); opacity: 0.8; }
-      100% { transform: translate(-50%, -50%) rotate(360deg); opacity: 0.5; }
-    }
-    .hero-content {
-      position: relative;
-      z-index: 1;
-      color: white;
-      padding: 2rem;
-      max-width: 800px;
-      animation: fadeIn 1s ease-out;
-      text-align: center;
-      background: transparent;
-    }
-    @keyframes fadeIn {
-      0% { opacity: 0; transform: translateY(30px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-    .hero-title {
-      font-size: 3.5rem;
-      margin-bottom: 1rem;
-      background: linear-gradient(45deg, white, var(--accent));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: shimmer 3s infinite;
-      background-size: 200% auto;
-      font-weight: 700;
-      font-family: 'Baloo 2', sans-serif;
-    }
-    @keyframes shimmer {
-      to { background-position: 200% center; }
-    }
-    .hero-subtitle {
-      font-size: 1.3rem;
-      margin-bottom: 2rem;
-      font-weight: 400;
-      line-height: 1.5;
-      font-family: 'Baloo 2', sans-serif;
-    }
-    .cta-btn {
-      display: inline-block;
-      background: #fff;
-      color: var(--primary);
-      padding: 0.8rem 2rem;
-      border-radius: 25px;
-      text-decoration: none;
-      font-size: 1.2rem;
-      font-weight: 700;
-      transition: box-shadow 0.3s ease, background 0.3s ease;
-      animation: glow 2s infinite alternate;
-      border: none;
-      cursor: pointer;
-      font-family: 'Baloo 2', sans-serif;
-    }
-    .cta-btn:hover {
-      box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
-      background: var(--light);
-    }
-    @keyframes glow {
-      0% { box-shadow: 0 0 10px rgba(255, 255, 255, 0.6); }
-      100% { box-shadow: 0 0 20px rgba(255, 255, 255, 0.8); }
-    }
-    .floating-shapes {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 0;
-    }
-    .shape {
-      position: absolute;
-      background: rgba(255, 255, 255, 0.1);
-      border-radius: 50%;
-      animation: float 20s infinite linear;
-    }
-    @keyframes float {
-      0% { transform: translate(0, 0) rotate(0deg); }
-      50% { transform: translate(100px, 100px) rotate(180deg); }
-      100% { transform: translate(0, 0) rotate(360deg); }
-    }
-    .mobile-layout .cube {
-      background-color: #1B2631;
-      width: 90vw;
-      height: 90vw;
-      border-radius: 15px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 5px 8px;
-      box-sizing: border-box;
-      margin: 0 auto;
-      margin-bottom: 15px;
-      overflow: hidden;
-    }
-    .mobile-layout .text-cube {
-      background-color: #1B2631;
-      width: 90vw;
-      height: auto;
-      min-height: 30vw;
-      border-radius: 15px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 15px;
-      box-sizing: border-box;
-      margin: 0 auto;
-      margin-bottom: 15px;
-      overflow: hidden;
-    }
-    .mobile-layout .text-cube p {
-      font-size: clamp(14px, 4vw, 16px);
-      color: #cccccc;
-      margin: 0;
-      line-height: 1.6;
-      padding: 0 10px;
-      text-align: center;
-    }
-    .mobile-layout .text-cube a {
-      color: #007bff;
-      font-weight: bold;
-      text-decoration: none;
-    }
-    .mobile-layout .text-cube a:hover {
-      text-decoration: underline;
-    }
-    .mobile-layout .rocket-cube {
-      background-color: #1B2631;
-      width: 90vw;
-      height: 90vw;
-      border-radius: 15px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 5px 8px;
-      box-sizing: border-box;
-      margin: 0 auto;
-      margin-bottom: 15px;
-      overflow: hidden;
-    }
-    .mobile-layout .slogan-square {
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(10px);
-      width: 90vw;
-      border-radius: 15px;
-      padding: 1rem;
-      box-sizing: border-box;
-      text-align: center;
-      color: #fff;
-      margin: 0 auto;
-      font-size: 1.1rem;
-      margin-bottom: 15px;
-    }
-    .mobile-layout .footer-cube {
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(10px);
-      width: 90vw;
-      border-radius: 15px;
-      padding: 1rem;
-      box-sizing: border-box;
-      margin: 0 auto;
-      margin-bottom: 15px;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      justify-content: center;
-      gap: 20px;
-    }
-    .mobile-layout .number-square {
-      font-size: 180px;
-      color: #007bff;
-      font-weight: bold;
-      margin: 0;
-      text-align: center;
-    }
-    .mobile-layout .description-text {
-      font-size: 20px;
-      color: #cccccc;
-      margin: 0;
-      line-height: 1.5;
-    }
-    .mobile-layout .rocket-image {
-      width: 200px;
-      animation: bounceRocket 2s infinite;
-      max-width: 100%;
-    }
-    .mobile-layout .rocket-text {
-      font-size: 26px;
-      color: #ffffff;
-      margin: 0;
-      text-align: center;
-    }
-    .mobile-layout .glow-button-container {
-      margin-top: 10px;
-      display: flex;
-      justify-content: center;
-      width: 100%;
-    }
-    .mobile-layout .start-button {
-      background-color: #007bff;
-      color: #ffffff;
-      border: none;
-      padding: 18px 40px;
-      font-size: 22px;
-      font-weight: bold;
-      border-radius: 25px;
-      cursor: pointer;
-      outline: none;
-      box-shadow:
-        0 0 10px rgba(0, 123, 255, 0.7),
-        0 0 20px rgba(0, 123, 255, 0.5),
-        0 0 30px rgba(0, 123, 255, 0.3);
-      transition: background-color 0.3s, box-shadow 0.3s;
-    }
-    .mobile-layout .start-button:hover {
-      background-color: #0056b3;
-      box-shadow: 0 0 30px rgba(0, 123, 255, 0.7);
-    }
-    .mobile-layout .start-button:active {
-      background-color: #004080;
-      box-shadow: 0 0 40px rgba(0, 123, 255, 0.9);
-    }
-    .dark-contact-button {
-      background-color: #1B2631;
-      color: white;
-      padding: 14px 35px; /* Increased size */
-      font-size: 19px; /* Increased font size */
-      font-weight: bold;
-      border: none;
-      border-radius: 25px;
-      cursor: pointer;
-      transition: background-color 0.3s, transform 0.3s;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-      font-family: 'Baloo 2', sans-serif;
-    }
-    .dark-contact-button:hover {
-      background-color: #2d3748;
-      transform: scale(1.05);
-    }
-    .dark-contact-button:active {
-      background-color: #4a5568;
-    }
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.7);
-      z-index: 1000;
-      justify-content: center;
-      align-items: center;
-      overflow: auto;
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-    .modal::-webkit-scrollbar {
-      display: none;
-    }
-    .modal-content {
-      background-color: #1B2631;
-      padding: 20px;
-      border-radius: 10px;
-      width: 90%;
-      max-width: 500px;
-      position: relative;
-    }
-    .modal-content h2 {
-      margin-top: 0;
-      font-size: 24px;
-      text-align: center;
-    }
-    .modal-content label {
-      display: block;
-      margin: 10px 0 5px;
-      font-size: 16px;
-    }
-    .modal-content input,
-    .modal-content textarea {
-      width: 100%;
-      padding: 10px;
-      margin-bottom: 15px;
-      border: 1px solid #2e2e2e;
-      border-radius: 5px;
-      background-color: #101820;
-      color: white;
-      font-size: 16px;
-    }
-    .modal-content textarea {
-      resize: vertical;
-      min-height: 100px;
-    }
-    .modal-content button[type="submit"] {
-      background-color: #007bff;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-      width: 100%;
-    }
-    .modal-content button[type="submit"]:hover {
-      background-color: #0056b3;
-    }
-    .close {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      font-size: 24px;
-      cursor: pointer;
-      color: #cccccc;
-    }
-    .close:hover {
-      color: #ffffff;
-    }
-    .message {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: #1B2631;
-      padding: 10px 20px;
-      border-radius: 5px;
-      color: #fff;
-      z-index: 2000;
-      animation: fadeInOut 4s forwards;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-      font-size: 16px;
-    }
-    .message.success {
-      border-left: 5px solid #4caf50;
-    }
-    .message.error {
-      border-left: 5px solid #f44336;
-    }
-    @keyframes fadeInOut {
-      0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
-      10% { opacity: 1; transform: translateX(-50%) translateY(0); }
-      90% { opacity: 1; transform: translateX(-50%) translateY(0); }
-      100% { opacity: 0; transform: translateX(-50%) translateY(20px); }
-    }
-    @keyframes bounceRocket {
-      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-      40% { transform: translateY(-20px); }
-      60% { transform: translateY(-10px); }
-    }
-    .loading-spinner {
-      display: none;
-      width: 20px;
-      height: 20px;
-      border: 3px solid rgba(255, 255, 255, 0.3);
-      border-radius: 50%;
-      border-top-color: #fff;
-      animation: spin 1s ease-in-out infinite;
-      margin: 0 auto;
-    }
-    @keyframes spin {
-      to { transform: rotate(360deg); }
-    }
-    @media (max-width: 480px) {
-      .mobile-layout .header h1 { font-size: 20px; }
-      .mobile-layout .header img { height: 50px; width: 50px; }
-      .brand-container { gap: 8px; }
-      .flag-icon, .language-dropdown img { width: 40px; height: 27px; }
-      .hero-title { font-size: 2.5rem; }
-      .hero-subtitle { font-size: 1rem; }
-      .cta-btn { padding: 0.6rem 1.5rem; font-size: 1rem; }
-      .mobile-layout .number-square { font-size: 120px; }
-      .mobile-layout .description-text { font-size: 14px; }
-      .mobile-layout .text-cube {
-        min-height: 25vw;
-      }
-      .mobile-layout .text-cube p {
-        font-size: clamp(12px, 3.5vw, 14px);
-      }
-      .mobile-layout .rocket-image { width: 140px; }
-      .mobile-layout .rocket-text { font-size: 18px; }
-      .mobile-layout .start-button { 
-        padding: 14px 30px;
-        font-size: 18px;
-      }
-      .dark-contact-button {
-        padding: 10px 20px; /* Adjusted for smaller screens */
-        font-size: 15px; /* Adjusted for smaller screens */
-      }
-      .copyright {
-        font-size: 12px;
-        line-height: 1.2;
-      }
-      .footer-cube {
-        padding: 0.8rem;
-        gap: 15px;
-      }
-      .modal-content {
-        width: 95%;
-        padding: 15px;
-      }
-      .modal-content h2 {
-        font-size: 20px;
-      }
-      .modal-content input,
-      .modal-content textarea {
-        font-size: 14px;
-      }
-      .modal-content button[type="submit"] {
-        font-size: 14px;
-      }
-    }
-  </style>
+    <style>
+        :root {
+            --app-height: 100%;
+        }
+
+        /* Ensure scrollable page */
+        html, body {
+            height: var(--app-height);
+            min-height: 100vh;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            display: flex;
+            background-color: #101820;
+            color: white;
+            padding-top: env(safe-area-inset-top);
+            padding-bottom: env(safe-area-inset-bottom);
+            padding-left: env(safe-area-inset-left);
+            padding-right: env(safe-area-inset-right);
+        }
+        body::-webkit-scrollbar { display: none; }
+        .bottom-nav { display: none; }
+        .sidebar {
+            width: 320px;
+            background-color: #1B2631;
+            padding: 0 10px;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 10;
+        }
+        .sidebar h2 {
+            text-align: center;
+            font-size: 26px;
+            color: white;
+            margin-bottom: 20px;
+            padding: 0 10px;
+        }
+        .sidebar a {
+            display: flex;
+            align-items: center;
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            font-size: 16px;
+            border: 2px solid transparent;
+            border-radius: 15px;
+            margin: 10px 0;
+            transition: transform 0.3s ease, background-color 0.3s ease, border-color 0.3s ease;
+            text-transform: uppercase;
+            width: 90%;
+            justify-content: flex-start;
+        }
+        .sidebar a:hover { background-color: #34495e; }
+        .sidebar a.active { border-color: #a2e5ff; }
+        .sidebar a .emoji { margin-right: 12px; }
+        .emoji-image { width: 36px; height: 36px; margin-right: 12px; object-fit: fill; }
+        .emoji-image-large { width: 42px; height: 42px; object-fit: contain; }
+        .sidebar a.login, .sidebar a.signup, .sidebar a.logout {
+            justify-content: center;
+            text-align: center;
+            padding: 12px 0;
+            font-size: 18px;
+            width: 90%;
+            margin-top: 12px;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        .sidebar a.login { background-color: #007ce2; margin-bottom: 0px; }
+        .sidebar a.signup { background-color: #7F8C8D; }
+        .sidebar a.logout { display: none; background-color: #E74C3C; }
+        .sidebar a.login:hover, .sidebar a.signup:hover, .sidebar a.logout:hover { transform: scale(1.05); }
+        .bottom-buttons {
+            margin-top: auto;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-bottom: 20px;
+        }
+        .content {
+            margin-left: 320px;
+            width: calc(100% - 320px);
+            color: white;
+            min-height: 200vh; /* Ensure scrollable height */
+            overflow-y: auto;
+            position: relative;
+        }
+        .content section {
+            display: none;
+            width: 100%;
+            min-height: 200vh;
+        }
+        .content section.active { display: block; }
+        .content iframe {
+            width: 100%;
+            min-height: 200vh;
+            border: none;
+            display: block;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.6);
+            justify-content: center;
+            align-items: center;
+            animation: fadeIn 0.3s;
+        }
+        .modal-content {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 24px;
+            width: 90%;
+            max-width: 400px;
+            position: relative;
+            color: white;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            animation: slideUp 0.3s ease-out;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .modal-content::-webkit-scrollbar { display: none; }
+        .modal-content form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .disclaimer-text {
+            flex-grow: 1;
+            overflow-y: auto;
+            padding-bottom: 10px;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .disclaimer-text::-webkit-scrollbar { display: none; }
+        .disclaimer-copyright {
+            font-size: 12px;
+            color: #cccccc;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .disclaimer-button-container {
+            padding-top: 10px;
+        }
+        .close {
+            color: #fff;
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .close:hover, .close:focus { color: #a2e5ff; }
+        .modal-content h2 {
+            margin-top: 0;
+            text-align: center;
+            color: #a2e5ff;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+        .modal-content label {
+            margin-top: 12px;
+            color: #fff;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        .modal-content input {
+            width: 100%;
+            padding: 10px 12px;
+            margin-top: 6px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 8px;
+            color: #fff;
+            font-size: 14px;
+            box-sizing: border-box;
+            transition: background-color 0.3s;
+        }
+        .modal-content input:focus {
+            background-color: rgba(255, 255, 255, 0.3);
+            outline: none;
+        }
+        .modal-content button {
+            width: 100%;
+            padding: 12px;
+            margin-top: 16px;
+            background: linear-gradient(45deg, #6A82FB, #FC5C7D);
+            border: none;
+            border-radius: 25px;
+            color: #fff;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .modal-content button:hover {
+            background: linear-gradient(45deg, #5a73d1, #e04c5c);
+            transform: translateY(-2px);
+        }
+        .modal-content .switch-link {
+            text-align: center;
+            margin-top: 15px;
+            color: #a2e5ff;
+            font-size: 14px;
+        }
+        .modal-content .switch-link a {
+            color: #a2e5ff;
+            text-decoration: underline;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .modal-content .switch-link a:hover { color: #ffffff; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        #loader {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            color: #fff;
+            font-size: 1.5rem;
+        }
+        .message {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            z-index: 3000;
+            opacity: 0.95;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            animation: fadeInOut 4s forwards;
+        }
+        .message.error { background-color: #f44336; }
+        .message i { font-size: 1.5rem; }
+        @keyframes fadeInOut {
+            0% { opacity: 0; transform: translateY(-20px); }
+            10% { opacity: 1; transform: translateY(0); }
+            90% { opacity: 1; transform: translateY(0); }
+            100% { opacity: 0; transform: translateY(-20px); }
+        }
+        @media (max-width: 768px) {
+            body { flex-direction: column; }
+            .sidebar { display: none; }
+            .content {
+                margin-left: 0;
+                width: 100%;
+                padding: 0;
+                min-height: 200vh;
+            }
+            .content iframe { min-height: 200vh; }
+            .bottom-nav {
+                display: flex;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                background-color: #1B2631;
+                justify-content: space-evenly;
+                padding: 15px 0;
+                box-shadow: 0 -2px 5px rgba(0,0,0,0.3);
+                padding-bottom: calc(15px + env(safe-area-inset-bottom));
+                transition: transform 0.3s ease;
+                z-index: 100;
+            }
+            .bottom-nav.hidden {
+                transform: translateY(100%);
+            }
+            .bottom-nav a {
+                color: white;
+                text-decoration: none;
+                font-size: 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: color 0.3s ease;
+            }
+            .bottom-nav a.active { color: #a2e5ff; }
+            .bottom-nav a .emoji-image { margin-right: 0; width: 36px; height: 36px; object-fit: contain; }
+            .modal-content {
+                width: 85%;
+                max-width: 340px;
+                padding: 20px;
+                margin: 0 16px;
+            }
+            .modal-content input {
+                font-size: 13px;
+                padding: 8px 10px;
+            }
+            .modal-content label {
+                font-size: 13px;
+            }
+            .modal-content button {
+                padding: 10px;
+                font-size: 14px;
+            }
+            .modal-content h2 {
+                font-size: 20px;
+                margin-bottom: 20px;
+            }
+        }
+        .password-check-row { display: flex; align-items: center; margin-top: 8px; gap: 8px; }
+    </style>
 </head>
 <body>
-  <div class="mobile-layout">
-    <div class="header">
-      <div class="brand-container">
-        <img src="logo.jpg" alt="JugendInvestiert Logo">
-        <h1 data-translate-key="brand">JugendInvestiert</h1>
-      </div>
-      <div class="flag-container">
-        <img src="https://flagcdn.com/de.svg" alt="German Flag" class="flag-icon" id="currentFlag" />
-        <div class="language-dropdown" id="languageDropdown">
-          <img src="https://flagcdn.com/de.svg" alt="German Flag" data-lang="de" />
-          <img src="https://flagcdn.com/fr.svg" alt="French Flag" data-lang="fr" />
-          <img src="https://flagcdn.com/us.svg" alt="USA Flag" data-lang="en" />
+    <div class="sidebar">
+        <h2 data-translate-key="brand">JugendInvestiert</h2>
+        <a href="#home" class="button active" onclick="showSection('home', this)">
+            <img src="house2.png" alt="Home" class="emoji-image"> <span data-translate-key="home">Home</span>
+        </a>
+        <a href="#lernen" class="button" onclick="showSection('lernen', this)">
+            <img src="lernen.jpg" alt="Lernen" class="emoji-image emoji-image-large"> <span data-translate-key="learn">Lernen</span>
+        </a>
+        <a href="#resourcen" class="button" onclick="showSection('resourcen', this)">
+            <img src="ressourcen.png" alt="Ressourcen" class="emoji-image"> <span data-translate-key="resources">Ressourcen</span>
+        </a>
+        <a href="#simulator" class="button" onclick="showSection('simulator', this)">
+            <img src="simulator.png" alt="Simulator" class="emoji-image emoji-image-large"> <span data-translate-key="simulator">Simulator</span>
+        </a>
+        <a href="#unsere-mission" class="button" onclick="showSection('unsere-mission', this)">
+            <img src="mission.png" alt="Unsere Mission" class="emoji-image emoji-image-large"> <span data-translate-key="mission">Unsere Mission</span>
+        </a>
+        <div class="bottom-buttons">
+            <a href="#login" class="button login" onclick="openModal('loginModal')">
+                <img src="login.png" alt="Anmelden" class="emoji-image"> <span data-translate-key="login">Anmelden</span>
+            </a>
+            <a href="#signup" class="button signup" onclick="openModal('signupModal')">
+                <img src="register.png" alt="Registrieren" class="emoji-image"> <span data-translate-key="signup">Registrieren</span>
+            </a>
+            <a href="#logout" class="button logout" onclick="logout()">
+                <img src="abmelden.jpg" alt="Abmelden" class="emoji-image"> <span data-translate-key="logout">Abmelden</span>
+            </a>
         </div>
-      </div>
     </div>
-
-    <section class="hero">
-      <div class="floating-shapes">
-        <div class="shape" style="width: 50px; height: 50px; top: 20%; left: 20%;"></div>
-        <div class="shape" style="width: 80px; height: 80px; top: 60%; left: 80%;"></div>
-        <div class="shape" style="width: 30px; height: 30px; top: 80%; left: 30%;"></div>
-      </div>
-      <div class="hero-content">
-        <h1 class="hero-title" data-translate-key="heroTitle">Investiere in deine Zukunft</h1>
-        <p class="hero-subtitle" data-translate-key="heroSubtitle">Finanzwissen für alle</p>
-        <button class="cta-btn" onclick="requestParentToOpenSignup()" data-translate-key="startButton">
-          Jetzt starten
-          <span class="loading-spinner" id="heroButtonSpinner"></span>
-        </button>
-      </div>
-    </section>
 
     <div class="content">
-      <div class="cube">
-        <div class="number-square">#1</div>
-        <p class="description-text" data-translate-key="numberOne">bei der Vermittlung von Finanzwissen</p>
-      </div>
-      <div class="slogan-square">
-        <p data-translate-key="slogan">Finanzwissen für alle - Investiere in deine Zukunft!</p>
-      </div>
-      <div class="text-cube">
-        <p data-translate-key="description">
-          Unsere Plattform ist eine Quelle für umfassendes Finanzwissen, das gezielt auf die Bedürfnisse der Jugend zugeschnitten ist. Laut Studien der <a href="OECD.pdf" target="_blank"><b>OECD</b></a> fehlt es vielen jungen Menschen an finanzieller Bildung. Wir bieten eine Vielzahl von Ressourcen, Schulungen und Tools an, um dir dabei zu helfen, ein solides Verständnis für Finanzen aufzubauen. Von Budgetierung und Sparen bis hin zu Investitionen und Finanzplanung – wir sind hier, um dich auf deinem Weg zu unterstützen.
-        </p>
-      </div>
-      <div class="slogan-square">
-        <p data-translate-key="benefits">Gratis, Effizient und macht Spaß</p>
-      </div>
-      <div class="rocket-cube">
-        <img src="rocket.png" alt="Rocket" class="rocket-image">
-        <h2 class="rocket-text" data-translate-key="rocketText1">Steigere dein</h2>
-        <h2 class="rocket-text" data-translate-key="rocketText2">Finanzwissen! 💪</h2>
-      </div>
-      <div class="footer-cube">
-        <p class="copyright" style="margin: 0; font-size: 14px; color: #cccccc;">
-          © 2025 JugendInvestiert.<br>Alle Rechte vorbehalten.
-        </p>
-        <button class="dark-contact-button" onclick="openContactForm()" data-translate-key="contact_button">
-          Kontakt Aufnehmen
-        </button>
-      </div>
-      <div class="glow-button-container">
-        <button class="start-button" onclick="requestParentToOpenSignup()" data-translate-key="startButton">
-          Jetzt starten
-          <span class="loading-spinner" id="contentButtonSpinner"></span>
-        </button>
-      </div>
+        <section id="home" class="active">
+            <iframe src="home.html" id="home-iframe"></iframe>
+        </section>
+        <section id="lernen">
+            <iframe src="lessons.html" id="lernen-iframe"></iframe>
+        </section>
+        <section id="resourcen">
+            <iframe src="ressources.html" id="resourcen-iframe"></iframe>
+        </section>
+        <section id="simulator">
+            <iframe src="simulator.html" id="simulator-iframe"></iframe>
+        </section>
+        <section id="unsere-mission">
+            <iframe src="ourmission.html" id="mission-iframe"></iframe>
+        </section>
     </div>
 
-    <div id="contactModal" class="modal">
-      <div class="modal-content">
-        <span class="close" onclick="closeContactForm()">×</span>
-        <h2 data-translate-key="contact_form_title">Kontaktieren Sie uns</h2>
-        <form id="contactForm">
-          <label for="name" data-translate-key="name_label">Name</label>
-          <input type="text" id="name" name="name" required>
-          <label for="email" data-translate-key="email_label">E-Mail</label>
-          <input type="email" id="email" name="email" required>
-          <label for="message" data-translate-key="message_label">Nachricht</label>
-          <textarea id="message" name="message" required></textarea>
-          <button type="submit" data-translate-key="submit_button">Nachricht Senden</button>
-        </form>
-      </div>
+    <div class="bottom-nav">
+        <a href="#home" class="button active" onclick="showSection('home', this)">
+            <img src="house2.png" alt="Home" class="emoji-image">
+        </a>
+        <a href="#lernen" class="button" onclick="showSection('lernen', this)">
+            <img src="lernen.jpg" alt="Lernen" class="emoji-image">
+        </a>
+        <a href="#resourcen" class="button" onclick="showSection('resourcen', this)">
+            <img src="ressourcen.png" alt="Ressourcen" class="emoji-image">
+        </a>
+        <a href="#simulator" class="button" onclick="showSection('simulator', this)">
+            <img src="simulator.png" alt="Simulator" class="emoji-image">
+        </a>
+        <a href="#unsere-mission" class="button" onclick="showSection('unsere-mission', this)">
+            <img src="mission.png" alt="Unsere Mission" class="emoji-image">
+        </a>
+        <a href="#account" class="button" onclick="openModal('loginModal')">
+            <img src="student.png" alt="Account" class="emoji-image">
+        </a>
     </div>
 
-    <div id="message-container"></div>
-  </div>
+    <div id="loginModal" class="modal">
+        <div class="modal-content" id="loginModalContent">
+            <span class="close" onclick="closeModal('loginModal')">×</span>
+            <h2 id="loginModalTitle" data-translate-key="login">Anmelden</h2>
+            <div id="loginForm" style="display: block;">
+                <form>
+                    <label for="login-email" data-translate-key="email">Email:</label>
+                    <input type="email" id="login-email" placeholder="Deine Email" required>
+                    <label for="login-password" data-translate-key="password">Passwort:</label>
+                    <input type="password" id="login-password" placeholder="Dein Passwort" required>
+                    <button type="button" onclick="login()" data-translate-key="login">Anmelden</button>
+                </form>
+                <p class="switch-link">
+                    <a href="#" onclick="openModal('resetModal')" data-translate-key="forgotPassword">Passwort vergessen?</a>
+                </p>
+                <p class="switch-link" data-translate-key="notRegistered">
+                    Noch nicht angemeldet? <a href="#" onclick="switchToSignup()">Jetzt Registrieren</a>
+                </p>
+            </div>
+            <div id="logoutForm" style="display: none;">
+                <p data-translate-key="loggedIn">Du bist angemeldet.</p>
+                <button type="button" onclick="logout()" style="background: #E74C3C;" data-translate-key="logout">Abmelden</button>
+            </div>
+        </div>
+    </div>
 
-  <script>
-    // Initialize EmailJS
-    (function(){
-      emailjs.init("Zw39o2PKqhQ9D2le6");
-    })();
+    <div id="signupModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('signupModal')">×</span>
+            <h2 data-translate-key="signup">Registrieren</h2>
+            <form>
+                <label for="signup-email" data-translate-key="email">Email:</label>
+                <input type="email" id="signup-email" placeholder="Deine Email" required>
+                <label for="signup-password" data-translate-key="password">Passwort:</label>
+                <input type="password" id="signup-password" placeholder="Dein Passwort" required>
+                <label for="signup-password-confirm" data-translate-key="confirmPassword">Passwort bestätigen:</label>
+                <input type="password" id="signup-password-confirm" placeholder="Passwort bestätigen" required>
+                <div class="password-check-row">
+                    <i class="fas fa-times" id="password-check-length" style="color: red;"></i>
+                    <span data-translate-key="passwordLength">Mehr als 6 Zeichen</span>
+                </div>
+                <div class="password-check-row">
+                    <i class="fas fa-times" id="password-check-letter" style="color: red;"></i>
+                    <span data-translate-key="passwordLetter">Mindestens ein Buchstabe</span>
+                </div>
+                <div class="password-check-row">
+                    <i class="fas fa-times" id="password-check-number" style="color: red;"></i>
+                    <span data-translate-key="passwordNumber">Mindestens eine Zahl</span>
+                </div>
+                <div class="password-check-row">
+                    <i class="fas fa-times" id="password-check-match" style="color: red;"></i>
+                    <span data-translate-key="passwordMatch">Passwörter stimmen überein</span>
+                </div>
+                <button type="button" onclick="signup()" data-translate-key="signup">Registrieren</button>
+            </form>
+            <p class="switch-link" data-translate-key="alreadyRegistered">
+                Bereits registriert? <a href="#" onclick="switchToLogin()">Zurück zum Anmelden</a>
+            </p>
+        </div>
+    </div>
 
-    const translations = {
-      "de": {
-        "brand": "JugendInvestiert",
-        "heroTitle": "Investiere in deine Zukunft",
-        "heroSubtitle": "Finanzwissen für alle",
-        "startButton": "Jetzt starten",
-        "numberOne": "bei der Vermittlung von Finanzwissen in Deutschland",
-        "slogan": "Finanzwissen für alle - Investiere in deine Zukunft!",
-        "description": "Unsere Plattform ist eine Quelle für umfassendes Finanzwissen, das gezielt auf die Bedürfnisse der Jugend zugeschnitten ist. Laut Studien der <a href=\"OECD.pdf\" target=\"_blank\"><b>OECD</b></a> fehlt es vielen jungen Menschen an finanzieller Bildung. Wir bieten eine Vielzahl von Ressourcen, Schulungen und Tools an, um dir dabei zu helfen, ein solides Verständnis für Finanzen aufzubauen. Von Budgetierung und Sparen bis hin zu Investitionen und Finanzplanung – wir sind hier, um dich auf deinem Weg zu unterstützen.",
-        "benefits": "Gratis, Effizient und macht Spaß",
-        "rocketText1": "Steigere dein",
-        "rocketText2": "Finanzwissen! 💪",
-        "contact_button": "Kontakt Aufnehmen",
-        "contact_form_title": "Kontaktieren Sie uns",
-        "name_label": "Name",
-        "email_label": "E-Mail",
-        "message_label": "Nachricht",
-        "submit_button": "Nachricht Senden",
-        "success_message": "Nachricht erfolgreich gesendet!",
-        "error_message": "Fehler beim Senden der Nachricht. Bitte versuche es erneut."
-      },
-      "en": {
-        "brand": "YouthInvests",
-        "heroTitle": "Invest in your future",
-        "heroSubtitle": "Financial knowledge for everyone",
-        "startButton": "Start now",
-        "numberOne": "in teaching financial knowledge",
-        "slogan": "Financial knowledge for everyone - Invest in your future!",
-        "description": "Our platform is a source of comprehensive financial knowledge tailored to the needs of young people. According to <a href=\"OECD.pdf\" target=\"_blank\"><b>OECD</b></a> studies, many youths lack financial education. We provide a variety of resources, training, and tools to help you build a solid understanding of finance. From budgeting and saving to investing and financial planning – we’re here to support you every step of the way.",
-        "benefits": "Free, Efficient and fun",
-        "rocketText1": "Boost your",
-        "rocketText2": "Financial knowledge! 💪",
-        "contact_button": "Get in Touch",
-        "contact_form_title": "Contact Us",
-        "name_label": "Name",
-        "email_label": "Email",
-        "message_label": "Message",
-        "submit_button": "Send Message",
-        "success_message": "Message sent successfully!",
-        "error_message": "Error sending message. Please try again."
-      },
-      "fr": {
-        "brand": "JeunesseInvestit",
-        "heroTitle": "Investissez dans votre avenir",
-        "heroSubtitle": "Connaissances financières pour tous",
-        "startButton": "Commencer maintenant",
-        "numberOne": "dans l'enseignement des connaissances financières",
-        "slogan": "Connaissances financières pour tous - Investissez dans votre avenir!",
-        "description": "Notre plateforme est une source de connaissances financières complètes adaptées aux besoins des jeunes. D’après les études de l'<a href=\"OECD.pdf\" target=\"_blank\"><b>OECD</b></a>, beaucoup de jeunes manquent d’éducation financière. Nous proposons une multitude de ressources, formations et outils pour t’aider à développer une compréhension solide des finances. De la gestion de budget et l’épargne aux investissements et à la planification financière – nous sommes là pour t’accompagner à chaque étape.",
-        "benefits": "Gratuit, Efficace et amusant",
-        "rocketText1": "Améliorez vos",
-        "rocketText2": "Connaissances financières! 💪",
-        "contact_button": "Nous Contacter",
-        "contact_form_title": "Contactez-nous",
-        "name_label": "Nom",
-        "email_label": "Email",
-        "message_label": "Message",
-        "submit_button": "Envoyer le Message",
-        "success_message": "Message envoyé avec succès !",
-        "error_message": "Erreur lors de l'envoi du message. Veuillez réessayer."
-      }
-    };
+    <div id="resetModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('resetModal')">×</span>
+            <h2 data-translate-key="resetPassword">Passwort zurücksetzen</h2>
+            <form>
+                <label for="reset-email" data-translate-key="email">Email:</label>
+                <input type="email" id="reset-email" placeholder="Deine Email" required>
+                <button type="button" onclick="resetPassword()" data-translate-key="resetPassword">Passwort zurücksetzen</button>
+            </form>
+        </div>
+    </div>
 
-    function requestParentToOpenSignup() {
-      window.parent.postMessage({ action: 'openSignupModal' }, '*');
-    }
+    <div id="disclaimerModal" class="modal">
+        <div class="modal-content">
+            <h2 data-translate-key="disclaimerTitle">Haftungsausschluss</h2>
+            <div class="disclaimer-text">
+                <p>
+                    Die Inhalte dieser Website, einschließlich Texte, Grafiken und Simulationen, dienen ausschließlich zu allgemeinen Informations- und Bildungszwecken und stellen ausdrücklich <strong>keine Finanz- oder Anlageberatung</strong> im Sinse des deutschen Rechts dar. Der Betreiber dieser Website übernimmt keine Haftung für finanzielle oder sonstige Entscheidungen, die auf Grundlage der bereitgestellten Informationen getroffen werden. Es werden keine individuellen Empfehlungen abgegeben.
+                </p>
+                <p>
+                    Alle Informationen wurden nach bestem Wissen und Gewissen erstellt. Dennoch wird keine Gewähr für die Aktualität, Richtigkeit, Vollständigkeit oder Qualität der bereitgestellten Inhalte übernommen. Investitionen in Finanzinstrumente sind mit erheblichen Risiken verbunden, einschließlich des möglichen Totalverlusts des eingesetzten Kapitals. Nutzer werden aufgefordert, sich vor jeder Investitionsentscheidung unabhängig und umfassend zu informieren und gegebenenfalls eine <strong>qualifizierte, individuelle Finanzberatung</strong> in Anspruch zu nehmen.
+                </p>
+                <p>
+                    Durch das Klicken auf „Akzeptieren“ erklären Sie sich rechtsverbindlich damit einverstanden, dass Sie die alleinige Verantwortung für Ihre Handlungen und Entscheidungen tragen und den Betreiber dieser Website von jeglicher Haftung freistellen. Sie bestätigen, dass Sie den Haftungsausschluss sowie unsere <a href="https://www.privacypolicies.com/live/7b3f0632-4bb2-4278-ad12-d1a646c51c79" target="_blank" style="color: #a2e5ff; text-decoration: underline;">Datenschutzerklärung</a> gelesen und verstanden haben. Sind Sie mit diesen Bedingungen nicht einverstanden, bitten wir Sie, die Nutzung dieser Website unverzüglich einzustellen.
+                </p>
+                <p class="disclaimer-copyright">
+                    © 2025 JugendInvestiert. Alle Rechte vorbehalten.
+                </p>
+            </div>
+            <div class="disclaimer-button-container">
+                <button type="button" onclick="acceptDisclaimer()" data-translate-key="accept">Akzeptieren</button>
+            </div>
+        </div>
+    </div>
 
-    function openContactForm() {
-      document.getElementById('contactModal').style.display = 'flex';
-    }
+    <div id="loader"><i class="fas fa-spinner fa-spin"></i></div>
 
-    function closeContactForm() {
-      document.getElementById('contactModal').style.display = 'none';
-      document.getElementById('contactForm').reset();
-    }
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
 
-    function displayMessage(message, type) {
-      const container = document.getElementById('message-container');
-      const div = document.createElement('div');
-      div.classList.add('message', type);
-      div.innerText = message;
-      container.appendChild(div);
-      setTimeout(() => div.remove(), 4000);
-    }
-
-    function applyTranslations(targetLang) {
-      const elements = document.querySelectorAll('[data-translate-key]');
-      if (!translations[targetLang]) return;
-      elements.forEach(element => {
-        const key = element.getAttribute('data-translate-key');
-        if (translations[targetLang][key]) {
-          element.innerHTML = translations[targetLang][key];
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => console.log('ServiceWorker registration successful:', registration.scope))
+                    .catch(error => console.log('ServiceWorker registration failed:', error));
+            });
         }
-      });
-    }
 
-    function translatePage(targetLang) {
-      if (targetLang === currentLang) return;
-      applyTranslations(targetLang);
-      document.documentElement.lang = targetLang;
-      currentFlag.src = `https://flagcdn.com/${targetLang === 'en' ? 'us' : targetLang}.svg`;
-      currentFlag.alt = `${targetLang.toUpperCase()} Flag`;
-      currentLang = targetLang;
-      languageDropdown.classList.remove('open');
-      localStorage.setItem('preferredLanguage', targetLang);
-
-      window.parent.postMessage({
-        type: 'LANGUAGE_CHANGE',
-        language: targetLang,
-        source: 'home-iframe'
-      }, '*');
-    }
-
-    const currentFlag = document.getElementById('currentFlag');
-    const languageDropdown = document.getElementById('languageDropdown');
-    let currentLang = 'de';
-
-    window.addEventListener('DOMContentLoaded', () => {
-      applyTranslations('de');
-      const storedLang = localStorage.getItem('preferredLanguage');
-      if (storedLang && translations[storedLang] && storedLang !== 'de') {
-        translatePage(storedLang);
-      }
-    });
-
-    currentFlag.addEventListener('click', (e) => {
-      e.stopPropagation();
-      languageDropdown.classList.toggle('open');
-    });
-
-    languageDropdown.querySelectorAll('img').forEach(flag => {
-      flag.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const selectedLang = flag.getAttribute('data-lang');
-        translatePage(selectedLang);
-      });
-    });
-
-    document.addEventListener('click', (e) => {
-      if (!languageDropdown.contains(e.target) && e.target !== currentFlag) {
-        languageDropdown.classList.remove('open');
-      }
-    });
-
-    // Handle contact form submission
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      const name = document.getElementById('name').value;
-      const email = document.getElementById('email').value;
-      const message = document.getElementById('message').value;
-      const time = new Date().toLocaleString('de-DE', {
-        year: 'numeric',
-        month: 'long',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit',
-        second: '2-digit'
-      });
-
-      const templateParams = {
-        from_name: name,
-        from_email: email,
-        message: message,
-        time: time,
-        reply_to: email
-      };
-
-      emailjs.send('service_mxrrx4n', 'template_sbk1tvv', templateParams)
-        .then(function(response) {
-          displayMessage(translations[currentLang].success_message, 'success');
-          closeContactForm();
-        }, function(error) {
-          console.error('EmailJS Error:', error);
-          displayMessage(translations[currentLang].error_message, 'error');
+        let deferredPrompt;
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            console.log('A2HS prompt is available');
         });
-    });
-  </script>
+
+        window.addEventListener('appinstalled', () => {
+            console.log('PWA was installed');
+        });
+
+        // Height management for iOS
+        function setAppHeight() {
+            const doc = document.documentElement;
+            doc.style.setProperty('--app-height', `${window.innerHeight}px`);
+        }
+        window.addEventListener('resize', setAppHeight);
+        window.addEventListener('orientationchange', setAppHeight);
+        document.addEventListener('DOMContentLoaded', setAppHeight);
+
+        // Scroll handler for bottom nav
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', () => {
+            const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const isMobile = window.innerWidth <= 768;
+            if (isMobile) {
+                const bottomNav = document.querySelector('.bottom-nav');
+                if (currentScrollTop > lastScrollTop && currentScrollTop > 50) {
+                    bottomNav.classList.add('hidden');
+                } else {
+                    bottomNav.classList.remove('hidden');
+                }
+            }
+            lastScrollTop = currentScrollTop <= 0 ? 0 : currentScrollTop;
+        });
+
+        function requestFullscreen() {
+            const elem = document.documentElement;
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen().catch(err => console.log('Fullscreen failed:', err));
+            } else if (elem.webkitRequestFullscreen) {
+                elem.webkitRequestFullscreen();
+            } else if (elem.msRequestFullscreen) {
+                elem.msRequestFullscreen();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Ensure initial height
+            setAppHeight();
+        });
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDmEUCl7sWzBI7N78HgcgBRcRAkTYbtm5g",
+            authDomain: "jugendinvestiert-5f6eb.firebaseapp.com",
+            databaseURL: "https://jugendinvestiert-5f6eb-default-rtdb.firebaseio.com",
+            projectId: "jugendinvestiert-5f6eb",
+            storageBucket: "jugendinvestiert-5f6eb.appspot.com",
+            messagingSenderId: "432595310987",
+            appId: "1:432595310987:web:fd9f7975d5e87f1fe1378e",
+            measurementId: "G-5ENQC9KQBY"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const database = firebase.database();
+
+        const translations = {
+            "de": {
+                "brand": "JugendInvestiert",
+                "home": "Home",
+                "learn": "Lernen",
+                "resources": "Ressourcen",
+                "simulator": "Simulator",
+                "mission": "Unsere Mission",
+                "login": "Anmelden",
+                "signup": "Registrieren",
+                "logout": "Abmelden",
+                "email": "Email:",
+                "password": "Passwort:",
+                "confirmPassword": "Passwort bestätigen:",
+                "passwordLength": "Mehr als 6 Zeichen",
+                "passwordLetter": "Mindestens ein Buchstabe",
+                "passwordNumber": "Mindestens eine Zahl",
+                "passwordMatch": "Passwörter stimmen überein",
+                "forgotPassword": "Passwort vergessen?",
+                "notRegistered": "Noch nicht angemeldet? <a href=\"#\" onclick=\"switchToSignup()\">Jetzt Registrieren</a>",
+                "alreadyRegistered": "Bereits registriert? <a href=\"#\" onclick=\"switchToLogin()\">Zurück zum Anmelden</a>",
+                "resetPassword": "Passwort zurücksetzen",
+                "loggedIn": "Du bist angemeldet.",
+                "disclaimerTitle": "Haftungsausschluss",
+                "accept": "Akzeptieren"
+            },
+            "en": {
+                "brand": "YouthInvests",
+                "home": "Home",
+                "learn": "Learn",
+                "resources": "Resources",
+                "simulator": "Simulator",
+                "mission": "Our Mission",
+                "login": "Login",
+                "signup": "Sign Up",
+                "logout": "Logout",
+                "email": "Email:",
+                "password": "Password:",
+                "confirmPassword": "Confirm Password:",
+                "passwordLength": "More than 6 characters",
+                "passwordLetter": "At least one letter",
+                "passwordNumber": "At least one number",
+                "passwordMatch": "Passwords match",
+                "forgotPassword": "Forgot Password?",
+                "notRegistered": "Not registered yet? <a href=\"#\" onclick=\"switchToSignup()\">Sign Up Now</a>",
+                "alreadyRegistered": "Already registered? <a href=\"#\" onclick=\"switchToLogin()\">Back to Login</a>",
+                "resetPassword": "Reset Password",
+                "loggedIn": "You are logged in.",
+                "disclaimerTitle": "Disclaimer",
+                "accept": "Accept"
+            },
+            "fr": {
+                "brand": "JeunesseInvestit",
+                "home": "Accueil",
+                "learn": "Apprendre",
+                "resources": "Ressources",
+                "simulator": "Simulateur",
+                "mission": "Notre Mission",
+                "login": "Connexion",
+                "signup": "S'inscrire",
+                "logout": "Déconnexion",
+                "email": "Email :",
+                "password": "Mot de passe :",
+                "confirmPassword": "Confirmer le mot de passe :",
+                "passwordLength": "Plus de 6 caractères",
+                "passwordLetter": "Au moins une lettre",
+                "passwordNumber": "Au moins un chiffre",
+                "passwordMatch": "Les mots de passe correspondent",
+                "forgotPassword": "Mot de passe oublié ?",
+                "notRegistered": "Pas encore inscrit ? <a href=\"#\" onclick=\"switchToSignup()\">S'inscrire maintenant</a>",
+                "alreadyRegistered": "Déjà inscrit ? <a href=\"#\" onclick=\"switchToLogin()\">Retour à la connexion</a>",
+                "resetPassword": "Réinitialiser le mot de passe",
+                "loggedIn": "Vous êtes connecté.",
+                "disclaimerTitle": "Avertissement",
+                "accept": "Accepter"
+            }
+        };
+
+        let budget = 10000;
+        let portfolio = {};
+        let lastLangChange = 0;
+        const debounceDelay = 500;
+
+        function applyTranslations(targetLang) {
+            const elements = document.querySelectorAll('[data-translate-key]');
+            if (!translations[targetLang]) return;
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate-key');
+                if (translations[targetLang][key]) {
+                    element.innerHTML = translations[targetLang][key];
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            applyTranslations('de');
+            document.getElementById('disclaimerModal').style.display = "flex";
+            document.body.style.overflow = "hidden";
+            const signupPassword = document.getElementById('signup-password');
+            const signupPasswordCheck = document.getElementById('signup-password-confirm');
+            if (signupPassword && signupPasswordCheck) {
+                signupPassword.addEventListener('input', validatePassword);
+                signupPasswordCheck.addEventListener('input', validatePassword);
+            }
+        });
+
+        window.addEventListener('message', (event) => {
+            if (event.data.type === 'LANGUAGE_CHANGE') {
+                const now = Date.now();
+                if (now - lastLangChange < debounceDelay) {
+                    console.log(`Debouncing LANGUAGE_CHANGE for ${event.data.language}`);
+                    return;
+                }
+                lastLangChange = now;
+                console.log(`Received LANGUAGE_CHANGE for ${event.data.language} from ${event.data.source || 'unknown'}`);
+                const iframes = document.querySelectorAll('iframe');
+                iframes.forEach(iframe => {
+                    if (iframe.contentWindow && iframe.id !== event.data.source) {
+                        console.log(`Forwarding LANGUAGE_CHANGE to ${iframe.id}`);
+                        iframe.contentWindow.postMessage({
+                            type: 'LANGUAGE_CHANGE',
+                            language: event.data.language,
+                            source: 'index'
+                        }, '*');
+                    }
+                });
+                document.documentElement.lang = event.data.language;
+                applyTranslations(event.data.language);
+                updateLoginModal();
+            } else if (event.data.action === 'openSignupModal') {
+                openModal('signupModal');
+            } else if (event.data.type === 'PORTFOLIO_UPDATE') {
+                budget = event.data.budget;
+                portfolio = event.data.portfolio;
+                portfolio = normalizePortfolioSymbols(portfolio);
+                saveUserData();
+            }
+        });
+
+        function acceptDisclaimer() {
+            closeModal('disclaimerModal');
+            const initialButton = document.querySelector('.sidebar a[href="#home"]');
+            if (initialButton) showSection('home', initialButton);
+        }
+
+        function openModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = "flex";
+                document.body.style.overflow = "hidden";
+                if (modalId === 'loginModal') updateLoginModal();
+            }
+        }
+
+        function closeModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = "none";
+                document.body.style.overflow = "auto";
+            }
+        }
+
+        function switchToSignup() { closeModal('loginModal'); openModal('signupModal'); }
+        function switchToLogin() { closeModal('signupModal'); openModal('loginModal'); }
+
+        function updateLoginModal() {
+            const user = auth.currentUser;
+            const loginForm = document.getElementById('loginForm');
+            const logoutForm = document.getElementById('logoutForm');
+            const modalTitle = document.getElementById('loginModalTitle');
+            const currentLang = document.documentElement.lang || 'de';
+            if (user) {
+                loginForm.style.display = 'none';
+                logoutForm.style.display = 'block';
+                modalTitle.setAttribute('data-translate-key', 'account');
+                modalTitle.innerHTML = translations[currentLang]['account'] || 'Konto';
+            } else {
+                loginForm.style.display = 'block';
+                logoutForm.style.display = 'none';
+                modalTitle.setAttribute('data-translate-key', 'login');
+                modalTitle.innerHTML = translations[currentLang]['login'] || 'Anmelden';
+            }
+        }
+
+        function validatePassword() {
+            const password = document.getElementById('signup-password').value;
+            const confirmPassword = document.getElementById('signup-password-confirm').value;
+            const lengthCheckIcon = document.getElementById('password-check-length');
+            const letterCheckIcon = document.getElementById('password-check-letter');
+            const numberCheckIcon = document.getElementById('password-check-number');
+            const matchCheckIcon = document.getElementById('password-check-match');
+            const hasRequiredLength = password.length > 6;
+            const hasLetter = /[a-zA-Z]/.test(password);
+            const hasNumber = /[0-9]/.test(password);
+            const passwordsMatch = password === confirmPassword && password !== '';
+            lengthCheckIcon.classList.toggle('fa-check', hasRequiredLength);
+            lengthCheckIcon.classList.toggle('fa-times', !hasRequiredLength);
+            lengthCheckIcon.style.color = hasRequiredLength ? 'green' : 'red';
+            letterCheckIcon.classList.toggle('fa-check', hasLetter);
+            letterCheckIcon.classList.toggle('fa-times', !hasLetter);
+            letterCheckIcon.style.color = hasLetter ? 'green' : 'red';
+            numberCheckIcon.classList.toggle('fa-check', hasNumber);
+            numberCheckIcon.classList.toggle('fa-times', !hasNumber);
+            numberCheckIcon.style.color = hasNumber ? 'green' : 'red';
+            matchCheckIcon.classList.toggle('fa-check', passwordsMatch);
+            matchCheckIcon.classList.toggle('fa-times', !passwordsMatch);
+            matchCheckIcon.style.color = passwordsMatch ? 'green' : 'red';
+        }
+
+        function login() {
+            const email = document.getElementById('login-email').value.trim();
+            const password = document.getElementById('login-password').value.trim();
+            if (!email || !password) return displayErrorMessage(translations[document.documentElement.lang || 'de']['enterEmailPassword'] || "Bitte Email und Passwort eingeben.");
+            auth.signInWithEmailAndPassword(email, password)
+                .then(userCredential => {
+                    const user = userCredential.user;
+                    if (user.emailVerified) {
+                        displaySuccessMessage(translations[document.documentElement.lang || 'de']['loginSuccess'] || "Erfolgreich angemeldet!");
+                        closeModal('loginModal');
+                    } else {
+                        auth.signOut();
+                        displayErrorMessage(translations[document.documentElement.lang || 'de']['verifyEmail'] || "Bitte verifiziere zuerst deine E-Mail.");
+                    }
+                })
+                .catch(error => displayErrorMessage(error.message));
+        }
+
+        function signup() {
+            const email = document.getElementById('signup-email').value.trim();
+            const password = document.getElementById('signup-password').value.trim();
+            const confirmPassword = document.getElementById('signup-password-confirm').value.trim();
+            const lang = document.documentElement.lang || 'de';
+            if (!email || !password || !confirmPassword) return displayErrorMessage(translations[lang]['enterAllFields'] || "Bitte Email und beide Passwörter eingeben.");
+            if (password !== confirmPassword) return displayErrorMessage(translations[lang]['passwordMismatch'] || "Die Passwörter stimmen nicht überein!");
+            if (password.length <= 6) return displayErrorMessage(translations[lang]['passwordTooShort'] || "Das Passwort muss mehr als 6 Zeichen haben!");
+            if (!/[a-zA-Z]/.test(password)) return displayErrorMessage(translations[lang]['passwordNoLetter'] || "Das Passwort braucht mindestens einen Buchstaben!");
+            if (!/[0-9]/.test(password)) return displayErrorMessage(translations[lang]['passwordNoNumber'] || "Das Passwort braucht mindestens eine Zahl!");
+            auth.createUserWithEmailAndPassword(email, password)
+                .then(userCredential => {
+                    const user = userCredential.user;
+                    user.sendEmailVerification()
+                        .then(() => {
+                            displaySuccessMessage(translations[lang]['signupSuccess'] || "Erfolgreich registriert! Bitte überprüfe deine E-Mail.");
+                            closeModal('signupModal');
+                        })
+                        .catch(error => displayErrorMessage(translations[lang]['emailVerificationError'] || "Fehler beim Senden der Verifizierungs-E-Mail: " + error.message));
+                })
+                .catch(error => displayErrorMessage(error.message));
+        }
+
+        function resetPassword() {
+            const email = document.getElementById('reset-email').value.trim();
+            const lang = document.documentElement.lang || 'de';
+            if (!email) return displayErrorMessage(translations[lang]['enterEmail'] || "Bitte Email angeben.");
+            auth.sendPasswordResetEmail(email)
+                .then(() => {
+                    displaySuccessMessage(translations[lang]['resetEmailSent'] || "Password-Reset-E-Mail gesendet!");
+                    closeModal('resetModal');
+                })
+                .catch(error => displayErrorMessage(error.message));
+        }
+
+        function logout() {
+            const lang = document.documentElement.lang || 'de';
+            auth.signOut()
+                .then(() => {
+                    displaySuccessMessage(translations[lang]['logoutSuccess'] || "Erfolgreich abgemeldet!");
+                    closeModal('loginModal');
+                })
+                .catch(error => displayErrorMessage(error.message));
+        }
+
+        auth.onAuthStateChanged(user => {
+            const loginButton = document.querySelector('.sidebar a.login');
+            const signupButton = document.querySelector('.sidebar a.signup');
+            const logoutButton = document.querySelector('.sidebar a.logout');
+            if (user) {
+                loginButton.style.display = 'none';
+                signupButton.style.display = 'none';
+                logoutButton.style.display = 'flex';
+                loadUserData(user.uid);
+            } else {
+                loginButton.style.display = 'flex';
+                signupButton.style.display = 'flex';
+                logoutButton.style.display = 'none';
+                budget = 10000;
+                portfolio = {};
+                sendDataToSimulator();
+            }
+            updateLoginModal();
+        });
+
+        let userRef = null;
+        let userRefListener = null;
+
+        function loadUserData(userId) {
+            if (userRefListener && userRef) userRef.off('value', userRefListener);
+            userRef = database.ref('users/' + userId);
+            userRefListener = snapshot => {
+                const data = snapshot.val();
+                if (data) {
+                    budget = typeof data.budget === 'number' ? data.budget : 10000;
+                    portfolio = data.portfolio ? data.portfolio : {};
+                    portfolio = normalizePortfolioSymbols(portfolio);
+                    sendDataToSimulator();
+                } else {
+                    budget = 10000;
+                    portfolio = {};
+                    sendDataToSimulator();
+                }
+            };
+            userRef.on('value', userRefListener, error => {
+                console.error("Fehler beim Laden der Benutzerdaten:", error);
+                displayErrorMessage(translations[document.documentElement.lang || 'de']['dataLoadError'] || "Fehler beim Laden der Benutzerdaten.");
+            });
+        }
+
+        function normalizePortfolioSymbols(originalPortfolio) {
+            const normalizedPortfolio = {};
+            for (const symbol in originalPortfolio) {
+                const upperSymbol = symbol.toUpperCase();
+                if (!normalizedPortfolio[upperSymbol]) {
+                    normalizedPortfolio[upperSymbol] = {
+                        quantity: originalPortfolio[symbol].quantity,
+                        totalInvested: originalPortfolio[symbol].totalInvested
+                    };
+                } else {
+                    normalizedPortfolio[upperSymbol].quantity += originalPortfolio[symbol].quantity;
+                    normalizedPortfolio[upperSymbol].totalInvested += originalPortfolio[symbol].totalInvested;
+                }
+            }
+            return normalizedPortfolio;
+        }
+
+        function sendDataToSimulator() {
+            const iframe = document.getElementById('simulator-iframe');
+            if (iframe && iframe.contentWindow) {
+                const data = { type: 'AUTH_DATA', budget: budget, portfolio: portfolio };
+                iframe.contentWindow.postMessage(data, '*');
+            }
+        }
+
+        function saveUserData() {
+            const user = auth.currentUser;
+            const lang = document.documentElement.lang || 'de';
+            if (user) {
+                const userId = user.uid;
+                const userRef = database.ref('users/' + userId);
+                userRef.set({ budget: budget, portfolio: portfolio }, error => {
+                    if (error) {
+                        console.error("Fehler beim Speichern der Daten:", error);
+                        displayErrorMessage(translations[lang]['dataSaveError'] || "Fehler beim Speichern der Benutzerdaten.");
+                    }
+                });
+            }
+        }
+
+        function showSection(id, element) {
+            const sections = document.querySelectorAll('.content section');
+            const buttons = document.querySelectorAll('.sidebar a.button, .bottom-nav a.button');
+            sections.forEach(section => section.classList.remove('active'));
+            buttons.forEach(button => button.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            element.classList.add('active');
+            if (id === 'simulator') sendDataToSimulator();
+            // Ensure scrollability
+            setAppHeight();
+        }
+
+        function displaySuccessMessage(message) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message');
+            messageDiv.innerHTML = `<i class="fas fa-check-circle"></i><span>${message}</span>`;
+            document.body.appendChild(messageDiv);
+            setTimeout(() => messageDiv.remove(), 4000);
+        }
+
+        function displayErrorMessage(message) {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message', 'error');
+            messageDiv.innerHTML = `<i class="fas fa-exclamation-circle"></i><span>${message}</span>`;
+            document.body.appendChild(messageDiv);
+            setTimeout(() => messageDiv.remove(), 5000);
+        }
+
+        window.onclick = event => {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                    document.body.style.overflow = "auto";
+                }
+            });
+        };
+
+        window.addEventListener('keydown', event => {
+            if (event.key === "Escape") {
+                const modals = document.querySelectorAll('.modal');
+                modals.forEach(modal => {
+                    if (modal.style.display === "flex") {
+                        modal.style.display = "none";
+                        document.body.style.overflow = "auto";
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
