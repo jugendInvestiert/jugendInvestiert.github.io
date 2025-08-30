@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-translate-key="title">Kurs 1: Die Börse</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+    font-family: 'Poppins', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #101820;
+    color: white;
+    overflow-x: hidden;
+    margin-top: 40px;
+    padding-bottom: 50px;
+}
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    z-index: 1000;
+    padding-left: 30px;
+}
+.navbar .cross {
+    font-size: 1.5em;
+    cursor: pointer;
+}
+.navbar .cross:hover {
+    color: grey;
+}
+.scroll-bar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background-color: #444;
+    z-index: 1000;
+}
+.scroll-bar {
+    height: 100%;
+    width: 0%;
+    background-color: #1dd05d;
+    transition: width 0.2s;
+}
+.content {
+    padding: 20px 20px 20px 120px; /* Increased left padding for smaller screens */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+/* Add more left padding for desktop screens */
+@media (min-width: 768px) {
+    .content {
+        padding-left: 180px; /* Increased left padding for desktop */
+    }
+}
+#course-details {
+    padding: 20px 20px 20px 40px; /* Added left padding to course details */
+    background-color: #2C3E50;
+    border-radius: 10px;
+}
+.example {
+    background-color: #1B2631;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="cross" onclick="window.location.href='section2.html'">✖</div>
+    </div>
+
+    <div class="scroll-bar-container">
+        <div class="scroll-bar" id="scroll-bar"></div>
+    </div>
+
+    <div id="course-details">
+        <div class="container">
+            <h2 data-translate-key="lesson1_title">Lektion 3: Wie funktioniert die Börse?</h2>
+            <p data-translate-key="intro">Die Börse ist ein zentraler Marktplatz für den Handel mit Wertpapieren wie Aktien, Anleihen und anderen Finanzinstrumenten. Sie spielt eine wichtige Rolle in der Wirtschaft, indem sie Unternehmen Kapital und Anlegern Investitionsmöglichkeiten bietet. Im Folgenden werden wir die Funktionsweise der Börse genauer betrachten:</p>
+            <h3 data-translate-key="section_a_title">A. Was ist die Börse?</h3>
+            <p data-translate-key="section_a_desc">Die Börse ist ein organisierter Markt, auf dem Wertpapiere gehandelt werden. Sie ermöglicht Unternehmen, Kapital zu beschaffen, indem sie Aktien oder Anleihen ausgeben, und bietet Anlegern die Möglichkeit, diese Wertpapiere zu kaufen oder zu verkaufen. Der Preis der Wertpapiere wird durch Angebot und Nachfrage bestimmt, und die Börse sorgt für Transparenz und geregelte Handelsprozesse.</p>
+            <div class="example">
+                <h4 data-translate-key="example_title">Beispiel:</h4>
+                <p data-translate-key="example_stock_1">Stellen Sie sich vor, ein Unternehmen wie Siemens möchte Kapital für eine neue Fabrik sammeln. Es gibt Aktien an der Börse aus, die Anleger kaufen können. Herr Braun kauft 100 Siemens-Aktien zu 120 Euro pro Aktie. Wenn der Aktienkurs auf 150 Euro steigt, könnte Herr Braun seine Aktien verkaufen und einen Gewinn von 30 Euro pro Aktie erzielen. Fällt der Kurs jedoch auf 100 Euro, würde er bei einem Verkauf einen Verlust von 20 Euro pro Aktie erleiden.</p>
+                <p data-translate-key="example_stock_2">Zusammenfassend: Die Börse ermöglicht den Handel mit Wertpapieren, wobei die Preise durch Angebot und Nachfrage schwanken. Anleger können Gewinne erzielen, wenn die Kurse steigen, oder Verluste erleiden, wenn sie fallen.</p>
+            </div>
+            <h3 data-translate-key="section_b_title">B. Wie funktioniert der Handel?</h3>
+            <p data-translate-key="section_b_desc_1">An der Börse werden Wertpapiere über Broker oder Online-Handelsplattformen gekauft und verkauft. Anleger geben Kauf- oder Verkaufsaufträge, die an der Börse ausgeführt werden. Es gibt verschiedene Arten von Aufträgen, wie z. B. Limit-Orders (zu einem festgelegten Preis) oder Market-Orders (zum aktuellen Marktpreis). Die Börse stellt sicher, dass Käufer und Verkäufer zusammengeführt werden, und die Transaktionen werden in Echtzeit abgewickelt.</p>
+            <p data-translate-key="section_b_desc_2">Hier spricht man von der Börseninfrastruktur.</p>
+            <p data-translate-key="trading_desc">Börsen wie die Frankfurter Wertpapierbörse (FWB) nutzen elektronische Handelssysteme wie Xetra, um Transaktionen effizient abzuwickeln. Die Kurse werden durch Angebot und Nachfrage bestimmt, beeinflusst durch Faktoren wie Unternehmensergebnisse, Wirtschaftslage oder weltweite Ereignisse. Börsenaufsichtsbehörden wie die BaFin überwachen den Handel, um Fairness und Transparenz zu gewährleisten.</p>
+            <h3 data-translate-key="section_c_title">C. Rolle der Börse in der Wirtschaft</h3>
+            <p data-translate-key="section_c_desc_1">Die Börse spielt eine entscheidende Rolle, indem sie Unternehmen Zugang zu Kapital verschafft und Anlegern Investitionsmöglichkeiten bietet. Sie fördert das Wirtschaftswachstum, indem sie Kapitalflüsse ermöglicht, und dient als Indikator für die wirtschaftliche Gesundheit. Gleichzeitig birgt der Börsenhandel Risiken, da Kurse volatil sein können. Anleger sollten daher Strategien wie Diversifizierung oder langfristige Investitionen nutzen, um Risiken zu minimieren.</p>
+            <div class="example">
+                <h4 data-translate-key="example_index_title">Beispiel: Aktienindex</h4>
+                <p data-translate-key="example_index_desc">Ein bekannter Aktienindex wie der DAX spiegelt die Performance der 40 größten Unternehmen an der Frankfurter Börse wider. Wenn ein Anleger in einen DAX-ETF (Exchange Traded Fund) investiert, kauft er indirekt Anteile an diesen Unternehmen. Steigt der DAX, profitiert der Anleger von der Wertsteigerung. Dies ist eine einfache Möglichkeit, in die Börse zu investieren, ohne einzelne Aktien auswählen zu müssen, und reduziert das Risiko durch Diversifizierung.</p>
+            </div>
+            <p data-translate-key="indices_intro">Hier sind einige wichtige Börsen und Indizes:</p>
+            <ul>
+                <li data-translate-key="index_dax">DAX: Der wichtigste deutsche Aktienindex, der die Performance der 40 größten Unternehmen an der Frankfurter Börse widerspiegelt.</li>
+                <li data-translate-key="index_nyse">New York Stock Exchange (NYSE): Eine der größten Börsen der Welt, an der Tausende von Unternehmen gehandelt werden.</li>
+                <li data-translate-key="index_nasdaq">NASDAQ: Eine US-amerikanische Börse, die vor allem für Technologieunternehmen bekannt ist.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const translations = {
+            "de": {
+                "title": "Kurs 1: Die Börse",
+                "lesson1_title": "Lektion 3: Wie funktioniert die Börse?",
+                "intro": "Die Börse ist ein zentraler Marktplatz für den Handel mit Wertpapieren wie Aktien, Anleihen und anderen Finanzinstrumenten. Sie spielt eine wichtige Rolle in der Wirtschaft, indem sie Unternehmen Kapital und Anlegern Investitionsmöglichkeiten bietet. Im Folgenden werden wir die Funktionsweise der Börse genauer betrachten:",
+                "section_a_title": "A. Was ist die Börse?",
+                "section_a_desc": "Die Börse ist ein organisierter Markt, auf dem Wertpapiere gehandelt werden. Sie ermöglicht Unternehmen, Kapital zu beschaffen, indem sie Aktien oder Anleihen ausgeben, und bietet Anlegern die Möglichkeit, diese Wertpapiere zu kaufen oder zu verkaufen. Der Preis der Wertpapiere wird durch Angebot und Nachfrage bestimmt, und die Börse sorgt für Transparenz und geregelte Handelsprozesse.",
+                "example_title": "Beispiel:",
+                "example_stock_1": "Stellen Sie sich vor, ein Unternehmen wie Siemens möchte Kapital für eine neue Fabrik sammeln. Es gibt Aktien an der Börse aus, die Anleger kaufen können. Herr Braun kauft 100 Siemens-Aktien zu 120 Euro pro Aktie. Wenn der Aktienkurs auf 150 Euro steigt, könnte Herr Braun seine Aktien verkaufen und einen Gewinn von 30 Euro pro Aktie erzielen. Fällt der Kurs jedoch auf 100 Euro, würde er bei einem Verkauf einen Verlust von 20 Euro pro Aktie erleiden.",
+                "example_stock_2": "Zusammenfassend: Die Börse ermöglicht den Handel mit Wertpapieren, wobei die Preise durch Angebot und Nachfrage schwanken. Anleger können Gewinne erzielen, wenn die Kurse steigen, oder Verluste erleiden, wenn sie fallen.",
+                "section_b_title": "B. Wie funktioniert der Handel?",
+                "section_b_desc_1": "An der Börse werden Wertpapiere über Broker oder Online-Handelsplattformen gekauft und verkauft. Anleger geben Kauf- oder Verkaufsaufträge, die an der Börse ausgeführt werden. Es gibt verschiedene Arten von Aufträgen, wie z. B. Limit-Orders (zu einem festgelegten Preis) oder Market-Orders (zum aktuellen Marktpreis). Die Börse stellt sicher, dass Käufer und Verkäufer zusammengeführt werden, und die Transaktionen werden in Echtzeit abgewickelt.",
+                "section_b_desc_2": "Hier spricht man von der Börseninfrastruktur.",
+                "trading_desc": "Börsen wie die Frankfurter Wertpapierbörse (FWB) nutzen elektronische Handelssysteme wie Xetra, um Transaktionen effizient abzuwickeln. Die Kurse werden durch Angebot und Nachfrage bestimmt, beeinflusst durch Faktoren wie Unternehmensergebnisse, Wirtschaftslage oder weltweite Ereignisse. Börsenaufsichtsbehörden wie die BaFin überwachen den Handel, um Fairness und Transparenz zu gewährleisten.",
+                "section_c_title": "C. Rolle der Börse in der Wirtschaft",
+                "section_c_desc_1": "Die Börse spielt eine entscheidende Rolle, indem sie Unternehmen Zugang zu Kapital verschafft und Anlegern Investitionsmöglichkeiten bietet. Sie fördert das Wirtschaftswachstum, indem sie Kapitalflüsse ermöglicht, und dient als Indikator für die wirtschaftliche Gesundheit. Gleichzeitig birgt der Börsenhandel Risiken, da Kurse volatil sein können. Anleger sollten daher Strategien wie Diversifizierung oder langfristige Investitionen nutzen, um Risiken zu minimieren.",
+                "example_index_title": "Beispiel: Aktienindex",
+                "example_index_desc": "Ein bekannter Aktienindex wie der DAX spiegelt die Performance der 40 größten Unternehmen an der Frankfurter Börse wider. Wenn ein Anleger in einen DAX-ETF (Exchange Traded Fund) investiert, kauft er indirekt Anteile an diesen Unternehmen. Steigt der DAX, profitiert der Anleger von der Wertsteigerung. Dies ist eine einfache Möglichkeit, in die Börse zu investieren, ohne einzelne Aktien auswählen zu müssen, und reduziert das Risiko durch Diversifizierung.",
+                "indices_intro": "Hier sind einige wichtige Börsen und Indizes:",
+                "index_dax": "DAX: Der wichtigste deutsche Aktienindex, der die Performance der 40 größten Unternehmen an der Frankfurter Börse widerspiegelt.",
+                "index_nyse": "New York Stock Exchange (NYSE): Eine der größten Börsen der Welt, an der Tausende von Unternehmen gehandelt werden.",
+                "index_nasdaq": "NASDAQ: Eine US-amerikanische Börse, die vor allem für Technologieunternehmen bekannt ist."
+            },
+            "en": {
+                "title": "Course 1: The Stock Exchange",
+                "lesson1_title": "Lesson 3: How does the stock exchange work?",
+                "intro": "The stock exchange is a central marketplace for trading securities such as stocks, bonds, and other financial instruments. It plays a vital role in the economy by providing companies with capital and investors with investment opportunities. Below, we will explore the functioning of the stock exchange in more detail:",
+                "section_a_title": "A. What is the Stock Exchange?",
+                "section_a_desc": "The stock exchange is an organized market where securities are traded. It enables companies to raise capital by issuing stocks or bonds and offers investors the opportunity to buy or sell these securities. The price of securities is determined by supply and demand, and the stock exchange ensures transparency and regulated trading processes.",
+                "example_title": "Example:",
+                "example_stock_1": "Imagine a company like Siemens wants to raise capital for a new factory. It issues stocks on the stock exchange that investors can buy. Mr. Brown buys 100 Siemens stocks at 120 euros per share. If the stock price rises to 150 euros, Mr. Brown could sell his stocks and make a profit of 30 euros per share. However, if the price falls to 100 euros, he would incur a loss of 20 euros per share if he sells.",
+                "example_stock_2": "In summary: The stock exchange enables the trading of securities, with prices fluctuating based on supply and demand. Investors can make profits when prices rise or incur losses when they fall.",
+                "section_b_title": "B. How Does Trading Work?",
+                "section_b_desc_1": "On the stock exchange, securities are bought and sold through brokers or online trading platforms. Investors place buy or sell orders, which are executed on the exchange. There are different types of orders, such as limit orders (at a specified price) or market orders (at the current market price). The exchange ensures that buyers and sellers are matched, and transactions are settled in real time.",
+                "section_b_desc_2": "This is referred to as the stock exchange infrastructure.",
+                "trading_desc": "Exchanges like the Frankfurt Stock Exchange (FWB) use electronic trading systems like Xetra to process transactions efficiently. Prices are determined by supply and demand, influenced by factors such as company performance, economic conditions, or global events. Regulatory authorities like BaFin oversee trading to ensure fairness and transparency.",
+                "section_c_title": "C. Role of the Stock Exchange in the Economy",
+                "section_c_desc_1": "The stock exchange plays a crucial role by providing companies with access to capital and offering investors investment opportunities. It promotes economic growth by facilitating capital flows and serves as an indicator of economic health. However, stock market trading carries risks due to price volatility. Investors should use strategies like diversification or long-term investing to minimize risks.",
+                "example_index_title": "Example: Stock Index",
+                "example_index_desc": "A well-known stock index like the DAX reflects the performance of the 40 largest companies on the Frankfurt Stock Exchange. When an investor invests in a DAX ETF (Exchange Traded Fund), they indirectly buy shares in these companies. If the DAX rises, the investor benefits from the increase in value. This is a simple way to invest in the stock market without selecting individual stocks, reducing risk through diversification.",
+                "indices_intro": "Here are some important exchanges and indices:",
+                "index_dax": "DAX: The most important German stock index, reflecting the performance of the 40 largest companies on the Frankfurt Stock Exchange.",
+                "index_nyse": "New York Stock Exchange (NYSE): One of the largest exchanges in the world, where thousands of companies are traded.",
+                "index_nasdaq": "NASDAQ: A U.S. stock exchange known primarily for technology companies."
+            },
+            "fr": {
+                "title": "Cours 1 : La Bourse",
+                "lesson1_title": "Leçon 3 : Comment fonctionne la bourse ?",
+                "intro": "La bourse est un marché central pour le négoce de titres tels que les actions, les obligations et autres instruments financiers. Elle joue un rôle crucial dans l'économie en offrant aux entreprises du capital et aux investisseurs des opportunités d'investissement. Ci-dessous, nous explorerons le fonctionnement de la bourse en détail :",
+                "section_a_title": "A. Qu'est-ce que la bourse ?",
+                "section_a_desc": "La bourse est un marché organisé où les titres sont négociés. Elle permet aux entreprises de lever des capitaux en émettant des actions ou des obligations et offre aux investisseurs la possibilité d'acheter ou de vendre ces titres. Le prix des titres est déterminé par l'offre et la demande, et la bourse garantit la transparence et des processus de négociation réglementés.",
+                "example_title": "Exemple :",
+                "example_stock_1": "Imaginez qu'une entreprise comme Siemens souhaite lever des capitaux pour une nouvelle usine. Elle émet des actions en bourse que les investisseurs peuvent acheter. M. Braun achète 100 actions Siemens à 120 euros par action. Si le cours de l'action monte à 150 euros, M. Braun pourrait vendre ses actions et réaliser un profit de 30 euros par action. Cependant, si le cours chute à 100 euros, il subirait une perte de 20 euros par action s'il vend.",
+                "example_stock_2": "En résumé : La bourse permet le négoce de titres, avec des prix fluctuant en fonction de l'offre et de la demande. Les investisseurs peuvent réaliser des profits lorsque les cours augmentent ou subir des pertes lorsqu'ils baissent.",
+                "section_b_title": "B. Comment fonctionne le négoce ?",
+                "section_b_desc_1": "En bourse, les titres sont achetés et vendus via des courtiers ou des plateformes de trading en ligne. Les investisseurs passent des ordres d'achat ou de vente, qui sont exécutés en bourse. Il existe différents types d'ordres, comme les ordres à cours limité (à un prix spécifié) ou les ordres au marché (au prix actuel du marché). La bourse veille à ce que les acheteurs et les vendeurs soient appariés, et les transactions sont réglées en temps réel.",
+                "section_b_desc_2": "On parle ici de l'infrastructure boursière.",
+                "trading_desc": "Les bourses comme la Bourse de Francfort (FWB) utilisent des systèmes de trading électroniques comme Xetra pour traiter les transactions efficacement. Les prix sont déterminés par l'offre et la demande, influencés par des facteurs tels que les résultats des entreprises, les conditions économiques ou les événements mondiaux. Les autorités de régulation comme la BaFin supervisent le négoce pour garantir l'équité et la transparence.",
+                "section_c_title": "C. Rôle de la bourse dans l'économie",
+                "section_c_desc_1": "La bourse joue un rôle crucial en offrant aux entreprises un accès au capital et aux investisseurs des opportunités d'investissement. Elle favorise la croissance économique en facilitant les flux de capitaux et sert d'indicateur de la santé économique. Cependant, le trading boursier comporte des risques en raison de la volatilité des prix. Les investisseurs devraient utiliser des stratégies comme la diversification ou l'investissement à long terme pour minimiser les risques.",
+                "example_index_title": "Exemple : Indice boursier",
+                "example_index_desc": "Un indice boursier connu comme le DAX reflète la performance des 40 plus grandes entreprises de la Bourse de Francfort. Lorsqu'un investisseur investit dans un ETF DAX (Exchange Traded Fund), il achète indirectement des parts de ces entreprises. Si le DAX augmente, l'investisseur profite de l'appréciation de la valeur. C'est un moyen simple d'investir en bourse sans sélectionner des actions individuelles, réduisant le risque grâce à la diversification.",
+                "indices_intro": "Voici quelques bourses et indices importants :",
+                "index_dax": "DAX : L'indice boursier allemand le plus important, reflétant la performance des 40 plus grandes entreprises de la Bourse de Francfort.",
+                "index_nyse": "New York Stock Exchange (NYSE) : L'une des plus grandes bourses du monde, où des milliers d'entreprises sont négociées.",
+                "index_nasdaq": "NASDAQ : Une bourse américaine connue principalement pour les entreprises technologiques."
+            }
+        };
+
+        let currentLang = 'de';
+
+        function applyTranslations(targetLang) {
+            const elements = document.querySelectorAll('[data-translate-key]');
+            if (!translations[targetLang]) return;
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate-key');
+                if (translations[targetLang][key]) {
+                    element.innerHTML = translations[targetLang][key];
+                }
+            });
+            document.title = translations[targetLang].title || "Kurs 1: Die Börse";
+        }
+
+        function translatePage(targetLang) {
+            if (targetLang === currentLang) return;
+            applyTranslations(targetLang);
+            document.documentElement.lang = targetLang;
+            currentLang = targetLang;
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            applyTranslations('de');
+            const storedLang = localStorage.getItem('preferredLanguage');
+            if (storedLang && translations[storedLang] && storedLang !== 'de') {
+                translatePage(storedLang);
+            }
+        });
+
+        window.addEventListener('message', (event) => {
+            if (event.data.type === 'LANGUAGE_CHANGE') {
+                translatePage(event.data.language);
+            }
+        });
+
+        function updateScrollBar() {
+            const scrollBar = document.getElementById('scroll-bar');
+            const scrollHeight = document.documentElement.scrollHeight;
+            const clientHeight = document.documentElement.clientHeight;
+            const scrollTop = window.scrollY;
+            const scrollPercent = (scrollTop / (scrollHeight - clientHeight)) * 100;
+            scrollBar.style.width = scrollPercent + '%';
+        }
+
+        window.addEventListener('scroll', updateScrollBar);
+        window.addEventListener('resize', updateScrollBar);
+    </script>
+</body>
+</html>

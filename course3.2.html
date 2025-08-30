@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-translate-key="title">Kurs 1: Das deutsche Rentensystem</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+    font-family: 'Poppins', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #101820;
+    color: white;
+    overflow-x: hidden;
+    margin-top: 40px;
+    padding-bottom: 50px;
+}
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    z-index: 1000;
+    padding-left: 30px;
+}
+.navbar .cross {
+    font-size: 1.5em;
+    cursor: pointer;
+}
+.navbar .cross:hover {
+    color: grey;
+}
+.scroll-bar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background-color: #444;
+    z-index: 1000;
+}
+.scroll-bar {
+    height: 100%;
+    width: 0%;
+    background-color: #1dd05d;
+    transition: width 0.2s;
+}
+.content {
+    padding: 20px 20px 20px 120px; /* Increased left padding for smaller screens */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+/* Add more left padding for desktop screens */
+@media (min-width: 768px) {
+    .content {
+        padding-left: 180px; /* Increased left padding for desktop */
+    }
+}
+#course-details {
+    padding: 20px 20px 20px 40px; /* Added left padding to course details */
+    background-color: #2C3E50;
+    border-radius: 10px;
+}
+.example {
+    background-color: #1B2631;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="cross" onclick="window.location.href='section2.html'">✖</div>
+    </div>
+
+    <div class="scroll-bar-container">
+        <div class="scroll-bar" id="scroll-bar"></div>
+    </div>
+
+    <div id="course-details">
+        <div class="container">
+            <h2 data-translate-key="lesson1_title">Lektion 3: Wie funktioniert das deutsche Rentensystem?</h2>
+            <p data-translate-key="intro">Das deutsche Rentensystem ist ein zentraler Bestandteil der sozialen Absicherung in Deutschland. Es basiert auf dem Prinzip der Solidarität und soll den Lebensstandard im Alter sichern. Im Folgenden werden wir die Funktionsweise und die wichtigsten Aspekte des Systems genauer betrachten:</p>
+            <h3 data-translate-key="section_a_title">A. Grundlagen des Rentensystems</h3>
+            <p data-translate-key="section_a_desc">Das deutsche Rentensystem basiert auf der gesetzlichen Rentenversicherung, einem Pflichtversicherungssystem, das Arbeitnehmer, Arbeitgeber und den Staat einbindet. Es funktioniert nach dem Umlageverfahren: Die Beiträge, die aktuell arbeitende Menschen zahlen, werden direkt an die Rentner ausgezahlt. Dieses System beruht auf dem Generationenvertrag, bei dem die junge Generation die ältere unterstützt.</p>
+            <div class="example">
+                <h4 data-translate-key="example_title">Beispiel:</h4>
+                <p data-translate-key="example_pension_1">Stellen Sie sich vor, Herr Müller, ein 30-jähriger Angestellter, zahlt monatlich Beiträge in die gesetzliche Rentenversicherung. Diese Beiträge werden nicht für seine eigene Rente gespart, sondern direkt verwendet, um die Rente von Frau Schmidt, einer 70-jährigen Rentnerin, zu finanzieren. Wenn Herr Müller selbst in den Ruhestand geht, werden die Beiträge der nächsten Generation seine Rente finanzieren.</p>
+                <p data-translate-key="example_pension_2">Zusammenfassend: Das Umlageverfahren stellt sicher, dass Renten unmittelbar aus den Beiträgen der Erwerbstätigen gezahlt werden. Dies macht das System anfällig für demografische Veränderungen, wie eine alternde Bevölkerung.</p>
+            </div>
+            <h3 data-translate-key="section_b_title">B. Beiträge und Rentenpunkte</h3>
+            <p data-translate-key="section_b_desc_1">Die Höhe der Rente hängt von den eingezahlten Beiträgen und der Dauer der Beitragszahlung ab. Arbeitnehmer und Arbeitgeber teilen sich die Beiträge, die aktuell (Stand 2025) bei etwa 18,6 % des Bruttolohns liegen. Für jeden eingezahlten Euro sammelt der Versicherte sogenannte Entgeltpunkte, die die Grundlage für die spätere Rentenberechnung bilden.</p>
+            <p data-translate-key="section_b_desc_2">Hier spricht man von Entgeltpunkten.</p>
+            <p data-translate-key="points_desc">Ein Versicherter, der ein Durchschnittseinkommen erzielt, erhält pro Jahr einen Entgeltpunkt. Verdient jemand mehr oder weniger als der Durchschnitt, werden entsprechend mehr oder weniger Punkte gutgeschrieben. Zusätzlich können Punkte für Zeiten wie Kindererziehung oder Pflege gewährt werden. Die Summe der Entgeltpunkte bestimmt die Rentenhöhe, multipliziert mit dem aktuellen Rentenwert (z. B. ca. 37 Euro pro Punkt im Jahr 2025).</p>
+            <h3 data-translate-key="section_c_title">C. Herausforderungen und Ergänzungen</h3>
+            <p data-translate-key="section_c_desc_1">Das deutsche Rentensystem steht vor Herausforderungen, insbesondere durch die demografische Entwicklung. Mit einer alternden Bevölkerung und weniger Beitragszahlern pro Rentner wird das Umlageverfahren belastet. Um die Renten stabil zu halten, wurden Reformen wie die Einführung der Riester-Rente oder betriebliche Altersvorsorge eingeführt. Diese sollen die gesetzliche Rente durch private und betriebliche Vorsorge ergänzen.</p>
+            <div class="example">
+                <h4 data-translate-key="example_savings_title">Beispiel: Private Altersvorsorge</h4>
+                <p data-translate-key="example_savings_desc">Frau Meier, eine 40-jährige Lehrerin, zahlt monatlich 100 Euro in eine Riester-Rente ein, um ihre gesetzliche Rente aufzubessern. Zusätzlich beteiligt sie sich an einer betrieblichen Altersvorsorge, bei der ihr Arbeitgeber einen Teil der Beiträge übernimmt. Diese zusätzlichen Vorsorgemaßnahmen helfen ihr, im Alter einen höheren Lebensstandard zu sichern, da die gesetzliche Rente allein möglicherweise nicht ausreicht.</p>
+            </div>
+            <p data-translate-key="options_intro">Hier sind einige wichtige Ergänzungen zur gesetzlichen Rente:</p>
+            <ul>
+                <li data-translate-key="option_riester">Riester-Rente: Eine staatlich geförderte private Altersvorsorge, die durch Zulagen und Steuervorteile unterstützt wird.</li>
+                <li data-translate-key="option_company">Betriebliche Altersvorsorge: Arbeitgeberfinanzierte oder -unterstützte Rentenpläne, die oft steuerlich begünstigt sind.</li>
+                <li data-translate-key="option_private">Private Rentenversicherung: Individuell abgeschlossene Verträge, die flexibel gestaltet werden können, aber keine staatliche Förderung bieten.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const translations = {
+            "de": {
+                "title": "Kurs 1: Das deutsche Rentensystem",
+                "lesson1_title": "Lektion 3: Wie funktioniert das deutsche Rentensystem?",
+                "intro": "Das deutsche Rentensystem ist ein zentraler Bestandteil der sozialen Absicherung in Deutschland. Es basiert auf dem Prinzip der Solidarität und soll den Lebensstandard im Alter sichern. Im Folgenden werden wir die Funktionsweise und die wichtigsten Aspekte des Systems genauer betrachten:",
+                "section_a_title": "A. Grundlagen des Rentensystems",
+                "section_a_desc": "Das deutsche Rentensystem basiert auf der gesetzlichen Rentenversicherung, einem Pflichtversicherungssystem, das Arbeitnehmer, Arbeitgeber und den Staat einbindet. Es funktioniert nach dem Umlageverfahren: Die Beiträge, die aktuell arbeitende Menschen zahlen, werden direkt an die Rentner ausgezahlt. Dieses System beruht auf dem Generationenvertrag, bei dem die junge Generation die ältere unterstützt.",
+                "example_title": "Beispiel:",
+                "example_pension_1": "Stellen Sie sich vor, Herr Müller, ein 30-jähriger Angestellter, zahlt monatlich Beiträge in die gesetzliche Rentenversicherung. Diese Beiträge werden nicht für seine eigene Rente gespart, sondern direkt verwendet, um die Rente von Frau Schmidt, einer 70-jährigen Rentnerin, zu finanzieren. Wenn Herr Müller selbst in den Ruhestand geht, werden die Beiträge der nächsten Generation seine Rente finanzieren.",
+                "example_pension_2": "Zusammenfassend: Das Umlageverfahren stellt sicher, dass Renten unmittelbar aus den Beiträgen der Erwerbstätigen gezahlt werden. Dies macht das System anfällig für demografische Veränderungen, wie eine alternde Bevölkerung.",
+                "section_b_title": "B. Beiträge und Rentenpunkte",
+                "section_b_desc_1": "Die Höhe der Rente hängt von den eingezahlten Beiträgen und der Dauer der Beitragszahlung ab. Arbeitnehmer und Arbeitgeber teilen sich die Beiträge, die aktuell (Stand 2025) bei etwa 18,6 % des Bruttolohns liegen. Für jeden eingezahlten Euro sammelt der Versicherte sogenannte Entgeltpunkte, die die Grundlage für die spätere Rentenberechnung bilden.",
+                "section_b_desc_2": "Hier spricht man von Entgeltpunkten.",
+                "points_desc": "Ein Versicherter, der ein Durchschnittseinkommen erzielt, erhält pro Jahr einen Entgeltpunkt. Verdient jemand mehr oder weniger als der Durchschnitt, werden entsprechend mehr oder weniger Punkte gutgeschrieben. Zusätzlich können Punkte für Zeiten wie Kindererziehung oder Pflege gewährt werden. Die Summe der Entgeltpunkte bestimmt die Rentenhöhe, multipliziert mit dem aktuellen Rentenwert (z. B. ca. 37 Euro pro Punkt im Jahr 2025).",
+                "section_c_title": "C. Herausforderungen und Ergänzungen",
+                "section_c_desc_1": "Das deutsche Rentensystem steht vor Herausforderungen, insbesondere durch die demografische Entwicklung. Mit einer alternden Bevölkerung und weniger Beitragszahlern pro Rentner wird das Umlageverfahren belastet. Um die Renten stabil zu halten, wurden Reformen wie die Einführung der Riester-Rente oder betriebliche Altersvorsorge eingeführt. Diese sollen die gesetzliche Rente durch private und betriebliche Vorsorge ergänzen.",
+                "example_savings_title": "Beispiel: Private Altersvorsorge",
+                "example_savings_desc": "Frau Meier, eine 40-jährige Lehrerin, zahlt monatlich 100 Euro in eine Riester-Rente ein, um ihre gesetzliche Rente aufzubessern. Zusätzlich beteiligt sie sich an einer betrieblichen Altersvorsorge, bei der ihr Arbeitgeber einen Teil der Beiträge übernimmt. Diese zusätzlichen Vorsorgemaßnahmen helfen ihr, im Alter einen höheren Lebensstandard zu sichern, da die gesetzliche Rente allein möglicherweise nicht ausreicht.",
+                "options_intro": "Hier sind einige wichtige Ergänzungen zur gesetzlichen Rente:",
+                "option_riester": "Riester-Rente: Eine staatlich geförderte private Altersvorsorge, die durch Zulagen und Steuervorteile unterstützt wird.",
+                "option_company": "Betriebliche Altersvorsorge: Arbeitgeberfinanzierte oder -unterstützte Rentenpläne, die oft steuerlich begünstigt sind.",
+                "option_private": "Private Rentenversicherung: Individuell abgeschlossene Verträge, die flexibel gestaltet werden können, aber keine staatliche Förderung bieten."
+            },
+            "en": {
+                "title": "Course 1: The German Pension System",
+                "lesson1_title": "Lesson 3: How does the German pension system work?",
+                "intro": "The German pension system is a key component of social security in Germany. It is based on the principle of solidarity and aims to secure living standards in old age. Below, we will explore the functioning and key aspects of the system in more detail:",
+                "section_a_title": "A. Basics of the Pension System",
+                "section_a_desc": "The German pension system is based on statutory pension insurance, a mandatory system involving employees, employers, and the state. It operates on a pay-as-you-go basis: Contributions paid by currently employed individuals are directly used to pay pensions to retirees. This system relies on the generational contract, where the younger generation supports the older one.",
+                "example_title": "Example:",
+                "example_pension_1": "Imagine Mr. Müller, a 30-year-old employee, pays monthly contributions into the statutory pension insurance. These contributions are not saved for his own pension but are used directly to finance the pension of Ms. Schmidt, a 70-year-old retiree. When Mr. Müller retires, the contributions of the next generation will fund his pension.",
+                "example_pension_2": "In summary: The pay-as-you-go system ensures that pensions are paid directly from the contributions of the working population. This makes the system vulnerable to demographic changes, such as an aging population.",
+                "section_b_title": "B. Contributions and Pension Points",
+                "section_b_desc_1": "The amount of the pension depends on the contributions paid and the duration of contributions. Employees and employers share the contributions, which are currently (as of 2025) around 18.6% of gross wages. For every euro contributed, the insured earns so-called pension points, which form the basis for calculating the pension later.",
+                "section_b_desc_2": "This is referred to as pension points.",
+                "points_desc": "An insured person earning an average income receives one pension point per year. If someone earns more or less than the average, they receive more or fewer points accordingly. Additional points can be awarded for periods such as child-rearing or caregiving. The total pension points determine the pension amount, multiplied by the current pension value (e.g., approximately 37 euros per point in 2025).",
+                "section_c_title": "C. Challenges and Supplements",
+                "section_c_desc_1": "The German pension system faces challenges, particularly due to demographic changes. With an aging population and fewer contributors per retiree, the pay-as-you-go system is under strain. To maintain stable pensions, reforms such as the introduction of the Riester pension or occupational pension schemes have been implemented. These aim to supplement statutory pensions with private and occupational provisions.",
+                "example_savings_title": "Example: Private Pension Provision",
+                "example_savings_desc": "Ms. Meier, a 40-year-old teacher, pays 100 euros monthly into a Riester pension to supplement her statutory pension. Additionally, she participates in an occupational pension scheme, where her employer covers part of the contributions. These additional measures help her secure a higher standard of living in retirement, as the statutory pension alone may not suffice.",
+                "options_intro": "Here are some key supplements to the statutory pension:",
+                "option_riester": "Riester Pension: A state-subsidized private pension scheme supported by allowances and tax benefits.",
+                "option_company": "Occupational Pension: Employer-funded or supported pension plans, often with tax advantages.",
+                "option_private": "Private Pension Insurance: Individually arranged contracts that can be flexibly designed but do not receive state subsidies."
+            },
+            "fr": {
+                "title": "Cours 1 : Le système de retraite allemand",
+                "lesson1_title": "Leçon 3 : Comment fonctionne le système de retraite allemand ?",
+                "intro": "Le système de retraite allemand est un élément clé de la sécurité sociale en Allemagne. Il repose sur le principe de la solidarité et vise à garantir le niveau de vie à la retraite. Ci-dessous, nous explorerons le fonctionnement et les aspects clés du système en détail :",
+                "section_a_title": "A. Bases du système de retraite",
+                "section_a_desc": "Le système de retraite allemand repose sur l'assurance retraite obligatoire, un système obligatoire impliquant les salariés, les employeurs et l'État. Il fonctionne selon le principe de la répartition : les cotisations payées par les personnes actuellement employées sont directement utilisées pour payer les pensions des retraités. Ce système repose sur le contrat générationnel, où la jeune génération soutient la génération plus âgée.",
+                "example_title": "Exemple :",
+                "example_pension_1": "Imaginez M. Müller, un employé de 30 ans, qui verse des cotisations mensuelles à l'assurance retraite obligatoire. Ces cotisations ne sont pas épargnées pour sa propre retraite, mais utilisées directement pour financer la pension de Mme Schmidt, une retraitée de 70 ans. Lorsque M. Müller prendra sa retraite, les cotisations de la génération suivante financeront sa pension.",
+                "example_pension_2": "En résumé : Le système de répartition garantit que les pensions sont payées directement à partir des cotisations des actifs. Cela rend le système vulnérable aux changements démographiques, comme le vieillissement de la population.",
+                "section_b_title": "B. Cotisations et points de retraite",
+                "section_b_desc_1": "Le montant de la pension dépend des cotisations versées et de la durée des cotisations. Les salariés et les employeurs se partagent les cotisations, qui s'élèvent actuellement (en 2025) à environ 18,6 % du salaire brut. Pour chaque euro cotisé, l'assuré gagne des points de retraite, qui servent de base au calcul de la pension ultérieure.",
+                "section_b_desc_2": "On parle ici de points de retraite.",
+                "points_desc": "Un assuré percevant un revenu moyen reçoit un point de retraite par an. Si quelqu'un gagne plus ou moins que la moyenne, il reçoit respectivement plus ou moins de points. Des points supplémentaires peuvent être attribués pour des périodes telles que l'éducation des enfants ou les soins. Le total des points de retraite détermine le montant de la pension, multiplié par la valeur actuelle de la pension (par exemple, environ 37 euros par point en 2025).",
+                "section_c_title": "C. Défis et compléments",
+                "section_c_desc_1": "Le système de retraite allemand fait face à des défis, notamment en raison des changements démographiques. Avec une population vieillissante et moins de cotisants par retraité, le système de répartition est sous pression. Pour maintenir des pensions stables, des réformes comme l'introduction de la pension Riester ou des régimes de retraite d'entreprise ont été mises en place. Ces mesures visent à compléter la pension légale par des provisions privées et professionnelles.",
+                "example_savings_title": "Exemple : Provision de retraite privée",
+                "example_savings_desc": "Mme Meier, une enseignante de 40 ans, verse 100 euros par mois dans une pension Riester pour compléter sa pension légale. De plus, elle participe à un régime de retraite d'entreprise, où son employeur prend en charge une partie des cotisations. Ces mesures supplémentaires l'aident à garantir un niveau de vie plus élevé à la retraite, car la pension légale seule pourrait ne pas suffire.",
+                "options_intro": "Voici quelques compléments clés à la pension légale :",
+                "option_riester": "Pension Riester : Un régime de retraite privé subventionné par l'État, soutenu par des allocations et des avantages fiscaux.",
+                "option_company": "Retraite d'entreprise : Plans de retraite financés ou soutenus par l'employeur, souvent avec des avantages fiscaux.",
+                "option_private": "Assurance retraite privée : Contrats conclus individuellement, qui peuvent être conçus de manière flexible mais ne bénéficient pas de subventions de l'État."
+            }
+        };
+
+        let currentLang = 'de';
+
+        function applyTranslations(targetLang) {
+            const elements = document.querySelectorAll('[data-translate-key]');
+            if (!translations[targetLang]) return;
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate-key');
+                if (translations[targetLang][key]) {
+                    element.innerHTML = translations[targetLang][key];
+                }
+            });
+            document.title = translations[targetLang].title || "Kurs 1: Das deutsche Rentensystem";
+        }
+
+        function translatePage(targetLang) {
+            if (targetLang === currentLang) return;
+            applyTranslations(targetLang);
+            document.documentElement.lang = targetLang;
+            currentLang = targetLang;
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            applyTranslations('de');
+            const storedLang = localStorage.getItem('preferredLanguage');
+            if (storedLang && translations[storedLang] && storedLang !== 'de') {
+                translatePage(storedLang);
+            }
+        });
+
+        window.addEventListener('message', (event) => {
+            if (event.data.type === 'LANGUAGE_CHANGE') {
+                translatePage(event.data.language);
+            }
+        });
+
+        function updateScrollBar() {
+            const scrollBar = document.getElementById('scroll-bar');
+            const scrollHeight = document.documentElement.scrollHeight;
+            const clientHeight = document.documentElement.clientHeight;
+            const scrollTop = window.scrollY;
+            const scrollPercent = (scrollTop / (scrollHeight - clientHeight)) * 100;
+            scrollBar.style.width = scrollPercent + '%';
+        }
+
+        window.addEventListener('scroll', updateScrollBar);
+        window.addEventListener('resize', updateScrollBar);
+    </script>
+</body>
+</html>

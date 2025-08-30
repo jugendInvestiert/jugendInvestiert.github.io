@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-translate-key="title">Kurs 1: Inflation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+    font-family: 'Poppins', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #101820;
+    color: white;
+    overflow-x: hidden;
+    margin-top: 40px;
+    padding-bottom: 50px;
+}
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    z-index: 1000;
+    padding-left: 30px;
+}
+.navbar .cross {
+    font-size: 1.5em;
+    cursor: pointer;
+}
+.navbar .cross:hover {
+    color: grey;
+}
+.scroll-bar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background-color: #444;
+    z-index: 1000;
+}
+.scroll-bar {
+    height: 100%;
+    width: 0%;
+    background-color: #1dd05d;
+    transition: width 0.2s;
+}
+.content {
+    padding: 20px 20px 20px 120px; /* Increased left padding for smaller screens */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+/* Add more left padding for desktop screens */
+@media (min-width: 768px) {
+    .content {
+        padding-left: 180px; /* Increased left padding for desktop */
+    }
+}
+#course-details {
+    padding: 20px 20px 20px 40px; /* Added left padding to course details */
+    background-color: #2C3E50;
+    border-radius: 10px;
+}
+.example {
+    background-color: #1B2631;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+    align-self: left;
+}
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="cross" onclick="window.location.href='section1.html'">✖</div>
+    </div>
+
+    <div class="scroll-bar-container">
+        <div class="scroll-bar" id="scroll-bar"></div>
+    </div>
+
+    <div id="course-details">
+        <div class="container">
+            <h2 data-translate-key="lesson1_title">Lektion 1: Wie funktioniert Inflation?</h2>
+            <p data-translate-key="intro">Inflation ist ein zentraler Begriff in der Wirtschaft, der die Kaufkraft unseres Geldes beeinflusst. Im Folgenden werden wir die Mechanismen der Inflation genauer betrachten:</p>
+            <h3 data-translate-key="section_a_title">A. Was ist Inflation?</h3>
+            <p data-translate-key="section_a_desc">Inflation bezeichnet den allgemeinen Anstieg der Preise für Waren und Dienstleistungen in einer Volkswirtschaft über einen bestimmten Zeitraum. Sie führt dazu, dass die Kaufkraft des Geldes sinkt, da man für die gleiche Menge Geld weniger kaufen kann. Inflation wird oft in Prozent pro Jahr angegeben und durch Indizes wie den Verbraucherpreisindex (VPI) gemessen.</p>
+            <div class="example">
+                <h4 data-translate-key="example_title">Beispiel:</h4>
+                <img src="bread.jpg" alt="Brot">
+                <p data-translate-key="example_bread_1">Stellen Sie sich vor, ein Laib Brot kostet heute 3 Euro. Bei einer Inflationsrate von 2 % pro Jahr würde derselbe Laib Brot im nächsten Jahr etwa 3,06 Euro kosten. Nach fünf Jahren könnte der Preis bei konstanter Inflation auf etwa 3,31 Euro steigen. Das bedeutet, dass Ihr Geld im Laufe der Zeit weniger wert ist, da Sie für die gleiche Menge Brot mehr bezahlen müssen.</p>
+                <p data-translate-key="example_bread_2">Zusammenfassend: Inflation führt dazu, dass die Preise steigen und die Kaufkraft des Geldes abnimmt. Wenn die Inflation hoch ist, kann dies die Lebenshaltungskosten erheblich beeinflussen.</p>
+            </div>
+            <h3 data-translate-key="section_b_title">B. Ursachen der Inflation</h3>
+            <p data-translate-key="section_b_desc_1">Inflation kann durch verschiedene Faktoren ausgelöst werden. Eine häufige Ursache ist die Nachfrageinflation, bei der die Nachfrage nach Waren und Dienstleistungen das Angebot übersteigt, was die Preise in die Höhe treibt. Eine weitere Ursache ist die Kosteninflation, bei der steigende Produktionskosten (z. B. für Rohstoffe oder Löhne) die Preise erhöhen. Auch Geldmengenwachstum, wenn mehr Geld in Umlauf gebracht wird, kann Inflation verursachen.</p>
+            <p data-translate-key="section_b_desc_2">Hier spricht man oft von der Geldmenge in einer Volkswirtschaft.</p>
+            <p data-translate-key="money_supply_desc">Wenn eine Zentralbank, wie die Europäische Zentralbank (EZB), die Geldmenge erhöht, indem sie mehr Geld druckt oder die Zinssätze senkt, kann dies die Nachfrage ankurbeln und die Preise steigen lassen. Dies kann jedoch auch zu einer Überhitzung der Wirtschaft führen, wenn die Produktionskapazitäten nicht mithalten können. Umgekehrt kann eine Reduzierung der Geldmenge die Inflation bremsen, aber das Wirtschaftswachstum verlangsamen.</p>
+            <h3 data-translate-key="section_c_title">C. Auswirkungen der Inflation</h3>
+            <p data-translate-key="section_c_desc_1">Inflation hat sowohl positive als auch negative Auswirkungen. Moderate Inflation kann das Wirtschaftswachstum fördern, da sie die Nachfrage anregt und Unternehmen motiviert, zu investieren. Hohe Inflation hingegen kann problematisch sein, da sie die Kaufkraft der Verbraucher mindert, Ersparnisse entwertet und die Lebenshaltungskosten erhöht. Für Anleger ist es wichtig, Strategien wie Investitionen in inflationsgeschützte Anlagen zu nutzen, um die Auswirkungen zu mildern.</p>
+            <div class="example">
+                <h4 data-translate-key="example_investment_title">Beispiel: Inflationsgeschützte Anlagen</h4>
+                <p data-translate-key="example_investment_desc">Eine Möglichkeit, sich gegen Inflation abzusichern, ist die Investition in inflationsindexierte Anleihen, wie z. B. TIPS (Treasury Inflation-Protected Securities) in den USA. Diese Anleihen passen ihren Wert an die Inflation an, sodass Anleger keine Kaufkraft verlieren. Wenn die Inflation steigt, erhöht sich der Wert der Anleihe entsprechend, was den Anlegern hilft, ihre Ersparnisse zu schützen. Solche Anlagen sind besonders für langfristige Investoren attraktiv, die ihre Kaufkraft erhalten möchten.</p>
+            </div>
+            <p data-translate-key="indices_intro">Hier sind einige wichtige Indizes zur Messung der Inflation:</p>
+            <ul>
+                <li data-translate-key="index_cpi">Verbraucherpreisindex (VPI): Misst die Preisveränderungen eines Warenkorbs von Gütern und Dienstleistungen, die von Haushalten konsumiert werden.</li>
+                <li data-translate-key="index_ppi">Erzeugerpreisindex (EPI): Misst die Preisveränderungen von Waren auf Produzentenebene, bevor sie den Endverbraucher erreichen.</li>
+                <li data-translate-key="index_hicp">Harmonisierter Verbraucherpreisindex (HVPI): Ein standardisierter Index, der in der EU verwendet wird, um die Inflation in verschiedenen Ländern vergleichbar zu machen.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const translations = {
+            "de": {
+                "title": "Kurs 1: Inflation",
+                "lesson1_title": "Lektion 1: Wie funktioniert Inflation?",
+                "intro": "Inflation ist ein zentraler Begriff in der Wirtschaft, der die Kaufkraft unseres Geldes beeinflusst. Im Folgenden werden wir die Mechanismen der Inflation genauer betrachten:",
+                "section_a_title": "A. Was ist Inflation?",
+                "section_a_desc": "Inflation bezeichnet den allgemeinen Anstieg der Preise für Waren und Dienstleistungen in einer Volkswirtschaft über einen bestimmten Zeitraum. Sie führt dazu, dass die Kaufkraft des Geldes sinkt, da man für die gleiche Menge Geld weniger kaufen kann. Inflation wird oft in Prozent pro Jahr angegeben und durch Indizes wie den Verbraucherpreisindex (VPI) gemessen.",
+                "example_title": "Beispiel:",
+                "example_bread_1": "Stellen Sie sich vor, ein Laib Brot kostet heute 3 Euro. Bei einer Inflationsrate von 2 % pro Jahr würde derselbe Laib Brot im nächsten Jahr etwa 3,06 Euro kosten. Nach fünf Jahren könnte der Preis bei konstanter Inflation auf etwa 3,31 Euro steigen. Das bedeutet, dass Ihr Geld im Laufe der Zeit weniger wert ist, da Sie für die gleiche Menge Brot mehr bezahlen müssen.",
+                "example_bread_2": "Zusammenfassend: Inflation führt dazu, dass die Preise steigen und die Kaufkraft des Geldes abnimmt. Wenn die Inflation hoch ist, kann dies die Lebenshaltungskosten erheblich beeinflussen.",
+                "section_b_title": "B. Ursachen der Inflation",
+                "section_b_desc_1": "Inflation kann durch verschiedene Faktoren ausgelöst werden. Eine häufige Ursache ist die Nachfrageinflation, bei der die Nachfrage nach Waren und Dienstleistungen das Angebot übersteigt, was die Preise in die Höhe treibt. Eine weitere Ursache ist die Kosteninflation, bei der steigende Produktionskosten (z. B. für Rohstoffe oder Löhne) die Preise erhöhen. Auch Geldmengenwachstum, wenn mehr Geld in Umlauf gebracht wird, kann Inflation verursachen.",
+                "section_b_desc_2": "Hier spricht man oft von der Geldmenge in einer Volkswirtschaft.",
+                "money_supply_desc": "Wenn eine Zentralbank, wie die Europäische Zentralbank (EZB), die Geldmenge erhöht, indem sie mehr Geld druckt oder die Zinssätze senkt, kann dies die Nachfrage ankurbeln und die Preise steigen lassen. Dies kann jedoch auch zu einer Überhitzung der Wirtschaft führen, wenn die Produktionskapazitäten nicht mithalten können. Umgekehrt kann eine Reduzierung der Geldmenge die Inflation bremsen, aber das Wirtschaftswachstum verlangsamen.",
+                "section_c_title": "C. Auswirkungen der Inflation",
+                "section_c_desc_1": "Inflation hat sowohl positive als auch negative Auswirkungen. Moderate Inflation kann das Wirtschaftswachstum fördern, da sie die Nachfrage anregt und Unternehmen motiviert, zu investieren. Hohe Inflation hingegen kann problematisch sein, da sie die Kaufkraft der Verbraucher mindert, Ersparnisse entwertet und die Lebenshaltungskosten erhöht. Für Anleger ist es wichtig, Strategien wie Investitionen in inflationsgeschützte Anlagen zu nutzen, um die Auswirkungen zu mildern.",
+                "example_investment_title": "Beispiel: Inflationsgeschützte Anlagen",
+                "example_investment_desc": "Eine Möglichkeit, sich gegen Inflation abzusichern, ist die Investition in inflationsindexierte Anleihen, wie z. B. TIPS (Treasury Inflation-Protected Securities) in den USA. Diese Anleihen passen ihren Wert an die Inflation an, sodass Anleger keine Kaufkraft verlieren. Wenn die Inflation steigt, erhöht sich der Wert der Anleihe entsprechend, was den Anlegern hilft, ihre Ersparnisse zu schützen. Solche Anlagen sind besonders für langfristige Investoren attraktiv, die ihre Kaufkraft erhalten möchten.",
+                "indices_intro": "Hier sind einige wichtige Indizes zur Messung der Inflation:",
+                "index_cpi": "Verbraucherpreisindex (VPI): Misst die Preisveränderungen eines Warenkorbs von Gütern und Dienstleistungen, die von Haushalten konsumiert werden.",
+                "index_ppi": "Erzeugerpreisindex (EPI): Misst die Preisveränderungen von Waren auf Produzentenebene, bevor sie den Endverbraucher erreichen.",
+                "index_hicp": "Harmonisierter Verbraucherpreisindex (HVPI): Ein standardisierter Index, der in der EU verwendet wird, um die Inflation in verschiedenen Ländern vergleichbar zu machen."
+            },
+            "en": {
+                "title": "Course 1: Inflation",
+                "lesson1_title": "Lesson 1: How does inflation work?",
+                "intro": "Inflation is a key economic concept that affects the purchasing power of our money. Below, we will explore the mechanisms of inflation in more detail:",
+                "section_a_title": "A. What is Inflation?",
+                "section_a_desc": "Inflation refers to the general increase in prices of goods and services in an economy over a period of time. It leads to a decrease in the purchasing power of money, as the same amount of money buys less. Inflation is often measured as a percentage per year and tracked using indices like the Consumer Price Index (CPI).",
+                "example_title": "Example:",
+                "example_bread_1": "Imagine a loaf of bread costs 3 euros today. With an inflation rate of 2% per year, that same loaf might cost about 3.06 euros next year. After five years, at constant inflation, the price could rise to about 3.31 euros. This means your money is worth less over time, as you need to spend more to buy the same loaf of bread.",
+                "example_bread_2": "In summary: Inflation causes prices to rise and the purchasing power of money to decrease. High inflation can significantly impact the cost of living.",
+                "section_b_title": "B. Causes of Inflation",
+                "section_b_desc_1": "Inflation can be triggered by various factors. A common cause is demand-pull inflation, where demand for goods and services exceeds supply, driving prices up. Another cause is cost-push inflation, where rising production costs (e.g., for raw materials or wages) increase prices. Additionally, an increase in the money supply, when more money is circulated, can also cause inflation.",
+                "section_b_desc_2": "This is often referred to as the money supply in an economy.",
+                "money_supply_desc": "When a central bank, such as the European Central Bank (ECB), increases the money supply by printing more money or lowering interest rates, it can boost demand and cause prices to rise. However, this can also lead to an overheated economy if production capacities cannot keep up. Conversely, reducing the money supply can curb inflation but may slow economic growth.",
+                "section_c_title": "C. Effects of Inflation",
+                "section_c_desc_1": "Inflation has both positive and negative effects. Moderate inflation can stimulate economic growth by encouraging demand and motivating businesses to invest. However, high inflation can be problematic, as it reduces consumers' purchasing power, devalues savings, and increases the cost of living. For investors, it’s important to use strategies like investing in inflation-protected assets to mitigate these effects.",
+                "example_investment_title": "Example: Inflation-Protected Investments",
+                "example_investment_desc": "One way to hedge against inflation is to invest in inflation-indexed bonds, such as Treasury Inflation-Protected Securities (TIPS) in the US. These bonds adjust their value based on inflation, ensuring investors don’t lose purchasing power. As inflation rises, the bond’s value increases accordingly, helping investors preserve their savings. Such investments are particularly attractive for long-term investors looking to maintain their purchasing power.",
+                "indices_intro": "Here are some key indices for measuring inflation:",
+                "index_cpi": "Consumer Price Index (CPI): Measures price changes in a basket of goods and services consumed by households.",
+                "index_ppi": "Producer Price Index (PPI): Measures price changes of goods at the producer level before they reach the consumer.",
+                "index_hicp": "Harmonized Index of Consumer Prices (HICP): A standardized index used in the EU to make inflation comparable across different countries."
+            },
+            "fr": {
+                "title": "Cours 1 : Inflation",
+                "lesson1_title": "Leçon 1 : Comment fonctionne l'inflation ?",
+                "intro": "L'inflation est un concept économique clé qui affecte le pouvoir d'achat de notre argent. Ci-dessous, nous explorerons les mécanismes de l'inflation plus en détail :",
+                "section_a_title": "A. Qu'est-ce que l'inflation ?",
+                "section_a_desc": "L'inflation désigne l'augmentation générale des prix des biens et services dans une économie sur une période donnée. Elle entraîne une diminution du pouvoir d'achat de l'argent, car la même somme permet d'acheter moins. L'inflation est souvent mesurée en pourcentage par an et suivie à l'aide d'indices comme l'Indice des prix à la consommation (IPC).",
+                "example_title": "Exemple :",
+                "example_bread_1": "Imaginez qu'une miche de pain coûte 3 euros aujourd'hui. Avec un taux d'inflation de 2 % par an, cette même miche pourrait coûter environ 3,06 euros l'année prochaine. Après cinq ans, à inflation constante, le prix pourrait atteindre environ 3,31 euros. Cela signifie que votre argent vaut moins avec le temps, car il faut dépenser plus pour acheter la même miche de pain.",
+                "example_bread_2": "En résumé : L'inflation entraîne une hausse des prix et une diminution du pouvoir d'achat de l'argent. Une inflation élevée peut avoir un impact significatif sur le coût de la vie.",
+                "section_b_title": "B. Causes de l'inflation",
+                "section_b_desc_1": "L'inflation peut être déclenchée par divers facteurs. Une cause courante est l'inflation par la demande, où la demande de biens et services dépasse l'offre, faisant grimper les prix. Une autre cause est l'inflation par les coûts, où l'augmentation des coûts de production (par exemple, pour les matières premières ou les salaires) fait monter les prix. De plus, une augmentation de la masse monétaire, lorsque plus d'argent est mis en circulation, peut également provoquer de l'inflation.",
+                "section_b_desc_2": "On parle souvent de la masse monétaire dans une économie.",
+                "money_supply_desc": "Lorsqu'une banque centrale, comme la Banque centrale européenne (BCE), augmente la masse monétaire en imprimant plus d'argent ou en abaissant les taux d'intérêt, cela peut stimuler la demande et faire grimper les prix. Cependant, cela peut également entraîner une surchauffe de l'économie si les capacités de production ne suivent pas. À l'inverse, réduire la masse monétaire peut freiner l'inflation, mais ralentir la croissance économique.",
+                "section_c_title": "C. Effets de l'inflation",
+                "section_c_desc_1": "L'inflation a des effets à la fois positifs et négatifs. Une inflation modérée peut stimuler la croissance économique en encourageant la demande et en motivant les entreprises à investir. Cependant, une inflation élevée peut être problématique, car elle réduit le pouvoir d'achat des consommateurs, dévalue l'épargne et augmente le coût de la vie. Pour les investisseurs, il est important d'utiliser des stratégies comme investir dans des actifs protégés contre l'inflation pour atténuer ces effets.",
+                "example_investment_title": "Exemple : Investissements protégés contre l'inflation",
+                "example_investment_desc": "Une façon de se protéger contre l'inflation est d'investir dans des obligations indexées sur l'inflation, comme les Treasury Inflation-Protected Securities (TIPS) aux États-Unis. Ces obligations ajustent leur valeur en fonction de l'inflation, garantissant que les investisseurs ne perdent pas de pouvoir d'achat. Lorsque l'inflation augmente, la valeur de l'obligation croît en conséquence, aidant les investisseurs à préserver leurs économies. Ces investissements sont particulièrement attractifs pour les investisseurs à long terme souhaitant maintenir leur pouvoir d'achat.",
+                "indices_intro": "Voici quelques indices clés pour mesurer l'inflation :",
+                "index_cpi": "Indice des prix à la consommation (IPC) : Mesure les variations de prix d'un panier de biens et services consommés par les ménages.",
+                "index_ppi": "Indice des prix à la production (IPP) : Mesure les variations de prix des biens au niveau des producteurs avant qu'ils n'atteignent le consommateur.",
+                "index_hicp": "Indice des prix à la consommation harmonisé (IPCH) : Un indice standardisé utilisé dans l'UE pour rendre l'inflation comparable entre différents pays."
+            }
+        };
+
+        let currentLang = 'de';
+
+        function applyTranslations(targetLang) {
+            const elements = document.querySelectorAll('[data-translate-key]');
+            if (!translations[targetLang]) return;
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate-key');
+                if (translations[targetLang][key]) {
+                    element.innerHTML = translations[targetLang][key];
+                }
+            });
+            document.title = translations[targetLang].title || "Kurs 1: Inflation";
+        }
+
+        function translatePage(targetLang) {
+            if (targetLang === currentLang) return;
+            applyTranslations(targetLang);
+            document.documentElement.lang = targetLang;
+            currentLang = targetLang;
+        }
+
+        // Apply default language on load
+        window.addEventListener('DOMContentLoaded', () => {
+            applyTranslations('de');
+            const storedLang = localStorage.getItem('preferredLanguage');
+            if (storedLang && translations[storedLang] && storedLang !== 'de') {
+                translatePage(storedLang);
+            }
+        });
+
+        // Listen for language change messages from parent (index.html)
+        window.addEventListener('message', (event) => {
+            if (event.data.type === 'LANGUAGE_CHANGE') {
+                translatePage(event.data.language);
+            }
+        });
+
+        // Scroll bar functionality
+        function updateScrollBar() {
+            const scrollBar = document.getElementById('scroll-bar');
+            const scrollHeight = document.documentElement.scrollHeight;
+            const clientHeight = document.documentElement.clientHeight;
+            const scrollTop = window.scrollY;
+            const scrollPercent = (scrollTop / (scrollHeight - clientHeight)) * 100;
+            scrollBar.style.width = scrollPercent + '%';
+        }
+
+        window.addEventListener('scroll', updateScrollBar);
+        window.addEventListener('resize', updateScrollBar);
+    </script>
+</body>
+</html>

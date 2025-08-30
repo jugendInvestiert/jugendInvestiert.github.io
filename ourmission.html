@@ -12,14 +12,11 @@
             box-sizing: border-box;
         }
         html {
-            /* Ensure smooth scrolling behavior */
             scroll-behavior: smooth;
-            /* Hide scrollbars at the HTML level for consistency */
-            -ms-overflow-style: none; /* IE and Edge */
-            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
         html::-webkit-scrollbar {
-            /* Chrome, Safari, Edge */
             display: none;
         }
         body {
@@ -31,18 +28,13 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            /* Use min-height to allow content to expand beyond viewport */
             min-height: 100vh;
-            /* Increased padding-bottom for spacious look */
             padding-bottom: 100px;
-            /* Allow vertical scrolling, hide horizontal */
             overflow-x: hidden;
             overflow-y: auto;
-            /* Reinforce scrollbar hiding */
-            -ms-overflow-style: none; /* IE and Edge */
-            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none;
+            scrollbar-width: none;
         }
-        /* Ensure no scrollbar on body */
         body::-webkit-scrollbar {
             display: none;
         }
@@ -60,9 +52,37 @@
             height: auto;
             margin: 20px 0;
         }
+        .profile-image {
+            max-width: 200px;
+            height: auto;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .profile-card {
+            background-color: #1c252f;
+            padding: 15px;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 20px 10px;
+            max-width: 300px;
+        }
+        .profile-name {
+            color: #007bff;
+            font-weight: bold;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
         p {
             font-size: 18px;
             line-height: 1.6;
+        }
+        .team-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
         }
         .contact-button {
             display: inline-block;
@@ -92,7 +112,6 @@
             z-index: 1000;
             justify-content: center;
             align-items: center;
-            /* Allow scrolling in modal if needed, hide scrollbar */
             overflow: auto;
             -ms-overflow-style: none;
             scrollbar-width: none;
@@ -189,7 +208,6 @@
                 padding: 0;
                 min-height: auto;
                 justify-content: flex-start;
-                /* Increased padding-bottom for mobile */
                 padding-bottom: 80px;
             }
             .container {
@@ -203,6 +221,15 @@
             }
             .container img {
                 margin: 15px 0;
+            }
+            .profile-image {
+                max-width: 150px;
+            }
+            .profile-card {
+                max-width: 300px;
+            }
+            .profile-name {
+                font-size: 20px;
             }
             .contact-button {
                 width: 100%;
@@ -231,6 +258,19 @@
         <h1 data-translate-key="title">Unsere Mission</h1>
         <img src="earth.gif" alt="Erde">
         <p data-translate-key="description">Wir sind eine Gruppe junger Menschen, die vor dem Mangel an finanzieller Bildung in Deutschland nicht die Augen verschließen wollen. Als kleines deutsches Start-Up fing bei uns sozusagen alles in der Garage an, mit einer gesunden Mischung aus Tech-Expertise, künstlicher Intelligenz und Finanz-Wissen, bloß von der Aussicht auf einen Finanzmarkt für ALLE angetrieben. Zusammen haben wir diese Plattform aufgebaut, um allen jungen Menschen einen guten und erfolgreichen Start in die finanzielle Unabhängigkeit zu ermöglichen. Wir hoffen, dass wir gemeinsam unser Ziel erreichen können und finanzielle Bildung in Deutschland revolutionieren werden.</p>
+        <h1>Unser Team</h1>
+        <div class="team-container">
+            <div class="profile-card">
+                <img src="profile.png" alt="Albert L." class="profile-image">
+                <p class="profile-name">Albert L.</p>
+                <p>Gründer<br>"Ich hoffe, dass finanzielle Bildung unter Jugendlichen in Deutschland zur Norm wird. Diese Vision verfolgen wir bei JugendInvestiert."</p>
+            </div>
+            <div class="profile-card">
+                <img src="profile.png" alt="Melchior B." class="profile-image">
+                <p class="profile-name">Melchior B.</p>
+                <p>Gründer<br>"Unsere Mission ist es, innovative Technologien zu nutzen, um finanzielle Bildung für junge Menschen zugänglich und spannend zu gestalten."</p>
+            </div>
+        </div>
         <button class="contact-button" onclick="openContactForm()" data-translate-key="contact_button">Kontakt Aufnehmen</button>
     </div>
 

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Ressourcen mit Lexikon</title>
+  <title data-translate-key="title">Ressourcen mit Lexikon</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
   <!-- Font Awesome for search icon -->
   <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
@@ -16,11 +16,9 @@
       margin: 0;
       padding: 0;
     }
-
     h1, h2, h3 {
       margin-top: 0;
     }
-
     /* Intro text styling */
     .intro-text {
       max-width: 800px;
@@ -30,7 +28,6 @@
       line-height: 1.4;
       font-size: 16px;
     }
-
     /* Toggle Switch Container */
     .toggle-container {
       display: flex;
@@ -38,7 +35,6 @@
       align-items: center;
       margin: 20px 0;
     }
-
     .switch-wrapper {
       position: relative;
       display: inline-block;
@@ -46,14 +42,12 @@
       height: 30px;
       cursor: pointer;
     }
-
     .switch-wrapper input {
       opacity: 0;
       width: 0;
       height: 0;
-      position: absolute;
+      position: naturalistic;
     }
-
     .slider {
       position: absolute;
       cursor: pointer;
@@ -62,7 +56,6 @@
       transition: .4s;
       border-radius: 34px;
     }
-
     .slider:before {
       position: absolute;
       content: "";
@@ -74,35 +67,30 @@
       transition: .4s;
       border-radius: 50%;
     }
-
     input:checked + .slider {
       background-color: #007bff;
     }
-
     input:checked + .slider:before {
       transform: translateX(28px);
     }
-
     .toggle-label {
       margin-left: 10px;
       color: white;
       font-size: 16px;
     }
-
-    /* Container visibility */
+    /* Container visibility with added left padding */
     #lexicon-container {
       display: block; /* Show lexicon by default */
-      padding: 20px;
+      padding: 15px 15px 30px 30px; /* Added 30px left padding */
       max-width: 1200px;
       margin: auto;
     }
     #links-container {
       display: none; /* Hide links by default */
-      padding: 20px;
+      padding: 15px 15px 30px 30px; /* Added 30px left padding */
       max-width: 1200px;
       margin: auto;
     }
-
     /* Heading styles */
     h1 {
       text-align: center;
@@ -120,7 +108,6 @@
       font-size: 24px;
       margin: 10px 0;
     }
-
     /* Resource cards (Links content) */
     .resource-section {
       display: flex;
@@ -151,7 +138,6 @@
     .resource-card a:hover {
       text-decoration: underline;
     }
-
     /* Recommendations block */
     .recommendations {
       background-color: #1B2631;
@@ -182,7 +168,6 @@
       margin-bottom: 10px;
       border-radius: 10px;
     }
-
     /* Lexicon styling */
     .lexicon-search {
       display: flex;
@@ -221,14 +206,12 @@
       font-size: 20px;
       pointer-events: none;
     }
-
     /* Highlighted text */
     .highlight {
       background-color: yellow;
       color: black;
       border-radius: 3px;
     }
-
     .lexicon-list {
       display: flex;
       flex-direction: column;
@@ -250,7 +233,6 @@
       font-size: 16px;
       margin: 0;
     }
-
     /* Responsive adjustments */
     @media (max-width: 1024px) {
       .resource-card {
@@ -260,7 +242,6 @@
         width: 150px;
       }
     }
-
     @media (max-width: 768px) {
       h1 {
         font-size: 28px;
@@ -278,7 +259,6 @@
         justify-content: flex-start; /* Align search bar to the left */
       }
     }
-
     @media (max-width: 480px) {
       h1 {
         font-size: 24px;
@@ -299,32 +279,30 @@
   </style>
 </head>
 <body>
-
-  <h1>Nützliche Ressourcen 💡</h1>
+  <h1 data-translate-key="title Sheltering">Nützliche Ressourcen 💡</h1>
   <!-- Short Intro Text -->
-  <p class="intro-text">
-    Auf dieser Seite findest du praktische Links zu verschiedenen Finanz- und Bildungsressourcen. 
+  <p class="intro-text" data-translate-key="intro_text">
+    Auf dieser Seite findest du praktische Links zu verschiedenen Finanz- und Bildungsressourcen.
     Außerdem bieten wir dir ein umfangreiches Lexikon mit wichtigen Fachbegriffen aus der Finanzwelt.
   </p>
-
   <!-- Toggle Switch -->
   <div class="toggle-container">
     <label class="switch-wrapper">
       <input type="checkbox" id="viewSwitch">
       <span class="slider"></span>
     </label>
-    <span class="toggle-label" id="toggleLabel">Aktiviere Links</span>
+    <span class="toggle-label" id="toggleLabel" data-translate-key="toggle_label_links">Aktiviere Links</span>
   </div>
-
   <!-- LEXICON CONTENT -->
   <div id="lexicon-container">
-    <h2>Finanz-Lexikon</h2>
+    <h2 data-translate-key="lexicon_title">Finanz-Lexikon</h2>
     <div class="lexicon-search">
-      <input 
-        type="text" 
-        id="searchInput" 
-        placeholder="Such nach einem Begriff (z.B. 'Aktie', 'Anleihe', 'ETF') ..."
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="AAPL"
         aria-label="Suche im Finanz-Lexikon"
+        data-translate-key="search_placeholder"
       >
       <i class="fas fa-search search-icon"></i>
     </div>
@@ -332,118 +310,627 @@
       <!-- Lexicon items will be loaded here dynamically -->
     </div>
   </div>
-
   <!-- LINKS CONTENT -->
   <div id="links-container">
     <!-- "Unsere Empfehlungen" -->
     <div class="recommendations">
-      <h2>Unsere Empfehlungen</h2>
+      <h2 data-translate-key="recommendations_title">Unsere Empfehlungen</h2>
       <div class="recommendation-items">
         <div class="recommendation-item">
           <img src="ft.jpg" alt="Financial Times Logo" loading="lazy">
-          <h3><a href="https://www.ft.com" target="_blank">Financial Times</a></h3>
-          <p>Aktuelle Nachrichten und Analysen zu globalen Finanzmärkten.</p>
+          <h3><a href="https://www.ft.com" target="_blank" data-translate-key="ft_title">Financial Times</a></h3>
+          <p data-translate-key="ft_description">Aktuelle Nachrichten und Analysen zu globalen Finanzmärkten.</p>
         </div>
         <div class="recommendation-item">
           <img src="jisim.jpg" alt="Unser Simulator" loading="lazy">
-          <h3><a href="simulator.html">Unser Simulator</a></h3>
-          <p>Eine interaktive Plattform für das Üben von Investitionsstrategien.</p>
+          <h3><a href="simulator.html" data-translate-key="simulator_title">Unser Simulator</a></h3>
+          <p data-translate-key="simulator_description">Eine interaktive Plattform für das Üben von Investitionsstrategien.</p>
         </div>
         <div class="recommendation-item">
           <img src="wsj.jpg" alt="Wall Street Journal Logo" loading="lazy">
-          <h3><a href="https://www.wsj.com" target="_blank">Wall Street Journal</a></h3>
-          <p>Umfassende Berichterstattung über Wirtschaft und Finanzmärkte.</p>
+          <h3><a href="https://www.wsj.com" target="_blank" data-translate-key="wsj_title">Wall Street Journal</a></h3>
+          <p data-translate-key="wsj_description">Umfassende Berichterstattung über Wirtschaft und Finanzmärkte.</p>
         </div>
       </div>
     </div>
-
     <!-- Ressourcenkarten -->
-    <h2>Finanzanalyse</h2>
+    <h2 data-translate-key="finance_analysis_title">Finanzanalyse</h2>
     <div class="resource-section">
       <div class="resource-card">
-        <h3><a href="https://www.morningstar.com" target="_blank">Morningstar</a></h3>
-        <p>Bietet Investmentforschung und Daten für verschiedene Anlageklassen.</p>
+        <h3><a href="https://www.morningstar.com" target="_blank" data-translate-key="morningstar_title">Morningstar</a></h3>
+        <p data-translate-key="morningstar_description">Bietet Investmentforschung und Daten für verschiedene Anlageklassen.</p>
       </div>
       <div class="resource-card">
-        <h3><a href="https://www.bloomberg.com" target="_blank">Bloomberg</a></h3>
-        <p>Aktuelle Nachrichten und Analysen zu Finanzmärkten.</p>
+        <h3><a href="https://www.bloomberg.com" target="_blank" data-translate-key="bloomberg_title">Bloomberg</a></h3>
+        <p data-translate-key="bloomberg_description">Aktuelle Nachrichten und Analysen zu Finanzmärkten.</p>
       </div>
       <div class="resource-card">
-        <h3><a href="https://www.wallstreetmojo.com" target="_blank">Wall Street Mojo</a></h3>
-        <p>Ressourcen und Tutorials zu Finanzanalysen und Unternehmensbewertung.</p>
+        <h3><a href="https://www.wallstreetmojo.com" target="_blank" data-translate-key="wallstreetmojo_title">Wall Street Mojo</a></h3>
+        <p data-translate-key="wallstreetmojo_description">Ressourcen und Tutorials zu Finanzanalysen und Unternehmensbewertung.</p>
       </div>
       <div class="resource-card">
-        <h3><a href="https://www.financialmodelingprep.com" target="_blank">Financial Modeling Prep</a></h3>
-        <p>Bietet kostenlose Finanzdaten-APIs für Finanzanalysen.</p>
+        <h3><a href="https://www.financialmodelingprep.com" target="_blank" data-translate-key="fmp_title">Financial Modeling Prep</a></h3>
+        <p data-translate-key="fmp_description">Bietet kostenlose Finanzdaten-APIs für Finanzanalysen.</p>
       </div>
       <div class="resource-card">
-        <h3><a href="https://www.marketrealist.com" target="_blank">Market Realist</a></h3>
-        <p>Analysen und Informationen über die Finanzmärkte.</p>
+        <h3><a href="https://www.marketrealist.com" target="_blank" data-translate-key="marketrealist_title">Market Realist</a></h3>
+        <p data-translate-key="marketrealist_description">Analysen und Informationen über die Finanzmärkte.</p>
       </div>
       <div class="resource-card">
-        <h3><a href="https://www.seekingalpha.com" target="_blank">Seeking Alpha</a></h3>
-        <p>Investmentanalysen und Meinungen von Experten.</p>
+        <h3><a href="https://www.seekingalpha.com" target="_blank" data-translate-key="seekingalpha_title">Seeking Alpha</a></h3>
+        <p data-translate-key="seekingalpha_description">Investmentanalysen und Meinungen von Experten.</p>
       </div>
       <div class="resource-card">
-        <h3><a href="https://www.zacks.com" target="_blank">Zacks Investment Research</a></h3>
-        <p>Aktienanalysen und Investitionsberatung.</p>
+        <h3><a href="https://www.zacks.com" target="_blank" data-translate-key="zacks_title">Zacks Investment Research</a></h3>
+        <p data-translate-key="zacks_description">Aktienanalysen und Investitionsberatung.</p>
       </div>
     </div>
-
-    <h2>Investmentressourcen</h2>
+    <h2 data-translate-key="investment_resources_title">Investmentressourcen</h2>
     <div class="resource-section">
       <div class="resource-card">
-        <h3><a href="https://www.investopedia.com" target="_blank">Investopedia</a></h3>
-        <p>Umfassende Informationen zu Finanzthemen, einschließlich Anlagestrategien.</p>
+        <h3><a href="https://www.investopedia.com" target="_blank" data-translate-key="investopedia_title">Investopedia</a></h3>
+        <p data-translate-key="investopedia_description">Umfassende Informationen zu Finanzthemen, einschließlich Anlagestrategien.</p>
       </div>
       <div class="resource-card">
-        <h3><a href="https://www.marketwatch.com" target="_blank">MarketWatch</a></h3>
-        <p>Neueste Finanznachrichten und Marktanalysen.</p>
+        <h3><a href="https://www.marketwatch.com" target="_blank" data-translate-key="marketwatch_title">MarketWatch</a></h3>
+        <p data-translate-key="marketwatch_description">Neueste Finanznachrichten und Marktanalysen.</p>
       </div>
       <div class="resource-card">
-        <h3><a href="https://www.reuters.com/finance" target="_blank">Reuters Finance</a></h3>
-        <p>Aktuelle Finanznachrichten und Marktberichte.</p>
+        <h3><a href="https://www.reuters.com/finance" target="_blank" data-translate-key="reuters_title">Reuters Finance</a></h3>
+        <p data-translate-Key="reuters_description">Aktuelle Finanznachrichten und Marktberichte.</p>
       </div>
       <div class="resource-card">
-        <h3><a href="https://www.thebalance.com" target="_blank">The Balance</a></h3>
-        <p>Umfassende Ressourcen zu persönlichen Finanzen und Investitionen.</p>
+        <h3><a href="https://www.thebalance.com" target="_blank" data-translate-key="thebalance_title">The Balance</a></h3>
+        <p data-translate-key="thebalance_description">Umfassende Ressourcen zu persönlichen Finanzen und Investitionen.</p>
       </div>
       <div class="resource-card">
-        <h3><a href="https://www.fool.com" target="_blank">The Motley Fool</a></h3>
-        <p>Aktienanalysen und Empfehlungen für Investoren.</p>
+        <h3><a href="https://www.fool.com" target="_blank" data-translate-key="motleyfool_title">The Motley Fool</a></h3>
+        <p data-translate-key="motleyfool_description">Aktienanalysen und Empfehlungen für Investoren.</p>
       </div>
       <div class="resource-card">
-        <h3><a href="https://www.schwab.com" target="_blank">Charles Schwab</a></h3>
-        <p>Informationen über Anlagestrategien und Marktanalysen.</p>
+        <h3><a href="https://www.schwab.com" target="_blank" data-translate-key="schwab_title">Charles Schwab</a></h3>
+        <p data-translate-key="schwab_description">Informationen über Anlagestrategien und Marktanalysen.</p>
       </div>
       <div class="resource-card">
-        <h3><a href="https://www.yahoo.com/finance" target="_blank">Yahoo Finance</a></h3>
-        <p>Bietet Finanznachrichten, Daten und Unternehmensanalysen.</p>
+        <h3><a href="https://www.yahoo.com/finance" target="_blank" data-translate-key="yahoofinance_title">Yahoo Finance</a></h3>
+        <p data-translate-key="yahoofinance_description">Bietet Finanznachrichten, Daten und Unternehmensanalysen.</p>
       </div>
     </div>
-
-    <h2>Bildungsressourcen</h2>
+    <h2 data-translate-key="education_resources_title">Bildungsressourcen</h2>
     <div class="resource-section">
       <div class="resource-card">
-        <h3><a href="https://www.coursera.org" target="_blank">Coursera</a></h3>
-        <p>Online-Kurse zu einer Vielzahl von Themen, einschließlich Finanzen.</p>
+        <h3><a href="https://www.coursera.org" target="_blank" data-translate-key="coursera_title">Coursera</a></h3>
+        <p data-translate-key="coursera_description">Online-Kurse zu einer Vielzahl von Themen, einschließlich Finanzen.</p>
       </div>
       <div class="resource-card">
-        <h3><a href="https://www.edx.org" target="_blank">edX</a></h3>
-        <p>Hochwertige Online-Kurse von Universitäten und Institutionen.</p>
+        <h3><a href="https://www.edx.org" target="_blank" data-translate-key="edx_title">edX</a></h3>
+        <p data-translate-key="edx_description">Hochwertige Online-Kurse von Universitäten und Institutionen.</p>
       </div>
       <div class="resource-card">
-        <h3><a href="https://www.udemy.com" target="_blank">Udemy</a></h3>
-        <p>Vielfältige Kurse zu Investitionsstrategien und Finanzmanagement.</p>
+        <h3><a href="https://www.udemy.com" target="_blank" data-translate-key="udemy_title">Udemy</a></h3>
+        <p data-translate-key="udemy_description">Vielfältige Kurse zu Investitionsstrategien und Finanzmanagement.</p>
       </div>
       <div class="resource-card">
-        <h3><a href="https://www.khanacademy.org" target="_blank">Khan Academy</a></h3>
-        <p>Kostenlose Bildungsressourcen zu verschiedenen Finanzthemen.</p>
+        <h3><a href="https://www.khanacademy.org" target="_blank" data-translate-key="khanacademy_title">Khan Academy</a></h3>
+        <p data-translate-key="khanacademy_description">Kostenlose Bildungsressourcen zu verschiedenen Finanzthemen.</p>
       </div>
     </div>
   </div>
-
   <script>
+    // Translations object including lexicon data
+    const translations = {
+      "de": {
+        "title": "Ressourcen mit Lexikon",
+        "intro_text": "Auf dieser Seite findest du praktische Links zu verschiedenen Finanz- und Bildungsressourcen. Außerdem bieten wir dir ein umfangreiches Lexikon mit wichtigen Fachbegriffen aus der Finanzwelt.",
+        "toggle_label_links": "Aktiviere Links",
+        "toggle_label_lexicon": "Aktiviere Lexikon",
+        "lexicon_title": "Finanz-Lexikon",
+        "search_placeholder": "Such nach einem Begriff (z.B. 'Aktie', 'Anleihe', 'ETF') ...",
+        "recommendations_title": "Unsere Empfehlungen",
+        "ft_title": "Financial Times",
+        "ft_description": "Aktuelle Nachrichten und Analysen zu globalen Finanzmärkten.",
+        "simulator_title": "Unser Simulator",
+        "simulator_description": "Eine interaktive Plattform für das Üben von Investitionsstrategien.",
+        "wsj_title": "Wall Street Journal",
+        "wsj_description": "Umfassende Berichterstattung über Wirtschaft und Finanzmärkte.",
+        "finance_analysis_title": "Finanzanalyse",
+        "morningstar_title": "Morningstar",
+        "morningstar_description": "Bietet Investmentforschung und Daten für verschiedene Anlageklassen.",
+        "bloomberg_title": "Bloomberg",
+        "bloomberg_description": "Aktuelle Nachrichten und Analysen zu Finanzmärkten.",
+        "wallstreetmojo_title": "Wall Street Mojo",
+        "wallstreetmojo_description": "Ressourcen und Tutorials zu Finanzanalysen und Unternehmensbewertung.",
+        "fmp_title": "Financial Modeling Prep",
+        "fmp_description": "Bietet kostenlose Finanzdaten-APIs für Finanzanalysen.",
+        "marketrealist_title": "Market Realist",
+        "marketrealist_description": "Analysen und Informationen über die Finanzmärkte.",
+        "seekingalpha_title": "Seeking Alpha",
+        "seekingalpha_description": "Investmentanalysen und Meinungen von Experten.",
+        "zacks_title": "Zacks Investment Research",
+        "zacks_description": "Aktienanalysen und Investitionsberatung.",
+        "investment_resources_title": "Investmentressourcen",
+        "investopedia_title": "Investopedia",
+        "investopedia_description": "Umfassende Informationen zu Finanzthemen, einschließlich Anlagestrategien.",
+        "marketwatch_title": "MarketWatch",
+        "marketwatch_description": "Neueste Finanznachrichten und Marktanalysen.",
+        "reuters_title": "Reuters Finance",
+        "reuters_description": "Aktuelle Finanznachrichten und Marktberichte.",
+        "thebalance_title": "The Balance",
+        "thebalance_description": "Umfassende Ressourcen zu persönlichen Finanzen und Investitionen.",
+        "motleyfool_title": "The Motley Fool",
+        "motleyfool_description": "Aktienanalysen und Empfehlungen für Investoren.",
+        "schwab_title": "Charles Schwab",
+        "schwab_description": "Informationen über Anlagestrategien und Marktanalysen.",
+        "yahoofinance_title": "Yahoo Finance",
+        "yahoofinance_description": "Bietet Finanznachrichten, Daten und Unternehmensanalysen.",
+        "education_resources_title": "Bildungsressourcen",
+        "coursera_title": "Coursera",
+        "coursera_description": "Online-Kurse zu einer Vielzahl von Themen, einschließlich Finanzen.",
+        "edx_title": "edX",
+        "edx_description": "Hochwertige Online-Kurse von Universitäten und Institutionen.",
+        "udemy_title": "Udemy",
+        "udemy_description": "Vielfältige Kurse zu Investitionsstrategien und Finanzmanagement.",
+        "khanacademy_title": "Khan Academy",
+        "khanacademy_description": "Kostenlose Bildungsressourcen zu verschiedenen Finanzthemen.",
+        "lexicon": [
+          {"term": "Aktie", "definition": "Ein Wertpapier, das einen Anteil am Eigenkapital eines Unternehmens repräsentiert."},
+          {"term": "Anleihe", "definition": "Ein festverzinsliches Wertpapier, bei dem der Emittent dem Anleger Zinsen zahlt."},
+          {"term": "ETF", "definition": "Ein börsengehandelter Fonds, der die Wertentwicklung eines Index nachbildet."},
+          {"term": "Dividende", "definition": "Eine Ausschüttung von Unternehmensgewinnen an die Aktionäre."},
+          {"term": "Portfolio", "definition": "Eine Sammlung von Anlagen wie Aktien, Anleihen oder Fonds."},
+          {"term": "Rendite", "definition": "Der Gewinn oder Verlust einer Anlage, ausgedrückt als Prozentsatz."},
+          {"term": "Börse", "definition": "Ein Marktplatz, an dem Wertpapiere gehandelt werden."},
+          {"term": "Index", "definition": "Ein Maßstab für die Wertentwicklung einer Gruppe von Wertpapieren."},
+          {"term": "Zinsen", "definition": "Die Kosten für geliehenes Geld oder die Erträge aus festverzinslichen Anlagen."},
+          {"term": "Risiko", "definition": "Die Unsicherheit über die zukünftige Wertentwicklung einer Anlage."},
+          {"term": "Liquidität", "definition": "Die Leichtigkeit, mit der ein Vermögenswert in Bargeld umgewandelt werden kann."},
+          {"term": "Fonds", "definition": "Ein Investmentvehikel, das Geld von mehreren Anlegern bündelt."},
+          {"term": "Derivat", "definition": "Ein Finanzinstrument, dessen Wert von einem zugrunde liegenden Vermögenswert abhängt."},
+          {"term": "Hebel", "definition": "Die Verwendung von Fremdkapital zur Erhöhung der potenziellen Rendite."},
+          {"term": "Broker", "definition": "Ein Vermittler, der den Kauf und Verkauf von Wertpapieren ermöglicht."},
+          {"term": "Depot", "definition": "Ein Konto zur Verwaltung von Wertpapieren eines Anlegers."},
+          {"term": "Kurs", "definition": "Der aktuelle Marktpreis eines Wertpapiers."},
+          {"term": "Volatilität", "definition": "Das Ausmaß der Preisschwankungen eines Wertpapiers."},
+          {"term": "Marktkapitalisierung", "definition": "Der Gesamtwert der ausstehenden Aktien eines Unternehmens."},
+          {"term": "Bullenmarkt", "definition": "Ein Markt mit steigenden Kursen."},
+          {"term": "Bärenmarkt", "definition": "Ein Markt mit fallenden Kursen."},
+          {"term": "Diversifikation", "definition": "Die Verteilung von Anlagen, um das Risiko zu minimieren."},
+          {"term": "Option", "definition": "Ein Vertrag, der das Recht zum Kauf oder Verkauf eines Vermögenswerts gibt."},
+          {"term": "Future", "definition": "Ein Vertrag zur Lieferung eines Vermögenswerts zu einem zukünftigen Zeitpunkt."},
+          {"term": "Wirtschaftswachstum", "definition": "Die Zunahme der Produktion von Waren und Dienstleistungen in einer Volkswirtschaft."},
+          {"term": "Inflation", "definition": "Die Rate, mit der die allgemeinen Preise für Waren und Dienstleistungen steigen."},
+          {"term": "Deflation", "definition": "Die Abnahme der allgemeinen Preisniveaus in einer Volkswirtschaft."},
+          {"term": "Zentralbank", "definition": "Eine Institution, die die Geldpolitik eines Landes steuert."},
+          {"term": "Leitzins", "definition": "Der Zinssatz, den die Zentralbank für Kredite an Geschäftsbanken festlegt."},
+          {"term": "Währung", "definition": "Das offizielle Zahlungsmittel eines Landes."},
+          {"term": "Wechselkurs", "definition": "Der Kurs, zu dem eine Währung gegen eine andere getauscht wird."},
+          {"term": "Bilanz", "definition": "Eine Übersicht über die Vermögenswerte, Verbindlichkeiten und das Eigenkapital eines Unternehmens."},
+          {"term": "Gewinn", "definition": "Der Überschuss der Einnahmen über die Ausgaben eines Unternehmens."},
+          {"term": "Verlust", "definition": "Der Fall, wenn die Ausgaben die Einnahmen eines Unternehmens übersteigen."},
+          {"term": "Eigenkapital", "definition": "Der Wert der Vermögenswerte eines Unternehmens abzüglich seiner Verbindlichkeiten."},
+          {"term": "Fremdkapital", "definition": "Die Verbindlichkeiten eines Unternehmens gegenüber Gläubigern."},
+          {"term": "Cashflow", "definition": "Der Nettozufluss oder -abfluss von Bargeld in einem Unternehmen."},
+          {"term": "Dividendenrendite", "definition": "Das Verhältnis der jährlichen Dividende einer Aktie zu ihrem Kurs."},
+          {"term": "Kurs-Gewinn-Verhältnis", "definition": "Das Verhältnis des Aktienkurses zum Gewinn pro Aktie."},
+          {"term": "Fundamentalanalyse", "definition": "Die Bewertung eines Unternehmens anhand seiner finanziellen Kennzahlen."},
+          {"term": "Technische Analyse", "definition": "Die Analyse von Kursmustern und Markttrends zur Prognose von Preisen."},
+          {"term": "Rohstoffe", "definition": "Grundlegende Waren wie Öl, Gold oder Getreide, die gehandelt werden."},
+          {"term": "Anlageklasse", "definition": "Eine Gruppe von Wertpapieren mit ähnlichen Eigenschaften."},
+          {"term": "Hedge", "definition": "Eine Strategie zur Reduzierung des Anlagerisikos."},
+          {"term": "Short Selling", "definition": "Der Verkauf geliehener Wertpapiere in Erwartung fallender Kurse."},
+          {"term": "Long Position", "definition": "Der Kauf von Wertpapieren in Erwartung steigender Kurse."},
+          {"term": "Margin", "definition": "Geliehenes Geld, das zum Kauf von Wertpapieren verwendet wird."},
+          {"term": "Arbitrage", "definition": "Das Ausnutzen von Preisunterschieden auf verschiedenen Märkten."},
+          {"term": "Börsenmakler", "definition": "Eine Person oder Firma, die Wertpapiergeschäfte für Kunden ausführt."},
+          {"term": "Investmentfonds", "definition": "Ein Fonds, der das Geld vieler Anleger in verschiedene Wertpapiere investiert."},
+          {"term": "Rebalancing", "definition": "Die Anpassung eines Portfolios, um die ursprüngliche Asset-Allokation wiederherzustellen."},
+          {"term": "Blue Chip", "definition": "Aktien großer, stabiler Unternehmen mit stetigem Wachstum."},
+          {"term": "Penny Stock", "definition": "Aktien kleiner Unternehmen mit niedrigem Kurswert."},
+          {"term": "IPO", "definition": "Der erste öffentliche Verkauf von Aktien eines Unternehmens (Initial Public Offering)."},
+          {"term": "Insiderhandel", "definition": "Der Handel mit Wertpapieren auf Basis nicht öffentlicher Informationen."},
+          {"term": "Marktorder", "definition": "Eine Anweisung, ein Wertpapier zum aktuellen Marktpreis zu kaufen oder verkaufen."},
+          {"term": "Limit-Order", "definition": "Eine Anweisung, ein Wertpapier zu einem bestimmten Preis zu kaufen oder verkaufen."},
+          {"term": "Stop-Order", "definition": "Eine Anweisung, ein Wertpapier zu kaufen oder verkaufen, wenn ein bestimmter Preis erreicht wird."},
+          {"term": "Dividendenpolitik", "definition": "Die Strategie eines Unternehmens zur Ausschüttung von Dividenden."},
+          {"term": "Kapitalerhöhung", "definition": "Die Ausgabe neuer Aktien zur Beschaffung von Kapital."},
+          {"term": "Aktienrückkauf", "definition": "Der Rückkauf eigener Aktien durch ein Unternehmen."},
+          {"term": "Kreditrating", "definition": "Eine Bewertung der Kreditwürdigkeit eines Unternehmens oder Staates."},
+          {"term": "Schuldverschreibung", "definition": "Ein schriftliches Versprechen, einen geliehenen Betrag zurückzuzahlen."},
+          {"term": "Wertpapierdepot", "definition": "Ein Konto zur Verwaltung von Wertpapieren."},
+          {"term": "Finanzmarkt", "definition": "Ein Markt, auf dem Finanzinstrumente gehandelt werden."},
+          {"term": "Börsenindex", "definition": "Ein Index, der die Wertentwicklung einer Gruppe von Aktien misst."},
+          {"term": "Spekulation", "definition": "Das Eingehen von Risiken in der Hoffnung auf hohe Renditen."},
+          {"term": "Anleger", "definition": "Eine Person oder Institution, die Kapital in Wertpapiere investiert."},
+          {"term": "Kapitalmarkt", "definition": "Ein Markt für den Handel mit langfristigen Wertpapieren."},
+          {"term": "Geldmarkt", "definition": "Ein Markt für den Handel mit kurzfristigen Finanzinstrumenten."},
+          {"term": "Dividendenaristokrat", "definition": "Ein Unternehmen, das über viele Jahre konsequent Dividenden erhöht hat."},
+          {"term": "Wertpapieranalyse", "definition": "Die Bewertung von Wertpapieren zur Anlageentscheidung."},
+          {"term": "Anlagehorizont", "definition": "Die Zeitspanne, für die eine Anlage geplant ist."},
+          {"term": "Renditeerwartung", "definition": "Die erwartete Rendite einer Anlage."},
+          {"term": "Kursziel", "definition": "Ein prognostizierter Preis für eine Aktie."},
+          {"term": "Markttrend", "definition": "Die allgemeine Richtung der Kursbewegungen eines Marktes."},
+          {"term": "Handelsvolumen", "definition": "Die Anzahl der an einem Tag gehandelten Aktien."},
+          {"term": "Börsennotierung", "definition": "Die Aufnahme eines Unternehmens an einer Börse."},
+          {"term": "Kapitalgewinn", "definition": "Der Gewinn aus dem Verkauf eines Vermögenswerts zu einem höheren Preis."},
+          {"term": "Verlustabsicherung", "definition": "Strategien zur Minimierung von Anlageverlusten."},
+          {"term": "Anlageberater", "definition": "Ein Experte, der Ratschläge zu Investitionen gibt."},
+          {"term": "Wertpapierhandel", "definition": "Der Kauf und Verkauf von Wertpapieren an einer Börse."},
+          {"term": "Marktmanipulation", "definition": "Illegale Praktiken zur Beeinflussung von Wertpapierpreisen."},
+          {"term": "Börsenaufsicht", "definition": "Die Regulierung und Überwachung von Finanzmärkten."},
+          {"term": "Finanzinstrument", "definition": "Ein Vertrag, der einen finanziellen Vermögenswert darstellt."},
+          {"term": "Anlagestrategie", "definition": "Ein Plan zur Auswahl und Verwaltung von Anlagen."},
+          {"term": "Asset-Allokation", "definition": "Die Verteilung von Vermögenswerten in einem Portfolio."},
+          {"term": "Kursentwicklung", "definition": "Die Veränderung des Preises eines Wertpapiers über die Zeit."},
+          {"term": "Bilanzanalyse", "definition": "Die Untersuchung der Finanzlage eines Unternehmens anhand seiner Bilanz."},
+          {"term": "Kreditrisiko", "definition": "Das Risiko, dass ein Schuldner seinen Verpflichtungen nicht nachkommt."},
+          {"term": "Marktpreis", "definition": "Der aktuelle Preis, zu dem ein Wertpapier gehandelt wird."},
+          {"term": "Emittent", "definition": "Ein Unternehmen oder eine Institution, die Wertpapiere ausgibt."},
+          {"term": "Anleihenrendite", "definition": "Die Rendite, die eine Anleihe basierend auf ihrem Preis und Zinsen bietet."},
+          {"term": "Finanzplanung", "definition": "Der Prozess der Festlegung finanzieller Ziele und Strategien."},
+          {"term": "Wirtschaftsindikator", "definition": "Statistische Daten, die die wirtschaftliche Lage anzeigen."},
+          {"term": "Portfoliomanagement", "definition": "Die Verwaltung von Anlagen zur Erreichung spezifischer Ziele."},
+          {"term": "Anlageprodukt", "definition": "Ein Finanzinstrument, das für Investitionen angeboten wird."},
+          {"term": "Marktsegment", "definition": "Eine Untergruppe eines Marktes mit spezifischen Merkmalen."},
+          {"term": "Finanzierung", "definition": "Die Bereitstellung von Kapital für geschäftliche Aktivitäten."},
+          {"term": "Kostenbasis", "definition": "Der ursprüngliche Kaufpreis eines Vermögenswerts für Steuerzwecke."},
+          {"term": "Wertpapierbewertung", "definition": "Die Bestimmung des fairen Werts eines Wertpapiers."}
+        ]
+      },
+      "en": {
+        "title": "Resources with Lexicon",
+        "intro_text": "On this page, you will find practical links to various financial and educational resources. We also offer a comprehensive lexicon with important financial terms.",
+        "toggle_label_links": "Enable Links",
+        "toggle_label_lexicon": "Enable Lexicon",
+        "lexicon_title": "Financial Lexicon",
+        "search_placeholder": "Search for a term (e.g., 'Stock', 'Bond', 'ETF') ...",
+        "recommendations_title": "Our Recommendations",
+        "ft_title": "Financial Times",
+        "ft_description": "Current news and analyses on global financial markets.",
+        "simulator_title": "Our Simulator",
+        "simulator_description": "An interactive platform for practicing investment strategies.",
+        "wsj_title": "Wall Street Journal",
+        "wsj_description": "Comprehensive coverage of business and financial markets.",
+        "finance_analysis_title": "Financial Analysis",
+        "morningstar_title": "Morningstar",
+        "morningstar_description": "Provides investment research and data for various asset classes.",
+        "bloomberg_title": "Bloomberg",
+        "bloomberg_description": "Current news and analyses on financial markets.",
+        "wallstreetmojo_title": "Wall Street Mojo",
+        "wallstreetmojo_description": "Resources and tutorials on financial analysis and company valuation.",
+        "fmp_title": "Financial Modeling Prep",
+        "fmp_description": "Offers free financial data APIs for financial analysis.",
+        "marketrealist_title": "Market Realist",
+        "marketrealist_description": "Analyses and information about financial markets.",
+        "seekingalpha_title": "Seeking Alpha",
+        "seekingalpha_description": "Investment analyses and expert opinions.",
+        "zacks_title": "Zacks Investment Research",
+        "zacks_description": "Stock analyses and investment advice.",
+        "investment_resources_title": "Investment Resources",
+        "investopedia_title": "Investopedia",
+        "investopedia_description": "Comprehensive information on financial topics, including investment strategies.",
+        "marketwatch_title": "MarketWatch",
+        "marketwatch_description": "Latest financial news and market analyses.",
+        "reuters_title": "Reuters Finance",
+        "reuters_description": "Current financial news and market reports.",
+        "thebalance_title": "The Balance",
+        "thebalance_description": "Comprehensive resources on personal finance and investments.",
+        "motleyfool_title": "The Motley Fool",
+        "motleyfool_description": "Stock analyses and recommendations for investors.",
+        "schwab_title": "Charles Schwab",
+        "schwab_description": "Information on investment strategies and market analyses.",
+        "yahoofinance_title": "Yahoo Finance",
+        "yahoofinance_description": "Provides financial news, data, and company analyses.",
+        "education_resources_title": "Educational Resources",
+        "coursera_title": "Coursera",
+        "coursera_description": "Online courses on a variety of topics, including finance.",
+        "edx_title": "edX",
+        "edx_description": "High-quality online courses from universities and institutions.",
+        "udemy_title": "Udemy",
+        "udemy_description": "Diverse courses on investment strategies and financial management.",
+        "khanacademy_title": "Khan Academy",
+        "khanacademy_description": "Free educational resources on various financial topics.",
+        "lexicon": [
+          {"term": "Stock", "definition": "A security that represents a share of ownership in a company."},
+          {"term": "Bond", "definition": "A fixed-income security where the issuer pays interest to the investor."},
+          {"term": "ETF", "definition": "An exchange-traded fund that tracks the performance of an index."},
+          {"term": "Dividend", "definition": "A distribution of company profits to shareholders."},
+          {"term": "Portfolio", "definition": "A collection of investments such as stocks, bonds, or funds."},
+          {"term": "Return", "definition": "The gain or loss on an investment, expressed as a percentage."},
+          {"term": "Stock Exchange", "definition": "A marketplace where securities are traded."},
+          {"term": "Index", "definition": "A benchmark for the performance of a group of securities."},
+          {"term": "Interest", "definition": "The cost of borrowed money or the return on fixed-income investments."},
+          {"term": "Risk", "definition": "The uncertainty regarding the future performance of an investment."},
+          {"term": "Liquidity", "definition": "The ease with which an asset can be converted into cash."},
+          {"term": "Fund", "definition": "An investment vehicle that pools money from multiple investors."},
+          {"term": "Derivative", "definition": "A financial instrument whose value depends on an underlying asset."},
+          {"term": "Leverage", "definition": "The use of borrowed capital to increase potential returns."},
+          {"term": "Broker", "definition": "An intermediary who facilitates the buying and selling of securities."},
+          {"term": "Brokerage Account", "definition": "An account for managing an investor's securities."},
+          {"term": "Price", "definition": "The current market value of a security."},
+          {"term": "Volatility", "definition": "The degree of price fluctuations of a security."},
+          {"term": "Market Capitalization", "definition": "The total value of a company's outstanding shares."},
+          {"term": "Bull Market", "definition": "A market with rising prices."},
+          {"term": "Bear Market", "definition": "A market with declining prices."},
+          {"term": "Diversification", "definition": "Spreading investments to minimize risk."},
+          {"term": "Option", "definition": "A contract granting the right to buy or sell an asset."},
+          {"term": "Future", "definition": "A contract to deliver an asset at a future date."},
+          {"term": "Economic Growth", "definition": "The increase in the production of goods and services in an economy."},
+          {"term": "Inflation", "definition": "The rate at which general prices for goods and services rise."},
+          {"term": "Deflation", "definition": "The decrease in general price levels in an economy."},
+          {"term": "Central Bank", "definition": "An institution that controls a country's monetary policy."},
+          {"term": "Interest Rate", "definition": "The rate set by the central bank for loans to commercial banks."},
+          {"term": "Currency", "definition": "The official medium of exchange in a country."},
+          {"term": "Exchange Rate", "definition": "The rate at which one currency is exchanged for another."},
+          {"term": "Balance Sheet", "definition": "A summary of a company's assets, liabilities, and equity."},
+          {"term": "Profit", "definition": "The excess of revenues over expenses in a company."},
+          {"term": "Loss", "definition": "When a company's expenses exceed its revenues."},
+          {"term": "Equity", "definition": "The value of a company's assets minus its liabilities."},
+          {"term": "Debt", "definition": "A company's obligations to creditors."},
+          {"term": "Cash Flow", "definition": "The net inflow or outflow of cash in a company."},
+          {"term": "Dividend Yield", "definition": "The ratio of a stock's annual dividend to its price."},
+          {"term": "Price-to-Earnings Ratio", "definition": "The ratio of a stock's price to its earnings per share."},
+          {"term": "Fundamental Analysis", "definition": "Evaluating a company based on its financial metrics."},
+          {"term": "Technical Analysis", "definition": "Analyzing price patterns and market trends to forecast prices."},
+          {"term": "Commodities", "definition": "Basic goods like oil, gold, or grain that are traded."},
+          {"term": "Asset Class", "definition": "A group of securities with similar characteristics."},
+          {"term": "Hedge", "definition": "A strategy to reduce investment risk."},
+          {"term": "Short Selling", "definition": "Selling borrowed securities expecting falling prices."},
+          {"term": "Long Position", "definition": "Buying securities expecting rising prices."},
+          {"term": "Margin", "definition": "Borrowed money used to purchase securities."},
+          {"term": "Arbitrage", "definition": "Exploiting price differences across markets."},
+          {"term": "Stockbroker", "definition": "A person or firm executing securities trades for clients."},
+          {"term": "Mutual Fund", "definition": "A fund investing pooled money in various securities."},
+          {"term": "Rebalancing", "definition": "Adjusting a portfolio to restore its original asset allocation."},
+          {"term": "Blue Chip", "definition": "Stocks of large, stable companies with consistent growth."},
+          {"term": "Penny Stock", "definition": "Stocks of small companies with low share prices."},
+          {"term": "IPO", "definition": "The first public sale of a company's shares (Initial Public Offering)."},
+          {"term": "Insider Trading", "definition": "Trading securities based on non-public information."},
+          {"term": "Market Order", "definition": "An order to buy or sell a security at the current market price."},
+          {"term": "Limit Order", "definition": "An order to buy or sell a security at a specific price."},
+          {"term": "Stop Order", "definition": "An order to buy or sell when a security reaches a certain price."},
+          {"term": "Dividend Policy", "definition": "A company's strategy for distributing dividends."},
+          {"term": "Capital Increase", "definition": "Issuing new shares to raise capital."},
+          {"term": "Share Buyback", "definition": "A company repurchasing its own shares."},
+          {"term": "Credit Rating", "definition": "An assessment of a company or country's creditworthiness."},
+          {"term": "Bond Note", "definition": "A written promise to repay a borrowed amount."},
+          {"term": "Securities Account", "definition": "An account for managing securities."},
+          {"term": "Financial Market", "definition": "A market where financial instruments are traded."},
+          {"term": "Stock Index", "definition": "An index measuring the performance of a group of stocks."},
+          {"term": "Speculation", "definition": "Taking risks in hopes of high returns."},
+          {"term": "Investor", "definition": "A person or entity investing capital in securities."},
+          {"term": "Capital Market", "definition": "A market for trading long-term securities."},
+          {"term": "Money Market", "definition": "A market for trading short-term financial instruments."},
+          {"term": "Dividend Aristocrat", "definition": "A company consistently increasing dividends over years."},
+          {"term": "Securities Analysis", "definition": "Evaluating securities for investment decisions."},
+          {"term": "Investment Horizon", "definition": "The planned duration of an investment."},
+          {"term": "Return Expectation", "definition": "The anticipated return on an investment."},
+          {"term": "Price Target", "definition": "A forecasted price for a stock."},
+          {"term": "Market Trend", "definition": "The general direction of a market's price movements."},
+          {"term": "Trading Volume", "definition": "The number of shares traded in a day."},
+          {"term": "Stock Listing", "definition": "A company's inclusion on a stock exchange."},
+          {"term": "Capital Gain", "definition": "The profit from selling an asset at a higher price."},
+          {"term": "Loss Mitigation", "definition": "Strategies to minimize investment losses."},
+          {"term": "Financial Advisor", "definition": "An expert providing investment advice."},
+          {"term": "Securities Trading", "definition": "Buying and selling securities on an exchange."},
+          {"term": "Market Manipulation", "definition": "Illegal practices to influence security prices."},
+          {"term": "Market Regulation", "definition": "The oversight and regulation of financial markets."},
+          {"term": "Financial Instrument", "definition": "A contract representing a financial asset."},
+          {"term": "Investment Strategy", "definition": "A plan for selecting and managing investments."},
+          {"term": "Asset Allocation", "definition": "The distribution of assets in a portfolio."},
+          {"term": "Price Performance", "definition": "The change in a security's price over time."},
+          {"term": "Balance Sheet Analysis", "definition": "Examining a company's financial position via its balance sheet."},
+          {"term": "Credit Risk", "definition": "The risk that a borrower will default on obligations."},
+          {"term": "Market Price", "definition": "The current price at which a security is traded."},
+          {"term": "Issuer", "definition": "A company or institution issuing securities."},
+          {"term": "Bond Yield", "definition": "The return on a bond based on its price and interest."},
+          {"term": "Financial Planning", "definition": "The process of setting financial goals and strategies."},
+          {"term": "Economic Indicator", "definition": "Statistical data indicating economic conditions."},
+          {"term": "Portfolio Management", "definition": "Managing investments to achieve specific goals."},
+          {"term": "Investment Product", "definition": "A financial instrument offered for investment."},
+          {"term": "Market Segment", "definition": "A subgroup of a market with specific characteristics."},
+          {"term": "Financing", "definition": "Providing capital for business activities."},
+          {"term": "Cost Basis", "definition": "The original purchase price of an asset for tax purposes."},
+          {"term": "Securities Valuation", "definition": "Determining the fair value of a security."}
+        ]
+      },
+      "fr": {
+        "title": "Ressources avec Lexique",
+        "intro_text": "Sur cette page, vous trouverez des liens pratiques vers diverses ressources financières et éducatives. Nous proposons également un lexique complet avec des termes financiers importants.",
+        "toggle_label_links": "Activer les Liens",
+        "toggle_label_lexicon": "Activer le Lexique",
+        "lexicon_title": "Lexique Financier",
+        "search_placeholder": "Rechercher un terme (par ex., 'Action', 'Obligation', 'ETF') ...",
+        "recommendations_title": "Nos Recommandations",
+        "ft_title": "Financial Times",
+        "ft_description": "Actualités et analyses actuelles sur les marchés financiers mondiaux.",
+        "simulator_title": "Notre Simulateur",
+        "simulator_description": "Une plateforme interactive pour pratiquer les stratégies d'investissement.",
+        "wsj_title": "Wall Street Journal",
+        "wsj_description": "Couverture complète de l'économie et des marchés financiers.",
+        "finance_analysis_title": "Analyse Financière",
+        "morningstar_title": "Morningstar",
+        "morningstar_description": "Fournit des recherches et des données sur les investissements pour diverses classes d'actifs.",
+        "bloomberg_title": "Bloomberg",
+        "bloomberg_description": "Actualités et analyses actuelles sur les marchés financiers.",
+        "wallstreetmojo_title": "Wall Street Mojo",
+        "wallstreetmojo_description": "Ressources etburgois et tutoriels sur l'analyse financière et l'évaluation des entreprises.",
+        "fmp_title": "Financial Modeling Prep",
+        "fmp_description": "Offre des API de données financières gratuites pour l'analyse financière.",
+        "marketrealist_title": "Market Realist",
+        "marketrealist_description": "Analyses et informations sur les marchés financiers.",
+        "seekingalpha_title": "Seeking Alpha",
+        "seekingalpha_description": "Analyses d'investissement et opinions d'experts.",
+        "zacks_title": "Zacks Investment Research",
+        "zacks_description": "Analyses boursières et conseils d'investissement.",
+        "investment_resources_title": "Ressources d'Investissement",
+        "investopedia_title": "Investopedia",
+        "investopedia_description": "Informations complètes sur les sujets financiers, y compris les stratégies d'investissement.",
+        "marketwatch_title": "MarketWatch",
+        "marketwatch_description": "Dernières actualités financières et analyses de marché.",
+        "reuters_title": "Reuters Finance",
+        "reuters_description": "Actualités financières et rapports de marché actuels.",
+        "thebalance_title": "The Balance",
+        "thebalance_description": "Ressources complètes sur les finances personnelles et les investissements.",
+        "motleyfool_title": "The Motley Fool",
+        "motleyfool_description": "Analyses boursières et recommandations pour les investisseurs.",
+        "schwab_title": "Charles Schwab",
+        "schwab_description": "Informations sur les stratégies d'investissement et les analyses de marché.",
+        "yahoofinance_title": "Yahoo Finance",
+        "yahoofinance_description": "Fournit des actualités financières, des données et des analyses d'entreprises.",
+        "education_resources_title": "Ressources Éducatives",
+        "coursera_title": "Coursera",
+        "coursera_description": "Cours en ligne sur une variété de sujets, y compris la finance.",
+        "edx_title": "edX",
+        "edx_description": "Cours en ligne de haute qualité proposés par des universités et des institutions.",
+        "udemy_title": "Udemy",
+        "udemy_description": "Cours variés sur les stratégies d'investissement et la gestion financière.",
+        "khanacademy_title": "Khan Academy",
+        "khanacademy_description": "Ressources éducatives gratuites sur divers sujets financiers.",
+        "lexicon": [
+          {"term": "Action", "definition": "Un titre qui représente une part de propriété dans une entreprise."},
+          {"term": "Obligation", "definition": "Un titre à revenu fixe où l'émetteur paie des intérêts à l'investisseur."},
+          {"term": "ETF", "definition": "Un fonds négocié en bourse qui suit la performance d'un indice."},
+          {"term": "Dividende", "definition": "Une distribution des bénéfices d'une entreprise aux actionnaires."},
+          {"term": "Portefeuille", "definition": "Une collection d'investissements tels que des actions, obligations ou fonds."},
+          {"term": "Rendement", "definition": "Le gain ou la perte sur un investissement, exprimé en pourcentage."},
+          {"term": "Bourse", "definition": "Un marché où les titres financiers sont échangés."},
+          {"term": "Indice", "definition": "Un indicateur de la performance d'un groupe de titres."},
+          {"term": "Intérêt", "definition": "Le coût de l'argent emprunté ou le rendement des investissements à revenu fixe."},
+          {"term": "Risque", "definition": "L'incertitude concernant la performance future d'un investissement."},
+          {"term": "Liquidité", "definition": "La facilité avec laquelle un actif peut être converti en liquidités."},
+          {"term": "Fonds", "definition": "Un véhicule d'investissement qui regroupe l'argent de plusieurs investisseurs."},
+          {"term": "Dérivé", "definition": "Un instrument financier dont la valeur dépend d'un actif sous-jacent."},
+          {"term": "Effet de levier", "definition": "L'utilisation de capitaux empruntés pour augmenter les rendements potentiels."},
+          {"term": "Courtier", "definition": "Un intermédiaire qui facilite l'achat et la vente de titres."},
+          {"term": "Compte de courtage", "definition": "Un compte pour gérer les titres d'un investisseur."},
+          {"term": "Prix", "definition": "La valeur marchande actuelle d'un titre."},
+          {"term": "Volatilité", "definition": "Le degré de fluctuations des prix d'un titre."},
+          {"term": "Capitalisation boursière", "definition": "La valeur totale des actions en circulation d'une entreprise."},
+          {"term": "Marché haussier", "definition": "Un marché avec des prix en hausse."},
+          {"term": "Marché baissier", "definition": "Un marché avec des prix en baisse."},
+          {"term": "Diversification", "definition": "Répartir les investissements pour minimiser les risques."},
+          {"term": "Option", "definition": "Un contrat donnant le droit d'acheter ou de vendre un actif."},
+          {"term": "Future", "definition": "Un contrat pour livrer un actif à une date future."},
+          {"term": "Croissance économique", "definition": "L'augmentation de la production de biens et services dans une économie."},
+          {"term": "Inflation", "definition": "Le taux auquel les prix généraux des biens et services augmentent."},
+          {"term": "Déflation", "definition": "La diminution des niveaux de prix généraux dans une économie."},
+          {"term": "Banque centrale", "definition": "Une institution qui contrôle la politique monétaire d'un pays."},
+          {"term": "Taux d'intérêt", "definition": "Le taux fixé par la banque centrale pour les prêts aux banques commerciales."},
+          {"term": "Devise", "definition": "Le moyen de paiement officiel d'un pays."},
+          {"term": "Taux de change", "definition": "Le taux auquel une devise est échangée contre une autre."},
+          {"term": "Bilan", "definition": "Un résumé des actifs, passifs et capitaux propres d'une entreprise."},
+          {"term": "Profit", "definition": "L'excédent des revenus sur les dépenses d'une entreprise."},
+          {"term": "Perte", "definition": "Lorsque les dépenses d'une entreprise dépassent ses revenus."},
+          {"term": "Capitaux propres", "definition": "La valeur des actifs d'une entreprise moins ses passifs."},
+          {"term": "Dette", "definition": "Les obligations d'une entreprise envers ses créanciers."},
+          {"term": "Flux de trésorerie", "definition": "L'entrée ou la sortie nette de liquidités dans une entreprise."},
+          {"term": "Rendement du dividende", "definition": "Le rapport entre le dividende annuel d'une action et son prix."},
+          {"term": "Ratio cours-bénéfice", "definition": "Le rapport entre le prix d'une action et son bénéfice par action."},
+          {"term": "Analyse fondamentale", "definition": "L'évaluation d'une entreprise basée sur ses indicateurs financiers."},
+          {"term": "Analyse technique", "definition": "L'analyse des modèles de prix et des tendances du marché pour prévoir les prix."},
+          {"term": "Matières premières", "definition": "Des biens de base comme le pétrole, l'or ou les céréales, qui sont échangés."},
+          {"term": "Classe d'actifs", "definition": "Un groupe de titres ayant des caractéristiques similaires."},
+          {"term": "Couverture", "definition": "Une stratégie pour réduire le risque d'investissement."},
+          {"term": "Vente à découvert", "definition": "La vente de titres empruntés en anticipant une baisse des prix."},
+          {"term": "Position longue", "definition": "L'achat de titres en anticipant une hausse des prix."},
+          {"term": "Marge", "definition": "De l'argent emprunté utilisé pour acheter des titres."},
+          {"term": "Arbitrage", "definition": "L'exploitation des différences de prix sur différents marchés."},
+          {"term": "Courtier en bourse", "definition": "Une personne ou une entreprise exécutant des transactions de titres pour des clients."},
+          {"term": "Fonds commun de placement", "definition": "Un fonds investissant l'argent collecté dans divers titres."},
+          {"term": "Rééquilibrage", "definition": "L'ajustement d'un portefeuille pour rétablir l'allocation d'actifs initiale."},
+          {"term": "Blue Chip", "definition": "Actions de grandes entreprises stables avec une croissance constante."},
+          {"term": "Penny Stock", "definition": "Actions de petites entreprises avec des prix bas."},
+          {"term": "IPO", "definition": "La première vente publique des actions d'une entreprise (Introduction en Bourse)."},
+          {"term": "Délit d'initié", "definition": "Le commerce de titres basé sur des informations non publiques."},
+          {"term": "Ordre au marché", "definition": "Un ordre d'achat ou de vente d'un titre au prix actuel du marché."},
+          {"term": "Ordre à cours limité", "definition": "Un ordre d'achat ou de vente d'un titre à un prix spécifique."},
+          {"term": "Ordre stop", "definition": "Un ordre d'achat ou de vente lorsqu'un titre atteint un certain prix."},
+          {"term": "Politique de dividende", "definition": "La stratégie d'une entreprise pour distribuer des dividendes."},
+          {"term": "Augmentation de capital", "definition": "L'émission de nouvelles actions pour lever du capital."},
+          {"term": "Rachat d'actions", "definition": "Le rachat par une entreprise de ses propres actions."},
+        {"term": "Notation de crédit", "definition": "Une évaluation de la solvabilité d'une entreprise ou d'un pays."},
+          {"term": "Obligation écrite", "definition": "Une promesse écrite de rembourser un montant emprunté."},
+          {"term": "Compte de titres", "definition": "Un compte pour gérer les titres d'un investisseur."},
+          {"term": "Marché financier", "definition": "Un marché où les instruments financiers sont échangés."},
+          {"term": "Indice boursier", "definition": "Un indice mesurant la performance d'un groupe d'actions."},
+          {"term": "Spéculation", "definition": "Prendre des risques dans l'espoir de rendements élevés."},
+          {"term": "Investisseur", "definition": "Une personne ou une entité investissant du capital dans des titres."},
+          {"term": "Marché des capitaux", "definition": "Un marché pour le commerce de titres à long terme."},
+          {"term": "Marché monétaire", "definition": "Un marché pour le commerce d'instruments financiers à court terme."},
+          {"term": "Aristocrate du dividende", "definition": "Une entreprise augmentant constamment ses dividendes sur plusieurs années."},
+          {"term": "Analyse des titres", "definition": "L'évaluation des titres pour les décisions d'investissement."},
+          {"term": "Horizon d'investissement", "definition": "La durée prévue d'un investissement."},
+          {"term": "Attente de rendement", "definition": "Le rendement anticipé d'un investissement."},
+          {"term": "Objectif de prix", "definition": "Un prix prévisionnel pour une action."},
+          {"term": "Tendance de marché", "definition": "La direction générale des mouvements de prix d'un marché."},
+          {"term": "Volume d'échange", "definition": "Le nombre d'actions échangées en une journée."},
+          {"term": "Cotation boursière", "definition": "L'inclusion d'une entreprise sur une bourse."},
+          {"term": "Gain en capital", "definition": "Le profit réalisé en vendant un actif à un prix plus élevé."},
+          {"term": "Atténuation des pertes", "definition": "Stratégies pour minimiser les pertes d'investissement."},
+          {"term": "Conseiller financier", "definition": "Un expert fournissant des conseils sur les investissements."},
+          {"term": "Commerce de titres", "definition": "L'achat et la vente de titres sur une bourse."},
+          {"term": "Manipulation de marché", "definition": "Pratiques illégales pour influencer les prix des titres."},
+          {"term": "Régulation du marché", "definition": "La supervision et la régulation des marchés financiers."},
+          {"term": "Instrument financier", "definition": "Un contrat représentant un actif financier."},
+          {"term": "Stratégie d'investissement", "definition": "Un plan pour sélectionner et gérer les investissements."},
+          {"term": "Allocation d'actifs", "definition": "La répartition des actifs dans un portefeuille."},
+          {"term": "Performance des prix", "definition": "Le changement du prix d'un titre au fil du temps."},
+          {"term": "Analyse de bilan", "definition": "L'examen de la situation financière d'une entreprise via son bilan."},
+          {"term": "Risque de crédit", "definition": "Le risque qu'un emprunteur ne respecte pas ses obligations."},
+          {"term": "Prix de marché", "definition": "Le prix actuel auquel un titre est échangé."},
+          {"term": "Émetteur", "definition": "Une entreprise ou institution émettant des titres."},
+          {"term": "Rendement obligataire", "definition": "Le rendement d'une obligation basé sur son prix et ses intérêts."},
+          {"term": "Planification financière", "definition": "Le processus de définition des objectifs et stratégies financiers."},
+          {"term": "Indicateur économique", "definition": "Données statistiques indiquant les conditions économiques."},
+          {"term": "Gestion de portefeuille", "definition": "La gestion des investissements pour atteindre des objectifs spécifiques."},
+          {"term": "Produit d'investissement", "definition": "Un instrument financier offert pour l'investissement."},
+          {"term": "Segment de marché", "definition": "Un sous-groupe de marché avec des caractéristiques spécifiques."},
+          {"term": "Financement", "definition": "La fourniture de capital pour des activités commerciales."},
+          {"term": "Base de coût", "definition": "Le prix d'achat initial d'un actif à des fins fiscales."},
+          {"term": "Évaluation des titres", "definition": "La détermination de la juste valeur d'un titre."}
+        ]
+      }
+    };
+    // Function to apply translations
+    function applyTranslations(targetLang) {
+      const elements = document.querySelectorAll('[data-translate-key]');
+      if (!translations[targetLang]) return;
+      elements.forEach(element => {
+        const key = element.getAttribute('data-translate-key');
+        if (translations[targetLang][key]) {
+          if (element.tagName === 'INPUT' && element.type === 'text') {
+            element.placeholder = translations[targetLang][key];
+          } else {
+            element.innerHTML = translations[targetLang][key];
+          }
+        }
+      });
+      document.title = translations[targetLang].title;
+      document.documentElement.lang = targetLang;
+      // Update toggle label based on switch state
+      const viewSwitch = document.getElementById('viewSwitch');
+      const toggleLabel = document.getElementById('toggleLabel');
+      if (toggleLabel) {
+        toggleLabel.textContent = viewSwitch.checked ? translations[targetLang].toggle_label_lexicon : translations[targetLang].toggle_label_links;
+      }
+      // Update lexicon display
+      const searchInput = document.getElementById('searchInput');
+      const filter = searchInput ? searchInput.value.trim() : '';
+      displayLexicon(translations[targetLang].lexicon, filter);
+    }
+    // Function to translate the page
+    function translatePage(targetLang) {
+      if (targetLang === currentLang) return;
+      currentLang = targetLang;
+      applyTranslations(targetLang);
+      localStorage.setItem('preferredLanguage', targetLang);
+      // Ensure lexicon is displayed when switching to lexicon view
+      const viewSwitch = document.getElementById('viewSwitch');
+      if (!viewSwitch.checked) {
+        displayLexicon(translations[currentLang].lexicon);
+      }
+    }
+    let currentLang = 'de'; // Default language
     document.addEventListener('DOMContentLoaded', function() {
       const viewSwitch = document.getElementById('viewSwitch');
       const toggleLabel = document.getElementById('toggleLabel');
@@ -451,40 +938,32 @@
       const linksContainer = document.getElementById('links-container');
       const searchInput = document.getElementById('searchInput');
       const lexiconList = document.getElementById('lexiconList');
-
+      // Apply initial translations
+      const storedLang = localStorage.getItem('preferredLanguage');
+      if (storedLang && translations[storedLang]) {
+        translatePage(storedLang);
+      } else {
+        applyTranslations('de');
+      }
       // Function to update the view based on toggle switch
       function updateView() {
         if (viewSwitch.checked) {
           lexiconContainer.style.display = 'none';
           linksContainer.style.display = 'block';
-          toggleLabel.textContent = 'Aktiviere Lexicon';
+          toggleLabel.textContent = translations[currentLang].toggle_label_lexicon;
         } else {
           lexiconContainer.style.display = 'block';
           linksContainer.style.display = 'none';
-          toggleLabel.textContent = 'Aktiviere Links';
+          toggleLabel.textContent = translations[currentLang].toggle_label_links;
+          // Ensure lexicon is populated when switching to lexicon view
+          const filter = searchInput.value.trim();
+          displayLexicon(translations[currentLang].lexicon, filter);
         }
       }
-
       // Handle toggle changes
       viewSwitch.addEventListener('change', updateView);
       // Initialize the view (lexicon shown by default)
       updateView();
-
-      // Function to fetch lexicon data from external JSON file
-      async function fetchLexicon() {
-        try {
-          const response = await fetch('lexicon.json');
-          if (!response.ok) {
-            throw new Error('Netzwerkantwort war nicht ok');
-          }
-          const lexiconData = await response.json();
-          displayLexicon(lexiconData);
-        } catch (error) {
-          console.error('Fehler beim Laden des Lexikons:', error);
-          lexiconList.innerHTML = '<p>Lexikon konnte nicht geladen werden.</p>';
-        }
-      }
-
       // Function to escape HTML to prevent XSS
       function escapeHTML(str) {
         return str.replace(/[&<>'"]/g, function(tag) {
@@ -498,17 +977,16 @@
           return charsToReplace[tag] || tag;
         });
       }
-
       // Function to highlight matched text
       function highlightMatch(text, query) {
         if (!query) return escapeHTML(text);
         const regex = new RegExp(`(${query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
         return escapeHTML(text).replace(regex, '<span class="highlight">$1</span>');
       }
-
       // Function to display lexicon items
       function displayLexicon(lexiconData, filter = '') {
         lexiconList.innerHTML = ''; // Clear existing items
+        if (!lexiconData) return; // Prevent errors if lexiconData is undefined
         lexiconData.forEach(item => {
           // Only display items that match the filter
           if (item.term.toUpperCase().includes(filter.toUpperCase())) {
@@ -522,10 +1000,8 @@
           }
         });
       }
-
-      // Fetch lexicon data on page load
-      fetchLexicon();
-
+      // Display initial lexicon data
+      displayLexicon(translations[currentLang].lexicon);
       // Debounce function to limit the rate of function calls
       function debounce(func, delay) {
         let debounceTimer;
@@ -536,22 +1012,22 @@
           debounceTimer = setTimeout(() => func.apply(context, args), delay);
         }
       }
-
       // Filter function for the lexicon with highlighting
       if (searchInput) {
         searchInput.addEventListener('input', debounce(function() {
           const filter = searchInput.value.trim();
-          fetch('lexicon.json')
-            .then(response => response.json())
-            .then(lexiconData => {
-              displayLexicon(lexiconData, filter);
-            })
-            .catch(error => {
-              console.error('Fehler beim Laden des Lexikons:', error);
-              lexiconList.innerHTML = '<p>Lexikon konnte nicht geladen werden.</p>';
-            });
+          displayLexicon(translations[currentLang].lexicon, filter);
         }, 300)); // Debounce delay of 300ms
       }
+      // Listen for language change messages from parent
+      window.addEventListener('message', (event) => {
+        if (event.data.type === 'LANGUAGE_CHANGE' && event.data.source !== 'resources-iframe') {
+          console.log("Resources received LANGUAGE_CHANGE:", event.data.language);
+          if (translations[event.data.language] && event.data.language !== currentLang) {
+            translatePage(event.data.language);
+          }
+        }
+      });
     });
   </script>
 </body>

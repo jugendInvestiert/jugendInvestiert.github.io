@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-translate-key="title">Kurs 1: Deflation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+    font-family: 'Poppins', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #101820;
+    color: white;
+    overflow-x: hidden;
+    margin-top: 40px;
+    padding-bottom: 50px;
+}
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    z-index: 1000;
+    padding-left: 30px;
+}
+.navbar .cross {
+    font-size: 1.5em;
+    cursor: pointer;
+}
+.navbar .cross:hover {
+    color: grey;
+}
+.scroll-bar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background-color: #444;
+    z-index: 1000;
+}
+.scroll-bar {
+    height: 100%;
+    width: 0%;
+    background-color: #1dd05d;
+    transition: width 0.2s;
+}
+.content {
+    padding: 20px 20px 20px 120px; /* Increased left padding for smaller screens */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+/* Add more left padding for desktop screens */
+@media (min-width: 768px) {
+    .content {
+        padding-left: 180px; /* Increased left padding for desktop */
+    }
+}
+#course-details {
+    padding: 20px 20px 20px 40px; /* Added left padding to course details */
+    background-color: #2C3E50;
+    border-radius: 10px;
+}
+.example {
+    background-color: #1B2631;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+    align-self: left;
+}
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="cross" onclick="window.location.href='section1.html'">✖</div>
+    </div>
+
+    <div class="scroll-bar-container">
+        <div class="scroll-bar" id="scroll-bar"></div>
+    </div>
+
+    <div id="course-details">
+        <div class="container">
+            <h2 data-translate-key="lesson1_title">Lektion 1: Wie funktioniert Deflation?</h2>
+            <p data-translate-key="intro">Deflation ist ein wichtiges wirtschaftliches Phänomen, das die Preise und die Wirtschaft insgesamt beeinflusst. Im Folgenden werden wir die Mechanismen der Deflation genauer betrachten:</p>
+            <h3 data-translate-key="section_a_title">A. Was ist Deflation?</h3>
+            <p data-translate-key="section_a_desc">Deflation bezeichnet den allgemeinen Rückgang der Preise für Waren und Dienstleistungen in einer Volkswirtschaft über einen bestimmten Zeitraum. Im Gegensatz zur Inflation steigt die Kaufkraft des Geldes, da man für die gleiche Menge Geld mehr kaufen kann. Deflation wird oft in Prozent pro Jahr angegeben und durch Indizes wie den Verbraucherpreisindex (VPI) gemessen.</p>
+            <div class="example">
+                <h4 data-translate-key="example_title">Beispiel:</h4>
+                <img src="bread.jpg" alt="Brot">
+                <p data-translate-key="example_bread_1">Stellen Sie sich vor, ein Laib Brot kostet heute 3 Euro. Bei einer Deflationsrate von 2 % pro Jahr würde derselbe Laib Brot im nächsten Jahr etwa 2,94 Euro kosten. Nach fünf Jahren könnte der Preis bei konstanter Deflation auf etwa 2,71 Euro sinken. Das bedeutet, dass Ihr Geld im Laufe der Zeit mehr wert ist, da Sie für die gleiche Menge Brot weniger bezahlen müssen.</p>
+                <p data-translate-key="example_bread_2">Zusammenfassend: Deflation führt dazu, dass die Preise sinken und die Kaufkraft des Geldes steigt. Wenn die Deflation jedoch zu stark ist, kann dies negative wirtschaftliche Folgen haben.</p>
+            </div>
+            <h3 data-translate-key="section_b_title">B. Ursachen der Deflation</h3>
+            <p data-translate-key="section_b_desc_1">Deflation kann durch verschiedene Faktoren ausgelöst werden. Eine häufige Ursache ist die Nachfrageschwäche, bei der die Nachfrage nach Waren und Dienstleistungen geringer ist als das Angebot, was die Preise senkt. Eine weitere Ursache ist die Kostenreduktion, beispielsweise durch technologische Fortschritte oder sinkende Produktionskosten. Auch eine Reduzierung der Geldmenge durch eine restriktive Geldpolitik der Zentralbank kann Deflation verursachen.</p>
+            <p data-translate-key="section_b_desc_2">Hier spricht man oft von der Geldmenge in einer Volkswirtschaft.</p>
+            <p data-translate-key="money_supply_desc">Wenn eine Zentralbank, wie die Europäische Zentralbank (EZB), die Geldmenge reduziert, indem sie die Zinssätze erhöht oder weniger Geld in Umlauf bringt, kann dies die Nachfrage dämpfen und die Preise senken. Dies kann jedoch auch zu einer wirtschaftlichen Abschwächung führen, da Unternehmen und Verbraucher weniger ausgeben.</p>
+            <h3 data-translate-key="section_c_title">C. Auswirkungen der Deflation</h3>
+            <p data-translate-key="section_c_desc_1">Deflation hat sowohl positive als auch negative Auswirkungen. Kurzfristig kann Deflation die Kaufkraft der Verbraucher erhöhen, da Waren und Dienstleistungen günstiger werden. Langfristig kann sie jedoch problematisch sein, da sie die Nachfrage weiter dämpfen kann, weil Verbraucher Käufe aufschieben in Erwartung noch niedrigerer Preise. Dies kann zu einer Abwärtsspirale führen, bei der Unternehmen weniger Umsatz erzielen, Arbeitsplätze abbauen und die Wirtschaft schrumpft.</p>
+            <div class="example">
+                <h4 data-translate-key="example_investment_title">Beispiel: Auswirkungen auf Unternehmen</h4>
+                <p data-translate-key="example_investment_desc">In einer deflatorischen Umgebung könnten Unternehmen wie ein Elektronikhersteller Schwierigkeiten haben, ihre Produkte zu verkaufen, da Verbraucher auf sinkende Preise warten. Angenommen, ein Fernseher kostet heute 500 Euro, aber Verbraucher erwarten, dass er in sechs Monaten nur 450 Euro kostet. Viele könnten ihren Kauf verschieben, was den Umsatz des Unternehmens senkt. Dies kann dazu führen, dass das Unternehmen die Produktion reduziert oder Mitarbeiter entlässt, was die Wirtschaft weiter belastet.</p>
+            </div>
+            <p data-translate-key="indices_intro">Hier sind einige wichtige Indizes zur Messung der Deflation:</p>
+            <ul>
+                <li data-translate-key="index_cpi">Verbraucherpreisindex (VPI): Misst die Preisveränderungen eines Warenkorbs von Gütern und Dienstleistungen, die von Haushalten konsumiert werden.</li>
+                <li data-translate-key="index_ppi">Erzeugerpreisindex (EPI): Misst die Preisveränderungen von Waren auf Produzentenebene, bevor sie den Endverbraucher erreichen.</li>
+                <li data-translate-key="index_hicp">Harmonisierter Verbraucherpreisindex (HVPI): Ein standardisierter Index, der in der EU verwendet wird, um Preisveränderungen in verschiedenen Ländern vergleichbar zu machen.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const translations = {
+            "de": {
+                "title": "Kurs 1: Deflation",
+                "lesson1_title": "Lektion 1: Wie funktioniert Deflation?",
+                "intro": "Deflation ist ein wichtiges wirtschaftliches Phänomen, das die Preise und die Wirtschaft insgesamt beeinflusst. Im Folgenden werden wir die Mechanismen der Deflation genauer betrachten:",
+                "section_a_title": "A. Was ist Deflation?",
+                "section_a_desc": "Deflation bezeichnet den allgemeinen Rückgang der Preise für Waren und Dienstleistungen in einer Volkswirtschaft über einen bestimmten Zeitraum. Im Gegensatz zur Inflation steigt die Kaufkraft des Geldes, da man für die gleiche Menge Geld mehr kaufen kann. Deflation wird oft in Prozent pro Jahr angegeben und durch Indizes wie den Verbraucherpreisindex (VPI) gemessen.",
+                "example_title": "Beispiel:",
+                "example_bread_1": "Stellen Sie sich vor, ein Laib Brot kostet heute 3 Euro. Bei einer Deflationsrate von 2 % pro Jahr würde derselbe Laib Brot im nächsten Jahr etwa 2,94 Euro kosten. Nach fünf Jahren könnte der Preis bei konstanter Deflation auf etwa 2,71 Euro sinken. Das bedeutet, dass Ihr Geld im Laufe der Zeit mehr wert ist, da Sie für die gleiche Menge Brot weniger bezahlen müssen.",
+                "example_bread_2": "Zusammenfassend: Deflation führt dazu, dass die Preise sinken und die Kaufkraft des Geldes steigt. Wenn die Deflation jedoch zu stark ist, kann dies negative wirtschaftliche Folgen haben.",
+                "section_b_title": "B. Ursachen der Deflation",
+                "section_b_desc_1": "Deflation kann durch verschiedene Faktoren ausgelöst werden. Eine häufige Ursache ist die Nachfrageschwäche, bei der die Nachfrage nach Waren und Dienstleistungen geringer ist als das Angebot, was die Preise senkt. Eine weitere Ursache ist die Kostenreduktion, beispielsweise durch technologische Fortschritte oder sinkende Produktionskosten. Auch eine Reduzierung der Geldmenge durch eine restriktive Geldpolitik der Zentralbank kann Deflation verursachen.",
+                "section_b_desc_2": "Hier spricht man oft von der Geldmenge in einer Volkswirtschaft.",
+                "money_supply_desc": "Wenn eine Zentralbank, wie die Europäische Zentralbank (EZB), die Geldmenge reduziert, indem sie die Zinssätze erhöht oder weniger Geld in Umlauf bringt, kann dies die Nachfrage dämpfen und die Preise senken. Dies kann jedoch auch zu einer wirtschaftlichen Abschwächung führen, da Unternehmen und Verbraucher weniger ausgeben.",
+                "section_c_title": "C. Auswirkungen der Deflation",
+                "section_c_desc_1": "Deflation hat sowohl positive als auch negative Auswirkungen. Kurzfristig kann Deflation die Kaufkraft der Verbraucher erhöhen, da Waren und Dienstleistungen günstiger werden. Langfristig kann sie jedoch problematisch sein, da sie die Nachfrage weiter dämpfen kann, weil Verbraucher Käufe aufschieben in Erwartung noch niedrigerer Preise. Dies kann zu einer Abwärtsspirale führen, bei der Unternehmen weniger Umsatz erzielen, Arbeitsplätze abbauen und die Wirtschaft schrumpft.",
+                "example_investment_title": "Beispiel: Auswirkungen auf Unternehmen",
+                "example_investment_desc": "In einer deflatorischen Umgebung könnten Unternehmen wie ein Elektronikhersteller Schwierigkeiten haben, ihre Produkte zu verkaufen, da Verbraucher auf sinkende Preise warten. Angenommen, ein Fernseher kostet heute 500 Euro, aber Verbraucher erwarten, dass er in sechs Monaten nur 450 Euro kostet. Viele könnten ihren Kauf verschieben, was den Umsatz des Unternehmens senkt. Dies kann dazu führen, dass das Unternehmen die Produktion reduziert oder Mitarbeiter entlässt, was die Wirtschaft weiter belastet.",
+                "indices_intro": "Hier sind einige wichtige Indizes zur Messung der Deflation:",
+                "index_cpi": "Verbraucherpreisindex (VPI): Misst die Preisveränderungen eines Warenkorbs von Gütern und Dienstleistungen, die von Haushalten konsumiert werden.",
+                "index_ppi": "Erzeugerpreisindex (EPI): Misst die Preisveränderungen von Waren auf Produzentenebene, bevor sie den Endverbraucher erreichen.",
+                "index_hicp": "Harmonisierter Verbraucherpreisindex (HVPI): Ein standardisierter Index, der in der EU verwendet wird, um Preisveränderungen in verschiedenen Ländern vergleichbar zu machen."
+            },
+            "en": {
+                "title": "Course 1: Deflation",
+                "lesson1_title": "Lesson 1: How does deflation work?",
+                "intro": "Deflation is an important economic phenomenon that affects prices and the economy as a whole. Below, we will explore the mechanisms of deflation in more detail:",
+                "section_a_title": "A. What is Deflation?",
+                "section_a_desc": "Deflation refers to the general decline in prices of goods and services in an economy over a period of time. Unlike inflation, it increases the purchasing power of money, as the same amount of money can buy more. Deflation is often measured as a percentage per year and tracked using indices like the Consumer Price Index (CPI).",
+                "example_title": "Example:",
+                "example_bread_1": "Imagine a loaf of bread costs 3 euros today. With a deflation rate of 2% per year, that same loaf might cost about 2.94 euros next year. After five years, at constant deflation, the price could drop to about 2.71 euros. This means your money is worth more over time, as you need to spend less to buy the same loaf of bread.",
+                "example_bread_2": "In summary: Deflation causes prices to fall and the purchasing power of money to increase. However, if deflation is too strong, it can have negative economic consequences.",
+                "section_b_title": "B. Causes of Deflation",
+                "section_b_desc_1": "Deflation can be triggered by various factors. A common cause is weak demand, where the demand for goods and services is lower than the supply, pushing prices down. Another cause is cost reduction, such as through technological advancements or lower production costs. Additionally, a reduction in the money supply through restrictive monetary policy by a central bank can cause deflation.",
+                "section_b_desc_2": "This is often referred to as the money supply in an economy.",
+                "money_supply_desc": "When a central bank, such as the European Central Bank (ECB), reduces the money supply by raising interest rates or circulating less money, it can dampen demand and lower prices. However, this can also lead to an economic slowdown, as businesses and consumers spend less.",
+                "section_c_title": "C. Effects of Deflation",
+                "section_c_desc_1": "Deflation has both positive and negative effects. In the short term, deflation can increase consumers' purchasing power, as goods and services become cheaper. However, in the long term, it can be problematic, as it may further suppress demand because consumers delay purchases in anticipation of even lower prices. This can lead to a downward spiral, where businesses earn less revenue, cut jobs, and the economy contracts.",
+                "example_investment_title": "Example: Effects on Businesses",
+                "example_investment_desc": "In a deflationary environment, businesses like an electronics manufacturer might struggle to sell their products, as consumers wait for prices to fall further. Suppose a television costs 500 euros today, but consumers expect it to cost only 450 euros in six months. Many might delay their purchase, reducing the company’s revenue. This can lead to the company cutting production or laying off workers, further straining the economy.",
+                "indices_intro": "Here are some key indices for measuring deflation:",
+                "index_cpi": "Consumer Price Index (CPI): Measures price changes in a basket of goods and services consumed by households.",
+                "index_ppi": "Producer Price Index (PPI): Measures price changes of goods at the producer level before they reach the consumer.",
+                "index_hicp": "Harmonized Index of Consumer Prices (HICP): A standardized index used in the EU to make price changes comparable across different countries."
+            },
+            "fr": {
+                "title": "Cours 1 : Déflation",
+                "lesson1_title": "Leçon 1 : Comment fonctionne la déflation ?",
+                "intro": "La déflation est un phénomène économique important qui affecte les prix et l'économie dans son ensemble. Ci-dessous, nous explorerons les mécanismes de la déflation plus en détail :",
+                "section_a_title": "A. Qu'est-ce que la déflation ?",
+                "section_a_desc": "La déflation désigne la baisse générale des prix des biens et services dans une économie sur une période donnée. Contrairement à l'inflation, elle augmente le pouvoir d'achat de l'argent, car la même somme permet d'acheter plus. La déflation est souvent mesurée en pourcentage par an et suivie à l'aide d'indices comme l'Indice des prix à la consommation (IPC).",
+                "example_title": "Exemple :",
+                "example_bread_1": "Imaginez qu'une miche de pain coûte 3 euros aujourd'hui. Avec un taux de déflation de 2 % par an, cette même miche pourrait coûter environ 2,94 euros l'année prochaine. Après cinq ans, à déflation constante, le prix pourrait descendre à environ 2,71 euros. Cela signifie que votre argent vaut plus avec le temps, car il faut dépenser moins pour acheter la même miche de pain.",
+                "example_bread_2": "En résumé : La déflation entraîne une baisse des prix et une augmentation du pouvoir d'achat de l'argent. Cependant, si la déflation est trop forte, elle peut avoir des conséquences économiques négatives.",
+                "section_b_title": "B. Causes de la déflation",
+                "section_b_desc_1": "La déflation peut être déclenchée par divers facteurs. Une cause courante est la faiblesse de la demande, où la demande de biens et services est inférieure à l'offre, faisant baisser les prix. Une autre cause est la réduction des coûts, par exemple grâce aux progrès technologiques ou à la baisse des coûts de production. De plus, une réduction de la masse monétaire par une politique monétaire restrictive de la banque centrale peut provoquer une déflation.",
+                "section_b_desc_2": "On parle souvent de la masse monétaire dans une économie.",
+                "money_supply_desc": "Lorsqu'une banque centrale, comme la Banque centrale européenne (BCE), réduit la masse monétaire en augmentant les taux d'intérêt ou en mettant moins d'argent en circulation, cela peut freiner la demande et faire baisser les prix. Cependant, cela peut également entraîner un ralentissement économique, car les entreprises et les consommateurs dépensent moins.",
+                "section_c_title": "C. Effets de la déflation",
+                "section_c_desc_1": "La déflation a des effets à la fois positifs et négatifs. À court terme, la déflation peut augmenter le pouvoir d'achat des consommateurs, car les biens et services deviennent moins chers. Cependant, à long terme, elle peut être problématique, car elle peut freiner davantage la demande, les consommateurs retardant leurs achats en prévision de prix encore plus bas. Cela peut entraîner une spirale descendante, où les entreprises réalisent moins de revenus, réduisent les emplois et l'économie se contracte.",
+                "example_investment_title": "Exemple : Effets sur les entreprises",
+                "example_investment_desc": "Dans un environnement déflationniste, des entreprises comme un fabricant d'électronique pourraient avoir du mal à vendre leurs produits, car les consommateurs attendent une baisse supplémentaire des prix. Supposons qu'un téléviseur coûte 500 euros aujourd'hui, mais les consommateurs s'attendent à ce qu'il ne coûte que 450 euros dans six mois. Beaucoup pourraient retarder leur achat, réduisant les revenus de l'entreprise. Cela peut amener l'entreprise à réduire la production ou à licencier des employés, ce qui pèse davantage sur l'économie.",
+                "indices_intro": "Voici quelques indices clés pour mesurer la déflation :",
+                "index_cpi": "Indice des prix à la consommation (IPC) : Mesure les variations de prix d'un panier de biens et services consommés par les ménages.",
+                "index_ppi": "Indice des prix à la production (IPP) : Mesure les variations de prix des biens au niveau des producteurs avant qu'ils n'atteignent le consommateur.",
+                "index_hicp": "Indice des prix à la consommation harmonisé (IPCH) : Un indice standardisé utilisé dans l'UE pour rendre les variations de prix comparables entre différents pays."
+            }
+        };
+
+        let currentLang = 'de';
+
+        function applyTranslations(targetLang) {
+            const elements = document.querySelectorAll('[data-translate-key]');
+            if (!translations[targetLang]) return;
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate-key');
+                if (translations[targetLang][key]) {
+                    element.innerHTML = translations[targetLang][key];
+                }
+            });
+            document.title = translations[targetLang].title || "Kurs 1: Deflation";
+        }
+
+        function translatePage(targetLang) {
+            if (targetLang === currentLang) return;
+            applyTranslations(targetLang);
+            document.documentElement.lang = targetLang;
+            currentLang = targetLang;
+        }
+
+        // Apply default language on load
+        window.addEventListener('DOMContentLoaded', () => {
+            applyTranslations('de');
+            const storedLang = localStorage.getItem('preferredLanguage');
+            if (storedLang && translations[storedLang] && storedLang !== 'de') {
+                translatePage(storedLang);
+            }
+        });
+
+        // Listen for language change messages from parent (index.html)
+        window.addEventListener('message', (event) => {
+            if (event.data.type === 'LANGUAGE_CHANGE') {
+                translatePage(event.data.language);
+            }
+        });
+
+        // Scroll bar functionality
+        function updateScrollBar() {
+            const scrollBar = document.getElementById('scroll-bar');
+            const scrollHeight = document.documentElement.scrollHeight;
+            const clientHeight = document.documentElement.clientHeight;
+            const scrollTop = window.scrollY;
+            const scrollPercent = (scrollTop / (scrollHeight - clientHeight)) * 100;
+            scrollBar.style.width = scrollPercent + '%';
+        }
+
+        window.addEventListener('scroll', updateScrollBar);
+        window.addEventListener('resize', updateScrollBar);
+    </script>
+</body>
+</html>
