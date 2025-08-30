@@ -9,7 +9,7 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
     <!-- Firebase SDKs -->
-    <script src="https:// segni.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
     <!-- TradingView Widget -->
@@ -134,7 +134,7 @@
         }
         .trade-section h2 {
             font-size: 1.5rem;
-            margin-bottom: 10px;
+            margin-bottom: 10px;
             font-weight: 700;
             text-align: center;
         }
@@ -229,7 +229,7 @@
             padding: 15px;
             border-radius: 15px;
             width: 100%;
-            max-width: 120 vicinitypx;
+            max-width: 1200px;
             box-sizing: border-box;
             overflow-x: auto;
         }
@@ -469,6 +469,7 @@
             display: flex;
             justify-content: center;
             gap: 10px;
+            margin-bottom: 20px;
         }
         .language-button {
             padding: 10px 20px;
@@ -482,6 +483,19 @@
         }
         .language-button:hover {
             background-color: #0056b3;
+        }
+        .continue-button {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            border: none;
+            border-radius: 5px;
+            color: #ffffff;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .continue-button:hover {
+            background-color: #388e3c;
         }
         /* Responsive Design */
         @media screen and (max-width: 768px) {
@@ -575,7 +589,7 @@
             .popup-content p {
                 font-size: 0.9rem;
             }
-            .language-button {
+            .language-button, .continue-button {
                 padding: 8px 15px;
                 font-size: 0.9rem;
             }
@@ -593,25 +607,22 @@
             .summary-item-analysis p { font-size: 1rem; }
             .popup-content h2 { font-size: 1.1rem; }
             .popup-content p { font-size: 0.8rem; }
-            .language-button { font-size: 0.8rem; padding: 6px 12px; }
+            .language-button, .continue-button { font-size: 0.8rem; padding: 6px 12px; }
         }
     </style>
 </head>
 <body>
     <!-- POP-UP -->
-    <div id="welcome-popup" class="popup-overlay" style="display: none;">
+    <div id="welcome-popup" class="popup-overlay" style="display: flex;">
         <div class="popup-content">
-            <h2 data-translate-key="welcome_title">Investment Simulator</h2>
-            <p data-translate-key="disclaimer">
-                This is an educational tool using virtual money only. No real financial transactions occur. 
-                It is designed for learning purposes and does not constitute financial advice.
-            </p>
-            <p data-translate-key="select_language">Please select your preferred language:</p>
             <div class="language-buttons">
                 <button class="language-button" onclick="selectLanguage('en')">English</button>
                 <button class="language-button" onclick="selectLanguage('de')">Deutsch</button>
                 <button class="language-button" onclick="selectLanguage('fr')">Français</button>
             </div>
+            <h2 data-translate-key="welcome_title">Welcome to the Investment Simulator</h2>
+            <p data-translate-key="disclaimer">This simulator is for educational purposes only and uses virtual money. No real financial transactions are involved.</p>
+            <button class="continue-button" onclick="closeWelcomePopup()" data-translate-key="continue_button">Continue</button>
         </div>
     </div>
     <!-- NAVBAR -->
@@ -778,9 +789,9 @@
             "de": {
                 "title": "Investment Simulator - JugendInvestiert",
                 "brand": "JugendInvestiert",
-                "welcome_title": "Investment Simulator",
-                "disclaimer": "Dies ist ein Lernwerkzeug, das ausschließlich virtuelles Geld verwendet. Es finden keine echten Finanztransaktionen statt. Es ist für Bildungszwecke gedacht und stellt keine Finanzberatung dar.",
-                "select_language": "Bitte wählen Sie Ihre bevorzugte Sprache:",
+                "welcome_title": "Willkommen zum Investment Simulator",
+                "disclaimer": "Dieser Simulator dient ausschließlich zu Bildungszwecken und verwendet virtuelles Geld. Es sind keine echten Finanztransaktionen involviert.",
+                "continue_button": "Weiter",
                 "portfolio_value": "Portfolio Wert",
                 "cash_balance": "Bargeldsaldo",
                 "total_profit": "Gesamter Gewinn",
@@ -828,9 +839,9 @@
             "en": {
                 "title": "Investment Simulator - YouthInvests",
                 "brand": "YouthInvests",
-                "welcome_title": "Investment Simulator",
-                "disclaimer": "This is an educational tool using virtual money only. No real financial transactions occur. It is designed for learning purposes and does not constitute financial advice.",
-                "select_language": "Please select your preferred language:",
+                "welcome_title": "Welcome to the Investment Simulator",
+                "disclaimer": "This simulator is for educational purposes only and uses virtual money. No real financial transactions are involved.",
+                "continue_button": "Continue",
                 "portfolio_value": "Portfolio Value",
                 "cash_balance": "Cash Balance",
                 "total_profit": "Total Profit",
@@ -878,9 +889,9 @@
             "fr": {
                 "title": "Simulateur d'Investissement - JeunesseInvestit",
                 "brand": "JeunesseInvestit",
-                "welcome_title": "Simulateur d'Investissement",
-                "disclaimer": "Ceci est un outil éducatif utilisant uniquement de l'argent virtuel. Aucune transaction financière réelle n'a lieu. Il est conçu à des fins d'apprentissage et ne constitue pas un conseil financier.",
-                "select_language": "Veuillez sélectionner votre langue préférée :",
+                "welcome_title": "Bienvenue au Simulateur d'Investissement",
+                "disclaimer": "Ce simulateur est uniquement à des fins éducatives et utilise de l'argent virtuel. Aucune transaction financière réelle n'est impliquée.",
+                "continue_button": "Continuer",
                 "portfolio_value": "Valeur du Portefeuille",
                 "cash_balance": "Solde en Espèces",
                 "total_profit": "Profit Total",
@@ -936,7 +947,7 @@
         const firebaseConfig = {
             apiKey: "AIzaSyDmEUCl7sWzBI7N78HgcgBRcRAkTYbtm5g",
             authDomain: "jugendinvestiert-5f6eb.firebaseapp.com",
-            databaseURL: "https://jugendinvestiert-5f6EB-default-rtdb.firebaseio.com",
+            databaseURL: "https://jugendinvestiert-5f6eb-default-rtdb.firebaseio.com",
             projectId: "jugendinvestiert-5f6eb",
             storageBucket: "jugendinvestiert-5f6eb.appspot.com",
             messagingSenderId: "432595310987",
@@ -960,48 +971,21 @@
         let performanceChart = null;
         let profitLossChart = null;
         let sparklineChart = null;
-        let currentLang = 'de'; // Default language
-        const stockSectors = {
-            'AAPL': 'Technology', 'MSFT': 'Technology', 'GOOGL': 'Technology',
-            'AMZN': 'Consumer Cyclical', 'META': 'Technology', 'TSLA': 'Automotive',
-            'NVDA': 'Technology', 'JPM': 'Financial Services', 'V': 'Financial Services',
-            'JNJ': 'Healthcare', 'PFE': 'Healthcare', 'KO': 'Consumer Defensive',
-            'PEP': 'Consumer Defensive', 'DIS': 'Communication Services',
-            'NFLX': 'Communication Services', 'BA': 'Industrials', 'CAT': 'Industrials',
-            'XOM': 'Energy', 'CVX': 'Energy', 'VZ': 'Communication Services'
-        };
-        const chartColors = [
-            '#36A2EB', '#FF6384', '#4BC0C0', '#FF9F40', '#9966FF',
-            '#FFCD56', '#C9CBCF', '#7FC97F', '#BEAED4', '#FDC086',
-            '#386CB0', '#F0027F', '#BF5B17', '#666666', '#1B9E77'
-        ];
+        let currentLang = 'en'; // Default to English for popup
         /********************************************************
          * POP-UP HANDLING
          ********************************************************/
         function showWelcomePopup() {
-            const hasSeenPopup = localStorage.getItem('hasSeenPopup');
-            if (!hasSeenPopup) {
-                const popup = document.getElementById('welcome-popup');
-                applyPopupTranslations(currentLang);
-                popup.style.display = 'flex';
-                localStorage.setItem('hasSeenPopup', 'true');
-            }
+            document.getElementById('welcome-popup').style.display = 'flex';
+            applyTranslations(currentLang); // Apply initial translations
         }
-        function applyPopupTranslations(lang) {
-            const popup = document.getElementById('welcome-popup');
-            const title = popup.querySelector('[data-translate-key="welcome_title"]');
-            const disclaimer = popup.querySelector('[data-translate-key="disclaimer"]');
-            const selectLang = popup.querySelector('[data-translate-key="select_language"]');
-            if (translations[lang]) {
-                title.innerText = translations[lang].welcome_title;
-                disclaimer.innerText = translations[lang].disclaimer;
-                selectLang.innerText = translations[lang].select_language;
-            }
+        function closeWelcomePopup() {
+            document.getElementById('welcome-popup').style.display = 'none';
         }
         function selectLanguage(lang) {
             translatePage(lang);
-            applyPopupTranslations(lang);
-            document.getElementById('welcome-popup').style.display = 'none';
+            // Update popup content immediately
+            applyTranslations(lang);
             // Send language change to parent
             window.parent.postMessage({
                 type: 'LANGUAGE_CHANGE',
@@ -1059,7 +1043,6 @@
                 console.log("Simulator received LANGUAGE_CHANGE:", event.data.language);
                 if (translations[event.data.language] && event.data.language !== currentLang) {
                     translatePage(event.data.language);
-                    applyPopupTranslations(event.data.language);
                 }
             }
         });
@@ -1085,7 +1068,8 @@
                 if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
                 const data = await response.json();
                 stockList = data.map(stock => ({
-                    symbol: huntingstock.description
+                    symbol: stock.symbol.toUpperCase(),
+                    description: stock.description
                 }));
                 console.log("Stock list fetched:", stockList.length, "stocks");
             } catch (error) {
@@ -1160,7 +1144,7 @@
                 }
                 const data = await response.json();
                 if (!data || typeof data.c !== 'number') {
-                    console WARN("Keine Preisdaten für Symbol:", symbol);
+                    console.warn("Keine Preisdaten für Symbol:", symbol);
                     return 0;
                 }
                 return parseFloat(data.c);
@@ -1199,7 +1183,7 @@
             buyButton.disabled = true;
             displayLoader(true);
             const symbolInput = document.getElementById('stock-symbol').value.trim();
-            const quantitymovInput = document.getElementById('quantity').value;
+            const quantityInput = document.getElementById('quantity').value;
             const symbol = symbolInput.toUpperCase();
             const quantity = parseInt(quantityInput);
             if (!symbol) {
@@ -1237,8 +1221,6 @@
                 if (portfolio[symbol]) {
                     portfolio[symbol].quantity += quantity;
                     portfolio[symbol].totalInvested += totalCost;
- —
-
                 } else {
                     portfolio[symbol] = {
                         quantity: quantity,
@@ -1250,7 +1232,7 @@
                 sendPortfolioUpdate();
                 saveUserData();
                 updatePortfolioAnalysis();
-                displaySuccessMessage(translations[currentLang].success_buy_stock.replace('{quantity}', quantity).replace('{symbol}', 更新symbol));
+                displaySuccessMessage(translations[currentLang].success_buy_stock.replace('{quantity}', quantity).replace('{symbol}', symbol));
                 console.log(`Gekauft: ${quantity} Aktien von ${symbol} zu je $${price.toFixed(2)}.`);
             } catch (error) {
                 console.error("Fehler beim Kauf der Aktie:", error);
@@ -1268,6 +1250,7 @@
             symbol = symbol.toUpperCase();
             const totalQuantity = getTotalQuantity(symbol);
             const quantityToSellStr = prompt(translations[currentLang].sell_prompt.replace('{totalQuantity}', totalQuantity), totalQuantity);
+            if (quantityToSellStr === null) return;
             const quantityToSell = parseInt(quantityToSellStr);
             if (!quantityToSell || quantityToSell <= 0 || isNaN(quantityToSell)) {
                 displayErrorMessage(translations[currentLang].error_quantity);
@@ -1296,7 +1279,7 @@
                 const purchasePrice = portfolio[symbol].totalInvested / portfolio[symbol].quantity;
                 portfolio[symbol].quantity -= quantity;
                 portfolio[symbol].totalInvested -= purchasePrice * quantity;
-                if portfolio[symbol].quantity === 0) {
+                if (portfolio[symbol].quantity === 0) {
                     delete portfolio[symbol];
                 }
                 updateBudget();
@@ -1304,7 +1287,7 @@
                 sendPortfolioUpdate();
                 saveUserData();
                 updatePortfolioAnalysis();
-                displaySuccessMessage(translations[currentLang].success_sell_stock.replace('{quantity}', quantity).replace('{symbol}', 更新symbol));
+                displaySuccessMessage(translations[currentLang].success_sell_stock.replace('{quantity}', quantity).replace('{symbol}', symbol));
                 console.log(`Verkauft: ${quantity} Aktien von ${symbol} zu je $${price.toFixed(2)}.`);
             } catch (error) {
                 console.error("Fehler beim Verkauf der Aktie:", error);
@@ -1442,7 +1425,7 @@
                 let totalPortfolioValue = 0;
                 const stockValues = [];
                 if (symbols.length > 0) {
-                    const pricePromises = symbols.map(symbol => fetchStock VolleyPrice(symbol));
+                    const pricePromises = symbols.map(symbol => fetchStockPrice(symbol));
                     const prices = await Promise.all(pricePromises);
                     console.log("Prices for analysis:", prices);
                     symbols.forEach((symbol, index) => {
@@ -1458,7 +1441,7 @@
                     console.log("No portfolio data, creating placeholder for charts");
                     stockValues.push({ symbol: translations[currentLang].cash_balance, value: budget, price: budget, quantity: 1, totalInvested: budget });
                 }
-                console.log("Stock values for charts:", долгоstockValues);
+                console.log("Stock values for charts:", stockValues);
                 console.log("Total portfolio value:", totalPortfolioValue);
                 // Allocation Chart
                 if (allocationChart) {
@@ -1512,7 +1495,7 @@
                 });
                 console.log("Allocation chart rendered");
                 // Sector Chart
-                if,sectorChart) {
+                if (sectorChart) {
                     sectorChart.destroy();
                     console.log("Destroyed existing sector chart");
                 }
@@ -1528,9 +1511,7 @@
                 }
                 const sectorData = {};
                 stockValues.forEach(stock => {
-                    const sector—
-
- = stockSectors[stock.symbol] || translations[currentLang].unknown;
+                    const sector = stockSectors[stock.symbol] || translations[currentLang].unknown;
                     sectorData[sector] = (sectorData[sector] || 0) + stock.value;
                 });
                 const sectorLabels = Object.keys(sectorData);
@@ -1587,7 +1568,7 @@
                 const data = [];
                 const today = new Date();
                 for (let i = 30; i >= 0; i--) {
-                    const date Sonydate = new Date(today);
+                    const date = new Date(today);
                     date.setDate(today.getDate() - i);
                     labels.push(date.toLocaleDateString());
                     const baseValue = budget + stockValues.reduce((sum, stock) => sum + (stock.price * stock.quantity), 0);
@@ -1643,9 +1624,7 @@
                     return;
                 }
                 const plCtx2D = plCtx.getContext('2d');
-                if–
-
- (!plCtx2D) {
+                if (!plCtx2D) {
                     console.error("Could not get 2D context for profit/loss chart");
                     return;
                 }
@@ -1697,11 +1676,9 @@
                 // Summary Metrics
                 const topPerformer = stockValues.reduce((max, stock) => {
                     const purchasePrice = stock.totalInvested / stock.quantity;
-                    const profitPercent = purchaseසpurchasePrice > 0 ? ((stock.price - purchasePrice) / purchasePrice) * 100 : 0;
+                    const profitPercent = purchasePrice > 0 ? ((stock.price - purchasePrice) / purchasePrice) * 100 : 0;
                     return !max || profitPercent > max.profitPercent ? { symbol: stock.symbol, profitPercent } : max;
                 }, null);
- “
-
                 const worstPerformer = stockValues.reduce((min, stock) => {
                     const purchasePrice = stock.totalInvested / stock.quantity;
                     const profitPercent = purchasePrice > 0 ? ((stock.price - purchasePrice) / purchasePrice) * 100 : 0;
@@ -1852,12 +1829,6 @@
          ********************************************************/
         window.onload = async function() {
             console.log("Window loaded, initializing...");
-            const storedLang = localStorage.getItem('preferredLanguage');
-            if (storedLang && translations[storedLang]) {
-                translatePage(storedLang);
-            } else {
-                applyTranslations('de');
-            }
             showWelcomePopup();
             createTradingViewWidget('AAPL');
             currentSymbol = 'AAPL';
