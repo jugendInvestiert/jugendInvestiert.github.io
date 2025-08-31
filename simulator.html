@@ -17,7 +17,6 @@
     <!-- Chart.js (v3.9.1 as specified) -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
     <style>
-        /* SIMULATOR STYLES */
         *, *::before, *::after {
             box-sizing: border-box;
         }
@@ -33,7 +32,6 @@
             color: #007bff;
             text-decoration: none;
         }
-        /* Navbar Styles */
         .navbar {
             background-color: #1B2631;
             padding: 15px;
@@ -60,7 +58,6 @@
             margin: 0;
             font-weight: bold;
         }
-        /* Main Container Styles */
         .container {
             display: flex;
             flex-direction: column;
@@ -70,7 +67,6 @@
             align-items: center;
             max-width: 100%;
         }
-        /* Account Summary Styles */
         .account-summary {
             background-color: #1B2631;
             padding: 10px;
@@ -111,7 +107,6 @@
         .profit-negative {
             color: #f44336;
         }
-        /* Trade and Widget Container */
         .trade-widget-container {
             display: flex;
             gap: 20px;
@@ -120,7 +115,6 @@
             width: 100%;
             max-width: 1200px;
         }
-        /* Trade Section Styles */
         .trade-section {
             background-color: #1B2631;
             padding: 15px;
@@ -183,7 +177,6 @@
             background-color: #0056b3;
             box-shadow: 0 6px 8px rgba(0, 0, 0, 0.4);
         }
-        /* Suggestions Styles */
         #suggestions {
             background-color: #1B2631;
             border: 1px solid #2e2e2e;
@@ -207,7 +200,6 @@
         .suggestion-item strong {
             color: #ffffff;
         }
-        /* TradingView Widget Styles */
         #tradingview-widget {
             border: none;
             box-shadow: none;
@@ -223,7 +215,6 @@
             padding: 0;
             margin-bottom: 0;
         }
-        /* Portfolio Section Styles */
         .portfolio-section {
             background-color: #1B2631;
             padding: 15px;
@@ -279,7 +270,6 @@
             z-index: 2;
             box-shadow: -1px 0 3px rgba(0, 0, 0, 0.3);
         }
-        /* Portfolio Analysis Styles */
         .portfolio-analysis-section {
             background-color: #1B2631;
             padding: 15px;
@@ -391,7 +381,6 @@
             height: 40px;
             margin-top: 5px;
         }
-        /* Message Styles */
         .message {
             position: fixed;
             bottom: 20px;
@@ -423,7 +412,6 @@
             90% { opacity: 1; transform: translateY(0); }
             100% { opacity: 0; transform: translateY(20px); }
         }
-        /* Loader Styles */
         #loader {
             display: none;
             position: fixed;
@@ -434,7 +422,6 @@
             color: #007bff;
             font-size: 2rem;
         }
-        /* Pop-up Styles */
         .popup-overlay {
             position: fixed;
             top: 0;
@@ -497,7 +484,6 @@
         .continue-button:hover {
             background-color: #388e3c;
         }
-        /* Responsive Design */
         @media screen and (max-width: 768px) {
             .navbar {
                 padding: 10px;
@@ -612,7 +598,6 @@
     </style>
 </head>
 <body>
-    <!-- POP-UP -->
     <div id="welcome-popup" class="popup-overlay" style="display: flex;">
         <div class="popup-content">
             <div class="language-buttons">
@@ -625,16 +610,13 @@
             <button class="continue-button" onclick="closeWelcomePopup()" data-translate-key="continue_button">Continue</button>
         </div>
     </div>
-    <!-- NAVBAR -->
     <div class="navbar">
         <div class="logo">
             <img src="logo.jpg" alt="JugendInvestiert Logo">
             <h1 data-translate-key="brand">JugendInvestiert</h1>
         </div>
     </div>
-    <!-- MAIN CONTAINER -->
     <div class="container">
-        <!-- ACCOUNT SUMMARY -->
         <div class="account-summary">
             <div class="summary-item">
                 <h3 data-translate-key="portfolio_value">Portfolio Wert</h3>
@@ -653,29 +635,16 @@
                 <p id="totalProfitPercent" class="total-profit">0.00%</p>
             </div>
         </div>
-        <!-- TRADE + WIDGET -->
         <div class="trade-widget-container">
             <div class="trade-section" id="trade-section">
                 <h2 data-translate-key="trade_stocks">Aktien Handeln</h2>
                 <label for="stock-symbol" data-translate-key="stock_symbol_label">Aktiensymbol oder Firmenname</label>
                 <div class="search-container">
-                    <input
-                        type="text"
-                        id="stock-symbol"
-                        placeholder="z.B., AAPL, Apple Inc."
-                        autocomplete="off"
-                        onkeyup="debouncedFilterSymbols()"
-                    >
+                    <input type="text" id="stock-symbol" placeholder="z.B., AAPL, Apple Inc." autocomplete="off" onkeyup="debouncedFilterSymbols()">
                     <div id="suggestions"></div>
                 </div>
                 <label for="quantity" data-translate-key="quantity_label">Anzahl</label>
-                <input
-                    type="number"
-                    id="quantity"
-                    placeholder="Anzahl eingeben"
-                    min="1"
-                    step="1"
-                >
+                <input type="number" id="quantity" placeholder="Anzahl eingeben" min="1" step="1">
                 <div id="current-price" style="margin-top: 10px;">
                     <h3 data-translate-key="current_price">Aktueller Preis: $<span id="currentPrice">0.00</span></h3>
                 </div>
@@ -683,7 +652,6 @@
             </div>
             <div id="tradingview-widget"></div>
         </div>
-        <!-- PORTFOLIO -->
         <div class="portfolio-section">
             <h2 data-translate-key="portfolio_title">Dein Portfolio</h2>
             <table class="portfolio-table">
@@ -700,16 +668,13 @@
                 <tbody id="portfolioTableBody"></tbody>
             </table>
         </div>
-        <!-- PORTFOLIO ANALYSIS SECTION -->
         <div class="portfolio-analysis-section">
             <h2 data-translate-key="portfolio_analysis">Portfolio Analyse</h2>
-            <!-- Analysis Tabs -->
             <div class="analysis-tabs">
                 <button class="tab-button active" data-tab="allocation" data-translate-key="allocation">Allokation</button>
                 <button class="tab-button" data-tab="performance" data-translate-key="performance">Performance</button>
                 <button class="tab-button" data-tab="summary" data-translate-key="summary">Zusammenfassung</button>
             </div>
-            <!-- Tab Content -->
             <div id="allocation-tab" class="tab-content active">
                 <div class="charts-container">
                     <div class="chart-wrapper">
@@ -777,14 +742,9 @@
             </div>
         </div>
     </div>
-    <!-- LOADER & MESSAGE CONTAINER -->
     <div id="loader"><i class="fas fa-spinner fa-spin"></i></div>
     <div id="message-container"></div>
-    <!-- JavaScript -->
     <script>
-        /********************************************************
-         * TRANSLATIONS
-         ********************************************************/
         const translations = {
             "de": {
                 "title": "Investment Simulator - JugendInvestiert",
@@ -919,7 +879,7 @@
                 "portfolio_metrics": "Métriques du Portefeuille",
                 "top_performer": "Meilleur Performeur",
                 "worst_performer": "Pire Performeur",
-                "largest_position": "Position la Plus Importante",
+                "largest_position": "Position la Plus Important",
                 "position_count": "Nombre de Positions",
                 "avg_position_size": "Taille Moyenne de Position",
                 "trend": "Tendance",
@@ -937,13 +897,7 @@
                 "sell_prompt": "Entrez le nombre d'actions à vendre (Disponible : {totalQuantity}) :"
             }
         };
-        /********************************************************
-         * FINNHUB API KEY
-         ********************************************************/
         const finnhubApiKey = "cs1uv71r01qpjum5l9agcs1uv71r01qpjum5l9b0";
-        /********************************************************
-         * FIREBASE CONFIGURATION
-         ********************************************************/
         const firebaseConfig = {
             apiKey: "AIzaSyDmEUCl7sWzBI7N78HgcgBRcRAkTYbtm5g",
             authDomain: "jugendinvestiert-5f6eb.firebaseapp.com",
@@ -957,9 +911,6 @@
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
         const database = firebase.database();
-        /********************************************************
-         * GLOBALS
-         ********************************************************/
         let budget = 10000;
         let portfolio = {};
         let stockList = [];
@@ -971,31 +922,39 @@
         let performanceChart = null;
         let profitLossChart = null;
         let sparklineChart = null;
-        let currentLang = 'en'; // Default to English for popup
-        /********************************************************
-         * POP-UP HANDLING
-         ********************************************************/
+        let currentLang = 'en';
+        const chartColors = ['#007bff', '#4caf50', '#f44336', '#ffeb3b', '#9c27b0', '#ff5722', '#3f51b5', '#009688'];
+        const stockSectors = {
+            'AAPL': 'Technology',
+            'MSFT': 'Technology',
+            'GOOGL': 'Technology',
+            'AMZN': 'Consumer Cyclical',
+            'TSLA': 'Consumer Cyclical',
+            'JPM': 'Financial Services',
+            'V': 'Financial Services',
+            'WMT': 'Consumer Defensive',
+            'PG': 'Consumer Defensive',
+            'XOM': 'Energy',
+            'CVX': 'Energy',
+            'JNJ': 'Healthcare',
+            'PFE': 'Healthcare'
+        };
         function showWelcomePopup() {
             document.getElementById('welcome-popup').style.display = 'flex';
-            applyTranslations(currentLang); // Apply initial translations
+            applyTranslations(currentLang);
         }
         function closeWelcomePopup() {
             document.getElementById('welcome-popup').style.display = 'none';
         }
         function selectLanguage(lang) {
             translatePage(lang);
-            // Update popup content immediately
             applyTranslations(lang);
-            // Send language change to parent
             window.parent.postMessage({
                 type: 'LANGUAGE_CHANGE',
                 language: lang,
                 source: 'simulator-iframe'
             }, '*');
         }
-        /********************************************************
-         * TRANSLATION FUNCTIONS
-         ********************************************************/
         function applyTranslations(targetLang) {
             const elements = document.querySelectorAll('[data-translate-key]');
             if (!translations[targetLang]) return;
@@ -1007,10 +966,8 @@
             });
             document.title = translations[targetLang].title;
             document.documentElement.lang = targetLang;
-            // Update input placeholders
             document.getElementById('stock-symbol').placeholder = translations[targetLang]['stock_symbol_label'];
             document.getElementById('quantity').placeholder = translations[targetLang]['quantity_label'];
-            // Update buy button text
             document.getElementById('buy-button').innerHTML = `<b>${translations[targetLang]['buy_button']}</b>`;
         }
         function translatePage(targetLang) {
@@ -1018,7 +975,6 @@
             currentLang = targetLang;
             applyTranslations(targetLang);
             localStorage.setItem('preferredLanguage', targetLang);
-            // Trigger full UI update
             updateBudget();
             updatePortfolioTable();
             updatePortfolioAnalysis();
@@ -1026,9 +982,6 @@
                 createTradingViewWidget(currentSymbol);
             }
         }
-        /********************************************************
-         * RECEIVE MESSAGES FROM PARENT
-         ********************************************************/
         window.addEventListener('message', (event) => {
             if (event.data.type === 'AUTH_DATA') {
                 console.log("Simulator received AUTH_DATA:", event.data);
@@ -1046,9 +999,6 @@
                 }
             }
         });
-        /********************************************************
-         * SEND PORTFOLIO_UPDATE TO PARENT
-         ********************************************************/
         function sendPortfolioUpdate() {
             const data = {
                 type: 'PORTFOLIO_UPDATE',
@@ -1058,9 +1008,6 @@
             console.log("Sending PORTFOLIO_UPDATE:", data);
             window.parent.postMessage(data, '*');
         }
-        /********************************************************
-         * FETCH STOCK LIST
-         ********************************************************/
         async function fetchStockList() {
             const url = `https://finnhub.io/api/v1/stock/symbol?exchange=US&token=${finnhubApiKey}`;
             try {
@@ -1077,9 +1024,6 @@
                 displayErrorMessage(translations[currentLang].error_fetch_stock_list);
             }
         }
-        /********************************************************
-         * DEBOUNCE & FILTER SYMBOLS
-         ********************************************************/
         function debounce(func, delay) {
             let debounceTimer;
             return function() {
@@ -1123,9 +1067,6 @@
             const regex = new RegExp(`(${input})`, 'gi');
             return text.replace(regex, '<strong>$1</strong>');
         }
-        /********************************************************
-         * SELECT SYMBOL & CREATE TRADINGVIEW WIDGET
-         ********************************************************/
         async function selectSymbol(symbol) {
             symbol = symbol.toUpperCase();
             document.getElementById('stock-symbol').value = symbol;
@@ -1139,19 +1080,38 @@
             const url = `https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${finnhubApiKey}`;
             try {
                 const response = await fetch(url);
-                if (!response.ok) {
-                    throw new Error(`HTTP-Fehler! Status: ${response.status}`);
-                }
+                if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
                 const data = await response.json();
-                if (!data || typeof data.c !== 'number') {
-                    console.warn("Keine Preisdaten für Symbol:", symbol);
+                if (!data || typeof data.c !== 'number' || data.c <= 0) {
+                    console.warn("No valid price data for symbol:", symbol);
                     return 0;
                 }
                 return parseFloat(data.c);
             } catch (error) {
-                console.error(`Fehler beim Abrufen des Preises für ${symbol}:`, error);
-                displayErrorMessage(`Fehler beim Abrufen des Preises für ${symbol}.`);
+                console.error(`Error fetching price for ${symbol}:`, error);
+                displayErrorMessage(translations[currentLang].error_invalid_symbol);
                 return 0;
+            }
+        }
+        async function fetchHistoricalPrices(symbol) {
+            const to = Math.floor(Date.now() / 1000);
+            const from = to - 30 * 24 * 60 * 60;
+            const url = `https://finnhub.io/api/v1/stock/candle?symbol=${symbol}&resolution=D&from=${from}&to=${to}&token=${finnhubApiKey}`;
+            try {
+                const response = await fetch(url);
+                if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+                const data = await response.json();
+                if (data.s !== 'ok' || !data.c || !data.t) {
+                    console.warn(`No historical data for ${symbol}`);
+                    return [];
+                }
+                return data.c.map((price, index) => ({
+                    date: new Date(data.t[index] * 1000).toLocaleDateString(),
+                    price: price
+                }));
+            } catch (error) {
+                console.error(`Error fetching historical prices for ${symbol}:`, error);
+                return [];
             }
         }
         function createTradingViewWidget(symbol) {
@@ -1173,9 +1133,6 @@
                 container_id: "tradingview-widget"
             });
         }
-        /********************************************************
-         * BUY STOCK
-         ********************************************************/
         async function buyStock() {
             if (isBuying) return;
             isBuying = true;
@@ -1233,9 +1190,9 @@
                 saveUserData();
                 updatePortfolioAnalysis();
                 displaySuccessMessage(translations[currentLang].success_buy_stock.replace('{quantity}', quantity).replace('{symbol}', symbol));
-                console.log(`Gekauft: ${quantity} Aktien von ${symbol} zu je $${price.toFixed(2)}.`);
+                console.log(`Bought: ${quantity} shares of ${symbol} at $${price.toFixed(2)} each.`);
             } catch (error) {
-                console.error("Fehler beim Kauf der Aktie:", error);
+                console.error("Error buying stock:", error);
                 displayErrorMessage(translations[currentLang].error_buy_stock);
             } finally {
                 isBuying = false;
@@ -1243,9 +1200,6 @@
                 displayLoader(false);
             }
         }
-        /********************************************************
-         * SELL STOCK
-         ********************************************************/
         async function sellStock(symbol) {
             symbol = symbol.toUpperCase();
             const totalQuantity = getTotalQuantity(symbol);
@@ -1288,29 +1242,20 @@
                 saveUserData();
                 updatePortfolioAnalysis();
                 displaySuccessMessage(translations[currentLang].success_sell_stock.replace('{quantity}', quantity).replace('{symbol}', symbol));
-                console.log(`Verkauft: ${quantity} Aktien von ${symbol} zu je $${price.toFixed(2)}.`);
+                console.log(`Sold: ${quantity} shares of ${symbol} at $${price.toFixed(2)} each.`);
             } catch (error) {
-                console.error("Fehler beim Verkauf der Aktie:", error);
+                console.error("Error selling stock:", error);
                 displayErrorMessage(translations[currentLang].error_sell_stock);
             }
         }
-        /********************************************************
-         * GET TOTAL QUANTITY
-         ********************************************************/
         function getTotalQuantity(symbol) {
             symbol = symbol.toUpperCase();
             return portfolio[symbol] ? portfolio[symbol].quantity : 0;
         }
-        /********************************************************
-         * UPDATE BUDGET
-         ********************************************************/
         function updateBudget() {
             document.getElementById('budget').innerText = budget.toFixed(2);
             calculateTotalProfit();
         }
-        /********************************************************
-         * UPDATE PORTFOLIO TABLE
-         ********************************************************/
         async function updatePortfolioTable() {
             const tbody = document.getElementById('portfolioTableBody');
             tbody.innerHTML = '';
@@ -1356,11 +1301,10 @@
             });
             document.getElementById('portfolioValue').innerText = (budget + totalPortfolioValue).toFixed(2);
             document.getElementById('totalProfit').innerText = `$${totalProfit.toFixed(2)}`;
+            document.getElementById('totalProfit').classList.remove('profit-positive', 'profit-negative');
+            document.getElementById('totalProfit').classList.add(totalProfit >= 0 ? 'profit-positive' : 'profit-negative');
             calculateTotalProfit();
         }
-        /********************************************************
-         * CALCULATE TOTAL PROFIT
-         ********************************************************/
         async function calculateTotalProfit() {
             let totalProfit = 0;
             let totalPortfolioValue = 0;
@@ -1377,34 +1321,50 @@
                 totalPortfolioValue += currentPrice * totalQuantity;
             });
             document.getElementById('totalProfit').innerText = `$${totalProfit.toFixed(2)}`;
+            document.getElementById('totalProfit').classList.remove('profit-positive', 'profit-negative');
+            document.getElementById('totalProfit').classList.add(totalProfit >= 0 ? 'profit-positive' : 'profit-negative');
             document.getElementById('portfolioValue').innerText = (budget + totalPortfolioValue).toFixed(2);
             const totalProfitAmount = (budget + totalPortfolioValue) - initialCapital;
             const percent = initialCapital > 0 ? (totalProfitAmount / initialCapital) * 100 : 0;
             document.getElementById('totalProfitPercent').innerText = `${percent.toFixed(2)}%`;
+            document.getElementById('totalProfitPercent').classList.remove('profit-positive', 'profit-negative');
+            document.getElementById('totalProfitPercent').classList.add(percent >= 0 ? 'profit-positive' : 'profit-negative');
         }
-        /********************************************************
-         * CREATE FALLBACK CHARTS
-         ********************************************************/
         function createFallbackCharts() {
             const contexts = ['allocation-chart', 'sector-chart', 'performance-chart', 'profit-loss-chart', 'sparkline-chart'];
             contexts.forEach(id => {
                 try {
-                    const ctx = document.getElementById(id);
+                    const ctx = document.getElementById(id)?.getContext('2d');
                     if (ctx) {
-                        new Chart(ctx.getContext('2d'), {
-                            type: 'bar',
+                        new Chart(ctx, {
+                            type: id === 'sparkline-chart' ? 'line' : 'bar',
                             data: {
                                 labels: [translations[currentLang].cash_balance],
                                 datasets: [{
                                     data: [budget],
-                                    backgroundColor: '#007bff'
+                                    backgroundColor: '#007bff',
+                                    borderColor: '#007bff',
+                                    fill: id === 'sparkline-chart'
                                 }]
                             },
                             options: {
                                 responsive: true,
                                 maintainAspectRatio: false,
                                 plugins: {
-                                    legend: { display: false }
+                                    legend: { display: false },
+                                    tooltip: {
+                                        callbacks: {
+                                            label: () => `${translations[currentLang].cash_balance}: $${budget.toFixed(2)}`
+                                        }
+                                    }
+                                },
+                                scales: {
+                                    x: { display: id !== 'sparkline-chart', ticks: { color: '#ffffff' } },
+                                    y: { 
+                                        display: id !== 'sparkline-chart', 
+                                        ticks: { color: '#ffffff', callback: value => '$' + value.toFixed(2) },
+                                        grid: { color: '#2e2e2e' }
+                                    }
                                 }
                             }
                         });
@@ -1414,51 +1374,62 @@
                 }
             });
         }
-        /********************************************************
-         * PORTFOLIO ANALYSIS
-         ********************************************************/
         async function updatePortfolioAnalysis() {
             try {
                 console.log("Updating portfolio analysis...");
                 const symbols = Object.keys(portfolio);
-                console.log("Portfolio symbols:", symbols);
                 let totalPortfolioValue = 0;
                 const stockValues = [];
+                const historicalData = {};
+                
                 if (symbols.length > 0) {
                     const pricePromises = symbols.map(symbol => fetchStockPrice(symbol));
+                    const historicalPromises = symbols.map(symbol => fetchHistoricalPrices(symbol));
                     const prices = await Promise.all(pricePromises);
-                    console.log("Prices for analysis:", prices);
+                    const historicalResults = await Promise.all(historicalPromises);
+                    
                     symbols.forEach((symbol, index) => {
                         const stockData = portfolio[symbol];
-                        const value = stockData.quantity * prices[index];
-                        if (!isNaN(value) && value > 0) {
+                        const currentPrice = prices[index];
+                        const value = stockData.quantity * currentPrice;
+                        if (!isNaN(value) && value >= 0 && currentPrice > 0) {
                             totalPortfolioValue += value;
-                            stockValues.push({ symbol, value, price: prices[index], ...stockData });
+                            stockValues.push({
+                                symbol,
+                                value,
+                                price: currentPrice,
+                                quantity: stockData.quantity,
+                                totalInvested: stockData.totalInvested,
+                                sector: stockSectors[symbol] || translations[currentLang].unknown
+                            });
+                            historicalData[symbol] = historicalResults[index];
                         }
                     });
                 }
+                
+                const totalValueWithCash = totalPortfolioValue + budget;
                 if (stockValues.length === 0) {
-                    console.log("No portfolio data, creating placeholder for charts");
-                    stockValues.push({ symbol: translations[currentLang].cash_balance, value: budget, price: budget, quantity: 1, totalInvested: budget });
+                    stockValues.push({
+                        symbol: translations[currentLang].cash_balance,
+                        value: budget,
+                        price: budget,
+                        quantity: 1,
+                        totalInvested: budget,
+                        sector: translations[currentLang].cash_balance
+                    });
                 }
-                console.log("Stock values for charts:", stockValues);
-                console.log("Total portfolio value:", totalPortfolioValue);
-                // Allocation Chart
-                if (allocationChart) {
-                    allocationChart.destroy();
-                    console.log("Destroyed existing allocation chart");
-                }
-                const allocationCtx = document.getElementById('allocation-chart');
+                
+                console.log("Stock values:", stockValues);
+                console.log("Total portfolio value (excluding cash):", totalPortfolioValue);
+                
+                if (allocationChart) allocationChart.destroy();
+                const allocationCtx = document.getElementById('allocation-chart')?.getContext('2d');
                 if (!allocationCtx) {
                     console.error("Allocation chart canvas not found");
+                    createFallbackCharts();
                     return;
                 }
-                const allocationCtx2D = allocationCtx.getContext('2d');
-                if (!allocationCtx2D) {
-                    console.error("Could not get 2D context for allocation chart");
-                    return;
-                }
-                allocationChart = new Chart(allocationCtx2D, {
+                allocationChart = new Chart(allocationCtx, {
                     type: 'pie',
                     data: {
                         labels: stockValues.map(s => s.symbol),
@@ -1475,17 +1446,13 @@
                         plugins: {
                             legend: {
                                 position: 'bottom',
-                                labels: {
-                                    color: '#ffffff',
-                                    font: { size: 12, family: 'Poppins' }
-                                }
+                                labels: { color: '#ffffff', font: { size: 12, family: 'Poppins' } }
                             },
                             tooltip: {
                                 callbacks: {
                                     label: function(context) {
                                         const value = context.raw;
-                                        const total = context.dataset.data.reduce((a, b) => a + b, 0);
-                                        const percentage = ((value / total) * 100).toFixed(2);
+                                        const percentage = totalValueWithCash > 0 ? ((value / totalValueWithCash) * 100).toFixed(2) : 0;
                                         return `${context.label}: $${value.toFixed(2)} (${percentage}%)`;
                                     }
                                 }
@@ -1494,29 +1461,21 @@
                     }
                 });
                 console.log("Allocation chart rendered");
-                // Sector Chart
-                if (sectorChart) {
-                    sectorChart.destroy();
-                    console.log("Destroyed existing sector chart");
-                }
-                const sectorCtx = document.getElementById('sector-chart');
+                
+                if (sectorChart) sectorChart.destroy();
+                const sectorCtx = document.getElementById('sector-chart')?.getContext('2d');
                 if (!sectorCtx) {
                     console.error("Sector chart canvas not found");
-                    return;
-                }
-                const sectorCtx2D = sectorCtx.getContext('2d');
-                if (!sectorCtx2D) {
-                    console.error("Could not get 2D context for sector chart");
+                    createFallbackCharts();
                     return;
                 }
                 const sectorData = {};
                 stockValues.forEach(stock => {
-                    const sector = stockSectors[stock.symbol] || translations[currentLang].unknown;
+                    const sector = stock.sector;
                     sectorData[sector] = (sectorData[sector] || 0) + stock.value;
                 });
                 const sectorLabels = Object.keys(sectorData);
-                console.log("Sector data:", sectorData);
-                sectorChart = new Chart(sectorCtx2D, {
+                sectorChart = new Chart(sectorCtx, {
                     type: 'doughnut',
                     data: {
                         labels: sectorLabels,
@@ -1539,8 +1498,7 @@
                                 callbacks: {
                                     label: function(context) {
                                         const value = context.raw;
-                                        const total = context.dataset.data.reduce((a, b) => a + b, 0);
-                                        const percentage = ((value / total) * 100).toFixed(2);
+                                        const percentage = totalValueWithCash > 0 ? ((value / totalValueWithCash) * 100).toFixed(2) : 0;
                                         return `${context.label}: $${value.toFixed(2)} (${percentage}%)`;
                                     }
                                 }
@@ -1549,40 +1507,45 @@
                     }
                 });
                 console.log("Sector chart rendered");
-                // Performance Chart
-                if (performanceChart) {
-                    performanceChart.destroy();
-                    console.log("Destroyed existing performance chart");
-                }
-                const perfCtx = document.getElementById('performance-chart');
+                
+                if (performanceChart) performanceChart.destroy();
+                const perfCtx = document.getElementById('performance-chart')?.getContext('2d');
                 if (!perfCtx) {
                     console.error("Performance chart canvas not found");
+                    createFallbackCharts();
                     return;
                 }
-                const perfCtx2D = perfCtx.getContext('2d');
-                if (!perfCtx2D) {
-                    console.error("Could not get 2D context for performance chart");
-                    return;
-                }
+                
+                const days = 30;
                 const labels = [];
-                const data = [];
+                const portfolioValues = [];
                 const today = new Date();
-                for (let i = 30; i >= 0; i--) {
+                const dateSet = new Set();
+                
+                for (let i = days - 1; i >= 0; i--) {
                     const date = new Date(today);
                     date.setDate(today.getDate() - i);
-                    labels.push(date.toLocaleDateString());
-                    const baseValue = budget + stockValues.reduce((sum, stock) => sum + (stock.price * stock.quantity), 0);
-                    const fluctuation = (Math.random() - 0.5) * 100;
-                    data.push(baseValue + fluctuation * (30 - i) / 30);
+                    const dateStr = date.toLocaleDateString();
+                    labels.push(dateStr);
+                    let dailyValue = budget;
+                    symbols.forEach(symbol => {
+                        const stockData = portfolio[symbol];
+                        const historicalPrices = historicalData[symbol] || [];
+                        const historicalPrice = historicalPrices.find(h => h.date === dateStr)?.price || 
+                            (stockData.totalInvested / stockData.quantity);
+                        dailyValue += historicalPrice * stockData.quantity;
+                    });
+                    portfolioValues.push(dailyValue);
+                    dateSet.add(dateStr);
                 }
-                console.log("Performance chart data:", { labels, data });
-                performanceChart = new Chart(perfCtx2D, {
+                
+                performanceChart = new Chart(perfCtx, {
                     type: 'line',
                     data: {
                         labels: labels,
                         datasets: [{
                             label: translations[currentLang].portfolio_development,
-                            data: data,
+                            data: portfolioValues,
                             borderColor: '#007bff',
                             backgroundColor: 'rgba(0, 123, 255, 0.2)',
                             fill: true,
@@ -1593,7 +1556,10 @@
                         responsive: true,
                         maintainAspectRatio: false,
                         scales: {
-                            x: { ticks: { color: '#ffffff', maxTicksLimit: 10 }, grid: { color: '#2e2e2e' } },
+                            x: { 
+                                ticks: { color: '#ffffff', maxTicksLimit: 10 }, 
+                                grid: { color: '#2e2e2e' } 
+                            },
                             y: {
                                 ticks: {
                                     color: '#ffffff',
@@ -1613,38 +1579,27 @@
                     }
                 });
                 console.log("Performance chart rendered");
-                // Profit/Loss Chart
-                if (profitLossChart) {
-                    profitLossChart.destroy();
-                    console.log("Destroyed existing profit/loss chart");
-                }
-                const plCtx = document.getElementById('profit-loss-chart');
+                
+                if (profitLossChart) profitLossChart.destroy();
+                const plCtx = document.getElementById('profit-loss-chart')?.getContext('2d');
                 if (!plCtx) {
                     console.error("Profit/loss chart canvas not found");
+                    createFallbackCharts();
                     return;
                 }
-                const plCtx2D = plCtx.getContext('2d');
-                if (!plCtx2D) {
-                    console.error("Could not get 2D context for profit/loss chart");
-                    return;
-                }
-                const plData = stockValues.map(stock => {
+                const validStocks = stockValues.filter(stock => stock.symbol !== translations[currentLang].cash_balance);
+                const plData = validStocks.map(stock => {
                     const purchasePrice = stock.totalInvested / stock.quantity;
                     return (stock.price - purchasePrice) * stock.quantity;
                 });
-                console.log("Profit/loss chart data:", plData);
-                profitLossChart = new Chart(plCtx2D, {
+                profitLossChart = new Chart(plCtx, {
                     type: 'bar',
                     data: {
-                        labels: stockValues.map(s => s.symbol),
+                        labels: validStocks.map(s => s.symbol),
                         datasets: [{
                             label: translations[currentLang].profit_loss_per_stock,
                             data: plData,
-                            backgroundColor: function(context) {
-                                if (stockValues.length === 0) return '#cccccc';
-                                const value = plData[context.dataIndex];
-                                return value >= 0 ? '#4caf50' : '#f44336';
-                            },
+                            backgroundColor: plData.map(value => value >= 0 ? '#4caf50' : '#f44336'),
                             borderColor: '#1B2631',
                             borderWidth: 1
                         }]
@@ -1673,46 +1628,44 @@
                     }
                 });
                 console.log("Profit/loss chart rendered");
-                // Summary Metrics
-                const topPerformer = stockValues.reduce((max, stock) => {
+                
+                const topPerformer = validStocks.reduce((max, stock) => {
                     const purchasePrice = stock.totalInvested / stock.quantity;
                     const profitPercent = purchasePrice > 0 ? ((stock.price - purchasePrice) / purchasePrice) * 100 : 0;
                     return !max || profitPercent > max.profitPercent ? { symbol: stock.symbol, profitPercent } : max;
                 }, null);
-                const worstPerformer = stockValues.reduce((min, stock) => {
+                const worstPerformer = validStocks.reduce((min, stock) => {
                     const purchasePrice = stock.totalInvested / stock.quantity;
                     const profitPercent = purchasePrice > 0 ? ((stock.price - purchasePrice) / purchasePrice) * 100 : 0;
                     return !min || profitPercent < min.profitPercent ? { symbol: stock.symbol, profitPercent } : min;
                 }, null);
-                const largestPosition = stockValues.reduce((max, stock) => {
+                const largestPosition = validStocks.reduce((max, stock) => {
                     return !max || stock.value > max.value ? stock : max;
                 }, null);
-                document.getElementById('top-performer').innerText = topPerformer ? `${topPerformer.symbol} (${topPerformer.profitPercent.toFixed(2)}%)` : '-';
-                document.getElementById('worst-performer').innerText = worstPerformer ? `${worstPerformer.symbol} (${worstPerformer.profitPercent.toFixed(2)}%)` : '-';
-                document.getElementById('largest-position').innerText = largestPosition ? `${largestPosition.symbol} ($${largestPosition.value.toFixed(2)})` : '-';
-                document.getElementById('position-count').innerText = symbols.length;
-                document.getElementById('avg-position-size').innerText = symbols.length > 0 ? `$${(totalPortfolioValue / symbols.length).toFixed(2)}` : '$0.00';
-                // Sparkline Chart
-                if (sparklineChart) {
-                    sparklineChart.destroy();
-                    console.log("Destroyed existing sparkline chart");
-                }
-                const sparklineCtx = document.getElementById('sparkline-chart');
+                
+                document.getElementById('top-performer').innerText = topPerformer && topPerformer.profitPercent !== 0 ? 
+                    `${topPerformer.symbol} (${topPerformer.profitPercent.toFixed(2)}%)` : '-';
+                document.getElementById('worst-performer').innerText = worstPerformer && worstPerformer.profitPercent !== 0 ? 
+                    `${worstPerformer.symbol} (${worstPerformer.profitPercent.toFixed(2)}%)` : '-';
+                document.getElementById('largest-position').innerText = largestPosition ? 
+                    `${largestPosition.symbol} ($${largestPosition.value.toFixed(2)})` : '-';
+                document.getElementById('position-count').innerText = validStocks.length;
+                document.getElementById('avg-position-size').innerText = validStocks.length > 0 ? 
+                    `$${(totalPortfolioValue / validStocks.length).toFixed(2)}` : '$0.00';
+                
+                if (sparklineChart) sparklineChart.destroy();
+                const sparklineCtx = document.getElementById('sparkline-chart')?.getContext('2d');
                 if (!sparklineCtx) {
                     console.error("Sparkline chart canvas not found");
+                    createFallbackCharts();
                     return;
                 }
-                const sparklineCtx2D = sparklineCtx.getContext('2d');
-                if (!sparklineCtx2D) {
-                    console.error("Could not get 2D context for sparkline chart");
-                    return;
-                }
-                const sparklineData = data.slice(-10).length > 0 ? data.slice(-10) : [budget, budget];
-                console.log("Sparkline chart data:", sparklineData);
-                sparklineChart = new Chart(sparklineCtx2D, {
+                const sparklineData = portfolioValues.slice(-10).length > 0 ? portfolioValues.slice(-10) : [budget, budget];
+                const sparklineLabels = labels.slice(-10).length > 0 ? labels.slice(-10) : ['Start', 'End'];
+                sparklineChart = new Chart(sparklineCtx, {
                     type: 'line',
                     data: {
-                        labels: labels.slice(-10).length > 0 ? labels.slice(-10) : ['Start', 'End'],
+                        labels: sparklineLabels,
                         datasets: [{
                             data: sparklineData,
                             borderColor: '#007bff',
@@ -1737,13 +1690,11 @@
                 });
                 console.log("Sparkline chart rendered");
             } catch (error) {
-                console.error("Portfolio analysis failed with error:", error);
+                console.error("Portfolio analysis failed:", error);
                 createFallbackCharts();
+                displayErrorMessage(translations[currentLang].error_fetch_stock_list);
             }
         }
-        /********************************************************
-         * TAB HANDLING
-         ********************************************************/
         document.querySelectorAll('.tab-button').forEach(button => {
             button.addEventListener('click', function() {
                 const tabName = this.getAttribute('data-tab');
@@ -1758,9 +1709,6 @@
                 }
             });
         });
-        /********************************************************
-         * NORMALIZE PORTFOLIO
-         ********************************************************/
         function normalizePortfolioSymbols(originalPortfolio) {
             const normalizedPortfolio = {};
             for (const symbol in originalPortfolio) {
@@ -1776,9 +1724,6 @@
             }
             return normalizedPortfolio;
         }
-        /********************************************************
-         * DISPLAY MESSAGES
-         ********************************************************/
         function displaySuccessMessage(message) {
             displayMessage(message, 'success');
         }
@@ -1796,16 +1741,10 @@
             container.appendChild(div);
             setTimeout(() => div.remove(), 4000);
         }
-        /********************************************************
-         * DISPLAY LOADER
-         ********************************************************/
         function displayLoader(show) {
             const loader = document.getElementById('loader');
             loader.style.display = show ? 'block' : 'none';
         }
-        /********************************************************
-         * SAVE USER DATA
-         ********************************************************/
         function saveUserData() {
             const user = firebase.auth().currentUser;
             if (user) {
@@ -1816,17 +1755,14 @@
                     portfolio: portfolio
                 }, (error) => {
                     if (error) {
-                        console.error("Fehler beim Speichern der Daten:", error);
-                        displayErrorMessage("Fehler beim Speichern der Benutzerdaten.");
+                        console.error("Error saving data:", error);
+                        displayErrorMessage("Error saving user data.");
                     } else {
-                        console.log("Daten erfolgreich gespeichert.");
+                        console.log("Data saved successfully.");
                     }
                 });
             }
         }
-        /********************************************************
-         * INITIALIZE
-         ********************************************************/
         window.onload = async function() {
             console.log("Window loaded, initializing...");
             showWelcomePopup();
