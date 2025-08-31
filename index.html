@@ -1401,9 +1401,11 @@
             }
         });
         window.addEventListener('message', (event) => {
-            if (event.data.type === 'LANGUAGE_CHANGE' && event.data.source === 'home-iframe') {
+            if (event.data.action === 'openSignupModal') {
+                openModal('signupModal');
+            } else if (event.data.type === 'LANGUAGE_CHANGE' && event.data.source !== 'index') {
                 const targetLang = event.data.language;
-                if (translations[targetLang]) {
+                if (translations[targetLang] && targetLang !== document.documentElement.lang) {
                     changeLanguage(targetLang);
                 }
             }
