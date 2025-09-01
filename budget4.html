@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-translate-key="title">Kurs 3: Sparziele setzen</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+    font-family: 'Poppins', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #101820;
+    color: white;
+    overflow-x: hidden;
+    margin-top: 40px;
+    padding-bottom: 50px;
+}
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    z-index: 1000;
+    padding-left: 30px;
+}
+.navbar .cross {
+    font-size: 1.5em;
+    cursor: pointer;
+}
+.navbar .cross:hover {
+    color: grey;
+}
+.scroll-bar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background-color: #444;
+    z-index: 1000;
+}
+.scroll-bar {
+    height: 100%;
+    width: 0%;
+    background-color: #1dd05d;
+    transition: width 0.2s;
+}
+.content {
+    padding: 20px 20px 20px 120px; /* Increased left padding for smaller screens */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+/* Add more left padding for desktop screens */
+@media (min-width: 768px) {
+    .content {
+        padding-left: 180px; /* Increased left padding for desktop */
+    }
+}
+#course-details {
+    padding: 20px 20px 20px 40px; /* Added left padding to course details */
+    background-color: #2C3E50;
+    border-radius: 10px;
+}
+.example {
+    background-color: #1B2631;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+    align-self: left;
+}
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="cross" onclick="window.location.href='section3.html'">✖</div>
+    </div>
+
+    <div class="scroll-bar-container">
+        <div class="scroll-bar" id="scroll-bar"></div>
+    </div>
+
+    <div id="course-details">
+        <div class="container">
+            <h2 data-translate-key="lesson3_title">Lektion 3: Wie setzt man Sparziele?</h2>
+            <p data-translate-key="intro">Sparziele zu setzen ist ein wichtiger Schritt, um finanzielle Unabhängigkeit zu erreichen und langfristig zu planen. Im Folgenden werden wir die Mechanismen zum Setzen effektiver Sparziele genauer betrachten:</p>
+            <h3 data-translate-key="section_a_title">A. Was sind Sparziele?</h3>
+            <p data-translate-key="section_a_desc">Sparziele sind spezifische, messbare Ziele, die Sie sich setzen, um Geld für bestimmte Zwecke anzusparen. Sie helfen, Motivation zu halten, Ausgaben zu priorisieren und finanzielle Fortschritte zu verfolgen. Typische Sparziele umfassen den Aufbau eines Notfallfonds, den Kauf eines Hauses oder die Vorbereitung auf den Ruhestand.</p>
+            <div class="example">
+                <h4 data-translate-key="example_title">Beispiel:</h4>
+                <p data-translate-key="example_savings_1">Stellen Sie sich vor, Sie möchten 10.000 Euro für eine Urlaubsreise sparen. Indem Sie ein monatliches Sparziel von 500 Euro festlegen, erreichen Sie Ihr Ziel in 20 Monaten. Das Setzen solcher Ziele macht den Sparprozess greifbar und motiviert Sie, regelmäßig beizutragen.</p>
+                <p data-translate-key="example_savings_2">Zusammenfassend: Sparziele geben Ihrem Sparen einen Zweck und helfen, diszipliniert zu bleiben, während Sie auf größere finanzielle Erfolge hinarbeiten.</p>
+            </div>
+            <h3 data-translate-key="section_b_title">B. Schritte zum Setzen von Sparzielen</h3>
+            <p data-translate-key="section_b_desc_1">Das Setzen von Sparzielen folgt dem SMART-Prinzip: Spezifisch, Messbar, Attraktiv, Realistisch und Terminiert. Definieren Sie zunächst, wofür Sie sparen, legen Sie den Betrag fest, machen Sie es ansprechend, stellen Sie sicher, dass es machbar ist, und setzen Sie einen Zeitrahmen.</p>
+            <p data-translate-key="section_b_desc_2">Ein guter Ansatz ist, kurzfristige, mittelfristige und langfristige Ziele zu unterscheiden.</p>
+            <p data-translate-key="smart_desc">Beispiel für ein SMART-Ziel: „Ich spare 5.000 Euro für einen neuen Laptop in den nächsten 12 Monaten, indem ich monatlich 417 Euro zurücklege.“ Dieses Ziel ist spezifisch (neuer Laptop), messbar (5.000 Euro), attraktiv (persönlicher Nutzen), realistisch (basierend auf Einkommen) und terminiert (12 Monate).</p>
+            <h3 data-translate-key="section_c_title">C. Auswirkungen von Sparzielen</h3>
+            <p data-translate-key="section_c_desc_1">Sparziele haben positive Effekte auf Ihre Finanzen. Sie fördern Disziplin, reduzieren impulsives Ausgeben und bauen Vermögen auf. Langfristig können sie zu finanzieller Sicherheit führen, Stress abbauen und Ihnen ermöglichen, Träume zu verwirklichen. Regelmäßige Überprüfung und Anpassung der Ziele ist entscheidend für den Erfolg.</p>
+            <div class="example">
+                <h4 data-translate-key="example_retirement_title">Beispiel: Rentenvorsorge</h4>
+                <p data-translate-key="example_retirement_desc">Für die Rente zu sparen ist ein langfristiges Ziel. Wenn Sie mit 30 Jahren beginnen und monatlich 200 Euro bei 5% Rendite anlegen, könnten Sie bis 65 über 150.000 Euro ansammeln. Sparziele helfen, diesen Prozess zu strukturieren und motivieren, früh zu starten, um vom Zinseszinseffekt zu profitieren.</p>
+            </div>
+            <p data-translate-key="tips_intro">Hier sind einige Tipps zum Setzen von Sparzielen:</p>
+            <ul>
+                <li data-translate-key="tip_smart">Verwenden Sie das SMART-Prinzip, um Ziele klar zu definieren.</li>
+                <li data-translate-key="tip_automate">Automatisieren Sie Sparbeiträge durch Daueraufträge.</li>
+                <li data-translate-key="tip_track">Verfolgen Sie Ihren Fortschritt mit Apps oder Tabellen.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const translations = {
+            "de": {
+                "title": "Kurs 3: Sparziele setzen",
+                "lesson3_title": "Lektion 3: Wie setzt man Sparziele?",
+                "intro": "Sparziele zu setzen ist ein wichtiger Schritt, um finanzielle Unabhängigkeit zu erreichen und langfristig zu planen. Im Folgenden werden wir die Mechanismen zum Setzen effektiver Sparziele genauer betrachten:",
+                "section_a_title": "A. Was sind Sparziele?",
+                "section_a_desc": "Sparziele sind spezifische, messbare Ziele, die Sie sich setzen, um Geld für bestimmte Zwecke anzusparen. Sie helfen, Motivation zu halten, Ausgaben zu priorisieren und finanzielle Fortschritte zu verfolgen. Typische Sparziele umfassen den Aufbau eines Notfallfonds, den Kauf eines Hauses oder die Vorbereitung auf den Ruhestand.",
+                "example_title": "Beispiel:",
+                "example_savings_1": "Stellen Sie sich vor, Sie möchten 10.000 Euro für eine Urlaubsreise sparen. Indem Sie ein monatliches Sparziel von 500 Euro festlegen, erreichen Sie Ihr Ziel in 20 Monaten. Das Setzen solcher Ziele macht den Sparprozess greifbar und motiviert Sie, regelmäßig beizutragen.",
+                "example_savings_2": "Zusammenfassend: Sparziele geben Ihrem Sparen einen Zweck und helfen, diszipliniert zu bleiben, während Sie auf größere finanzielle Erfolge hinarbeiten.",
+                "section_b_title": "B. Schritte zum Setzen von Sparzielen",
+                "section_b_desc_1": "Das Setzen von Sparzielen folgt dem SMART-Prinzip: Spezifisch, Messbar, Attraktiv, Realistisch und Terminiert. Definieren Sie zunächst, wofür Sie sparen, legen Sie den Betrag fest, machen Sie es ansprechend, stellen Sie sicher, dass es machbar ist, und setzen Sie einen Zeitrahmen.",
+                "section_b_desc_2": "Ein guter Ansatz ist, kurzfristige, mittelfristige und langfristige Ziele zu unterscheiden.",
+                "smart_desc": "Beispiel für ein SMART-Ziel: „Ich spare 5.000 Euro für einen neuen Laptop in den nächsten 12 Monaten, indem ich monatlich 417 Euro zurücklege.“ Dieses Ziel ist spezifisch (neuer Laptop), messbar (5.000 Euro), attraktiv (persönlicher Nutzen), realistisch (basierend auf Einkommen) und terminiert (12 Monate).",
+                "section_c_title": "C. Auswirkungen von Sparzielen",
+                "section_c_desc_1": "Sparziele haben positive Effekte auf Ihre Finanzen. Sie fördern Disziplin, reduzieren impulsives Ausgeben und bauen Vermögen auf. Langfristig können sie zu finanzieller Sicherheit führen, Stress abbauen und Ihnen ermöglichen, Träume zu verwirklichen. Regelmäßige Überprüfung und Anpassung der Ziele ist entscheidend für den Erfolg.",
+                "example_retirement_title": "Beispiel: Rentenvorsorge",
+                "example_retirement_desc": "Für die Rente zu sparen ist ein langfristiges Ziel. Wenn Sie mit 30 Jahren beginnen und monatlich 200 Euro bei 5% Rendite anlegen, könnten Sie bis 65 über 150.000 Euro ansammeln. Sparziele helfen, diesen Prozess zu strukturieren und motivieren, früh zu starten, um vom Zinseszinseffekt zu profitieren.",
+                "tips_intro": "Hier sind einige Tipps zum Setzen von Sparzielen:",
+                "tip_smart": "Verwenden Sie das SMART-Prinzip, um Ziele klar zu definieren.",
+                "tip_automate": "Automatisieren Sie Sparbeiträge durch Daueraufträge.",
+                "tip_track": "Verfolgen Sie Ihren Fortschritt mit Apps oder Tabellen."
+            },
+            "en": {
+                "title": "Course 3: Setting Savings Goals",
+                "lesson3_title": "Lesson 3: How to Set Savings Goals?",
+                "intro": "Setting savings goals is an important step to achieve financial independence and plan long-term. Below, we will explore the mechanisms for setting effective savings goals in more detail:",
+                "section_a_title": "A. What are Savings Goals?",
+                "section_a_desc": "Savings goals are specific, measurable objectives you set to save money for particular purposes. They help maintain motivation, prioritize expenses, and track financial progress. Typical savings goals include building an emergency fund, buying a house, or preparing for retirement.",
+                "example_title": "Example:",
+                "example_savings_1": "Imagine you want to save 10,000 euros for a vacation trip. By setting a monthly savings goal of 500 euros, you reach your goal in 20 months. Setting such goals makes the saving process tangible and motivates you to contribute regularly.",
+                "example_savings_2": "In summary: Savings goals give your saving a purpose and help you stay disciplined while working towards greater financial successes.",
+                "section_b_title": "B. Steps to Set Savings Goals",
+                "section_b_desc_1": "Setting savings goals follows the SMART principle: Specific, Measurable, Achievable, Relevant, and Time-bound. First, define what you're saving for, set the amount, make it appealing, ensure it's feasible, and set a timeframe.",
+                "section_b_desc_2": "A good approach is to distinguish between short-term, medium-term, and long-term goals.",
+                "smart_desc": "Example of a SMART goal: 'I will save 5,000 euros for a new laptop in the next 12 months by setting aside 417 euros monthly.' This goal is specific (new laptop), measurable (5,000 euros), achievable (personal benefit), relevant (based on income), and time-bound (12 months).",
+                "section_c_title": "C. Impacts of Savings Goals",
+                "section_c_desc_1": "Savings goals have positive effects on your finances. They promote discipline, reduce impulsive spending, and build wealth. In the long term, they can lead to financial security, reduce stress, and enable you to realize dreams. Regular review and adjustment of goals is crucial for success.",
+                "example_retirement_title": "Example: Retirement Planning",
+                "example_retirement_desc": "Saving for retirement is a long-term goal. If you start at age 30 and invest 200 euros monthly at 5% return, you could accumulate over 150,000 euros by age 65. Savings goals help structure this process and motivate starting early to benefit from compound interest.",
+                "tips_intro": "Here are some tips for setting savings goals:",
+                "tip_smart": "Use the SMART principle to define goals clearly.",
+                "tip_automate": "Automate savings contributions through standing orders.",
+                "tip_track": "Track your progress with apps or spreadsheets."
+            },
+            "fr": {
+                "title": "Cours 3 : Définir des objectifs d'épargne",
+                "lesson3_title": "Leçon 3 : Comment définir des objectifs d'épargne ?",
+                "intro": "Définir des objectifs d'épargne est une étape importante pour atteindre l'indépendance financière et planifier à long terme. Ci-dessous, nous explorerons les mécanismes pour définir des objectifs d'épargne efficaces plus en détail :",
+                "section_a_title": "A. Qu'est-ce que des objectifs d'épargne ?",
+                "section_a_desc": "Les objectifs d'épargne sont des objectifs spécifiques et mesurables que vous vous fixez pour économiser de l'argent à des fins particulières. Ils aident à maintenir la motivation, à prioriser les dépenses et à suivre les progrès financiers. Les objectifs d'épargne typiques incluent la constitution d'un fonds d'urgence, l'achat d'une maison ou la préparation à la retraite.",
+                "example_title": "Exemple :",
+                "example_savings_1": "Imaginez que vous voulez économiser 10 000 euros pour un voyage de vacances. En fixant un objectif d'épargne mensuel de 500 euros, vous atteignez votre objectif en 20 mois. Définir de tels objectifs rend le processus d'épargne tangible et vous motive à contribuer régulièrement.",
+                "example_savings_2": "En résumé : Les objectifs d'épargne donnent un but à votre épargne et vous aident à rester discipliné tout en travaillant vers de plus grands succès financiers.",
+                "section_b_title": "B. Étapes pour définir des objectifs d'épargne",
+                "section_b_desc_1": "Définir des objectifs d'épargne suit le principe SMART : Spécifique, Mesurable, Atteignable, Pertinent et Temporellement défini. Définissez d'abord pour quoi vous économisez, fixez le montant, rendez-le attrayant, assurez-vous qu'il est réalisable et fixez un délai.",
+                "section_b_desc_2": "Une bonne approche consiste à distinguer les objectifs à court terme, à moyen terme et à long terme.",
+                "smart_desc": "Exemple d'un objectif SMART : « Je vais économiser 5 000 euros pour un nouvel ordinateur portable dans les 12 prochains mois en mettant de côté 417 euros par mois. » Cet objectif est spécifique (nouvel ordinateur portable), mesurable (5 000 euros), atteignable (bénéfice personnel), pertinent (basé sur le revenu) et temporellement défini (12 mois).",
+                "section_c_title": "C. Impacts des objectifs d'épargne",
+                "section_c_desc_1": "Les objectifs d'épargne ont des effets positifs sur vos finances. Ils favorisent la discipline, réduisent les dépenses impulsives et construisent la richesse. À long terme, ils peuvent mener à la sécurité financière, réduire le stress et vous permettre de réaliser des rêves. Une revue régulière et un ajustement des objectifs sont cruciaux pour le succès.",
+                "example_retirement_title": "Exemple : Planification de la retraite",
+                "example_retirement_desc": "Économiser pour la retraite est un objectif à long terme. Si vous commencez à 30 ans et investissez 200 euros par mois à 5 % de rendement, vous pourriez accumuler plus de 150 000 euros d'ici 65 ans. Les objectifs d'épargne aident à structurer ce processus et motivent à commencer tôt pour bénéficier des intérêts composés.",
+                "tips_intro": "Voici quelques conseils pour définir des objectifs d'épargne :",
+                "tip_smart": "Utilisez le principe SMART pour définir clairement les objectifs.",
+                "tip_automate": "Automatisez les contributions d'épargne via des ordres permanents.",
+                "tip_track": "Suivez vos progrès avec des applications ou des tableurs."
+            }
+        };
+
+        let currentLang = 'de';
+
+        function applyTranslations(targetLang) {
+            const elements = document.querySelectorAll('[data-translate-key]');
+            if (!translations[targetLang]) return;
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate-key');
+                if (translations[targetLang][key]) {
+                    element.innerHTML = translations[targetLang][key];
+                }
+            });
+            document.title = translations[targetLang].title || "Kurs 3: Sparziele setzen";
+        }
+
+        function translatePage(targetLang) {
+            if (targetLang === currentLang) return;
+            applyTranslations(targetLang);
+            document.documentElement.lang = targetLang;
+            currentLang = targetLang;
+        }
+
+        // Apply default language on load
+        window.addEventListener('DOMContentLoaded', () => {
+            applyTranslations('de');
+            const storedLang = localStorage.getItem('preferredLanguage');
+            if (storedLang && translations[storedLang] && storedLang !== 'de') {
+                translatePage(storedLang);
+            }
+        });
+
+        // Listen for language change messages from parent (index.html)
+        window.addEventListener('message', (event) => {
+            if (event.data.type === 'LANGUAGE_CHANGE') {
+                translatePage(event.data.language);
+            }
+        });
+
+        // Scroll bar functionality
+        function updateScrollBar() {
+            const scrollBar = document.getElementById('scroll-bar');
+            const scrollHeight = document.documentElement.scrollHeight;
+            const clientHeight = document.documentElement.clientHeight;
+            const scrollTop = window.scrollY;
+            const scrollPercent = (scrollTop / (scrollHeight - clientHeight)) * 100;
+            scrollBar.style.width = scrollPercent + '%';
+        }
+
+        window.addEventListener('scroll', updateScrollBar);
+        window.addEventListener('resize', updateScrollBar);
+    </script>
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-translate-key="title">Kurs 4: Wie kann ich meine Ausgaben verfolgen?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+    font-family: 'Poppins', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #101820;
+    color: white;
+    overflow-x: hidden;
+    margin-top: 40px;
+    padding-bottom: 50px;
+}
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    z-index: 1000;
+    padding-left: 30px;
+}
+.navbar .cross {
+    font-size: 1.5em;
+    cursor: pointer;
+}
+.navbar .cross:hover {
+    color: grey;
+}
+.scroll-bar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background-color: #444;
+    z-index: 1000;
+}
+.scroll-bar {
+    height: 100%;
+    width: 0%;
+    background-color: #1dd05d;
+    transition: width 0.2s;
+}
+.content {
+    padding: 20px 20px 20px 120px; /* Increased left padding for smaller screens */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+/* Add more left padding for desktop screens */
+@media (min-width: 768px) {
+    .content {
+        padding-left: 180px; /* Increased left padding for desktop */
+    }
+}
+#course-details {
+    padding: 20px 20px 20px 40px; /* Added left padding to course details */
+    background-color: #2C3E50;
+    border-radius: 10px;
+}
+.example {
+    background-color: #1B2631;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+    align-self: left;
+}
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="cross" onclick="window.location.href='section3.html'">✖</div>
+    </div>
+
+    <div class="scroll-bar-container">
+        <div class="scroll-bar" id="scroll-bar"></div>
+    </div>
+
+    <div id="course-details">
+        <div class="container">
+            <h2 data-translate-key="lesson4_title">Lektion 4: Wie kann ich meine Ausgaben verfolgen?</h2>
+            <p data-translate-key="intro">Das Verfolgen Ihrer Ausgaben ist ein entscheidender Schritt, um Ihre Finanzen zu kontrollieren und fundierte Entscheidungen zu treffen. Im Folgenden werden wir Methoden und Tools zur effektiven Nachverfolgung Ihrer Ausgaben betrachten:</p>
+            <h3 data-translate-key="section_a_title">A. Warum ist das Verfolgen von Ausgaben wichtig?</h3>
+            <p data-translate-key="section_a_desc">Das Verfolgen von Ausgaben hilft Ihnen, ein klares Bild Ihrer finanziellen Gewohnheiten zu erhalten. Es zeigt, wohin Ihr Geld fließt, deckt unnötige Ausgaben auf und ermöglicht es Ihnen, Ihr Budget besser zu planen. Durch die Analyse Ihrer Ausgaben können Sie Sparpotenziale erkennen und Ihre finanziellen Ziele schneller erreichen.</p>
+            <div class="example">
+                <h4 data-translate-key="example_title">Beispiel:</h4>
+                <img src="expense_tracker.jpg" alt="Ausgabenübersicht">
+                <p data-translate-key="example_expense_1">Stellen Sie sich vor, Sie geben monatlich 200 Euro für Essen außer Haus aus. Durch das Verfolgen Ihrer Ausgaben stellen Sie fest, dass Sie durch weniger Restaurantbesuche 100 Euro sparen könnten. Dieses Geld könnte für ein Sparziel oder die Tilgung von Schulden verwendet werden.</p>
+                <p data-translate-key="example_expense_2">Zusammenfassend: Das Verfolgen von Ausgaben gibt Ihnen Klarheit und Kontrolle über Ihre Finanzen und hilft, unnötige Kosten zu reduzieren.</p>
+            </div>
+            <h3 data-translate-key="section_b_title">B. Methoden zur Nachverfolgung von Ausgaben</h3>
+            <p data-translate-key="section_b_desc_1">Es gibt mehrere Methoden, um Ausgaben zu verfolgen. Eine einfache Methode ist das manuelle Notieren jeder Ausgabe in einem Notizbuch oder einer Tabelle. Alternativ können Sie digitale Tools wie Apps oder Software nutzen, die Ihre Ausgaben automatisch kategorisieren. Wichtig ist, regelmäßig alle Ausgaben zu überprüfen, um Muster zu erkennen.</p>
+            <p data-translate-key="section_b_desc_2">Eine gängige Methode ist die Kategorisierung von Ausgaben in Bereiche wie Miete, Lebensmittel, Transport und Freizeit.</p>
+            <p data-translate-key="category_desc">Durch das Kategorisieren Ihrer Ausgaben, z. B. 800 Euro für Miete, 300 Euro für Lebensmittel und 200 Euro für Freizeit, können Sie sehen, welche Kategorien den größten Anteil Ihres Einkommens beanspruchen. Dies hilft, Bereiche zu identifizieren, in denen Sie sparen können, wie z. B. durch die Reduzierung von Freizeitausgaben.</p>
+            <h3 data-translate-key="section_c_title">C. Tools und Techniken für die Ausgabenverfolgung</h3>
+            <p data-translate-key="section_c_desc_1">Moderne Tools machen das Verfolgen von Ausgaben einfacher und effizienter. Budget-Apps, Tabellenkalkulationen und sogar Bank-Apps bieten Funktionen zur automatischen Verfolgung und Analyse Ihrer Ausgaben. Regelmäßiges Überprüfen dieser Tools hilft Ihnen, Ihre Finanzen im Griff zu behalten und Ihre Ziele im Auge zu behalten.</p>
+            <div class="example">
+                <h4 data-translate-key="example_app_title">Beispiel: Budget-Apps</h4>
+                <p data-translate-key="example_app_desc">Apps wie YNAB (You Need A Budget) oder Mint ermöglichen es Ihnen, Ihre Bankkonten zu verknüpfen und Ausgaben automatisch zu kategorisieren. Wenn Sie z. B. 50 Euro für ein Abendessen ausgeben, wird dies automatisch als „Essen außer Haus“ erfasst. Solche Apps bieten auch Berichte, die zeigen, wie viel Sie in jeder Kategorie ausgegeben haben, und helfen, Sparpotenziale zu erkennen.</p>
+            </div>
+            <p data-translate-key="tips_intro">Hier sind einige nützliche Tipps zur Ausgabenverfolgung:</p>
+            <ul>
+                <li data-translate-key="tip_regular">Überprüfen Sie Ihre Ausgaben wöchentlich oder monatlich, um den Überblick zu behalten.</li>
+                <li data-translate-key="tip_automate">Nutzen Sie Apps, die Ihre Ausgaben automatisch verfolgen und kategorisieren.</li>
+                <li data-translate-key="tip_review">Analysieren Sie Ihre Ausgaben regelmäßig, um unnötige Kosten zu identifizieren.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const translations = {
+            "de": {
+                "title": "Kurs 4: Wie kann ich meine Ausgaben verfolgen?",
+                "lesson4_title": "Lektion 4: Wie kann ich meine Ausgaben verfolgen?",
+                "intro": "Das Verfolgen Ihrer Ausgaben ist ein entscheidender Schritt, um Ihre Finanzen zu kontrollieren und fundierte Entscheidungen zu treffen. Im Folgenden werden wir Methoden und Tools zur effektiven Nachverfolgung Ihrer Ausgaben betrachten:",
+                "section_a_title": "A. Warum ist das Verfolgen von Ausgaben wichtig?",
+                "section_a_desc": "Das Verfolgen von Ausgaben hilft Ihnen, ein klares Bild Ihrer finanziellen Gewohnheiten zu erhalten. Es zeigt, wohin Ihr Geld fließt, deckt unnötige Ausgaben auf und ermöglicht es Ihnen, Ihr Budget besser zu planen. Durch die Analyse Ihrer Ausgaben können Sie Sparpotenziale erkennen und Ihre finanziellen Ziele schneller erreichen.",
+                "example_title": "Beispiel:",
+                "example_expense_1": "Stellen Sie sich vor, Sie geben monatlich 200 Euro für Essen außer Haus aus. Durch das Verfolgen Ihrer Ausgaben stellen Sie fest, dass Sie durch weniger Restaurantbesuche 100 Euro sparen könnten. Dieses Geld könnte für ein Sparziel oder die Tilgung von Schulden verwendet werden.",
+                "example_expense_2": "Zusammenfassend: Das Verfolgen von Ausgaben gibt Ihnen Klarheit und Kontrolle über Ihre Finanzen und hilft, unnötige Kosten zu reduzieren.",
+                "section_b_title": "B. Methoden zur Nachverfolgung von Ausgaben",
+                "section_b_desc_1": "Es gibt mehrere Methoden, um Ausgaben zu verfolgen. Eine einfache Methode ist das manuelle Notieren jeder Ausgabe in einem Notizbuch oder einer Tabelle. Alternativ können Sie digitale Tools wie Apps oder Software nutzen, die Ihre Ausgaben automatisch kategorisieren. Wichtig ist, regelmäßig alle Ausgaben zu überprüfen, um Muster zu erkennen.",
+                "section_b_desc_2": "Eine gängige Methode ist die Kategorisierung von Ausgaben in Bereiche wie Miete, Lebensmittel, Transport und Freizeit.",
+                "category_desc": "Durch das Kategorisieren Ihrer Ausgaben, z. B. 800 Euro für Miete, 300 Euro für Lebensmittel und 200 Euro für Freizeit, können Sie sehen, welche Kategorien den größten Anteil Ihres Einkommens beanspruchen. Dies hilft, Bereiche zu identifizieren, in denen Sie sparen können, wie z. B. durch die Reduzierung von Freizeitausgaben.",
+                "section_c_title": "C. Tools und Techniken für die Ausgabenverfolgung",
+                "section_c_desc_1": "Moderne Tools machen das Verfolgen von Ausgaben einfacher und effizienter. Budget-Apps, Tabellenkalkulationen und sogar Bank-Apps bieten Funktionen zur automatischen Verfolgung und Analyse Ihrer Ausgaben. Regelmäßiges Überprüfen dieser Tools hilft Ihnen, Ihre Finanzen im Griff zu behalten und Ihre Ziele im Auge zu behalten.",
+                "example_app_title": "Beispiel: Budget-Apps",
+                "example_app_desc": "Apps wie YNAB (You Need A Budget) oder Mint ermöglichen es Ihnen, Ihre Bankkonten zu verknüpfen und Ausgaben automatisch zu kategorisieren. Wenn Sie z. B. 50 Euro für ein Abendessen ausgeben, wird dies automatisch als „Essen außer Haus“ erfasst. Solche Apps bieten auch Berichte, die zeigen, wie viel Sie in jeder Kategorie ausgegeben haben, und helfen, Sparpotenziale zu erkennen.",
+                "tips_intro": "Hier sind einige nützliche Tipps zur Ausgabenverfolgung:",
+                "tip_regular": "Überprüfen Sie Ihre Ausgaben wöchentlich oder monatlich, um den Überblick zu behalten.",
+                "tip_automate": "Nutzen Sie Apps, die Ihre Ausgaben automatisch verfolgen und kategorisieren.",
+                "tip_review": "Analysieren Sie Ihre Ausgaben regelmäßig, um unnötige Kosten zu identifizieren."
+            },
+            "en": {
+                "title": "Course 4: How Can I Track My Expenses?",
+                "lesson4_title": "Lesson 4: How Can I Track My Expenses?",
+                "intro": "Tracking your expenses is a crucial step to controlling your finances and making informed decisions. Below, we will explore methods and tools for effectively tracking your expenses:",
+                "section_a_title": "A. Why is Tracking Expenses Important?",
+                "section_a_desc": "Tracking expenses helps you gain a clear picture of your financial habits. It shows where your money is going, uncovers unnecessary spending, and enables better budget planning. By analyzing your expenses, you can identify savings opportunities and achieve your financial goals faster.",
+                "example_title": "Example:",
+                "example_expense_1": "Imagine you spend 200 euros monthly on dining out. By tracking your expenses, you realize you could save 100 euros by reducing restaurant visits. This money could be used for a savings goal or paying off debt.",
+                "example_expense_2": "In summary: Tracking expenses provides clarity and control over your finances and helps reduce unnecessary costs.",
+                "section_b_title": "B. Methods for Tracking Expenses",
+                "section_b_desc_1": "There are several methods to track expenses. A simple approach is manually recording each expense in a notebook or spreadsheet. Alternatively, you can use digital tools like apps or software that automatically categorize your expenses. Regularly reviewing all expenses is key to identifying patterns.",
+                "section_b_desc_2": "A common method is categorizing expenses into areas like rent, groceries, transportation, and leisure.",
+                "category_desc": "By categorizing your expenses, e.g., 800 euros for rent, 300 euros for groceries, and 200 euros for leisure, you can see which categories consume the largest share of your income. This helps identify areas where you can save, such as reducing leisure spending.",
+                "section_c_title": "C. Tools and Techniques for Expense Tracking",
+                "section_c_desc_1": "Modern tools make tracking expenses easier and more efficient. Budgeting apps, spreadsheets, and even banking apps offer features for automatic tracking and analysis of your expenses. Regularly checking these tools helps you stay in control of your finances and keep your goals in sight.",
+                "example_app_title": "Example: Budgeting Apps",
+                "example_app_desc": "Apps like YNAB (You Need A Budget) or Mint allow you to link your bank accounts and automatically categorize expenses. For example, if you spend 50 euros on dinner, it’s recorded as 'Dining Out.' These apps also provide reports showing how much you’ve spent in each category, helping you identify savings opportunities.",
+                "tips_intro": "Here are some useful tips for tracking expenses:",
+                "tip_regular": "Review your expenses weekly or monthly to stay on top of them.",
+                "tip_automate": "Use apps that automatically track and categorize your expenses.",
+                "tip_review": "Regularly analyze your expenses to identify unnecessary costs."
+            },
+            "fr": {
+                "title": "Cours 4 : Comment suivre mes dépenses ?",
+                "lesson4_title": "Leçon 4 : Comment suivre mes dépenses ?",
+                "intro": "Suivre vos dépenses est une étape cruciale pour contrôler vos finances et prendre des décisions éclairées. Ci-dessous, nous explorerons les méthodes et outils pour suivre efficacement vos dépenses :",
+                "section_a_title": "A. Pourquoi suivre ses dépenses est-il important ?",
+                "section_a_desc": "Suivre vos dépenses vous aide à obtenir une image claire de vos habitudes financières. Cela montre où va votre argent, révèle les dépenses inutiles et permet une meilleure planification budgétaire. En analysant vos dépenses, vous pouvez identifier des opportunités d'épargne et atteindre vos objectifs financiers plus rapidement.",
+                "example_title": "Exemple :",
+                "example_expense_1": "Imaginez que vous dépensez 200 euros par mois pour manger à l'extérieur. En suivant vos dépenses, vous réalisez que vous pourriez économiser 100 euros en réduisant les visites au restaurant. Cet argent pourrait être utilisé pour un objectif d'épargne ou le remboursement d'une dette.",
+                "example_expense_2": "En résumé : Suivre vos dépenses vous donne de la clarté et du contrôle sur vos finances et aide à réduire les coûts inutiles.",
+                "section_b_title": "B. Méthodes pour suivre les dépenses",
+                "section_b_desc_1": "Il existe plusieurs méthodes pour suivre les dépenses. Une approche simple consiste à noter manuellement chaque dépense dans un carnet ou une feuille de calcul. Alternativement, vous pouvez utiliser des outils numériques comme des applications ou des logiciels qui catégorisent automatiquement vos dépenses. Examiner régulièrement toutes les dépenses est essentiel pour identifier les tendances.",
+                "section_b_desc_2": "Une méthode courante consiste à catégoriser les dépenses en domaines comme le loyer, les courses, les transports et les loisirs.",
+                "category_desc": "En catégorisant vos dépenses, par exemple 800 euros pour le loyer, 300 euros pour les courses et 200 euros pour les loisirs, vous pouvez voir quelles catégories consomment la plus grande part de votre revenu. Cela aide à identifier les domaines où vous pouvez économiser, comme la réduction des dépenses de loisirs.",
+                "section_c_title": "C. Outils et techniques pour le suivi des dépenses",
+                "section_c_desc_1": "Les outils modernes rendent le suivi des dépenses plus facile et efficace. Les applications de budgétisation, les tableurs et même les applications bancaires offrent des fonctionnalités pour le suivi et l'analyse automatique de vos dépenses. Vérifier régulièrement ces outils vous aide à garder le contrôle de vos finances et à garder vos objectifs en vue.",
+                "example_app_title": "Exemple : Applications de budgétisation",
+                "example_app_desc": "Des applications comme YNAB (You Need A Budget) ou Mint vous permettent de lier vos comptes bancaires et de catégoriser automatiquement les dépenses. Par exemple, si vous dépensez 50 euros pour un dîner, cela est enregistré comme « Repas à l'extérieur ». Ces applications fournissent également des rapports indiquant combien vous avez dépensé dans chaque catégorie, vous aidant à identifier des opportunités d'épargne.",
+                "tips_intro": "Voici quelques conseils utiles pour le suivi des dépenses :",
+                "tip_regular": "Examinez vos dépenses chaque semaine ou chaque mois pour rester à jour.",
+                "tip_automate": "Utilisez des applications qui suivent et catégorisent automatiquement vos dépenses.",
+                "tip_review": "Analysez régulièrement vos dépenses pour identifier les coûts inutiles."
+            }
+        };
+
+        let currentLang = 'de';
+
+        function applyTranslations(targetLang) {
+            const elements = document.querySelectorAll('[data-translate-key]');
+            if (!translations[targetLang]) return;
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate-key');
+                if (translations[targetLang][key]) {
+                    element.innerHTML = translations[targetLang][key];
+                }
+            });
+            document.title = translations[targetLang].title || "Kurs 4: Wie kann ich meine Ausgaben verfolgen?";
+        }
+
+        function translatePage(targetLang) {
+            if (targetLang === currentLang) return;
+            applyTranslations(targetLang);
+            document.documentElement.lang = targetLang;
+            currentLang = targetLang;
+        }
+
+        // Apply default language on load
+        window.addEventListener('DOMContentLoaded', () => {
+            applyTranslations('de');
+            const storedLang = localStorage.getItem('preferredLanguage');
+            if (storedLang && translations[storedLang] && storedLang !== 'de') {
+                translatePage(storedLang);
+            }
+        });
+
+        // Listen for language change messages from parent (index.html)
+        window.addEventListener('message', (event) => {
+            if (event.data.type === 'LANGUAGE_CHANGE') {
+                translatePage(event.data.language);
+            }
+        });
+
+        // Scroll bar functionality
+        function updateScrollBar() {
+            const scrollBar = document.getElementById('scroll-bar');
+            const scrollHeight = document.documentElement.scrollHeight;
+            const clientHeight = document.documentElement.clientHeight;
+            const scrollTop = window.scrollY;
+            const scrollPercent = (scrollTop / (scrollHeight - clientHeight)) * 100;
+            scrollBar.style.width = scrollPercent + '%';
+        }
+
+        window.addEventListener('scroll', updateScrollBar);
+        window.addEventListener('resize', updateScrollBar);
+    </script>
+</body>
+</html>

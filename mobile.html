@@ -144,7 +144,7 @@
       justify-content: center;
       position: relative;
       overflow: hidden;
-      padding-top: 90px;
+      padding-top: 120px;
       padding-bottom: 80px;
       text-align: center;
       width: 100%;
@@ -548,7 +548,7 @@
     }
     .scroll-arrows {
       position: absolute;
-      bottom: 10px;
+      bottom: 20px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
@@ -584,6 +584,36 @@
       0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
       40% { transform: translateY(10px); }
       60% { transform: translateY(5px); }
+    }
+    .disclaimer {
+      position: fixed;
+      top: 170px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #f44336;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 15px;
+      font-family: 'Poppins', sans-serif;
+      font-size: clamp(12px, 3.5vw, 14px);
+      text-align: center;
+      width: 90vw;
+      max-width: 500px;
+      z-index: 1000;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      animation: fadeInOut 8s forwards;
+    }
+    .tradingview-widget-container {
+      width: 100%;
+      margin: 0 auto;
+      padding: 10px 0;
+      background-color: #1B2631;
+      z-index: 999;
+      position: relative;
+      top: 90px;
+    }
+    .tradingview-widget-copyright {
+      display: none; /* Hide the TradingView copyright text */
     }
     @media (max-width: 480px) {
       .mobile-layout .header h1 { font-size: 20px; }
@@ -634,7 +664,7 @@
         font-size: 14px;
       }
       .scroll-arrows {
-        bottom: 10px;
+        bottom: 15px;
       }
       .arrow-container {
         width: 32px;
@@ -646,6 +676,13 @@
         border-right: 3px solid white;
         border-bottom: 3px solid white;
         transform: translate(-50%, -50%) rotate(45deg);
+      }
+      .disclaimer {
+        top: 160px;
+        font-size: clamp(10px, 3vw, 12px);
+      }
+      .tradingview-widget-container {
+        top: 80px;
       }
     }
     @media (max-width: 360px) {
@@ -662,6 +699,13 @@
       }
       .scroll-arrows {
         bottom: 10px;
+      }
+      .disclaimer {
+        top: 150px;
+        font-size: clamp(8px, 2.5vw, 10px);
+      }
+      .tradingview-widget-container {
+        top: 70px;
       }
     }
   </style>
@@ -683,7 +727,47 @@
           </div>
         </div>
       </div>
-
+      <!-- TradingView Widget BEGIN -->
+      <div class="tradingview-widget-container">
+        <div class="tradingview-widget-container__widget"></div>
+        <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Ticker tape by TradingView</span></a></div>
+        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+        {
+          "symbols": [
+            {
+              "proName": "FOREXCOM:SPXUSD",
+              "title": "S&P 500 Index"
+            },
+            {
+              "proName": "FOREXCOM:NSXUSD",
+              "title": "US 100 Cash CFD"
+            },
+            {
+              "proName": "FX_IDC:EURUSD",
+              "title": "EUR to USD"
+            },
+            {
+              "proName": "BITSTAMP:BTCUSD",
+              "title": "Bitcoin"
+            },
+            {
+              "proName": "BITSTAMP:ETHUSD",
+              "title": "Ethereum"
+            }
+          ],
+          "colorTheme": "dark",
+          "locale": "en",
+          "largeChartUrl": "",
+          "isTransparent": false,
+          "showSymbolLogo": true,
+          "displayMode": "adaptive"
+        }
+        </script>
+      </div>
+      <!-- TradingView Widget END -->
+      <div class="disclaimer" data-translate-key="disclaimer">
+        Aufgrund hoher Auslastung und Kosten können kleinere Fehler im Simulator und in den Übersetzungsfunktionen auftreten.
+      </div>
       <section class="hero">
         <div class="floating-shapes">
           <div class="shape" style="width: 50px; height: 50px; top: 20%; left: 20%;"></div>
@@ -705,7 +789,7 @@
 
       <div class="content">
         <div class="cube community-cube">
-          <p class="description-text">Die größte Community von finanzinteressierten</p>
+          <p class="description-text">Die größte Community von finanzinteressierten Schülern in Deutschland</p>
           <div class="number-square" id="community-count">0</div>
           <p class="description-text">Schüler</p>
         </div>
@@ -756,7 +840,7 @@
             <input type="email" id="email" name="email" required>
             <label for="message" data-translate-key="message_label">Nachricht</label>
             <textarea id="message" name="message" required></textarea>
-            <button typeFlaggertype="submit" data-translate-key="submit_button">Nachricht Senden</button>
+            <button type="submit" data-translate-key="submit_button">Nachricht Senden</button>
           </form>
         </div>
       </div>
@@ -789,7 +873,8 @@
         "message_label": "Nachricht",
         "submit_button": "Nachricht Senden",
         "success_message": "Nachricht erfolgreich gesendet!",
-        "error_message": "Fehler beim Senden der Nachricht. Bitte versuche es erneut."
+        "error_message": "Fehler beim Senden der Nachricht. Bitte versuche es erneut.",
+        "disclaimer": "Aufgrund hoher Auslastung und Kosten können kleinere Fehler im Simulator und in den Übersetzungsfunktionen auftreten."
       },
       "en": {
         "brand": "YouthInvests",
@@ -809,7 +894,8 @@
         "message_label": "Message",
         "submit_button": "Send Message",
         "success_message": "Message sent successfully!",
-        "error_message": "Error sending message. Please try again."
+        "error_message": "Error sending message. Please try again.",
+        "disclaimer": "Due to high load and costs, you may experience minor bugs in the simulator and translation features."
       },
       "fr": {
         "brand": "JeunesseInvestit",
@@ -829,7 +915,8 @@
         "message_label": "Message",
         "submit_button": "Envoyer le Message",
         "success_message": "Message envoyé avec succès !",
-        "error_message": "Erreur lors de l'envoi du message. Veuillez réessayer."
+        "error_message": "Erreur lors de l'envoi du message. Veuillez réessayer.",
+        "disclaimer": "En raison d'une forte charge et de coûts élevés, des bugs mineurs peuvent survenir dans le simulateur et les fonctionnalités de traduction."
       }
     };
 
@@ -902,7 +989,7 @@
         if (hasAnimated) return;
         hasAnimated = true;
         let count = 0;
-        const target = 15000;
+        const target = 20000;
         const duration = 2000; // 2 seconds
         const increment = target / (duration / 16); // Approx 60fps
 

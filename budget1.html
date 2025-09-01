@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-translate-key="title">Kurs 1: Budgetierung</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #101820;
+            color: white;
+            overflow-x: hidden;
+            margin-top: 40px;
+            padding-bottom: 50px;
+        }
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #333;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            z-index: 1000;
+            padding-left: 30px;
+        }
+        .navbar .cross {
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+        .navbar .cross:hover {
+            color: grey;
+        }
+        .scroll-bar-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: #444;
+            z-index: 1000;
+        }
+        .scroll-bar {
+            height: 100%;
+            width: 0%;
+            background-color: #1dd05d;
+            transition: width 0.2s;
+        }
+        .content {
+            padding: 80px 20px 20px 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        @media (min-width: 768px) {
+            .content {
+                padding: 80px 20px 20px 180px;
+            }
+        }
+        #course-details {
+            padding: 20px 20px 20px 40px;
+            background-color: #2C3E50;
+            border-radius: 10px;
+        }
+        .example {
+            background-color: #1B2631;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        h2[data-translate-key="lesson2_title"] {
+            padding-top: 40px; /* Added padding to ensure title is not cut off */
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="cross" onclick="window.location.href='section3.html'">✖</div>
+    </div>
+
+    <div class="scroll-bar-container">
+        <div class="scroll-bar" id="scroll-bar"></div>
+    </div>
+
+    <div id="course-details">
+        <div class="container">
+            <h2 data-translate-key="lesson2_title">Lektion 2: Wie funktioniert Budgetierung?</h2>
+            <p data-translate-key="intro">Budgetierung ist ein zentraler Bestandteil der persönlichen und unternehmerischen Finanzplanung. Im Folgenden werden wir die Grundlagen der Budgetierung genauer betrachten:</p>
+            <h3 data-translate-key="section_a_title">A. Was ist Budgetierung?</h3>
+            <p data-translate-key="section_a_desc">Budgetierung bezeichnet den Prozess der Erstellung eines Plans, wie Einnahmen und Ausgaben über einen bestimmten Zeitraum verteilt werden. Ein Budget hilft dabei, finanzielle Ziele zu setzen, Ausgaben zu kontrollieren und sicherzustellen, dass genügend Geld für wichtige Bedürfnisse und Ersparnisse vorhanden ist. Es wird oft monatlich oder jährlich erstellt und basiert auf Einkommen, festen Kosten und variablen Ausgaben.</p>
+            <div class="example">
+                <h4 data-translate-key="example_title">Beispiel:</h4>
+                <p data-translate-key="example_budget_1">Stellen Sie sich vor, Sie verdienen monatlich 2.000 Euro netto. Ein einfaches Budget könnte so aussehen: 50 % (1.000 Euro) für Miete und Nebenkosten, 30 % (600 Euro) für Lebensmittel und variable Ausgaben, 10 % (200 Euro) für Ersparnisse und 10 % (200 Euro) für Freizeit und Sonstiges. Dieses Budget hilft Ihnen, Ihre Ausgaben im Griff zu behalten und Rücklagen zu bilden.</p>
+                <p data-translate-key="example_budget_2">Zusammenfassend: Budgetierung schafft Transparenz über Ihre Finanzen und unterstützt Sie dabei, Ihre finanziellen Ziele zu erreichen.</p>
+            </div>
+            <h3 data-translate-key="section_b_title">B. Methoden der Budgetierung</h3>
+            <p data-translate-key="section_b_desc_1">Es gibt verschiedene Ansätze zur Budgetierung. Eine gängige Methode ist die 50/30/20-Regel, bei der 50 % des Einkommens für Grundbedürfnisse, 30 % für Wünsche und 20 % für Ersparnisse oder Schuldenabbau verwendet werden. Eine andere Methode ist das Nullsummen-Budget, bei dem jeder Euro des Einkommens einem bestimmten Zweck zugeteilt wird, sodass am Ende des Monats kein Geld übrig bleibt.</p>
+            <p data-translate-key="section_b_desc_2">Die Wahl der Methode hängt von Ihren persönlichen Zielen und Ihrer finanziellen Situation ab.</p>
+            <p data-translate-key="budget_tools_desc">Moderne Budgetierung kann durch Tools und Apps erleichtert werden, wie z. B. YNAB (You Need A Budget) oder einfache Tabellenkalkulationen. Diese Tools helfen dabei, Einnahmen und Ausgaben zu verfolgen, Kategorien zu erstellen und finanzielle Fortschritte zu überwachen.</p>
+            <h3 data-translate-key="section_c_title">C. Vorteile der Budgetierung</h3>
+            <p data-translate-key="section_c_desc_1">Budgetierung bietet zahlreiche Vorteile. Sie hilft, finanzielle Prioritäten zu setzen, unnötige Ausgaben zu vermeiden und Schulden zu reduzieren. Ein gut geplantes Budget kann auch finanzielle Sicherheit schaffen, indem es Rücklagen für Notfälle oder zukünftige Investitionen ermöglicht. Langfristig fördert Budgetierung finanzielle Disziplin und Unabhängigkeit.</p>
+            <div class="example">
+                <h4 data-translate-key="example_savings_title">Beispiel: Notfallfonds</h4>
+                <p data-translate-key="example_savings_desc">Ein Notfallfonds ist ein wichtiger Bestandteil eines Budgets. Indem Sie monatlich 10 % Ihres Einkommens sparen, können Sie nach einem Jahr einen Fonds aufbauen, der drei bis sechs Monate Ihrer Lebenshaltungskosten abdeckt. Zum Beispiel: Bei 2.000 Euro netto und 200 Euro monatlichen Ersparnissen hätten Sie nach einem Jahr 2.400 Euro für unerwartete Ausgaben, wie Autoreparaturen oder Arbeitslosigkeit.</p>
+            </div>
+            <p data-translate-key="budget_types_intro">Hier sind einige gängige Budgetierungsmethoden:</p>
+            <ul>
+                <li data-translate-key="budget_50_30_20">50/30/20-Regel: 50 % für Grundbedürfnisse, 30 % für Wünsche, 20 % für Ersparnisse oder Schuldenabbau.</li>
+                <li data-translate-key="budget_zero">Nullsummen-Budget: Jedem Euro wird ein Zweck zugeteilt, sodass kein Geld übrig bleibt.</li>
+                <li data-translate-key="budget_envelope">Umschlagmethode: Bargeld wird in Umschläge für verschiedene Ausgabenkategorien aufgeteilt, um die Ausgaben zu kontrollieren.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const translations = {
+            "de": {
+                "title": "Kurs 1: Budgetierung",
+                "lesson2_title": "Lektion 2: Wie funktioniert Budgetierung?",
+                "intro": "Budgetierung ist ein zentraler Bestandteil der persönlichen und unternehmerischen Finanzplanung. Im Folgenden werden wir die Grundlagen der Budgetierung genauer betrachten:",
+                "section_a_title": "A. Was ist Budgetierung?",
+                "section_a_desc": "Budgetierung bezeichnet den Prozess der Erstellung eines Plans, wie Einnahmen und Ausgaben über einen bestimmten Zeitraum verteilt werden. Ein Budget hilft dabei, finanzielle Ziele zu setzen, Ausgaben zu kontrollieren und sicherzustellen, dass genügend Geld für wichtige Bedürfnisse und Ersparnisse vorhanden ist. Es wird oft monatlich oder jährlich erstellt und basiert auf Einkommen, festen Kosten und variablen Ausgaben.",
+                "example_title": "Beispiel:",
+                "example_budget_1": "Stellen Sie sich vor, Sie verdienen monatlich 2.000 Euro netto. Ein einfaches Budget könnte so aussehen: 50 % (1.000 Euro) für Miete und Nebenkosten, 30 % (600 Euro) für Lebensmittel und variable Ausgaben, 10 % (200 Euro) für Ersparnisse und 10 % (200 Euro) für Freizeit und Sonstiges. Dieses Budget hilft Ihnen, Ihre Ausgaben im Griff zu behalten und Rücklagen zu bilden.",
+                "example_budget_2": "Zusammenfassend: Budgetierung schafft Transparenz über Ihre Finanzen und unterstützt Sie dabei, Ihre finanziellen Ziele zu erreichen.",
+                "section_b_title": "B. Methoden der Budgetierung",
+                "section_b_desc_1": "Es gibt verschiedene Ansätze zur Budgetierung. Eine gängige Methode ist die 50/30/20-Regel, bei der 50 % des Einkommens für Grundbedürfnisse, 30 % für Wünsche und 20 % für Ersparnisse oder Schuldenabbau verwendet werden. Eine andere Methode ist das Nullsummen-Budget, bei dem jeder Euro des Einkommens einem bestimmten Zweck zugeteilt wird, sodass am Ende des Monats kein Geld übrig bleibt.",
+                "section_b_desc_2": "Die Wahl der Methode hängt von Ihren persönlichen Zielen und Ihrer finanziellen Situation ab.",
+                "budget_tools_desc": "Moderne Budgetierung kann durch Tools und Apps erleichtert werden, wie z. B. YNAB (You Need A Budget) oder einfache Tabellenkalkulationen. Diese Tools helfen dabei, Einnahmen und Ausgaben zu verfolgen, Kategorien zu erstellen und finanzielle Fortschritte zu überwachen.",
+                "section_c_title": "C. Vorteile der Budgetierung",
+                "section_c_desc_1": "Budgetierung bietet zahlreiche Vorteile. Sie hilft, finanzielle Prioritäten zu setzen, unnötige Ausgaben zu vermeiden und Schulden zu reduzieren. Ein gut geplantes Budget kann auch finanzielle Sicherheit schaffen, indem es Rücklagen für Notfälle oder zukünftige Investitionen ermöglicht. Langfristig fördert Budgetierung finanzielle Disziplin und Unabhängigkeit.",
+                "example_savings_title": "Beispiel: Notfallfonds",
+                "example_savings_desc": "Ein Notfallfonds ist ein wichtiger Bestandteil eines Budgets. Indem Sie monatlich 10 % Ihres Einkommens sparen, können Sie nach einem Jahr einen Fonds aufbauen, der drei bis sechs Monate Ihrer Lebenshaltungskosten abdeckt. Zum Beispiel: Bei 2.000 Euro netto und 200 Euro monatlichen Ersparnissen hätten Sie nach einem Jahr 2.400 Euro für unerwartete Ausgaben, wie Autoreparaturen oder Arbeitslosigkeit.",
+                "budget_types_intro": "Hier sind einige gängige Budgetierungsmethoden:",
+                "budget_50_30_20": "50/30/20-Regel: 50 % für Grundbedürfnisse, 30 % für Wünsche, 20 % für Ersparnisse oder Schuldenabbau.",
+                "budget_zero": "Nullsummen-Budget: Jedem Euro wird ein Zweck zugeteilt, sodass kein Geld übrig bleibt.",
+                "budget_envelope": "Umschlagmethode: Bargeld wird in Umschläge für verschiedene Ausgabenkategorien aufgeteilt, um die Ausgaben zu kontrollieren."
+            },
+            "en": {
+                "title": "Course 1: Budgeting",
+                "lesson2_title": "Lesson 2: How does budgeting work?",
+                "intro": "Budgeting is a key component of personal and business financial planning. Below, we will explore the fundamentals of budgeting in more detail:",
+                "section_a_title": "A. What is Budgeting?",
+                "section_a_desc": "Budgeting refers to the process of creating a plan for how income and expenses are distributed over a specific period. A budget helps set financial goals, control spending, and ensure enough money is available for essential needs and savings. It is often created monthly or annually and is based on income, fixed costs, and variable expenses.",
+                "example_title": "Example:",
+                "example_budget_1": "Imagine you earn 2,000 euros net per month. A simple budget might look like this: 50% (1,000 euros) for rent and utilities, 30% (600 euros) for groceries and variable expenses, 10% (200 euros) for savings, and 10% (200 euros) for leisure and miscellaneous. This budget helps you keep your spending in check and build savings.",
+                "example_budget_2": "In summary: Budgeting provides transparency over your finances and supports you in achieving your financial goals.",
+                "section_b_title": "B. Budgeting Methods",
+                "section_b_desc_1": "There are various approaches to budgeting. A common method is the 50/30/20 rule, where 50% of income is used for necessities, 30% for wants, and 20% for savings or debt repayment. Another method is the zero-based budget, where every euro of income is assigned a specific purpose, leaving no money unallocated at the end of the month.",
+                "section_b_desc_2": "The choice of method depends on your personal goals and financial situation.",
+                "budget_tools_desc": "Modern budgeting can be facilitated by tools and apps like YNAB (You Need A Budget) or simple spreadsheets. These tools help track income and expenses, create categories, and monitor financial progress.",
+                "section_c_title": "C. Benefits of Budgeting",
+                "section_c_desc_1": "Budgeting offers numerous benefits. It helps prioritize financial goals, avoid unnecessary spending, and reduce debt. A well-planned budget can also provide financial security by enabling savings for emergencies or future investments. In the long term, budgeting promotes financial discipline and independence.",
+                "example_savings_title": "Example: Emergency Fund",
+                "example_savings_desc": "An emergency fund is an important part of a budget. By saving 10% of your income monthly, you can build a fund that covers three to six months of living expenses within a year. For example: With 2,000 euros net and 200 euros monthly savings, you would have 2,400 euros after one year for unexpected expenses, such as car repairs or unemployment.",
+                "budget_types_intro": "Here are some common budgeting methods:",
+                "budget_50_30_20": "50/30/20 Rule: 50% for necessities, 30% for wants, 20% for savings or debt repayment.",
+                "budget_zero": "Zero-Based Budget: Every euro is assigned a purpose, leaving no money unallocated.",
+                "budget_envelope": "Envelope Method: Cash is divided into envelopes for different spending categories to control expenses."
+            },
+            "fr": {
+                "title": "Cours 1 : Budgetisation",
+                "lesson2_title": "Leçon 2 : Comment fonctionne la budgetisation ?",
+                "intro": "La budgetisation est un élément clé de la planification financière personnelle et professionnelle. Ci-dessous, nous explorerons les bases de la budgetisation en détail :",
+                "section_a_title": "A. Qu'est-ce que la budgetisation ?",
+                "section_a_desc": "La budgetisation désigne le processus de création d'un plan pour la répartition des revenus et des dépenses sur une période donnée. Un budget aide à définir des objectifs financiers, à contrôler les dépenses et à s'assurer qu'il y a assez d'argent pour les besoins essentiels et l'épargne. Il est souvent établi mensuellement ou annuellement et repose sur les revenus, les coûts fixes et les dépenses variables.",
+                "example_title": "Exemple :",
+                "example_budget_1": "Imaginez que vous gagnez 2 000 euros net par mois. Un budget simple pourrait ressembler à ceci : 50 % (1 000 euros) pour le loyer et les charges, 30 % (600 euros) pour l'alimentation et les dépenses variables, 10 % (200 euros) pour l'épargne, et 10 % (200 euros) pour les loisirs et divers. Ce budget vous aide à garder vos dépenses sous contrôle et à constituer une épargne.",
+                "example_budget_2": "En résumé : La budgetisation offre une transparence sur vos finances et vous soutient dans la réalisation de vos objectifs financiers.",
+                "section_b_title": "B. Méthodes de budgetisation",
+                "section_b_desc_1": "Il existe différentes approches pour la budgetisation. Une méthode courante est la règle 50/30/20, où 50 % des revenus sont utilisés pour les besoins essentiels, 30 % pour les envies, et 20 % pour l'épargne ou le remboursement de dettes. Une autre méthode est le budget à base zéro, où chaque euro de revenu est attribué à un objectif précis, de sorte qu'il ne reste aucun argent non alloué à la fin du mois.",
+                "section_b_desc_2": "Le choix de la méthode dépend de vos objectifs personnels et de votre situation financière.",
+                "budget_tools_desc": "La budgetisation moderne peut être facilitée par des outils et applications comme YNAB (You Need A Budget) ou de simples tableurs. Ces outils aident à suivre les revenus et les dépenses, à créer des catégories et à surveiller les progrès financiers.",
+                "section_c_title": "C. Avantages de la budgetisation",
+                "section_c_desc_1": "La budgetisation offre de nombreux avantages. Elle aide à prioriser les objectifs financiers, à éviter les dépenses inutiles et à réduire les dettes. Un budget bien planifié peut également offrir une sécurité financière en permettant des économies pour les urgences ou les investissements futurs. À long terme, la budgetisation favorise la discipline financière et l'indépendance.",
+                "example_savings_title": "Exemple : Fonds d'urgence",
+                "example_savings_desc": "Un fonds d'urgence est une composante importante d'un budget. En épargnant 10 % de vos revenus mensuels, vous pouvez constituer un fonds qui couvre trois à six mois de frais de subsistance en un an. Par exemple : Avec 2 000 euros net et 200 euros d'épargne mensuelle, vous auriez 2 400 euros après un an pour des dépenses imprévues, comme des réparations de voiture ou le chômage.",
+                "budget_types_intro": "Voici quelques méthodes de budgetisation courantes :",
+                "budget_50_30_20": "Règle 50/30/20 : 50 % pour les besoins essentiels, 30 % pour les envies, 20 % pour l'épargne ou le remboursement de dettes.",
+                "budget_zero": "Budget à base zéro : Chaque euro est attribué à un objectif précis, ne laissant aucun argent non alloué.",
+                "budget_envelope": "Méthode des enveloppes : L'argent liquide est réparti dans des enveloppes pour différentes catégories de dépenses afin de contrôler les dépenses."
+            }
+        };
+
+        let currentLang = 'de';
+
+        function applyTranslations(targetLang) {
+            const elements = document.querySelectorAll('[data-translate-key]');
+            if (!translations[targetLang]) return;
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate-key');
+                if (translations[targetLang][key]) {
+                    element.innerHTML = translations[targetLang][key];
+                }
+            });
+            document.title = translations[targetLang].title || "Kurs 1: Budgetierung";
+        }
+
+        function translatePage(targetLang) {
+            if (targetLang === currentLang) return;
+            applyTranslations(targetLang);
+            document.documentElement.lang = targetLang;
+            currentLang = targetLang;
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            applyTranslations('de'); // German is the default language
+            const storedLang = localStorage.getItem('preferredLanguage');
+            if (storedLang && translations[storedLang] && storedLang !== 'de') {
+                translatePage(storedLang);
+            }
+        });
+
+        window.addEventListener('message', (event) => {
+            if (event.data.type === 'LANGUAGE_CHANGE') {
+                translatePage(event.data.language);
+            }
+        });
+
+        function updateScrollBar() {
+            const scrollBar = document.getElementById('scroll-bar');
+            const scrollHeight = document.documentElement.scrollHeight;
+            const clientHeight = document.documentElement.clientHeight;
+            const scrollTop = window.scrollY;
+            const scrollPercent = (scrollTop / (scrollHeight - clientHeight)) * 100;
+            scrollBar.style.width = scrollPercent + '%';
+        }
+
+        window.addEventListener('scroll', updateScrollBar);
+        window.addEventListener('resize', updateScrollBar);
+    </script>
+</body>
+</html>

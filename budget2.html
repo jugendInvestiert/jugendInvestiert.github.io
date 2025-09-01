@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-translate-key="title">Kurs 2: Wie erstellt man ein Budget?</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+    font-family: 'Poppins', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #101820;
+    color: white;
+    overflow-x: hidden;
+    margin-top: 40px;
+    padding-bottom: 50px;
+}
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #333;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    z-index: 1000;
+    padding-left: 30px;
+}
+.navbar .cross {
+    font-size: 1.5em;
+    cursor: pointer;
+}
+.navbar .cross:hover {
+    color: grey;
+}
+.scroll-bar-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 5px;
+    background-color: #444;
+    z-index: 1000;
+}
+.scroll-bar {
+    height: 100%;
+    width: 0%;
+    background-color: #1dd05d;
+    transition: width 0.2s;
+}
+.content {
+    padding: 20px 20px 20px 120px; /* Increased left padding for smaller screens */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+/* Add more left padding for desktop screens */
+@media (min-width: 768px) {
+    .content {
+        padding-left: 180px; /* Increased left padding for desktop */
+    }
+}
+#course-details {
+    padding: 20px 20px 20px 40px; /* Added left padding to course details */
+    background-color: #2C3E50;
+    border-radius: 10px;
+}
+.example {
+    background-color: #1B2631;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+    align-self: left;
+}
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="cross" onclick="window.location.href='section3.html'">✖</div>
+    </div>
+
+    <div class="scroll-bar-container">
+        <div class="scroll-bar" id="scroll-bar"></div>
+    </div>
+
+    <div id="course-details">
+        <div class="container">
+            <h2 data-translate-key="lesson2_title">Lektion 2: Wie erstellt man ein Budget?</h2>
+            <p data-translate-key="intro">Ein Budget ist ein wesentliches Werkzeug, um Ihre Finanzen zu verwalten und Ihre finanziellen Ziele zu erreichen. Im Folgenden werden wir die Schritte zur Erstellung eines effektiven Budgets genauer betrachten:</p>
+            <h3 data-translate-key="section_a_title">A. Was ist ein Budget?</h3>
+            <p data-translate-key="section_a_desc">Ein Budget ist ein Finanzplan, der Ihre Einnahmen und Ausgaben über einen bestimmten Zeitraum, in der Regel monatlich, darstellt. Es hilft Ihnen, den Überblick über Ihre Finanzen zu behalten, unnötige Ausgaben zu reduzieren und Geld für wichtige Ziele wie Sparen, Investieren oder Schuldenabbau zu reservieren.</p>
+            <div class="example">
+                <h4 data-translate-key="example_title">Beispiel:</h4>
+                <img src="budget.jpg" alt="Budgetplan">
+                <p data-translate-key="example_budget_1">Stellen Sie sich vor, Sie verdienen monatlich 2.500 Euro netto. Nachdem Sie Ihre monatlichen Ausgaben wie Miete (800 Euro), Lebensmittel (300 Euro) und Transport (150 Euro) abgezogen haben, bleiben Ihnen 1.250 Euro. Ein Budget hilft Ihnen, diesen Betrag sinnvoll einzuteilen, z. B. 500 Euro für Ersparnisse, 300 Euro für Freizeit und 450 Euro für andere Ausgaben.</p>
+                <p data-translate-key="example_budget_2">Zusammenfassend: Ein Budget gibt Ihnen Kontrolle über Ihre Finanzen und hilft Ihnen, Ihre Ausgaben im Griff zu behalten, während Sie auf Ihre finanziellen Ziele hinarbeiten.</p>
+            </div>
+            <h3 data-translate-key="section_b_title">B. Schritte zur Erstellung eines Budgets</h3>
+            <p data-translate-key="section_b_desc_1">Die Erstellung eines Budgets erfordert einige einfache Schritte. Zuerst sollten Sie Ihre monatlichen Einnahmen ermitteln, einschließlich Gehalt, Nebenjobs oder andere Einkommensquellen. Danach listen Sie alle Ausgaben auf, einschließlich fixer Kosten (z. B. Miete, Versicherungen) und variabler Kosten (z. B. Lebensmittel, Unterhaltung). Ziehen Sie die Ausgaben von den Einnahmen ab, um festzustellen, wie viel Geld Ihnen bleibt.</p>
+            <p data-translate-key="section_b_desc_2">Ein beliebter Ansatz ist die 50/30/20-Regel, bei der 50 % des Einkommens für Grundbedürfnisse, 30 % für Wünsche und 20 % für Ersparnisse oder Schuldenabbau verwendet werden.</p>
+            <p data-translate-key="budget_rule_desc">Die 50/30/20-Regel ist ein einfacher Weg, Ihre Finanzen zu strukturieren. Wenn Ihr Nettoeinkommen z. B. 2.000 Euro beträgt, würden Sie 1.000 Euro für Grundbedürfnisse (Miete, Rechnungen), 600 Euro für Wünsche (Essen gehen, Hobbys) und 400 Euro für Ersparnisse oder Schuldenrückzahlung verwenden. Diese Methode ist flexibel und kann an Ihre persönlichen Bedürfnisse angepasst werden.</p>
+            <h3 data-translate-key="section_c_title">C. Vorteile eines Budgets</h3>
+            <p data-translate-key="section_c_desc_1">Ein gut geplantes Budget bietet viele Vorteile. Es hilft Ihnen, finanzielle Ziele wie den Aufbau eines Notfallfonds, das Sparen für eine große Anschaffung oder die Tilgung von Schulden zu erreichen. Außerdem gibt es Ihnen ein besseres Verständnis Ihrer Ausgabengewohnheiten und ermöglicht es Ihnen, unnötige Ausgaben zu reduzieren. Langfristig fördert ein Budget finanzielle Disziplin und Sicherheit.</p>
+            <div class="example">
+                <h4 data-translate-key="example_savings_title">Beispiel: Notfallfonds</h4>
+                <p data-translate-key="example_savings_desc">Ein Notfallfonds ist ein wichtiger Bestandteil eines Budgets. Experten empfehlen, drei bis sechs Monate Ihrer Lebenshaltungskosten zu sparen. Wenn Ihre monatlichen Ausgaben 2.000 Euro betragen, sollten Sie 6.000 bis 12.000 Euro für unvorhergesehene Ereignisse wie Arbeitslosigkeit oder medizinische Notfälle zurücklegen. Durch ein Budget können Sie monatlich einen bestimmten Betrag für diesen Fonds reservieren, z. B. 200 Euro, um dieses Ziel schrittweise zu erreichen.</p>
+            </div>
+            <p data-translate-key="tools_intro">Hier sind einige nützliche Tools und Methoden zur Budgeterstellung:</p>
+            <ul>
+                <li data-translate-key="tool_spreadsheet">Tabellenkalkulationen: Programme wie Excel oder Google Sheets sind ideal, um Einnahmen und Ausgaben zu verfolgen.</li>
+                <li data-translate-key="tool_apps">Budget-Apps: Anwendungen wie YNAB (You Need A Budget) oder Mint helfen, Ihre Finanzen digital zu verwalten.</li>
+                <li data-translate-key="tool_envelope">Umschlagmethode: Eine traditionelle Methode, bei der Bargeld für verschiedene Ausgabenkategorien in getrennte Umschläge aufgeteilt wird.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        const translations = {
+            "de": {
+                "title": "Kurs 2: Wie erstellt man ein Budget?",
+                "lesson2_title": "Lektion 2: Wie erstellt man ein Budget?",
+                "intro": "Ein Budget ist ein wesentliches Werkzeug, um Ihre Finanzen zu verwalten und Ihre finanziellen Ziele zu erreichen. Im Folgenden werden wir die Schritte zur Erstellung eines effektiven Budgets genauer betrachten:",
+                "section_a_title": "A. Was ist ein Budget?",
+                "section_a_desc": "Ein Budget ist ein Finanzplan, der Ihre Einnahmen und Ausgaben über einen bestimmten Zeitraum, in der Regel monatlich, darstellt. Es hilft Ihnen, den Überblick über Ihre Finanzen zu behalten, unnötige Ausgaben zu reduzieren und Geld für wichtige Ziele wie Sparen, Investieren oder Schuldenabbau zu reservieren.",
+                "example_title": "Beispiel:",
+                "example_budget_1": "Stellen Sie sich vor, Sie verdienen monatlich 2.500 Euro netto. Nachdem Sie Ihre monatlichen Ausgaben wie Miete (800 Euro), Lebensmittel (300 Euro) und Transport (150 Euro) abgezogen haben, bleiben Ihnen 1.250 Euro. Ein Budget hilft Ihnen, diesen Betrag sinnvoll einzuteilen, z. B. 500 Euro für Ersparnisse, 300 Euro für Freizeit und 450 Euro für andere Ausgaben.",
+                "example_budget_2": "Zusammenfassend: Ein Budget gibt Ihnen Kontrolle über Ihre Finanzen und hilft Ihnen, Ihre Ausgaben im Griff zu behalten, während Sie auf Ihre finanziellen Ziele hinarbeiten.",
+                "section_b_title": "B. Schritte zur Erstellung eines Budgets",
+                "section_b_desc_1": "Die Erstellung eines Budgets erfordert einige einfache Schritte. Zuerst sollten Sie Ihre monatlichen Einnahmen ermitteln, einschließlich Gehalt, Nebenjobs oder andere Einkommensquellen. Danach listen Sie alle Ausgaben auf, einschließlich fixer Kosten (z. B. Miete, Versicherungen) und variabler Kosten (z. B. Lebensmittel, Unterhaltung). Ziehen Sie die Ausgaben von den Einnahmen ab, um festzustellen, wie viel Geld Ihnen bleibt.",
+                "section_b_desc_2": "Ein beliebter Ansatz ist die 50/30/20-Regel, bei der 50 % des Einkommens für Grundbedürfnisse, 30 % für Wünsche und 20 % für Ersparnisse oder Schuldenabbau verwendet werden.",
+                "budget_rule_desc": "Die 50/30/20-Regel ist ein einfacher Weg, Ihre Finanzen zu strukturieren. Wenn Ihr Nettoeinkommen z. B. 2.000 Euro beträgt, würden Sie 1.000 Euro für Grundbedürfnisse (Miete, Rechnungen), 600 Euro für Wünsche (Essen gehen, Hobbys) und 400 Euro für Ersparnisse oder Schuldenrückzahlung verwenden. Diese Methode ist flexibel und kann an Ihre persönlichen Bedürfnisse angepasst werden.",
+                "section_c_title": "C. Vorteile eines Budgets",
+                "section_c_desc_1": "Ein gut geplantes Budget bietet viele Vorteile. Es hilft Ihnen, finanzielle Ziele wie den Aufbau eines Notfallfonds, das Sparen für eine große Anschaffung oder die Tilgung von Schulden zu erreichen. Außerdem gibt es Ihnen ein besseres Verständnis Ihrer Ausgabengewohnheiten und ermöglicht es Ihnen, unnötige Ausgaben zu reduzieren. Langfristig fördert ein Budget finanzielle Disziplin und Sicherheit.",
+                "example_savings_title": "Beispiel: Notfallfonds",
+                "example_savings_desc": "Ein Notfallfonds ist ein wichtiger Bestandteil eines Budgets. Experten empfehlen, drei bis sechs Monate Ihrer Lebenshaltungskosten zu sparen. Wenn Ihre monatlichen Ausgaben 2.000 Euro betragen, sollten Sie 6.000 bis 12.000 Euro für unvorhergesehene Ereignisse wie Arbeitslosigkeit oder medizinische Notfälle zurücklegen. Durch ein Budget können Sie monatlich einen bestimmten Betrag für diesen Fonds reservieren, z. B. 200 Euro, um dieses Ziel schrittweise zu erreichen.",
+                "tools_intro": "Hier sind einige nützliche Tools und Methoden zur Budgeterstellung:",
+                "tool_spreadsheet": "Tabellenkalkulationen: Programme wie Excel oder Google Sheets sind ideal, um Einnahmen und Ausgaben zu verfolgen.",
+                "tool_apps": "Budget-Apps: Anwendungen wie YNAB (You Need A Budget) oder Mint helfen, Ihre Finanzen digital zu verwalten.",
+                "tool_envelope": "Umschlagmethode: Eine traditionelle Methode, bei der Bargeld für verschiedene Ausgabenkategorien in getrennte Umschläge aufgeteilt wird."
+            },
+            "en": {
+                "title": "Course 2: How to Create a Budget",
+                "lesson2_title": "Lesson 2: How to Create a Budget",
+                "intro": "A budget is an essential tool for managing your finances and achieving your financial goals. Below, we will explore the steps to creating an effective budget in more detail:",
+                "section_a_title": "A. What is a Budget?",
+                "section_a_desc": "A budget is a financial plan that outlines your income and expenses over a specific period, typically monthly. It helps you keep track of your finances, reduce unnecessary spending, and allocate money toward important goals like saving, investing, or paying off debt.",
+                "example_title": "Example:",
+                "example_budget_1": "Imagine you earn 2,500 euros net per month. After deducting monthly expenses like rent (800 euros), groceries (300 euros), and transportation (150 euros), you have 1,250 euros left. A budget helps you allocate this amount wisely, e.g., 500 euros for savings, 300 euros for leisure, and 450 euros for other expenses.",
+                "example_budget_2": "In summary: A budget gives you control over your finances and helps you manage your spending while working toward your financial goals.",
+                "section_b_title": "B. Steps to Create a Budget",
+                "section_b_desc_1": "Creating a budget involves a few simple steps. First, determine your monthly income, including salary, side jobs, or other income sources. Then, list all expenses, including fixed costs (e.g., rent, insurance) and variable costs (e.g., groceries, entertainment). Subtract expenses from income to see how much money you have left.",
+                "section_b_desc_2": "A popular approach is the 50/30/20 rule, where 50% of income goes to necessities, 30% to wants, and='')
+                20% to savings or debt repayment.",
+                "budget_rule_desc": "The 50/30/20 rule is a simple way to structure your finances. For example, if your net income is 2,000 euros, you would allocate 1,000 euros to necessities (rent, bills), 600 euros to wants (dining out, hobbies), and 400 euros to savings or debt repayment. This method is flexible and can be tailored to your personal needs.",
+                "section_c_title": "C. Benefits of a Budget",
+                "section_c_desc_1": "A well-planned budget offers many benefits. It helps you achieve financial goals like building an emergency fund, saving for a major purchase, or paying off debt. It also provides better insight into your spending habits and allows you to cut unnecessary expenses. In the long term, a budget promotes financial discipline and security.",
+                "example_savings_title": "Example: Emergency Fund",
+                "example_savings_desc": "An emergency fund is a key component of a budget. Experts recommend saving three to six months of living expenses. If your monthly expenses are 2,000 euros, you should aim to save 6,000 to 12,000 euros for unforeseen events like job loss or medical emergencies. With a budget, you can set aside a specific amount each month, such as 200 euros, to gradually reach this goal.",
+                "tools_intro": "Here are some useful tools and methods for budgeting:",
+                "tool_spreadsheet": "Spreadsheets: Programs like Excel or Google Sheets are ideal for tracking income and expenses.",
+                "tool_apps": "Budgeting Apps: Apps like YNAB (You Need A Budget) or Mint help manage your finances digitally.",
+                "tool_envelope": "Envelope Method: A traditional method where cash for different spending categories is divided into separate envelopes."
+            },
+            "fr": {
+                "title": "Cours 2 : Comment créer un budget",
+                "lesson2_title": "Leçon 2 : Comment créer un budget",
+                "intro": "Un budget est un outil essentiel pour gérer vos finances et atteindre vos objectifs financiers. Ci-dessous, nous explorerons les étapes pour créer un budget efficace plus en détail :",
+                "section_a_title": "A. Qu'est-ce qu'un budget ?",
+                "section_a_desc": "Un budget est un plan financier qui détaille vos revenus et dépenses sur une période donnée, généralement mensuelle. Il vous aide à garder une trace de vos finances, à réduire les dépenses inutiles et à allouer de l'argent à des objectifs importants comme l'épargne, l'investissement ou le remboursement de dettes.",
+                "example_title": "Exemple :",
+                "example_budget_1": "Imaginez que vous gagnez 2 500 euros net par mois. Après avoir déduit les dépenses mensuelles comme le loyer (800 euros), les courses (300 euros) et les transports (150 euros), il vous reste 1 250 euros. Un budget vous aide à répartir cette somme judicieusement, par exemple 500 euros pour l'épargne, 300 euros pour les loisirs et 450 euros pour d'autres dépenses.",
+                "example_budget_2": "En résumé : Un budget vous donne le contrôle de vos finances et vous aide à gérer vos dépenses tout en travaillant vers vos objectifs financiers.",
+                "section_b_title": "B. Étapes pour créer un budget",
+                "section_b_desc_1": "Créer un budget implique quelques étapes simples. Tout d'abord, déterminez vos revenus mensuels, y compris le salaire, les emplois secondaires ou d'autres sources de revenus. Ensuite, listez toutes les dépenses, y compris les coûts fixes (par exemple, loyer, assurances) et les coûts variables (par exemple, courses, divertissements). Soustrayez les dépenses des revenus pour voir combien d'argent il vous reste.",
+                "section_b_desc_2": "Une approche populaire est la règle 50/30/20, où 50 % des revenus sont destinés aux besoins essentiels, 30 % aux envies et 20 % à l'épargne ou au remboursement de dettes.",
+                "budget_rule_desc": "La règle 50/30/20 est un moyen simple de structurer vos finances. Par exemple, si votre revenu net est de 2 000 euros, vous alloueriez 1 000 euros aux besoins essentiels (loyer, factures), 600 euros aux envies (sorties, hobbies) et 400 euros à l'épargne ou au remboursement de dettes. Cette méthode est flexible et peut être adaptée à vos besoins personnels.",
+                "section_c_title": "C. Avantages d'un budget",
+                "section_c_desc_1": "Un budget bien planifié offre de nombreux avantages. Il vous aide à atteindre des objectifs financiers comme constituer un fonds d'urgence, épargner pour un achat important ou rembourser des dettes. Il vous donne également une meilleure compréhension de vos habitudes de dépense et vous permet de réduire les dépenses inutiles. À long terme, un budget favorise la discipline financière et la sécurité.",
+                "example_savings_title": "Exemple : Fonds d'urgence",
+                "example_savings_desc": "Un fonds d'urgence est un élément clé d'un budget. Les experts recommandent d'épargner trois à six mois de frais de subsistance. Si vos dépenses mensuelles s'élèvent à 2 000 euros, vous devriez viser à économiser 6 000 à 12 000 euros pour des événements imprévus comme la perte d'emploi ou des urgences médicales. Avec un budget, vous pouvez mettre de côté un montant spécifique chaque mois, comme 200 euros, pour atteindre cet objectif progressivement.",
+                "tools_intro": "Voici quelques outils et méthodes utiles pour l'élaboration d'un budget :",
+                "tool_spreadsheet": "Tableurs : Des programmes comme Excel ou Google Sheets sont idéaux pour suivre les revenus et les dépenses.",
+                "tool_apps": "Applications de budgétisation : Des applications comme YNAB (You Need A Budget) ou Mint aident à gérer vos finances numériquement.",
+                "tool_envelope": "Méthode des enveloppes : Une méthode traditionnelle où l'argent liquide pour différentes catégories de dépenses est réparti dans des enveloppes séparées."
+            }
+        };
+
+        let currentLang = 'de';
+
+        function applyTranslations(targetLang) {
+            const elements = document.querySelectorAll('[data-translate-key]');
+            if (!translations[targetLang]) return;
+            elements.forEach(element => {
+                const key = element.getAttribute('data-translate-key');
+                if (translations[targetLang][key]) {
+                    element.innerHTML = translations[targetLang][key];
+                }
+            });
+            document.title = translations[targetLang].title || "Kurs 2: Wie erstellt man ein Budget?";
+        }
+
+        function translatePage(targetLang) {
+            if (targetLang === currentLang) return;
+            applyTranslations(targetLang);
+            document.documentElement.lang = targetLang;
+            currentLang = targetLang;
+        }
+
+        // Apply default language on load
+        window.addEventListener('DOMContentLoaded', () => {
+            applyTranslations('de');
+            const storedLang = localStorage.getItem('preferredLanguage');
+            if (storedLang && translations[storedLang] && storedLang !== 'de') {
+                translatePage(storedLang);
+            }
+        });
+
+        // Listen for language change messages from parent (index.html)
+        window.addEventListener('message', (event) => {
+            if (event.data.type === 'LANGUAGE_CHANGE') {
+                translatePage(event.data.language);
+            }
+        });
+
+        // Scroll bar functionality
+        function updateScrollBar() {
+            const scrollBar = document.getElementById('scroll-bar');
+            const scrollHeight = document.documentElement.scrollHeight;
+            const clientHeight = document.documentElement.clientHeight;
+            const scrollTop = window.scrollY;
+            const scrollPercent = (scrollTop / (scrollHeight - clientHeight)) * 100;
+            scrollBar.style.width = scrollPercent + '%';
+        }
+
+        window.addEventListener('scroll', updateScrollBar);
+        window.addEventListener('resize', updateScrollBar);
+    </script>
+</body>
+</html>
