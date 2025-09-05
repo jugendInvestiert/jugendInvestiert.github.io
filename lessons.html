@@ -299,7 +299,7 @@
                 <div class="course-content">
                     <h3 data-translate-key="course3Title">Deutsche Wirtschaft</h3>
                     <p data-translate-key="course3Desc">Erfahre mehr über die Mechanismen der deutschen Wirtschaft.</p>
-                    <button onclick="location.href='section3.html'" data-translate-key="startButton">Jetzt starten</button>
+                    <button onclick="location.href='section2.html'" data-translate-key="startButton">Jetzt starten</button>
                 </div>
             </div>
             
@@ -465,34 +465,78 @@
         };
 
         function applyTranslations(targetLang) {
+            if (!translations[targetLang]) {
+                console.error(`Translation for language "${targetLang}" not found.`);
+                return;
+            }
             const elements = document.querySelectorAll('[data-translate-key]');
-            if (!translations[targetLang]) return;
             elements.forEach(element => {
                 const key = element.getAttribute('data-translate-key');
                 if (translations[targetLang][key]) {
                     element.innerHTML = translations[targetLang][key];
+                } else {
+                    console.warn(`Translation key "${key}" not found for language "${targetLang}".`);
                 }
             });
             document.documentElement.lang = targetLang;
-        }
-
-        function translatePage(targetLang) {
-            if (!translations[targetLang]) return;
-            applyTranslations(targetLang);
             localStorage.setItem('preferredLanguage', targetLang);
+            console.log(`Applied translations for language: ${targetLang}`);
         }
 
-        window.addEventListener('DOMContentLoaded', () => {
+        function broadcastLanguageChange(lang) {
+            if (window.parent && window.parent !== window) {
+                try {
+                    window.parent.postMessage({
+                        type: 'LANGUAGE_CHANGE',
+                        language: lang,
+                        source: 'lessons'
+                    }, '*');
+                    console.log(`Broadcasted LANGUAGE_CHANGE for ${lang}`);
+                } catch (error) {
+                    console.error(`Error broadcasting language change: ${error}`);
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
             const storedLang = localStorage.getItem('preferredLanguage') || 'de';
-            translatePage(storedLang);
+            console.log(`Initializing lessons.html with language: ${storedLang}`);
+            setTimeout(() => {
+                applyTranslations(storedLang);
+                // Request initial language from parent
+                if (window.parent && window.parent !== window) {
+                    window.parent.postMessage({
+                        type: 'REQUEST_LANGUAGE',
+                        source: 'lessons'
+                    }, '*');
+                }
+            }, 100);
         });
 
         window.addEventListener('message', (event) => {
-            if (event.data.type === 'LANGUAGE_CHANGE') {
+            if (event.data && event.data.type === 'LANGUAGE_CHANGE' && event.data.source === 'index') {
                 const newLang = event.data.language;
-                translatePage(newLang);
+                console.log(`Received LANGUAGE_CHANGE message for language: ${newLang}`);
+                if (translations[newLang] && newLang !== document.documentElement.lang) {
+                    applyTranslations(newLang);
+                    window.parent.postMessage({
+                        type: 'LANGUAGE_CHANGE_ACK',
+                        language: newLang,
+                        source: 'lessons'
+                    }, '*');
+                    console.log(`Acknowledged LANGUAGE_CHANGE for ${newLang}`);
+                } else if (!translations[newLang]) {
+                    console.error(`Unsupported language: ${newLang}`);
+                }
             }
         });
+
+        window.changeLanguage = function(lang) {
+            if (translations[lang]) {
+                applyTranslations(lang);
+                broadcastLanguageChange(lang);
+            }
+        };
     </script>
 </body>
 </html>

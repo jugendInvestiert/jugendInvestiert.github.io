@@ -523,9 +523,6 @@
     .message.success {
       border-left: 5px solid #4caf50;
     }
-    .message.error {
-      border-left: 5px solid #f44336;
-    }
     @keyframes fadeInOut {
       0% { opacity: 0; transform: translateX(-50%) translateY(20px); }
       10% { opacity: 1; transform: translateX(-50%) translateY(0); }
@@ -589,37 +586,6 @@
       40% { transform: translateY(10px); }
       60% { transform: translateY(5px); }
     }
-    .disclaimer {
-      position: fixed;
-      top: 90px;
-      left: 50%;
-      transform: translateX(-50%);
-      background-color: #f44336;
-      color: white;
-      padding: 10px 20px;
-      border-radius: 15px;
-      font-family: 'Poppins', sans-serif;
-      font-size: clamp(12px, 3.5vw, 14px);
-      text-align: center;
-      width: 90vw;
-      max-width: 500px;
-      z-index: 1000;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-      animation: fadeInOut 8s forwards;
-    }
-    .tradingview-widget-container {
-      width: 100%;
-      margin: 0 auto;
-      padding-top:30px;
-      background-color: #1B2631;
-      z-index: 999;
-      position: fixed;
-      top: 80px;
-      height: 30px;
-    }
-    .tradingview-widget-copyright {
-      display: none;
-    }
     @media (max-width: 480px) {
       .mobile-layout .header h1 { font-size: 20px; }
       .mobile-layout .header img { height: 50px; width: 50px; }
@@ -682,14 +648,6 @@
         border-bottom: 3px solid white;
         transform: translate(-50%, -50%) rotate(45deg);
       }
-      .disclaimer {
-        top: 180px;
-        font-size: clamp(10px, 3vw, 12px);
-      }
-      .tradingview-widget-container {
-        top: 70px;
-        height: 27px;
-      }
     }
     @media (max-width: 360px) {
       .mobile-layout .community-cube {
@@ -705,14 +663,6 @@
       }
       .scroll-arrows {
         bottom: calc(20px - 2cm);
-      }
-      .disclaimer {
-        top: 70px;
-        font-size: clamp(8px, 2.5vw, 10px);
-      }
-      .tradingview-widget-container {
-        top: 60px;
-        height: 25px;
       }
     }
   </style>
@@ -733,47 +683,6 @@
             <img src="https://flagcdn.com/us.svg" alt="USA Flag" data-lang="en" />
           </div>
         </div>
-      </div>
-      <!-- TradingView Widget BEGIN -->
-      <div class="tradingview-widget-container">
-        <div class="tradingview-widget-container__widget"></div>
-        <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank"><span class="blue-text">Ticker tape by TradingView</span></a></div>
-        <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
-        {
-          "symbols": [
-            {
-              "proName": "FOREXCOM:SPXUSD",
-              "title": "S&P 500 Index"
-            },
-            {
-              "proName": "FOREXCOM:NSXUSD",
-              "title": "US 100 Cash CFD"
-            },
-            {
-              "proName": "FX_IDC:EURUSD",
-              "title": "EUR to USD"
-            },
-            {
-              "proName": "BITSTAMP:BTCUSD",
-              "title": "Bitcoin"
-            },
-            {
-              "proName": "BITSTAMP:ETHUSD",
-              "title": "Ethereum"
-            }
-          ],
-          "colorTheme": "dark",
-          "locale": "en",
-          "largeChartUrl": "",
-          "isTransparent": false,
-          "showSymbolLogo": true,
-          "displayMode": "adaptive"
-        }
-        </script>
-      </div>
-      <!-- TradingView Widget END -->
-      <div class="disclaimer" data-translate-key="disclaimer">
-        Aufgrund hoher Auslastung und Kosten können kleinere Fehler im Simulator und in den Übersetzungsfunktionen auftreten.
       </div>
       <section class="hero">
         <div class="floating-shapes">
@@ -796,9 +705,9 @@
 
       <div class="content">
         <div class="cube community-cube">
-          <p class="description-text">Die größte Community von finanzinteressierten Schülern in Deutschland</p>
+          <p class="description-text">Tritt jetz</p>
           <div class="number-square" id="community-count">0</div>
-          <p class="description-text">Schüler</p>
+          <p class="description-text">Schülern bei</p>
         </div>
         <div class="cube">
           <div class="number-square">#1</div>
@@ -879,9 +788,7 @@
         "email_label": "E-Mail",
         "message_label": "Nachricht",
         "submit_button": "Nachricht Senden",
-        "success_message": "Nachricht erfolgreich gesendet!",
-        "error_message": "Fehler beim Senden der Nachricht. Bitte versuche es erneut.",
-        "disclaimer": "Aufgrund hoher Auslastung und Kosten können kleinere Fehler im Simulator und in den Übersetzungsfunktionen auftreten."
+        "success_message": "Nachricht erfolgreich gesendet!"
       },
       "en": {
         "brand": "YouthInvests",
@@ -900,9 +807,7 @@
         "email_label": "Email",
         "message_label": "Message",
         "submit_button": "Send Message",
-        "success_message": "Message sent successfully!",
-        "error_message": "Error sending message. Please try again.",
-        "disclaimer": "Due to high load and costs, you may experience minor bugs in the simulator and translation features."
+        "success_message": "Message sent successfully!"
       },
       "fr": {
         "brand": "JeunesseInvestit",
@@ -921,9 +826,7 @@
         "email_label": "Email",
         "message_label": "Message",
         "submit_button": "Envoyer le Message",
-        "success_message": "Message envoyé avec succès !",
-        "error_message": "Erreur lors de l'envoi du message. Veuillez réessayer.",
-        "disclaimer": "En raison d'une forte charge et de coûts élevés, des bugs mineurs peuvent survenir dans le simulateur et les fonctionnalités de traduction."
+        "success_message": "Message envoyé avec succès !"
       }
     };
 
@@ -941,6 +844,7 @@
     }
 
     function displayMessage(message, type) {
+      if (type === 'error') return; // Skip error messages
       const container = document.getElementById('message-container');
       const div = document.createElement('div');
       div.classList.add('message', type);
@@ -970,8 +874,8 @@
       languageDropdown.classList.remove('open');
       localStorage.setItem('preferredLanguage', targetLang);
 
-      // Broadcast language change to all windows
-      window.postMessage({
+      // Send language change to parent (home.html)
+      window.parent.postMessage({
         type: 'LANGUAGE_CHANGE',
         language: targetLang
       }, '*');
@@ -980,6 +884,13 @@
     const currentFlag = document.getElementById('currentFlag');
     const languageDropdown = document.getElementById('languageDropdown');
     let currentLang = 'de';
+
+    // Listen for language change messages from parent
+    window.addEventListener('message', (event) => {
+      if (event.data.type === 'LANGUAGE_CHANGE') {
+        translatePage(event.data.language);
+      }
+    });
 
     window.addEventListener('DOMContentLoaded', () => {
       applyTranslations('de');
@@ -1073,7 +984,7 @@
           closeContactForm();
         }, function(error) {
           console.error('EmailJS Error:', error);
-          displayMessage(translations[currentLang].error_message, 'error');
+          // Do not display error message
         });
     });
 

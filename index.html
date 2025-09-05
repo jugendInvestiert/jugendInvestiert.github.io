@@ -94,7 +94,7 @@
         .sidebar a.cube {
             background-color: #2A3F5F;
             border: none;
-            box-shadow: 0 0 5px rgba(74, 179, 255, 0.5);
+            box-shadow: 0 학교 5px rgba(74, 179, 255, 0.5);
             height: calc(85% * 0.5625);
             display: flex;
             flex-direction: column;
@@ -800,6 +800,26 @@
                 signupPassword.addEventListener('input', validatePassword);
                 signupPasswordCheck.addEventListener('input', validatePassword);
             }
+            // Ensure language is sent to iframes on load
+            setTimeout(() => {
+                changeLanguage(storedLang || 'de');
+            }, 100);
+            // Add load event listeners for iframes
+            const iframes = [
+                { id: 'home-iframe', src: 'home.html' },
+                { id: 'lernen-iframe', src: 'lessons.html' },
+                { id: 'resourcen-iframe', src: 'ressources.html' },
+                { id: 'simulator-iframe', src: 'simulator.html' },
+                { id: 'mission-iframe', src: 'ourmission.html' }
+            ];
+            iframes.forEach(iframe => {
+                const iframeElement = document.getElementById(iframe.id);
+                if (iframeElement) {
+                    iframeElement.addEventListener('load', () => {
+                        sendLanguageMessage();
+                    });
+                }
+            });
         });
         const firebaseConfig = {
             apiKey: "AIzaSyDmEUCl7sWzBI7N78HgcgBRcRAkTYbtm5g",
@@ -1015,19 +1035,32 @@
             if (languageSelector) {
                 languageSelector.value = lang;
             }
-            const iframes = document.querySelectorAll('iframe');
-            iframes.forEach(iframe => {
-                if (iframe.contentWindow) {
-                    iframe.contentWindow.postMessage({
-                        type: 'LANGUAGE_CHANGE',
-                        language: lang,
-                        source: 'index'
-                    }, '*');
-                }
-            });
-            setTimeout(() => {
-                window.location.reload(true); // Force full page reload from server after 1 second
-            }, 1000);
+            // Send language change message to all iframes
+            const iframes = [
+                { id: 'home-iframe', src: 'home.html' },
+                { id: 'lernen-iframe', src: 'lessons.html' },
+                { id: 'resourcen-iframe', src: 'ressources.html' },
+                { id: 'simulator-iframe', src: 'simulator.html' },
+                { id: 'mission-iframe', src: 'ourmission.html' }
+            ];
+            function sendLanguageMessage() {
+                iframes.forEach(iframe => {
+                    const iframeElement = document.getElementById(iframe.id);
+                    if (iframeElement && iframeElement.contentWindow) {
+                        try {
+                            iframeElement.contentWindow.postMessage({
+                                type: 'LANGUAGE_CHANGE',
+                                language: lang,
+                                source: 'index'
+                            }, '*');
+                            console.log(`Sent LANGUAGE_CHANGE to ${iframe.src}: ${lang}`);
+                        } catch (error) {
+                            console.error(`Error sending message to ${iframe.src}:`, error);
+                        }
+                    }
+                });
+            }
+            sendLanguageMessage();
         }
         function acceptDisclaimer() {
             const disclaimerModal = document.getElementById('disclaimerModal');
@@ -1363,6 +1396,24 @@
             element.classList.add('active');
             if (id === 'simulator') sendDataToSimulator();
             if (id === 'profil') updateProfileSection();
+            const currentLang = document.documentElement.lang || 'de';
+            const iframeIds = {
+                'lernen': 'lernen-iframe',
+                'resourcen': 'resourcen-iframe',
+                'simulator': 'simulator-iframe',
+                'unsere-mission': 'mission-iframe',
+                'home': 'home-iframe'
+            };
+            if (iframeIds[id]) {
+                const iframe = document.getElementById(iframeIds[id]);
+                if (iframe && iframe.contentWindow) {
+                    iframe.contentWindow.postMessage({
+                        type: 'LANGUAGE_CHANGE',
+                        language: currentLang,
+                        source: 'index'
+                    }, '*');
+                }
+            }
         }
         function displaySuccessMessage(message) {
             const messageDiv = document.createElement('div');

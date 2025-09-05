@@ -873,7 +873,7 @@
     <section class="hero">
       <div class="floating-shapes">
         <div class="shape" style="width: 50px; height: 50px; top: 20%; left: 20%;"></div>
-        <div class="shape" style="width: 80px; height: 80px; top: 60%; left:  80%;"></div>
+        <div class="shape" style="width: 80px; height: 80px; top: 60%; left: 80%;"></div>
         <div class="shape" style="width: 30px; height: 30px; top: 80%; left: 30%;"></div>
       </div>
       <div class="hero-content">
@@ -1262,10 +1262,10 @@
       });
       localStorage.setItem('preferredLanguage', targetLang);
 
+      // Send language change to parent (home.html)
       window.parent.postMessage({
         type: 'LANGUAGE_CHANGE',
-        language: targetLang,
-        source: 'home-iframe'
+        language: targetLang
       }, '*');
     }
 
@@ -1274,6 +1274,16 @@
     const currentFlagMobile = document.getElementById('currentFlagMobile');
     const languageDropdownMobile = document.getElementById('languageDropdownMobile');
     let currentLang = 'de';
+
+    // Listen for language change messages from parent
+    window.addEventListener('message', (event) => {
+      if (event.data.type === 'LANGUAGE_CHANGE') {
+        const targetLang = event.data.language;
+        if (translations[targetLang] && targetLang !== currentLang) {
+          translatePage(targetLang);
+        }
+      }
+    });
 
     window.addEventListener('DOMContentLoaded', () => {
       const storedLang = localStorage.getItem('preferredLanguage');
@@ -1351,16 +1361,6 @@
               displayMessage(translations[currentLang].error_message, 'error');
             });
         });
-      }
-    });
-
-    // Listen for language change messages from parent
-    window.addEventListener('message', (event) => {
-      if (event.data.type === 'LANGUAGE_CHANGE' && event.data.source !== 'home-iframe') {
-        const targetLang = event.data.language;
-        if (translations[targetLang] && targetLang !== currentLang) {
-          translatePage(targetLang);
-        }
       }
     });
   </script>

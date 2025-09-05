@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-translate-key="title">Investment Simulator - JugendInvestiert</title>
+    <title data-translate-key="title">Investment Simulator - YouthInvests</title>
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
     <!-- Font Awesome Icons -->
@@ -452,25 +452,6 @@
             font-size: 1rem;
             margin-bottom: 20px;
         }
-        .language-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            margin-bottom: 20px;
-        }
-        .language-button {
-            padding: 10px 20px;
-            background-color: #007bff;
-            border: none;
-            border-radius: 5px;
-            color: #ffffff;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .language-button:hover {
-            background-color: #0056b3;
-        }
         .continue-button {
             padding: 10px 20px;
             background-color: #4caf50;
@@ -575,7 +556,7 @@
             .popup-content p {
                 font-size: 0.9rem;
             }
-            .language-button, .continue-button {
+            .continue-button {
                 padding: 8px 15px;
                 font-size: 0.9rem;
             }
@@ -593,98 +574,93 @@
             .summary-item-analysis p { font-size: 1rem; }
             .popup-content h2 { font-size: 1.1rem; }
             .popup-content p { font-size: 0.8rem; }
-            .language-button, .continue-button { font-size: 0.8rem; padding: 6px 12px; }
+            .continue-button { font-size: 0.8rem; padding: 6px 12px; }
         }
     </style>
 </head>
 <body>
     <div id="welcome-popup" class="popup-overlay" style="display: flex;">
         <div class="popup-content">
-            <div class="language-buttons">
-                <button class="language-button" onclick="selectLanguage('en')">English</button>
-                <button class="language-button" onclick="selectLanguage('de')">Deutsch</button>
-                <button class="language-button" onclick="selectLanguage('fr')">Français</button>
-            </div>
-            <h2 data-translate-key="welcome_title">Welcome to the Investment Simulator</h2>
-            <p data-translate-key="disclaimer">This simulator is for educational purposes only and uses virtual money. No real financial transactions are involved.</p>
-            <button class="continue-button" onclick="closeWelcomePopup()" data-translate-key="continue_button">Continue</button>
+            <h2 data-translate-key="welcomeTitle">Welcome to the Investment Simulator</h2>
+            <p data-translate-key="welcomeMessage">This simulator is for educational purposes only and uses virtual money. No real financial transactions are involved.</p>
+            <button class="continue-button" onclick="closeWelcomePopup()" data-translate-key="continueButton">Continue</button>
         </div>
     </div>
     <div class="navbar">
         <div class="logo">
-            <img src="logo.jpg" alt="JugendInvestiert Logo">
-            <h1 data-translate-key="brand">JugendInvestiert</h1>
+            <img src="logo.jpg" alt="YouthInvests Logo">
+            <h1 data-translate-key="brand">YouthInvests</h1>
         </div>
     </div>
     <div class="container">
         <div class="account-summary">
             <div class="summary-item">
-                <h3 data-translate-key="portfolio_value">Portfolio Wert</h3>
+                <h3 data-translate-key="portfolioValue">Portfolio Value</h3>
                 <p>$<span id="portfolioValue">0.00</span></p>
             </div>
             <div class="summary-item">
-                <h3 data-translate-key="cash_balance">Bargeldsaldo</h3>
+                <h3 data-translate-key="cashBalance">Cash Balance</h3>
                 <p>$<span id="budget">10000.00</span></p>
             </div>
             <div class="summary-item">
-                <h3 data-translate-key="total_profit">Gesamter Gewinn</h3>
+                <h3 data-translate-key="totalProfit">Total Profit</h3>
                 <p id="totalProfit" class="total-profit">$0.00</p>
             </div>
             <div class="summary-item">
-                <h3 data-translate-key="profit_loss_percent">Gewinn/Verlust %</h3>
+                <h3 data-translate-key="profitLossPercent">Profit/Loss %</h3>
                 <p id="totalProfitPercent" class="total-profit">0.00%</p>
             </div>
         </div>
         <div class="trade-widget-container">
             <div class="trade-section" id="trade-section">
-                <h2 data-translate-key="trade_stocks">Aktien Handeln</h2>
-                <label for="stock-symbol" data-translate-key="stock_symbol_label">Aktiensymbol oder Firmenname</label>
+                <h2 data-translate-key="tradeStocks">Trade Stocks</h2>
+                <label for="stock-symbol" data-translate-key="stockSymbolLabel">Stock Symbol or Company Name</label>
                 <div class="search-container">
-                    <input type="text" id="stock-symbol" placeholder="z.B., AAPL, Apple Inc." autocomplete="off" onkeyup="debouncedFilterSymbols()">
+                    <input type="text" id="stock-symbol" data-translate-key="stockSymbolLabel" placeholder="e.g., AAPL, Apple Inc." autocomplete="off" onkeyup="debouncedFilterSymbols()">
                     <div id="suggestions"></div>
                 </div>
-                <label for="quantity" data-translate-key="quantity_label">Anzahl</label>
-                <input type="number" id="quantity" placeholder="Anzahl eingeben" min="1" step="1">
+                <label for="quantity" data-translate-key="quantityLabel">Quantity</label>
+                <input type="number" id="quantity" data-translate-key="quantityLabel" placeholder="Enter quantity" min="1" step="1">
                 <div id="current-price" style="margin-top: 10px;">
-                    <h3 data-translate-key="current_price">Aktueller Preis: $<span id="currentPrice">0.00</span></h3>
+                    <h3 data-translate-key="currentPrice">Current Price: $<span id="currentPrice">0.00</span></h3>
                 </div>
-                <button id="buy-button" onclick="buyStock()" data-translate-key="buy_button"><b>Kaufen</b></button>
+                <button id="buy-button" onclick="buyStock()" data-translate-key="buyButton"><b>Buy</b></button>
             </div>
             <div id="tradingview-widget"></div>
         </div>
         <div class="portfolio-section">
-            <h2 data-translate-key="portfolio_title">Dein Portfolio</h2>
+            <h2 data-translate-key="yourPortfolio">Your Portfolio</h2>
             <table class="portfolio-table">
                 <thead>
                     <tr>
                         <th data-translate-key="symbol">Symbol</th>
-                        <th data-translate-key="quantity">Anzahl</th>
-                        <th data-translate-key="purchase_price">Kaufpreis</th>
-                        <th data-translate-key="current_price">Akt. Preis</th>
-                        <th data-translate-key="profit_loss">Gewinn/Verlust</th>
-                        <th data-translate-key="action">Aktion</th>
+                        <th data-translate-key="quantity">Quantity</th>
+                        <th data-translate-key="purchasePrice">Purchase Price</th>
+                        <th data-translate-key="currentPrice">Current Price</th>
+                        <th data-translate-key="profitLoss">Profit/Loss</th>
+                        <th data-translate-key="action">Action</th>
                     </tr>
                 </thead>
                 <tbody id="portfolioTableBody"></tbody>
             </table>
         </div>
         <div class="portfolio-analysis-section">
-            <h2 data-translate-key="portfolio_analysis">Portfolio Analyse</h2>
+            <h2 data-translate-key="portfolioAnalysis">Portfolio Analysis</h2>
             <div class="analysis-tabs">
-                <button class="tab-button active" data-tab="allocation" data-translate-key="allocation">Allokation</button>
-                <button class="tab-button" data-tab="performance" data-translate-key="performance">Performance</button>
-                <button class="tab-button" data-tab="summary" data-translate-key="summary">Zusammenfassung</button>
+                <button class="tab-button active" data-tab="allocation" data-translate-key="allocationTab">Allocation</button>
+                <button class="tab-button" data-tab="performance" data-translate-key="performanceTab">Performance</button>
+                <button class="tab-button" data-tab="summary" data-translate-key="summaryTab">Summary</button>
             </div>
             <div id="allocation-tab" class="tab-content active">
                 <div class="charts-container">
                     <div class="chart-wrapper">
-                        <h3 data-translate-key="portfolio_allocation">Portfolio Verteilung</h3>
+                        <h3 data-translate-key="portfolioAllocation">Portfolio Allocation</h3>
                         <div class="chart-container">
                             <canvas id="allocation-chart"></canvas>
                         </div>
                     </div>
                     <div class="chart-wrapper">
-                        <h3 data-translate-key="sector_investments">Investitionen nach Sektor</h3>
+                        <h3 data-translate-key="sectorAllocation">Investments by Sector</h3>
                         <div class="chart-container">
                             <canvas id="sector-chart"></canvas>
                         </div>
@@ -694,13 +670,13 @@
             <div id="performance-tab" class="tab-content">
                 <div class="charts-container">
                     <div class="chart-wrapper">
-                        <h3 data-translate-key="portfolio_development">Portfolio Entwicklung</h3>
+                        <h3 data-translate-key="portfolioDevelopment">Portfolio Development</h3>
                         <div class="chart-container">
                             <canvas id="performance-chart"></canvas>
                         </div>
                     </div>
                     <div class="chart-wrapper">
-                        <h3 data-translate-key="profit_loss_per_stock">Gewinn/Verlust pro Aktie</h3>
+                        <h3 data-translate-key="profitLossStock">Profit/Loss per Stock</h3>
                         <div class="chart-container">
                             <canvas id="profit-loss-chart"></canvas>
                         </div>
@@ -709,26 +685,26 @@
             </div>
             <div id="summary-tab" class="tab-content">
                 <div class="analysis-summary">
-                    <h3 data-translate-key="portfolio_metrics">Portfolio Kennzahlen</h3>
+                    <h3 data-translate-key="portfolioMetrics">Portfolio Metrics</h3>
                     <div class="summary-grid">
                         <div class="summary-item-analysis">
-                            <h4 data-translate-key="top_performer">Top-Performer</h4>
+                            <h4 data-translate-key="topPerformer">Top Performer</h4>
                             <p id="top-performer">-</p>
                         </div>
                         <div class="summary-item-analysis">
-                            <h4 data-translate-key="worst_performer">Schwächster Performer</h4>
+                            <h4 data-translate-key="worstPerformer">Worst Performer</h4>
                             <p id="worst-performer">-</p>
                         </div>
                         <div class="summary-item-analysis">
-                            <h4 data-translate-key="largest_position">Größte Position</h4>
+                            <h4 data-translate-key="largestPosition">Largest Position</h4>
                             <p id="largest-position">-</p>
                         </div>
                         <div class="summary-item-analysis">
-                            <h4 data-translate-key="position_count">Anzahl Positionen</h4>
+                            <h4 data-translate-key="positionCount">Number of Positions</h4>
                             <p id="position-count">0</p>
                         </div>
                         <div class="summary-item-analysis">
-                            <h4 data-translate-key="avg_position_size">Durchschn. Position</h4>
+                            <h4 data-translate-key="avgPositionSize">Avg. Position Size</h4>
                             <p id="avg-position-size">$0.00</p>
                         </div>
                         <div class="summary-item-analysis">
@@ -745,158 +721,6 @@
     <div id="loader"><i class="fas fa-spinner fa-spin"></i></div>
     <div id="message-container"></div>
     <script>
-        const translations = {
-            "de": {
-                "title": "Investment Simulator - JugendInvestiert",
-                "brand": "JugendInvestiert",
-                "welcome_title": "Willkommen zum Investment Simulator",
-                "disclaimer": "Dieser Simulator dient ausschließlich zu Bildungszwecken und verwendet virtuelles Geld. Es sind keine echten Finanztransaktionen involviert.",
-                "continue_button": "Weiter",
-                "portfolio_value": "Portfolio Wert",
-                "cash_balance": "Bargeldsaldo",
-                "total_profit": "Gesamter Gewinn",
-                "profit_loss_percent": "Gewinn/Verlust %",
-                "trade_stocks": "Aktien Handeln",
-                "stock_symbol_label": "Aktiensymbol oder Firmenname",
-                "quantity_label": "Anzahl",
-                "current_price": "Aktueller Preis",
-                "buy_button": "Kaufen",
-                "portfolio_title": "Dein Portfolio",
-                "symbol": "Symbol",
-                "quantity": "Anzahl",
-                "purchase_price": "Kaufpreis",
-                "current_price": "Akt. Preis",
-                "profit_loss": "Gewinn/Verlust",
-                "action": "Aktion",
-                "portfolio_analysis": "Portfolio Analyse",
-                "allocation": "Allokation",
-                "performance": "Performance",
-                "summary": "Zusammenfassung",
-                "portfolio_allocation": "Portfolio Verteilung",
-                "sector_investments": "Investitionen nach Sektor",
-                "portfolio_development": "Portfolio Entwicklung",
-                "profit_loss_per_stock": "Gewinn/Verlust pro Aktie",
-                "portfolio_metrics": "Portfolio Kennzahlen",
-                "top_performer": "Top-Performer",
-                "worst_performer": "Schwächster Performer",
-                "largest_position": "Größte Position",
-                "position_count": "Anzahl Positionen",
-                "avg_position_size": "Durchschn. Position",
-                "trend": "Trend",
-                "unknown": "Unbekannt",
-                "error_stock_symbol": "Bitte gib ein Aktiensymbol ein.",
-                "error_quantity": "Bitte gib eine gültige positive Anzahl ein.",
-                "error_insufficient_cash": "Nicht genügend Bargeldsaldo.",
-                "error_invalid_symbol": "Ungültiges Aktiensymbol oder Preis konnte nicht abgerufen werden.",
-                "error_buy_stock": "Beim Kauf der Aktie ist ein Fehler aufgetreten.",
-                "error_sell_stock": "Beim Verkauf der Aktie ist ein Fehler aufgetreten.",
-                "error_insufficient_shares": "Nicht genügend Aktien zum Verkaufen.",
-                "error_fetch_stock_list": "Fehler beim Abrufen der Aktienliste. Bitte versuche es später erneut.",
-                "success_buy_stock": "Erfolgreich {quantity} Aktien von {symbol} gekauft.",
-                "success_sell_stock": "Erfolgreich {quantity} Aktien von {symbol} verkauft.",
-                "sell_prompt": "Gib die Anzahl der zu verkaufenden Aktien ein (Verfügbar: {totalQuantity}):"
-            },
-            "en": {
-                "title": "Investment Simulator - YouthInvests",
-                "brand": "YouthInvests",
-                "welcome_title": "Welcome to the Investment Simulator",
-                "disclaimer": "This simulator is for educational purposes only and uses virtual money. No real financial transactions are involved.",
-                "continue_button": "Continue",
-                "portfolio_value": "Portfolio Value",
-                "cash_balance": "Cash Balance",
-                "total_profit": "Total Profit",
-                "profit_loss_percent": "Profit/Loss %",
-                "trade_stocks": "Trade Stocks",
-                "stock_symbol_label": "Stock Symbol or Company Name",
-                "quantity_label": "Quantity",
-                "current_price": "Current Price",
-                "buy_button": "Buy",
-                "portfolio_title": "Your Portfolio",
-                "symbol": "Symbol",
-                "quantity": "Quantity",
-                "purchase_price": "Purchase Price",
-                "current_price": "Current Price",
-                "profit_loss": "Profit/Loss",
-                "action": "Action",
-                "portfolio_analysis": "Portfolio Analysis",
-                "allocation": "Allocation",
-                "performance": "Performance",
-                "summary": "Summary",
-                "portfolio_allocation": "Portfolio Allocation",
-                "sector_investments": "Investments by Sector",
-                "portfolio_development": "Portfolio Development",
-                "profit_loss_per_stock": "Profit/Loss per Stock",
-                "portfolio_metrics": "Portfolio Metrics",
-                "top_performer": "Top Performer",
-                "worst_performer": "Worst Performer",
-                "largest_position": "Largest Position",
-                "position_count": "Number of Positions",
-                "avg_position_size": "Avg. Position Size",
-                "trend": "Trend",
-                "unknown": "Unknown",
-                "error_stock_symbol": "Please enter a stock symbol.",
-                "error_quantity": "Please enter a valid positive quantity.",
-                "error_insufficient_cash": "Insufficient cash balance.",
-                "error_invalid_symbol": "Invalid stock symbol or price could not be retrieved.",
-                "error_buy_stock": "An error occurred while buying the stock.",
-                "error_sell_stock": "An error occurred while selling the stock.",
-                "error_insufficient_shares": "Not enough shares to sell.",
-                "error_fetch_stock_list": "Error fetching stock list. Please try again later.",
-                "success_buy_stock": "Successfully bought {quantity} shares of {symbol}.",
-                "success_sell_stock": "Successfully sold {quantity} shares of {symbol}.",
-                "sell_prompt": "Enter the number of shares to sell (Available: {totalQuantity}):"
-            },
-            "fr": {
-                "title": "Simulateur d'Investissement - JeunesseInvestit",
-                "brand": "JeunesseInvestit",
-                "welcome_title": "Bienvenue au Simulateur d'Investissement",
-                "disclaimer": "Ce simulateur est uniquement à des fins éducatives et utilise de l'argent virtuel. Aucune transaction financière réelle n'est impliquée.",
-                "continue_button": "Continuer",
-                "portfolio_value": "Valeur du Portefeuille",
-                "cash_balance": "Solde en Espèces",
-                "total_profit": "Profit Total",
-                "profit_loss_percent": "Profit/Perte %",
-                "trade_stocks": "Négocier des Actions",
-                "stock_symbol_label": "Symbole ou Nom de l'Entreprise",
-                "quantity_label": "Quantité",
-                "current_price": "Prix Actuel",
-                "buy_button": "Acheter",
-                "portfolio_title": "Votre Portefeuille",
-                "symbol": "Symbole",
-                "quantity": "Quantité",
-                "purchase_price": "Prix d'Achat",
-                "current_price": "Prix Actuel",
-                "profit_loss": "Profit/Perte",
-                "action": "Action",
-                "portfolio_analysis": "Analyse du Portefeuille",
-                "allocation": "Allocation",
-                "performance": "Performance",
-                "summary": "Résumé",
-                "portfolio_allocation": "Répartition du Portefeuille",
-                "sector_investments": "Investissements par Secteur",
-                "portfolio_development": "Développement du Portefeuille",
-                "profit_loss_per_stock": "Profit/Perte par Action",
-                "portfolio_metrics": "Métriques du Portefeuille",
-                "top_performer": "Meilleur Performeur",
-                "worst_performer": "Pire Performeur",
-                "largest_position": "Position la Plus Important",
-                "position_count": "Nombre de Positions",
-                "avg_position_size": "Taille Moyenne de Position",
-                "trend": "Tendance",
-                "unknown": "Inconnu",
-                "error_stock_symbol": "Veuillez entrer un symbole d'action.",
-                "error_quantity": "Veuillez entrer une quantité positive valide.",
-                "error_insufficient_cash": "Solde en espèces insuffisant.",
-                "error_invalid_symbol": "Symbole d'action invalide ou prix non récupéré.",
-                "error_buy_stock": "Une erreur s'est produite lors de l'achat de l'action.",
-                "error_sell_stock": "Une erreur s'est produite lors de la vente de l'action.",
-                "error_insufficient_shares": "Pas assez d'actions à vendre.",
-                "error_fetch_stock_list": "Erreur lors de la récupération de la liste des actions. Veuillez réessayer plus tard.",
-                "success_buy_stock": "Acheté avec succès {quantity} actions de {symbol}.",
-                "success_sell_stock": "Vendu avec succès {quantity} actions de {symbol}.",
-                "sell_prompt": "Entrez le nombre d'actions à vendre (Disponible : {totalQuantity}) :"
-            }
-        };
         const finnhubApiKey = "cs1uv71r01qpjum5l9agcs1uv71r01qpjum5l9b0";
         const firebaseConfig = {
             apiKey: "AIzaSyDmEUCl7sWzBI7N78HgcgBRcRAkTYbtm5g",
@@ -922,7 +746,6 @@
         let performanceChart = null;
         let profitLossChart = null;
         let sparklineChart = null;
-        let currentLang = 'en';
         const chartColors = ['#007bff', '#4caf50', '#f44336', '#ffeb3b', '#9c27b0', '#ff5722', '#3f51b5', '#009688'];
         const stockSectors = {
             'AAPL': 'Technology',
@@ -939,48 +762,217 @@
             'JNJ': 'Healthcare',
             'PFE': 'Healthcare'
         };
-        function showWelcomePopup() {
-            document.getElementById('welcome-popup').style.display = 'flex';
-            applyTranslations(currentLang);
-        }
-        function closeWelcomePopup() {
-            document.getElementById('welcome-popup').style.display = 'none';
-        }
-        function selectLanguage(lang) {
-            translatePage(lang);
-            applyTranslations(lang);
-            window.parent.postMessage({
-                type: 'LANGUAGE_CHANGE',
-                language: lang,
-                source: 'simulator-iframe'
-            }, '*');
-        }
+        const translations = {
+            "en": {
+                "title": "Investment Simulator - YouthInvests",
+                "brand": "YouthInvests",
+                "welcomeTitle": "Welcome to the Investment Simulator",
+                "welcomeMessage": "This simulator is for educational purposes only and uses virtual money. No real financial transactions are involved.",
+                "continueButton": "Continue",
+                "portfolioValue": "Portfolio Value",
+                "cashBalance": "Cash Balance",
+                "totalProfit": "Total Profit",
+                "profitLossPercent": "Profit/Loss %",
+                "tradeStocks": "Trade Stocks",
+                "stockSymbolLabel": "Stock Symbol or Company Name",
+                "stockSymbolPlaceholder": "e.g., AAPL, Apple Inc.",
+                "quantityLabel": "Quantity",
+                "quantityPlaceholder": "Enter quantity",
+                "currentPrice": "Current Price: $",
+                "buyButton": "Buy",
+                "yourPortfolio": "Your Portfolio",
+                "symbol": "Symbol",
+                "quantity": "Quantity",
+                "purchasePrice": "Purchase Price",
+                "currentPrice": "Current Price",
+                "profitLoss": "Profit/Loss",
+                "action": "Action",
+                "sellButton": "Sell",
+                "portfolioAnalysis": "Portfolio Analysis",
+                "allocationTab": "Allocation",
+                "performanceTab": "Performance",
+                "summaryTab": "Summary",
+                "portfolioAllocation": "Portfolio Allocation",
+                "sectorAllocation": "Investments by Sector",
+                "portfolioDevelopment": "Portfolio Development",
+                "profitLossStock": "Profit/Loss per Stock",
+                "portfolioMetrics": "Portfolio Metrics",
+                "topPerformer": "Top Performer",
+                "worstPerformer": "Worst Performer",
+                "largestPosition": "Largest Position",
+                "positionCount": "Number of Positions",
+                "avgPositionSize": "Avg. Position Size",
+                "trend": "Trend",
+                "errorStockList": "Error fetching stock list. Please try again later.",
+                "errorInvalidSymbol": "Invalid stock symbol or price could not be retrieved.",
+                "errorNoSymbol": "Please enter a stock symbol.",
+                "errorInvalidQuantity": "Please enter a valid positive quantity.",
+                "errorInsufficientFunds": "Insufficient cash balance.",
+                "errorBuy": "An error occurred while buying the stock.",
+                "errorNotEnoughShares": "Not enough shares to sell.",
+                "errorSell": "An error occurred while selling the stock.",
+                "successBuy": "Successfully bought {quantity} shares of {symbol}.",
+                "successSell": "Successfully sold {quantity} shares of {symbol}.",
+                "sellPrompt": "Enter the number of shares to sell (Available: {totalQuantity}):",
+                "unknownSector": "Unknown",
+                "errorSaveData": "Error saving user data."
+            },
+            "de": {
+                "title": "Investment-Simulator - JugendInvestiert",
+                "brand": "JugendInvestiert",
+                "welcomeTitle": "Willkommen zum Investment-Simulator",
+                "welcomeMessage": "Dieser Simulator dient nur zu Bildungszwecken und verwendet virtuelles Geld. Es sind keine echten Finanztransaktionen beteiligt.",
+                "continueButton": "Fortfahren",
+                "portfolioValue": "Portfolio-Wert",
+                "cashBalance": "Guthaben",
+                "totalProfit": "Gesamtgewinn",
+                "profitLossPercent": "Gewinn/Verlust %",
+                "tradeStocks": "Aktien handeln",
+                "stockSymbolLabel": "Aktiensymbol oder Firmenname",
+                "stockSymbolPlaceholder": "z.B., AAPL, Apple Inc.",
+                "quantityLabel": "Menge",
+                "quantityPlaceholder": "Menge eingeben",
+                "currentPrice": "Aktueller Preis: €",
+                "buyButton": "Kaufen",
+                "yourPortfolio": "Dein Portfolio",
+                "symbol": "Symbol",
+                "quantity": "Menge",
+                "purchasePrice": "Kaufpreis",
+                "currentPrice": "Aktueller Preis",
+                "profitLoss": "Gewinn/Verlust",
+                "action": "Aktion",
+                "sellButton": "Verkaufen",
+                "portfolioAnalysis": "Portfolio-Analyse",
+                "allocationTab": "Allokation",
+                "performanceTab": "Leistung",
+                "summaryTab": "Zusammenfassung",
+                "portfolioAllocation": "Portfolio-Allokation",
+                "sectorAllocation": "Investitionen nach Sektor",
+                "portfolioDevelopment": "Portfolio-Entwicklung",
+                "profitLossStock": "Gewinn/Verlust pro Aktie",
+                "portfolioMetrics": "Portfolio-Metriken",
+                "topPerformer": "Bester Performer",
+                "worstPerformer": "Schlechtester Performer",
+                "largestPosition": "Größte Position",
+                "positionCount": "Anzahl der Positionen",
+                "avgPositionSize": "Durchschnittliche Positionsgröße",
+                "trend": "Trend",
+                "errorStockList": "Fehler beim Abrufen der Aktienliste. Bitte versuchen Sie es später erneut.",
+                "errorInvalidSymbol": "Ungültiges Aktiensymbol oder Preis konnte nicht abgerufen werden.",
+                "errorNoSymbol": "Bitte geben Sie ein Aktiensymbol ein.",
+                "errorInvalidQuantity": "Bitte geben Sie eine gültige positive Menge ein.",
+                "errorInsufficientFunds": "Unzureichendes Guthaben.",
+                "errorBuy": "Ein Fehler ist beim Kauf der Aktie aufgetreten.",
+                "errorNotEnoughShares": "Nicht genügend Aktien zum Verkaufen.",
+                "errorSell": "Ein Fehler ist beim Verkauf der Aktie aufgetreten.",
+                "successBuy": "Erfolgreich {quantity} Aktien von {symbol} gekauft.",
+                "successSell": "Erfolgreich {quantity} Aktien von {symbol} verkauft.",
+                "sellPrompt": "Geben Sie die Anzahl der zu verkaufenden Aktien ein (Verfügbar: {totalQuantity}):",
+                "unknownSector": "Unbekannt",
+                "errorSaveData": "Fehler beim Speichern der Benutzerdaten."
+            },
+            "fr": {
+                "title": "Simulateur d'investissement - JeunesseInvestit",
+                "brand": "JeunesseInvestit",
+                "welcomeTitle": "Bienvenue dans le simulateur d'investissement",
+                "welcomeMessage": "Ce simulateur est destiné à des fins éducatives uniquement et utilise de l'argent virtuel. Aucune transaction financière réelle n'est impliquée.",
+                "continueButton": "Continuer",
+                "portfolioValue": "Valeur du portefeuille",
+                "cashBalance": "Solde de trésorerie",
+                "totalProfit": "Profit total",
+                "profitLossPercent": "Profit/Perte %",
+                "tradeStocks": "Négocier des actions",
+                "stockSymbolLabel": "Symbole boursier ou nom de l'entreprise",
+                "stockSymbolPlaceholder": "par ex., AAPL, Apple Inc.",
+                "quantityLabel": "Quantité",
+                "quantityPlaceholder": "Entrer la quantité",
+                "currentPrice": "Prix actuel : €",
+                "buyButton": "Acheter",
+                "yourPortfolio": "Votre portefeuille",
+                "symbol": "Symbole",
+                "quantity": "Quantité",
+                "purchasePrice": "Prix d'achat",
+                "currentPrice": "Prix actuel",
+                "profitLoss": "Profit/Perte",
+                "action": "Action",
+                "sellButton": "Vendre",
+                "portfolioAnalysis": "Analyse du portefeuille",
+                "allocationTab": "Allocation",
+                "performanceTab": "Performance",
+                "summaryTab": "Résumé",
+                "portfolioAllocation": "Allocation du portefeuille",
+                "sectorAllocation": "Investissements par secteur",
+                "portfolioDevelopment": "Développement du portefeuille",
+                "profitLossStock": "Profit/Perte par action",
+                "portfolioMetrics": "Métriques du portefeuille",
+                "topPerformer": "Meilleur performeur",
+                "worstPerformer": "Pire performeur",
+                "largestPosition": "Position la plus importante",
+                "positionCount": "Nombre de positions",
+                "avgPositionSize": "Taille moyenne des positions",
+                "trend": "Tendance",
+                "errorStockList": "Erreur lors de la récupération de la liste des actions. Veuillez réessayer plus tard.",
+                "errorInvalidSymbol": "Symbole boursier invalide ou prix introuvable.",
+                "errorNoSymbol": "Veuillez entrer un symbole boursier.",
+                "errorInvalidQuantity": "Veuillez entrer une quantité positive valide.",
+                "errorInsufficientFunds": "Solde insuffisant.",
+                "errorBuy": "Une erreur s'est produite lors de l'achat de l'action.",
+                "errorNotEnoughShares": "Pas assez d'actions à vendre.",
+                "errorSell": "Une erreur s'est produite lors de la vente de l'action.",
+                "successBuy": "Achat réussi de {quantity} actions de {symbol}.",
+                "successSell": "Vente réussie de {quantity} actions de {symbol}.",
+                "sellPrompt": "Entrez le nombre d'actions à vendre (Disponible : {totalQuantity}) :",
+                "unknownSector": "Inconnu",
+                "errorSaveData": "Erreur lors de l'enregistrement des données utilisateur."
+            }
+        };
         function applyTranslations(targetLang) {
+            if (!translations[targetLang]) {
+                console.error(`Translation for language "${targetLang}" not found.`);
+                return;
+            }
             const elements = document.querySelectorAll('[data-translate-key]');
-            if (!translations[targetLang]) return;
             elements.forEach(element => {
                 const key = element.getAttribute('data-translate-key');
                 if (translations[targetLang][key]) {
-                    element.innerHTML = translations[targetLang][key];
+                    if (element.tagName === 'INPUT' && element.hasAttribute('placeholder')) {
+                        element.placeholder = translations[targetLang][`${key}Placeholder`] || element.placeholder;
+                    } else if (element.id === 'buy-button') {
+                        element.innerHTML = `<b>${translations[targetLang][key]}</b>`;
+                    } else {
+                        element.innerHTML = translations[targetLang][key];
+                    }
+                } else {
+                    console.warn(`Translation key "${key}" not found for language "${targetLang}".`);
                 }
             });
-            document.title = translations[targetLang].title;
             document.documentElement.lang = targetLang;
-            document.getElementById('stock-symbol').placeholder = translations[targetLang]['stock_symbol_label'];
-            document.getElementById('quantity').placeholder = translations[targetLang]['quantity_label'];
-            document.getElementById('buy-button').innerHTML = `<b>${translations[targetLang]['buy_button']}</b>`;
-        }
-        function translatePage(targetLang) {
-            if (targetLang === currentLang) return;
-            currentLang = targetLang;
-            applyTranslations(targetLang);
             localStorage.setItem('preferredLanguage', targetLang);
-            updateBudget();
+            // Update dynamic content
             updatePortfolioTable();
             updatePortfolioAnalysis();
-            if (currentSymbol) {
-                createTradingViewWidget(currentSymbol);
+            createTradingViewWidget(currentSymbol || 'AAPL');
+            console.log(`Applied translations for language: ${targetLang}`);
+        }
+        function broadcastLanguageChange(lang) {
+            if (window.parent && window.parent !== window) {
+                try {
+                    window.parent.postMessage({
+                        type: 'LANGUAGE_CHANGE',
+                        language: lang,
+                        source: 'simulator'
+                    }, '*');
+                    console.log(`Broadcasted LANGUAGE_CHANGE for ${lang}`);
+                } catch (error) {
+                    console.error(`Error broadcasting language change: ${error}`);
+                }
             }
+        }
+        function showWelcomePopup() {
+            document.getElementById('welcome-popup').style.display = 'flex';
+        }
+        function closeWelcomePopup() {
+            document.getElementById('welcome-popup').style.display = 'none';
         }
         window.addEventListener('message', (event) => {
             if (event.data.type === 'AUTH_DATA') {
@@ -992,10 +984,14 @@
                 updatePortfolioTable();
                 updatePortfolioAnalysis();
                 console.log("AUTH_DATA processed.");
-            } else if (event.data.type === 'LANGUAGE_CHANGE' && event.data.source !== 'simulator-iframe') {
-                console.log("Simulator received LANGUAGE_CHANGE:", event.data.language);
-                if (translations[event.data.language] && event.data.language !== currentLang) {
-                    translatePage(event.data.language);
+            } else if (event.data.type === 'LANGUAGE_CHANGE' && event.data.source === 'index') {
+                const newLang = event.data.language;
+                console.log(`Received LANGUAGE_CHANGE message from index for language: ${newLang}`);
+                if (translations[newLang] && newLang !== document.documentElement.lang) {
+                    applyTranslations(newLang);
+                    broadcastLanguageChange(newLang);
+                } else if (!translations[newLang]) {
+                    console.error(`Unsupported language: ${newLang}`);
                 }
             }
         });
@@ -1021,7 +1017,7 @@
                 console.log("Stock list fetched:", stockList.length, "stocks");
             } catch (error) {
                 console.error("Error fetching stock list:", error);
-                displayErrorMessage(translations[currentLang].error_fetch_stock_list);
+                displayErrorMessage(translations[document.documentElement.lang || 'en']['errorStockList']);
             }
         }
         function debounce(func, delay) {
@@ -1055,24 +1051,19 @@
             filtered.forEach(stock => {
                 const div = document.createElement('div');
                 div.classList.add('suggestion-item');
-                const boldedSymbol = boldMatch(stock.symbol, input);
-                const boldedDescription = boldMatch(stock.description.toUpperCase(), input);
-                div.innerHTML = `${boldedSymbol} - ${boldedDescription}`;
+                div.innerHTML = `<strong>${stock.symbol}</strong> - ${stock.description}`;
                 div.onclick = () => selectSymbol(stock.symbol);
                 suggestions.appendChild(div);
             });
             suggestions.style.display = 'block';
         }
-        function boldMatch(text, input) {
-            const regex = new RegExp(`(${input})`, 'gi');
-            return text.replace(regex, '<strong>$1</strong>');
-        }
         async function selectSymbol(symbol) {
             symbol = symbol.toUpperCase();
             document.getElementById('stock-symbol').value = symbol;
+            const suggestions = document.getElementById('suggestions');
+            suggestions.style.display = 'none';
             const price = await fetchStockPrice(symbol);
             document.getElementById('currentPrice').innerText = price > 0 ? price.toFixed(2) : "0.00";
-            document.getElementById('suggestions').style.display = 'none';
             currentSymbol = symbol;
             createTradingViewWidget(symbol);
         }
@@ -1089,7 +1080,7 @@
                 return parseFloat(data.c);
             } catch (error) {
                 console.error(`Error fetching price for ${symbol}:`, error);
-                displayErrorMessage(translations[currentLang].error_invalid_symbol);
+                displayErrorMessage(translations[document.documentElement.lang || 'en']['errorInvalidSymbol']);
                 return 0;
             }
         }
@@ -1122,7 +1113,7 @@
                 chartOnly: false,
                 width: "100%",
                 height: 400,
-                locale: currentLang,
+                locale: document.documentElement.lang || "en",
                 colorTheme: "dark",
                 gridLineColor: "#F0F3FA",
                 trendLineColor: "#2196F3",
@@ -1143,15 +1134,16 @@
             const quantityInput = document.getElementById('quantity').value;
             const symbol = symbolInput.toUpperCase();
             const quantity = parseInt(quantityInput);
+            const currentLang = document.documentElement.lang || 'en';
             if (!symbol) {
-                displayErrorMessage(translations[currentLang].error_stock_symbol);
+                displayErrorMessage(translations[currentLang]['errorNoSymbol']);
                 isBuying = false;
                 buyButton.disabled = false;
                 displayLoader(false);
                 return;
             }
             if (!quantity || quantity <= 0 || isNaN(quantity)) {
-                displayErrorMessage(translations[currentLang].error_quantity);
+                displayErrorMessage(translations[currentLang]['errorInvalidQuantity']);
                 isBuying = false;
                 buyButton.disabled = false;
                 displayLoader(false);
@@ -1160,7 +1152,7 @@
             try {
                 const price = await fetchStockPrice(symbol);
                 if (price <= 0) {
-                    displayErrorMessage(translations[currentLang].error_invalid_symbol);
+                    displayErrorMessage(translations[currentLang]['errorInvalidSymbol']);
                     isBuying = false;
                     buyButton.disabled = false;
                     displayLoader(false);
@@ -1168,7 +1160,7 @@
                 }
                 const totalCost = price * quantity;
                 if (totalCost > budget) {
-                    displayErrorMessage(translations[currentLang].error_insufficient_cash);
+                    displayErrorMessage(translations[currentLang]['errorInsufficientFunds']);
                     isBuying = false;
                     buyButton.disabled = false;
                     displayLoader(false);
@@ -1189,11 +1181,11 @@
                 sendPortfolioUpdate();
                 saveUserData();
                 updatePortfolioAnalysis();
-                displaySuccessMessage(translations[currentLang].success_buy_stock.replace('{quantity}', quantity).replace('{symbol}', symbol));
+                displaySuccessMessage(translations[currentLang]['successBuy'].replace('{quantity}', quantity).replace('{symbol}', symbol));
                 console.log(`Bought: ${quantity} shares of ${symbol} at $${price.toFixed(2)} each.`);
             } catch (error) {
                 console.error("Error buying stock:", error);
-                displayErrorMessage(translations[currentLang].error_buy_stock);
+                displayErrorMessage(translations[currentLang]['errorBuy']);
             } finally {
                 isBuying = false;
                 buyButton.disabled = false;
@@ -1203,29 +1195,31 @@
         async function sellStock(symbol) {
             symbol = symbol.toUpperCase();
             const totalQuantity = getTotalQuantity(symbol);
-            const quantityToSellStr = prompt(translations[currentLang].sell_prompt.replace('{totalQuantity}', totalQuantity), totalQuantity);
+            const currentLang = document.documentElement.lang || 'en';
+            const quantityToSellStr = prompt(translations[currentLang]['sellPrompt'].replace('{totalQuantity}', totalQuantity), totalQuantity);
             if (quantityToSellStr === null) return;
             const quantityToSell = parseInt(quantityToSellStr);
             if (!quantityToSell || quantityToSell <= 0 || isNaN(quantityToSell)) {
-                displayErrorMessage(translations[currentLang].error_quantity);
+                displayErrorMessage(translations[currentLang]['errorInvalidQuantity']);
                 return;
             }
             if (quantityToSell > totalQuantity) {
-                displayErrorMessage(translations[currentLang].error_insufficient_shares);
+                displayErrorMessage(translations[currentLang]['errorNotEnoughShares']);
                 return;
             }
             await sellStockWithQuantity(symbol, quantityToSell);
         }
         async function sellStockWithQuantity(symbol, quantity) {
             symbol = symbol.toUpperCase();
+            const currentLang = document.documentElement.lang || 'en';
             if (!portfolio[symbol] || getTotalQuantity(symbol) < quantity) {
-                displayErrorMessage(translations[currentLang].error_insufficient_shares);
+                displayErrorMessage(translations[currentLang]['errorNotEnoughShares']);
                 return;
             }
             try {
                 const price = await fetchStockPrice(symbol);
                 if (price <= 0) {
-                    displayErrorMessage(translations[currentLang].error_invalid_symbol);
+                    displayErrorMessage(translations[currentLang]['errorInvalidSymbol']);
                     return;
                 }
                 const totalRevenue = price * quantity;
@@ -1241,11 +1235,11 @@
                 sendPortfolioUpdate();
                 saveUserData();
                 updatePortfolioAnalysis();
-                displaySuccessMessage(translations[currentLang].success_sell_stock.replace('{quantity}', quantity).replace('{symbol}', symbol));
+                displaySuccessMessage(translations[currentLang]['successSell'].replace('{quantity}', quantity).replace('{symbol}', symbol));
                 console.log(`Sold: ${quantity} shares of ${symbol} at $${price.toFixed(2)} each.`);
             } catch (error) {
                 console.error("Error selling stock:", error);
-                displayErrorMessage(translations[currentLang].error_sell_stock);
+                displayErrorMessage(translations[currentLang]['errorSell']);
             }
         }
         function getTotalQuantity(symbol) {
@@ -1264,6 +1258,7 @@
             const symbols = Object.keys(portfolio);
             const pricePromises = symbols.map(symbol => fetchStockPrice(symbol));
             const prices = await Promise.all(pricePromises);
+            const currentLang = document.documentElement.lang || 'en';
             symbols.forEach((symbol, index) => {
                 const stockData = portfolio[symbol];
                 const totalQuantity = stockData.quantity;
@@ -1291,7 +1286,8 @@
                 row.appendChild(profitCell);
                 const actionCell = document.createElement('td');
                 const sellButton = document.createElement('button');
-                sellButton.innerText = translations[currentLang].action;
+                sellButton.innerText = translations[currentLang]['sellButton'];
+                sellButton.setAttribute('data-translate-key', 'sellButton');
                 sellButton.onclick = () => sellStock(symbol);
                 actionCell.appendChild(sellButton);
                 row.appendChild(actionCell);
@@ -1332,6 +1328,7 @@
         }
         function createFallbackCharts() {
             const contexts = ['allocation-chart', 'sector-chart', 'performance-chart', 'profit-loss-chart', 'sparkline-chart'];
+            const currentLang = document.documentElement.lang || 'en';
             contexts.forEach(id => {
                 try {
                     const ctx = document.getElementById(id)?.getContext('2d');
@@ -1339,7 +1336,7 @@
                         new Chart(ctx, {
                             type: id === 'sparkline-chart' ? 'line' : 'bar',
                             data: {
-                                labels: [translations[currentLang].cash_balance],
+                                labels: [translations[currentLang]['cashBalance']],
                                 datasets: [{
                                     data: [budget],
                                     backgroundColor: '#007bff',
@@ -1354,14 +1351,14 @@
                                     legend: { display: false },
                                     tooltip: {
                                         callbacks: {
-                                            label: () => `${translations[currentLang].cash_balance}: $${budget.toFixed(2)}`
+                                            label: () => `${translations[currentLang]['cashBalance']}: $${budget.toFixed(2)}`
                                         }
                                     }
                                 },
                                 scales: {
                                     x: { display: id !== 'sparkline-chart', ticks: { color: '#ffffff' } },
-                                    y: { 
-                                        display: id !== 'sparkline-chart', 
+                                    y: {
+                                        display: id !== 'sparkline-chart',
                                         ticks: { color: '#ffffff', callback: value => '$' + value.toFixed(2) },
                                         grid: { color: '#2e2e2e' }
                                     }
@@ -1381,13 +1378,14 @@
                 let totalPortfolioValue = 0;
                 const stockValues = [];
                 const historicalData = {};
-                
+                const currentLang = document.documentElement.lang || 'en';
+              
                 if (symbols.length > 0) {
                     const pricePromises = symbols.map(symbol => fetchStockPrice(symbol));
                     const historicalPromises = symbols.map(symbol => fetchHistoricalPrices(symbol));
                     const prices = await Promise.all(pricePromises);
                     const historicalResults = await Promise.all(historicalPromises);
-                    
+                  
                     symbols.forEach((symbol, index) => {
                         const stockData = portfolio[symbol];
                         const currentPrice = prices[index];
@@ -1400,28 +1398,28 @@
                                 price: currentPrice,
                                 quantity: stockData.quantity,
                                 totalInvested: stockData.totalInvested,
-                                sector: stockSectors[symbol] || translations[currentLang].unknown
+                                sector: stockSectors[symbol] || translations[currentLang]['unknownSector']
                             });
                             historicalData[symbol] = historicalResults[index];
                         }
                     });
                 }
-                
+              
                 const totalValueWithCash = totalPortfolioValue + budget;
                 if (stockValues.length === 0) {
                     stockValues.push({
-                        symbol: translations[currentLang].cash_balance,
+                        symbol: translations[currentLang]['cashBalance'],
                         value: budget,
                         price: budget,
                         quantity: 1,
                         totalInvested: budget,
-                        sector: translations[currentLang].cash_balance
+                        sector: translations[currentLang]['cashBalance']
                     });
                 }
-                
+              
                 console.log("Stock values:", stockValues);
                 console.log("Total portfolio value (excluding cash):", totalPortfolioValue);
-                
+              
                 if (allocationChart) allocationChart.destroy();
                 const allocationCtx = document.getElementById('allocation-chart')?.getContext('2d');
                 if (!allocationCtx) {
@@ -1461,7 +1459,7 @@
                     }
                 });
                 console.log("Allocation chart rendered");
-                
+              
                 if (sectorChart) sectorChart.destroy();
                 const sectorCtx = document.getElementById('sector-chart')?.getContext('2d');
                 if (!sectorCtx) {
@@ -1507,7 +1505,7 @@
                     }
                 });
                 console.log("Sector chart rendered");
-                
+              
                 if (performanceChart) performanceChart.destroy();
                 const perfCtx = document.getElementById('performance-chart')?.getContext('2d');
                 if (!perfCtx) {
@@ -1515,13 +1513,13 @@
                     createFallbackCharts();
                     return;
                 }
-                
+              
                 const days = 30;
                 const labels = [];
                 const portfolioValues = [];
                 const today = new Date();
                 const dateSet = new Set();
-                
+              
                 for (let i = days - 1; i >= 0; i--) {
                     const date = new Date(today);
                     date.setDate(today.getDate() - i);
@@ -1531,20 +1529,20 @@
                     symbols.forEach(symbol => {
                         const stockData = portfolio[symbol];
                         const historicalPrices = historicalData[symbol] || [];
-                        const historicalPrice = historicalPrices.find(h => h.date === dateStr)?.price || 
+                        const historicalPrice = historicalPrices.find(h => h.date === dateStr)?.price ||
                             (stockData.totalInvested / stockData.quantity);
                         dailyValue += historicalPrice * stockData.quantity;
                     });
                     portfolioValues.push(dailyValue);
                     dateSet.add(dateStr);
                 }
-                
+              
                 performanceChart = new Chart(perfCtx, {
                     type: 'line',
                     data: {
                         labels: labels,
                         datasets: [{
-                            label: translations[currentLang].portfolio_development,
+                            label: translations[currentLang]['portfolioDevelopment'],
                             data: portfolioValues,
                             borderColor: '#007bff',
                             backgroundColor: 'rgba(0, 123, 255, 0.2)',
@@ -1556,9 +1554,9 @@
                         responsive: true,
                         maintainAspectRatio: false,
                         scales: {
-                            x: { 
-                                ticks: { color: '#ffffff', maxTicksLimit: 10 }, 
-                                grid: { color: '#2e2e2e' } 
+                            x: {
+                                ticks: { color: '#ffffff', maxTicksLimit: 10 },
+                                grid: { color: '#2e2e2e' }
                             },
                             y: {
                                 ticks: {
@@ -1572,14 +1570,14 @@
                             legend: { labels: { color: '#ffffff', font: { family: 'Poppins' } } },
                             tooltip: {
                                 callbacks: {
-                                    label: context => `${translations[currentLang].portfolio_development}: $${context.raw.toFixed(2)}`
+                                    label: context => `${translations[currentLang]['portfolioDevelopment']}: $${context.raw.toFixed(2)}`
                                 }
                             }
                         }
                     }
                 });
                 console.log("Performance chart rendered");
-                
+              
                 if (profitLossChart) profitLossChart.destroy();
                 const plCtx = document.getElementById('profit-loss-chart')?.getContext('2d');
                 if (!plCtx) {
@@ -1587,7 +1585,7 @@
                     createFallbackCharts();
                     return;
                 }
-                const validStocks = stockValues.filter(stock => stock.symbol !== translations[currentLang].cash_balance);
+                const validStocks = stockValues.filter(stock => stock.symbol !== translations[currentLang]['cashBalance']);
                 const plData = validStocks.map(stock => {
                     const purchasePrice = stock.totalInvested / stock.quantity;
                     return (stock.price - purchasePrice) * stock.quantity;
@@ -1597,7 +1595,7 @@
                     data: {
                         labels: validStocks.map(s => s.symbol),
                         datasets: [{
-                            label: translations[currentLang].profit_loss_per_stock,
+                            label: translations[currentLang]['profitLossStock'],
                             data: plData,
                             backgroundColor: plData.map(value => value >= 0 ? '#4caf50' : '#f44336'),
                             borderColor: '#1B2631',
@@ -1621,14 +1619,14 @@
                             legend: { labels: { color: '#ffffff', font: { family: 'Poppins' } } },
                             tooltip: {
                                 callbacks: {
-                                    label: context => `${translations[currentLang].profit_loss}: $${context.raw.toFixed(2)}`
+                                    label: context => `${translations[currentLang]['profitLossStock']}: $${context.raw.toFixed(2)}`
                                 }
                             }
                         }
                     }
                 });
                 console.log("Profit/loss chart rendered");
-                
+              
                 const topPerformer = validStocks.reduce((max, stock) => {
                     const purchasePrice = stock.totalInvested / stock.quantity;
                     const profitPercent = purchasePrice > 0 ? ((stock.price - purchasePrice) / purchasePrice) * 100 : 0;
@@ -1642,17 +1640,17 @@
                 const largestPosition = validStocks.reduce((max, stock) => {
                     return !max || stock.value > max.value ? stock : max;
                 }, null);
-                
-                document.getElementById('top-performer').innerText = topPerformer && topPerformer.profitPercent !== 0 ? 
+              
+                document.getElementById('top-performer').innerText = topPerformer && topPerformer.profitPercent !== 0 ?
                     `${topPerformer.symbol} (${topPerformer.profitPercent.toFixed(2)}%)` : '-';
-                document.getElementById('worst-performer').innerText = worstPerformer && worstPerformer.profitPercent !== 0 ? 
+                document.getElementById('worst-performer').innerText = worstPerformer && worstPerformer.profitPercent !== 0 ?
                     `${worstPerformer.symbol} (${worstPerformer.profitPercent.toFixed(2)}%)` : '-';
-                document.getElementById('largest-position').innerText = largestPosition ? 
+                document.getElementById('largest-position').innerText = largestPosition ?
                     `${largestPosition.symbol} ($${largestPosition.value.toFixed(2)})` : '-';
                 document.getElementById('position-count').innerText = validStocks.length;
-                document.getElementById('avg-position-size').innerText = validStocks.length > 0 ? 
+                document.getElementById('avg-position-size').innerText = validStocks.length > 0 ?
                     `$${(totalPortfolioValue / validStocks.length).toFixed(2)}` : '$0.00';
-                
+              
                 if (sparklineChart) sparklineChart.destroy();
                 const sparklineCtx = document.getElementById('sparkline-chart')?.getContext('2d');
                 if (!sparklineCtx) {
@@ -1692,7 +1690,7 @@
             } catch (error) {
                 console.error("Portfolio analysis failed:", error);
                 createFallbackCharts();
-                displayErrorMessage(translations[currentLang].error_fetch_stock_list);
+                displayErrorMessage(translations[document.documentElement.lang || 'en']['errorStockList']);
             }
         }
         document.querySelectorAll('.tab-button').forEach(button => {
@@ -1756,15 +1754,24 @@
                 }, (error) => {
                     if (error) {
                         console.error("Error saving data:", error);
-                        displayErrorMessage("Error saving user data.");
+                        displayErrorMessage(translations[document.documentElement.lang || 'en']['errorSaveData']);
                     } else {
                         console.log("Data saved successfully.");
                     }
                 });
             }
         }
+        window.changeLanguage = function(lang) {
+            if (translations[lang]) {
+                applyTranslations(lang);
+                broadcastLanguageChange(lang);
+            }
+        };
         window.onload = async function() {
             console.log("Window loaded, initializing...");
+            const storedLang = localStorage.getItem('preferredLanguage') || 'en';
+            console.log(`Initializing simulator.html with language: ${storedLang}`);
+            applyTranslations(storedLang);
             showWelcomePopup();
             createTradingViewWidget('AAPL');
             currentSymbol = 'AAPL';

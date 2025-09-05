@@ -5,6 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JugendInvestiert</title>
   <script>
+    // Listen for language change messages from child iframes
+    window.addEventListener('message', (event) => {
+      if (event.data.type === 'LANGUAGE_CHANGE') {
+        // Update localStorage to persist language preference
+        localStorage.setItem('preferredLanguage', event.data.language);
+        
+        // Broadcast to all iframes (mobile.html or desktop.html)
+        window.postMessage({
+          type: 'LANGUAGE_CHANGE',
+          language: event.data.language
+        }, '*');
+      }
+    });
+
     // Redirect based on screen width
     if (window.innerWidth <= 768) {
       window.location.replace('mobile.html');
