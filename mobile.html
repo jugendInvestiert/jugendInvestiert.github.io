@@ -277,6 +277,13 @@
       margin: 0 auto;
       margin-bottom: 15px;
       overflow: hidden;
+      opacity: 0;
+      transform: translateX(-100px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    }
+    .mobile-layout .community-cube.visible {
+      opacity: 1;
+      transform: translateX(0);
     }
     .mobile-layout .text-cube {
       background-color: #1B2631;
@@ -705,9 +712,9 @@
 
       <div class="content">
         <div class="cube community-cube">
-          <p class="description-text">Tritt jetz</p>
+          <p class="description-text" data-translate-key="communityJoin">Tritt jetzt</p>
           <div class="number-square" id="community-count">0</div>
-          <p class="description-text">Schülern bei</p>
+          <p class="description-text" data-translate-key="communityMembers">Schülern bei</p>
         </div>
         <div class="cube">
           <div class="number-square">#1</div>
@@ -788,7 +795,9 @@
         "email_label": "E-Mail",
         "message_label": "Nachricht",
         "submit_button": "Nachricht Senden",
-        "success_message": "Nachricht erfolgreich gesendet!"
+        "success_message": "Nachricht erfolgreich gesendet!",
+        "communityJoin": "Tritt jetzt",
+        "communityMembers": "Schülern bei"
       },
       "en": {
         "brand": "YouthInvests",
@@ -807,7 +816,9 @@
         "email_label": "Email",
         "message_label": "Message",
         "submit_button": "Send Message",
-        "success_message": "Message sent successfully!"
+        "success_message": "Message sent successfully!",
+        "communityJoin": "Join now",
+        "communityMembers": "students"
       },
       "fr": {
         "brand": "JeunesseInvestit",
@@ -826,7 +837,9 @@
         "email_label": "Email",
         "message_label": "Message",
         "submit_button": "Envoyer le Message",
-        "success_message": "Message envoyé avec succès !"
+        "success_message": "Message envoyé avec succès !",
+        "communityJoin": "Rejoignez maintenant",
+        "communityMembers": "étudiants"
       }
     };
 
@@ -928,6 +941,7 @@
       const observerConflict = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
             startCounting();
             observerConflict.unobserve(entry.target);
           }
