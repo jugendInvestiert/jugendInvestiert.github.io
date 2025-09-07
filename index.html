@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -500,6 +501,19 @@
             }
         }
         .password-check-row { display: flex; align-items: center; margin-top: 8px; gap: 8px; }
+        /* New CSS for Change Password and Disable Account buttons */
+        .profile-form button.change-password {
+            background: #f39c12;
+        }
+        .profile-form button.change-password:hover {
+            background: #e67e22;
+        }
+        .profile-form button.disable-account {
+            background: #c0392b;
+        }
+        .profile-form button.disable-account:hover {
+            background: #992d22;
+        }
     </style>
 </head>
 <body>
@@ -570,6 +584,8 @@
                     <label for="profile-alias" data-translate-key="alias">Alias:</label>
                     <input type="text" id="profile-alias" placeholder="Dein Alias">
                     <button type="button" onclick="saveProfile()" data-translate-key="save">Speichern</button>
+                    <button type="button" class="change-password" onclick="openModal('changePasswordModal')" data-translate-key="changePassword">Passwort ändern</button>
+                    <button type="button" class="disable-account" onclick="openModal('disableAccountModal')" data-translate-key="disableAccount">Konto deaktivieren</button>
                     <button type="button" class="logout" onclick="logout()" data-translate-key="logout">Abmelden</button>
                 </form>
             </div>
@@ -662,6 +678,49 @@
                 <label for="reset-email" data-translate-key="email">Email:</label>
                 <input type="email" id="reset-email" placeholder="Deine Email" required>
                 <button type="button" onclick="resetPassword()" data-translate-key="resetPassword">Passwort zurücksetzen</button>
+            </form>
+        </div>
+    </div>
+    <div id="changePasswordModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('changePasswordModal')">×</span>
+            <h2 data-translate-key="changePassword">Passwort ändern</h2>
+            <form>
+                <label for="current-password" data-translate-key="currentPassword">Aktuelles Passwort:</label>
+                <input type="password" id="current-password" placeholder="Aktuelles Passwort" required>
+                <label for="new-password" data-translate-key="newPassword">Neues Passwort:</label>
+                <input type="password" id="new-password" placeholder="Neues Passwort" required>
+                <label for="new-password-confirm" data-translate-key="confirmPassword">Neues Passwort bestätigen:</label>
+                <input type="password" id="new-password-confirm" placeholder="Neues Passwort bestätigen" required>
+                <div class="password-check-row">
+                    <i class="fas fa-times" id="new-password-check-length" style="color: red;"></i>
+                    <span data-translate-key="passwordLength">Mehr als 6 Zeichen</span>
+                </div>
+                <div class="password-check-row">
+                    <i class="fas fa-times" id="new-password-check-letter" style="color: red;"></i>
+                    <span data-translate-key="passwordLetter">Mindestens ein Buchstabe</span>
+                </div>
+                <div class="password-check-row">
+                    <i class="fas fa-times" id="new-password-check-number" style="color: red;"></i>
+                    <span data-translate-key="passwordNumber">Mindestens eine Zahl</span>
+                </div>
+                <div class="password-check-row">
+                    <i class="fas fa-times" id="new-password-check-match" style="color: red;"></i>
+                    <span data-translate-key="passwordMatch">Passwörter stimmen überein</span>
+                </div>
+                <button type="button" onclick="changePassword()" data-translate-key="changePassword">Passwort ändern</button>
+            </form>
+        </div>
+    </div>
+    <div id="disableAccountModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('disableAccountModal')">×</span>
+            <h2 data-translate-key="disableAccount">Konto deaktivieren</h2>
+            <form>
+                <p data-translate-key="disableAccountWarning">Achtung: Diese Aktion kann nicht rückgängig gemacht werden. Dein Konto wird dauerhaft deaktiviert.</p>
+                <label for="disable-password" data-translate-key="password">Passwort:</label>
+                <input type="password" id="disable-password" placeholder="Dein Passwort" required>
+                <button type="button" onclick="disableAccount()" data-translate-key="disableAccount">Konto deaktivieren</button>
             </form>
         </div>
     </div>
@@ -796,9 +855,15 @@
             }
             const signupPassword = document.getElementById('signup-password');
             const signupPasswordCheck = document.getElementById('signup-password-confirm');
+            const newPassword = document.getElementById('new-password');
+            const newPasswordCheck = document.getElementById('new-password-confirm');
             if (signupPassword && signupPasswordCheck) {
                 signupPassword.addEventListener('input', validatePassword);
                 signupPasswordCheck.addEventListener('input', validatePassword);
+            }
+            if (newPassword && newPasswordCheck) {
+                newPassword.addEventListener('input', validateNewPassword);
+                newPasswordCheck.addEventListener('input', validateNewPassword);
             }
             // Ensure language is sent to iframes on load
             setTimeout(() => {
@@ -849,6 +914,8 @@
                 "logout": "Abmelden",
                 "email": "Email:",
                 "password": "Passwort:",
+                "currentPassword": "Aktuelles Passwort:",
+                "newPassword": "Neues Passwort:",
                 "confirmPassword": "Passwort bestätigen:",
                 "passwordLength": "Mehr als 6 Zeichen",
                 "passwordLetter": "Mindestens ein Buchstabe",
@@ -858,6 +925,9 @@
                 "notRegistered": "Noch nicht angemeldet? <a href=\"#\" onclick=\"switchToSignup()\">Jetzt Registrieren</a>",
                 "alreadyRegistered": "Bereits registriert? <a href=\"#\" onclick=\"switchToLogin()\">Zurück zum Anmelden</a>",
                 "resetPassword": "Passwort zurücksetzen",
+                "changePassword": "Passwort ändern",
+                "disableAccount": "Konto deaktivieren",
+                "disableAccountWarning": "Achtung: Diese Aktion kann nicht rückgängig gemacht werden. Dein Konto wird dauerhaft deaktiviert.",
                 "loggedIn": "Du bist angemeldet.",
                 "disclaimerTitle": "Haftungsausschluss",
                 "disclaimerP1": "Die Inhalte dieser Website, einschließlich Texte, Grafiken und Simulationen, dienen ausschließlich zu allgemeinen Informations- und Bildungszwecken und stellen ausdrücklich <strong>keine Finanz- oder Anlageberatung</strong> im Sinne des deutschen Rechts dar. Der Betreiber dieser Website übernimmt keine Haftung für finanzielle oder sonstige Entscheidungen, die auf Grundlage der bereitgestellten Informationen getroffen werden. Es werden keine individuellen Empfehlungen abgegeben.",
@@ -877,7 +947,7 @@
                 "studentsAt": "schülern bei!",
                 "enterEmailPassword": "Bitte Email und Passwort eingeben.",
                 "verifyEmail": "Bitte verifiziere zuerst deine E-Mail.",
-                "enterAllFields": "Bitte Email und beide Passwörter eingeben.",
+                "enterAllFields": "Bitte alle Felder ausfüllen.",
                 "passwordMismatch": "Die Passwörter stimmen nicht überein!",
                 "passwordTooShort": "Das Passwort muss mehr als 6 Zeichen haben!",
                 "passwordNoLetter": "Das Passwort braucht mindestens einen Buchstaben!",
@@ -885,6 +955,9 @@
                 "emailVerificationError": "Fehler beim Senden der Verifizierungs-E-Mail: ",
                 "enterEmail": "Bitte Email angeben.",
                 "resetEmailSent": "Password-Reset-E-Mail gesendet!",
+                "changePasswordSuccess": "Passwort erfolgreich geändert!",
+                "disableAccountSuccess": "Konto erfolgreich deaktiviert!",
+                "incorrectPassword": "Falsches Passwort.",
                 "logoutSuccess": "Erfolgreich abgemeldet!",
                 "loginRequired": "Bitte melde dich an, um dein Profil zu speichern.",
                 "profileSaveError": "Fehler beim Speichern des Profils.",
@@ -905,6 +978,8 @@
                 "logout": "Logout",
                 "email": "Email:",
                 "password": "Password:",
+                "currentPassword": "Current Password:",
+                "newPassword": "New Password:",
                 "confirmPassword": "Confirm Password:",
                 "passwordLength": "More than 6 characters",
                 "passwordLetter": "At least one letter",
@@ -914,6 +989,9 @@
                 "notRegistered": "Not registered yet? <a href=\"#\" onclick=\"switchToSignup()\">Sign Up Now</a>",
                 "alreadyRegistered": "Already registered? <a href=\"#\" onclick=\"switchToLogin()\">Back to Login</a>",
                 "resetPassword": "Reset Password",
+                "changePassword": "Change Password",
+                "disableAccount": "Disable Account",
+                "disableAccountWarning": "Warning: This action cannot be undone. Your account will be permanently disabled.",
                 "loggedIn": "You are logged in.",
                 "disclaimerTitle": "Disclaimer",
                 "disclaimerP1": "The content of this website, including text, graphics, and simulations, is provided solely for general informational and educational purposes and expressly does not constitute <strong>financial or investment advice</strong> under German law. The operator of this website assumes no liability for financial or other decisions made based on the information provided. No individual recommendations are given.",
@@ -941,6 +1019,9 @@
                 "emailVerificationError": "Error sending verification email: ",
                 "enterEmail": "Please enter an email.",
                 "resetEmailSent": "Password reset email sent!",
+                "changePasswordSuccess": "Password successfully changed!",
+                "disableAccountSuccess": "Account successfully disabled!",
+                "incorrectPassword": "Incorrect password.",
                 "logoutSuccess": "Successfully logged out!",
                 "loginRequired": "Please log in to save your profile.",
                 "profileSaveError": "Error saving profile.",
@@ -961,6 +1042,8 @@
                 "logout": "Déconnexion",
                 "email": "Email :",
                 "password": "Mot de passe :",
+                "currentPassword": "Mot de passe actuel :",
+                "newPassword": "Nouveau mot de passe :",
                 "confirmPassword": "Confirmer le mot de passe :",
                 "passwordLength": "Plus de 6 caractères",
                 "passwordLetter": "Au moins une lettre",
@@ -970,6 +1053,9 @@
                 "notRegistered": "Pas encore inscrit ? <a href=\"#\" onclick=\"switchToSignup()\">S'inscrire maintenant</a>",
                 "alreadyRegistered": "Déjà inscrit ? <a href=\"#\" onclick=\"switchToLogin()\">Retour à la connexion</a>",
                 "resetPassword": "Réinitialiser le mot de passe",
+                "changePassword": "Changer le mot de passe",
+                "disableAccount": "Désactiver le compte",
+                "disableAccountWarning": "Attention : Cette action ne peut pas être annulée. Votre compte sera définitivement désactivé.",
                 "loggedIn": "Vous êtes connecté.",
                 "disclaimerTitle": "Avertissement",
                 "disclaimerP1": "Le contenu de ce site web, y compris les textes, graphiques et simulations, est fourni uniquement à des fins d'information générale et éducative et ne constitue expressément pas un <strong>conseil financier ou d'investissement</strong> au sens de la loi allemande. L'opérateur de ce site web n'assume aucune responsabilité pour les décisions financières ou autres prises sur la base des informations fournies. Aucune recommandation individuelle n'est donnée.",
@@ -997,6 +1083,9 @@
                 "emailVerificationError": "Erreur lors de l'envoi de l'email de vérification : ",
                 "enterEmail": "Veuillez entrer un email.",
                 "resetEmailSent": "Email de réinitialisation du mot de passe envoyé !",
+                "changePasswordSuccess": "Mot de passe changé avec succès !",
+                "disableAccountSuccess": "Compte désactivé avec succès !",
+                "incorrectPassword": "Mot de passe incorrect.",
                 "logoutSuccess": "Déconnexion réussie !",
                 "loginRequired": "Veuillez vous connecter pour enregistrer votre profil.",
                 "profileSaveError": "Erreur lors de l'enregistrement du profil.",
@@ -1035,7 +1124,6 @@
             if (languageSelector) {
                 languageSelector.value = lang;
             }
-            // Send language change message to all iframes
             const iframes = [
                 { id: 'home-iframe', src: 'home.html' },
                 { id: 'lernen-iframe', src: 'lessons.html' },
@@ -1122,6 +1210,8 @@
             const ageInput = document.getElementById('profile-age');
             const profileImage = document.getElementById('profile-image');
             const logoutButton = document.querySelector('.profile-form button.logout');
+            const changePasswordButton = document.querySelector('.profile-form button.change-password');
+            const disableAccountButton = document.querySelector('.profile-form button.disable-account');
             const lang = document.documentElement.lang || 'de';
             const isMobile = window.innerWidth <= 768;
             if (user) {
@@ -1129,8 +1219,12 @@
                 loadProfileData(user.uid);
                 if (isMobile) {
                     logoutButton.style.display = 'block';
+                    changePasswordButton.style.display = 'block';
+                    disableAccountButton.style.display = 'block';
                 } else {
                     logoutButton.style.display = 'none';
+                    changePasswordButton.style.display = 'block';
+                    disableAccountButton.style.display = 'block';
                 }
             } else {
                 emailInput.value = '';
@@ -1140,6 +1234,9 @@
                 emailInput.placeholder = translations[lang]['emailPlaceholder'] || 'Deine Email';
                 aliasInput.placeholder = translations[lang]['aliasPlaceholder'] || 'Dein Alias';
                 ageInput.placeholder = translations[lang]['agePlaceholder'] || 'Dein Alter';
+                logoutButton.style.display = 'none';
+                changePasswordButton.style.display = 'none';
+                disableAccountButton.style.display = 'none';
             }
         }
         function validatePassword() {
@@ -1149,6 +1246,30 @@
             const letterCheckIcon = document.getElementById('password-check-letter');
             const numberCheckIcon = document.getElementById('password-check-number');
             const matchCheckIcon = document.getElementById('password-check-match');
+            const hasRequiredLength = password.length > 6;
+            const hasLetter = /[a-zA-Z]/.test(password);
+            const hasNumber = /[0-9]/.test(password);
+            const passwordsMatch = password === confirmPassword && password !== '';
+            lengthCheckIcon.classList.toggle('fa-check', hasRequiredLength);
+            lengthCheckIcon.classList.toggle('fa-times', !hasRequiredLength);
+            lengthCheckIcon.style.color = hasRequiredLength ? 'green' : 'red';
+            letterCheckIcon.classList.toggle('fa-check', hasLetter);
+            letterCheckIcon.classList.toggle('fa-times', !hasLetter);
+            letterCheckIcon.style.color = hasLetter ? 'green' : 'red';
+            numberCheckIcon.classList.toggle('fa-check', hasNumber);
+            numberCheckIcon.classList.toggle('fa-times', !hasNumber);
+            numberCheckIcon.style.color = hasNumber ? 'green' : 'red';
+            matchCheckIcon.classList.toggle('fa-check', passwordsMatch);
+            matchCheckIcon.classList.toggle('fa-times', !passwordsMatch);
+            matchCheckIcon.style.color = passwordsMatch ? 'green' : 'red';
+        }
+        function validateNewPassword() {
+            const password = document.getElementById('new-password').value;
+            const confirmPassword = document.getElementById('new-password-confirm').value;
+            const lengthCheckIcon = document.getElementById('new-password-check-length');
+            const letterCheckIcon = document.getElementById('new-password-check-letter');
+            const numberCheckIcon = document.getElementById('new-password-check-number');
+            const matchCheckIcon = document.getElementById('new-password-check-match');
             const hasRequiredLength = password.length > 6;
             const hasLetter = /[a-zA-Z]/.test(password);
             const hasNumber = /[0-9]/.test(password);
@@ -1218,6 +1339,73 @@
                     closeModal('resetModal');
                 })
                 .catch(error => displayErrorMessage(error.message));
+        }
+        function changePassword() {
+            const user = auth.currentUser;
+            const lang = document.documentElement.lang || 'de';
+            if (!user) {
+                displayErrorMessage(translations[lang]['loginRequired'] || "Bitte melde dich an, um dein Passwort zu ändern.");
+                return;
+            }
+            const currentPassword = document.getElementById('current-password').value.trim();
+            const newPassword = document.getElementById('new-password').value.trim();
+            const confirmPassword = document.getElementById('new-password-confirm').value.trim();
+            if (!currentPassword || !newPassword || !confirmPassword) {
+                return displayErrorMessage(translations[lang]['enterAllFields'] || "Bitte alle Felder ausfüllen.");
+            }
+            if (newPassword !== confirmPassword) {
+                return displayErrorMessage(translations[lang]['passwordMismatch'] || "Die neuen Passwörter stimmen nicht überein!");
+            }
+            if (newPassword.length <= 6) {
+                return displayErrorMessage(translations[lang]['passwordTooShort'] || "Das neue Passwort muss mehr als 6 Zeichen haben!");
+            }
+            if (!/[a-zA-Z]/.test(newPassword)) {
+                return displayErrorMessage(translations[lang]['passwordNoLetter'] || "Das neue Passwort braucht mindestens einen Buchstaben!");
+            }
+            if (!/[0-9]/.test(newPassword)) {
+                return displayErrorMessage(translations[lang]['passwordNoNumber'] || "Das neue Passwort braucht mindestens eine Zahl!");
+            }
+            const credential = firebase.auth.EmailAuthProvider.credential(user.email, currentPassword);
+            user.reauthenticateWithCredential(credential)
+                .then(() => {
+                    user.updatePassword(newPassword)
+                        .then(() => {
+                            displaySuccessMessage(translations[lang]['changePasswordSuccess'] || "Passwort erfolgreich geändert!");
+                            closeModal('changePasswordModal');
+                        })
+                        .catch(error => displayErrorMessage(error.message));
+                })
+                .catch(error => displayErrorMessage(translations[lang]['incorrectPassword'] || "Falsches Passwort."));
+        }
+        function disableAccount() {
+            const user = auth.currentUser;
+            const lang = document.documentElement.lang || 'de';
+            if (!user) {
+                displayErrorMessage(translations[lang]['loginRequired'] || "Bitte melde dich an, um dein Konto zu deaktivieren.");
+                return;
+            }
+            const password = document.getElementById('disable-password').value.trim();
+            if (!password) {
+                return displayErrorMessage(translations[lang]['enterEmailPassword'] || "Bitte Passwort eingeben.");
+            }
+            const credential = firebase.auth.EmailAuthProvider.credential(user.email, password);
+            user.reauthenticateWithCredential(credential)
+                .then(() => {
+                    const userId = user.uid;
+                    const userRef = database.ref('users/' + userId);
+                    userRef.remove()
+                        .then(() => {
+                            user.delete()
+                                .then(() => {
+                                    displaySuccessMessage(translations[lang]['disableAccountSuccess'] || "Konto erfolgreich deaktiviert!");
+                                    closeModal('disableAccountModal');
+                                    auth.signOut();
+                                })
+                                .catch(error => displayErrorMessage(error.message));
+                        })
+                        .catch(error => displayErrorMessage(error.message));
+                })
+                .catch(error => displayErrorMessage(translations[lang]['incorrectPassword'] || "Falsches Passwort."));
         }
         function logout() {
             const lang = document.documentElement.lang || 'de';
