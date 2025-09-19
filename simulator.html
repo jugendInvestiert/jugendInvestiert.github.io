@@ -102,10 +102,10 @@
             font-weight: 700;
         }
         .profit-positive {
-            color: #4caf50;
+            color: #4caf50 !important;
         }
         .profit-negative {
-            color: #f44336;
+            color: #f44336 !important;
         }
         .trade-widget-container {
             display: flex;
@@ -158,6 +158,30 @@
         .trade-section input:focus {
             outline: none;
             border-color: #007bff;
+        }
+        .current-price-container {
+            background-color: #273746;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+            text-align: center;
+            border-left: 4px solid #007bff;
+            display: none;
+        }
+        .current-price-container h3 {
+            margin: 0 0 5px 0;
+            font-size: 1.1rem;
+            color: #ffffff;
+            font-weight: 600;
+        }
+        .current-price-container .price {
+            color: #4caf50;
+            font-size: 1.3rem;
+            font-weight: 700;
+        }
+        .current-price-loading {
+            color: #cccccc;
+            font-style: italic;
         }
         #buy-button {
             width: 100%;
@@ -621,8 +645,9 @@
                 </div>
                 <label for="quantity" data-translate-key="quantityLabel">Quantity</label>
                 <input type="number" id="quantity" data-translate-key="quantityLabel" placeholder="Enter quantity" min="1" step="1">
-                <div id="current-price" style="margin-top: 10px;">
-                    <h3 data-translate-key="currentPrice">Current Price: $<span id="currentPrice">0.00</span></h3>
+                <div id="current-price-container" class="current-price-container">
+                    <h3 data-translate-key="currentPrice">Current Price</h3>
+                    <div class="price" id="current-price">$0.00</div>
                 </div>
                 <button id="buy-button" onclick="buyStock()" data-translate-key="buyButton"><b>Buy</b></button>
             </div>
@@ -736,7 +761,7 @@
         const auth = firebase.auth();
         const database = firebase.database();
         let budget = 10000;
-        let portfolio = {};
+        let portfolio = {}; // This will ALWAYS be normalized
         let stockList = [];
         let isBuying = false;
         let currentSymbol = '';
@@ -778,7 +803,7 @@
                 "stockSymbolPlaceholder": "e.g., AAPL, Apple Inc.",
                 "quantityLabel": "Quantity",
                 "quantityPlaceholder": "Enter quantity",
-                "currentPrice": "Current Price: $",
+                "currentPrice": "Current Price",
                 "buyButton": "Buy",
                 "yourPortfolio": "Your Portfolio",
                 "symbol": "Symbol",
@@ -815,7 +840,8 @@
                 "successSell": "Successfully sold {quantity} shares of {symbol}.",
                 "sellPrompt": "Enter the number of shares to sell (Available: {totalQuantity}):",
                 "unknownSector": "Unknown",
-                "errorSaveData": "Error saving user data."
+                "errorSaveData": "Error saving user data.",
+                "loadingPrice": "Loading price..."
             },
             "de": {
                 "title": "Investment-Simulator - JugendInvestiert",
@@ -832,7 +858,7 @@
                 "stockSymbolPlaceholder": "z.B., AAPL, Apple Inc.",
                 "quantityLabel": "Menge",
                 "quantityPlaceholder": "Menge eingeben",
-                "currentPrice": "Aktueller Preis: €",
+                "currentPrice": "Aktueller Preis",
                 "buyButton": "Kaufen",
                 "yourPortfolio": "Dein Portfolio",
                 "symbol": "Symbol",
@@ -869,7 +895,8 @@
                 "successSell": "Erfolgreich {quantity} Aktien von {symbol} verkauft.",
                 "sellPrompt": "Geben Sie die Anzahl der zu verkaufenden Aktien ein (Verfügbar: {totalQuantity}):",
                 "unknownSector": "Unbekannt",
-                "errorSaveData": "Fehler beim Speichern der Benutzerdaten."
+                "errorSaveData": "Fehler beim Speichern der Benutzerdaten.",
+                "loadingPrice": "Preis wird geladen..."
             },
             "fr": {
                 "title": "Simulateur d'investissement - JeunesseInvestit",
@@ -886,7 +913,7 @@
                 "stockSymbolPlaceholder": "par ex., AAPL, Apple Inc.",
                 "quantityLabel": "Quantité",
                 "quantityPlaceholder": "Entrer la quantité",
-                "currentPrice": "Prix actuel : €",
+                "currentPrice": "Prix actuel",
                 "buyButton": "Acheter",
                 "yourPortfolio": "Votre portefeuille",
                 "symbol": "Symbole",
@@ -923,14 +950,175 @@
                 "successSell": "Vente réussie de {quantity} actions de {symbol}.",
                 "sellPrompt": "Entrez le nombre d'actions à vendre (Disponible : {totalQuantity}) :",
                 "unknownSector": "Inconnu",
-                "errorSaveData": "Erreur lors de l'enregistrement des données utilisateur."
+                "errorSaveData": "Erreur lors de l'enregistrement des données utilisateur.",
+                "loadingPrice": "Chargement du prix..."
             }
         };
-        function applyTranslations(targetLang) {
+
+        // CRITICAL: Force normalization at every step
+        function normalizeSymbol(symbol) {
+            return symbol ? symbol.toUpperCase().trim() : '';
+        }
+
+        // AGGRESSIVE normalization function that DESTROYS duplicates
+        function normalizePortfolioSymbols(originalPortfolio) {
+            console.log('🔄 NORMALIZING PORTFOLIO - Starting with:', Object.keys(originalPortfolio || {}).length, 'entries');
+            
+            if (!originalPortfolio || typeof originalPortfolio !== 'object') {
+                console.log('✅ Portfolio normalized - empty or invalid input');
+                return {};
+            }
+           
+            const normalizedPortfolio = {};
+            let mergeCount = 0;
+            let totalQuantityMerged = 0;
+            let totalCostMerged = 0;
+           
+            // Process each entry and AGGRESSIVELY merge duplicates
+            Object.keys(originalPortfolio).forEach(originalKey => {
+                const symbol = normalizeSymbol(originalKey);
+                if (!symbol) return;
+               
+                const stockData = originalPortfolio[originalKey];
+                if (!stockData || typeof stockData !== 'object' || 
+                    typeof stockData.quantity !== 'number' || 
+                    typeof stockData.totalInvested !== 'number' ||
+                    stockData.quantity <= 0 || 
+                    stockData.totalInvested <= 0) {
+                    console.warn(`⚠️ Skipping invalid data for ${symbol}:`, stockData);
+                    return;
+                }
+               
+                if (normalizedPortfolio[symbol]) {
+                    // MERGE duplicate - this is what we want to see in console
+                    const oldQuantity = normalizedPortfolio[symbol].quantity;
+                    const oldCost = normalizedPortfolio[symbol].totalInvested;
+                    
+                    normalizedPortfolio[symbol].quantity += stockData.quantity;
+                    normalizedPortfolio[symbol].totalInvested += stockData.totalInvested;
+                    
+                    mergeCount++;
+                    totalQuantityMerged += stockData.quantity;
+                    totalCostMerged += stockData.totalInvested;
+                    
+                    console.log(`🔗 MERGED ${symbol}: ${stockData.quantity} shares (was ${oldQuantity}, now ${normalizedPortfolio[symbol].quantity})`);
+                } else {
+                    // New symbol
+                    normalizedPortfolio[symbol] = {
+                        quantity: stockData.quantity,
+                        totalInvested: stockData.totalInvested
+                    };
+                }
+            });
+           
+            if (mergeCount > 0) {
+                console.log(`🎉 DUPLICATES ELIMINATED: Merged ${mergeCount} duplicate entries, ${totalQuantityMerged} total shares`);
+            }
+           
+            const finalCount = Object.keys(normalizedPortfolio).length;
+            console.log(`✅ Portfolio normalized - ${finalCount} unique symbols`);
+            return normalizedPortfolio;
+        }
+
+        // FORCE portfolio to always be normalized after any operation
+        function forcePortfolioNormalization() {
+            const before = Object.keys(portfolio).length;
+            portfolio = normalizePortfolioSymbols(portfolio);
+            const after = Object.keys(portfolio).length;
+            
+            if (before !== after) {
+                console.log(`⚡ FORCED NORMALIZATION: Reduced from ${before} to ${after} entries`);
+            }
+        }
+
+        // Add stock with IMMEDIATE normalization
+        function addStockToPortfolio(symbol, quantity, totalCost) {
+            const normalizedSymbol = normalizeSymbol(symbol);
+            console.log(`📈 Adding ${quantity} shares of ${normalizedSymbol} for $${totalCost.toFixed(2)}`);
+            
+            if (!normalizedSymbol || quantity <= 0 || totalCost <= 0) {
+                console.error('❌ Invalid stock data:', {symbol, quantity, totalCost});
+                return false;
+            }
+           
+            // Create a copy to avoid mutation during processing
+            const workingPortfolio = {...portfolio};
+            
+            if (workingPortfolio[normalizedSymbol]) {
+                workingPortfolio[normalizedSymbol].quantity += quantity;
+                workingPortfolio[normalizedSymbol].totalInvested += totalCost;
+                console.log(`➕ Added to existing ${normalizedSymbol}: total now ${workingPortfolio[normalizedSymbol].quantity} shares`);
+            } else {
+                workingPortfolio[normalizedSymbol] = {
+                    quantity: quantity,
+                    totalInvested: totalCost
+                };
+                console.log(`➕ New position: ${normalizedSymbol} - ${quantity} shares`);
+            }
+            
+            // IMMEDIATELY normalize and update global portfolio
+            portfolio = normalizePortfolioSymbols(workingPortfolio);
+            forcePortfolioNormalization();
+            
+            console.log(`✅ Portfolio after add: ${Object.keys(portfolio).length} unique symbols`);
+            return true;
+        }
+
+        // Remove stock with IMMEDIATE normalization
+        function removeStockFromPortfolio(symbol, quantityToRemove) {
+            const normalizedSymbol = normalizeSymbol(symbol);
+            console.log(`📉 Removing ${quantityToRemove} shares of ${normalizedSymbol}`);
+            
+            if (!normalizedSymbol || !portfolio[normalizedSymbol] || quantityToRemove <= 0) {
+                console.error('❌ Invalid removal data:', {symbol, quantityToRemove});
+                return false;
+            }
+           
+            const currentStock = portfolio[normalizedSymbol];
+            if (quantityToRemove > currentStock.quantity) {
+                console.error(`❌ Cannot remove ${quantityToRemove} shares of ${normalizedSymbol}, only have ${currentStock.quantity}`);
+                return false;
+            }
+           
+            const purchasePricePerShare = currentStock.totalInvested / currentStock.quantity;
+            const costToRemove = purchasePricePerShare * quantityToRemove;
+           
+            // Create working copy
+            const workingPortfolio = {...portfolio};
+            workingPortfolio[normalizedSymbol].quantity -= quantityToRemove;
+            workingPortfolio[normalizedSymbol].totalInvested -= costToRemove;
+           
+            // Remove if zero
+            if (workingPortfolio[normalizedSymbol].quantity <= 0) {
+                delete workingPortfolio[normalizedSymbol];
+                console.log(`🗑️ Removed ${normalizedSymbol} completely`);
+            } else {
+                console.log(`➖ Removed ${quantityToRemove} shares of ${normalizedSymbol}, ${workingPortfolio[normalizedSymbol].quantity} remain`);
+            }
+           
+            // IMMEDIATELY normalize and update global portfolio
+            portfolio = normalizePortfolioSymbols(workingPortfolio);
+            forcePortfolioNormalization();
+            
+            console.log(`✅ Portfolio after remove: ${Object.keys(portfolio).length} unique symbols`);
+            return true;
+        }
+
+        // Get quantity with fresh normalization
+        function getTotalQuantity(symbol) {
+            const normalizedSymbol = normalizeSymbol(symbol);
+            forcePortfolioNormalization(); // Ensure fresh data
+            return portfolio[normalizedSymbol] ? portfolio[normalizedSymbol].quantity : 0;
+        }
+
+        // CRITICAL FIX: Split translation into static and dynamic parts
+        function applyStaticTranslations(targetLang) {
             if (!translations[targetLang]) {
                 console.error(`Translation for language "${targetLang}" not found.`);
-                return;
+                return false;
             }
+            
+            // Only translate static DOM elements - NO portfolio operations here
             const elements = document.querySelectorAll('[data-translate-key]');
             elements.forEach(element => {
                 const key = element.getAttribute('data-translate-key');
@@ -946,14 +1134,40 @@
                     console.warn(`Translation key "${key}" not found for language "${targetLang}".`);
                 }
             });
+            
             document.documentElement.lang = targetLang;
             localStorage.setItem('preferredLanguage', targetLang);
-            // Update dynamic content
+            
+            console.log(`🌐 Static translations applied for: ${targetLang}`);
+            return true;
+        }
+
+        // Separate function for dynamic content updates
+        function updateDynamicContent() {
+            // This ONLY updates portfolio-related content - no translations here
+            forcePortfolioNormalization();
             updatePortfolioTable();
             updatePortfolioAnalysis();
             createTradingViewWidget(currentSymbol || 'AAPL');
-            console.log(`Applied translations for language: ${targetLang}`);
+            console.log('🔄 Dynamic content updated');
         }
+
+        // Main translation function - FIXED to prevent race conditions
+        function applyTranslations(targetLang) {
+            console.log(`🌐 Applying translations for: ${targetLang}`);
+            
+            // Step 1: Apply static translations
+            const success = applyStaticTranslations(targetLang);
+            if (!success) return;
+            
+            // Step 2: Wait for DOM to settle, THEN update dynamic content
+            setTimeout(() => {
+                updateDynamicContent();
+            }, 250); // Increased delay to ensure DOM is fully updated
+            
+            console.log(`✅ Translation process completed for: ${targetLang}`);
+        }
+
         function broadcastLanguageChange(lang) {
             if (window.parent && window.parent !== window) {
                 try {
@@ -962,31 +1176,49 @@
                         language: lang,
                         source: 'simulator'
                     }, '*');
-                    console.log(`Broadcasted LANGUAGE_CHANGE for ${lang}`);
+                    console.log(`📡 Broadcasted LANGUAGE_CHANGE for ${lang}`);
                 } catch (error) {
                     console.error(`Error broadcasting language change: ${error}`);
                 }
             }
         }
+
         function showWelcomePopup() {
             document.getElementById('welcome-popup').style.display = 'flex';
         }
+
         function closeWelcomePopup() {
             document.getElementById('welcome-popup').style.display = 'none';
         }
+
+        // ULTRA SAFE message handler with forced normalization
         window.addEventListener('message', (event) => {
+            console.log('📨 Received message:', event.data.type);
+            
             if (event.data.type === 'AUTH_DATA') {
-                console.log("Simulator received AUTH_DATA:", event.data);
+                console.log("🔑 Processing AUTH_DATA:", event.data);
                 budget = typeof event.data.budget === 'number' ? event.data.budget : 10000;
-                portfolio = event.data.portfolio && typeof event.data.portfolio === 'object' ? event.data.portfolio : {};
-                portfolio = normalizePortfolioSymbols(portfolio);
-                updateBudget();
-                updatePortfolioTable();
-                updatePortfolioAnalysis();
-                console.log("AUTH_DATA processed.");
+                
+                // FORCE normalization on incoming data
+                const rawPortfolio = event.data.portfolio && typeof event.data.portfolio === 'object' ? event.data.portfolio : {};
+                console.log('📊 Raw portfolio keys before normalization:', Object.keys(rawPortfolio));
+                
+                portfolio = normalizePortfolioSymbols(rawPortfolio);
+                forcePortfolioNormalization();
+                
+                console.log('📊 Normalized portfolio keys:', Object.keys(portfolio));
+                console.log('💰 Budget set to:', budget);
+                
+                // Update UI after normalization - SEPARATE from translations
+                setTimeout(() => {
+                    updateDynamicContent();
+                }, 100);
+                
+                console.log("✅ AUTH_DATA processed and normalized");
+                
             } else if (event.data.type === 'LANGUAGE_CHANGE' && event.data.source === 'index') {
                 const newLang = event.data.language;
-                console.log(`Received LANGUAGE_CHANGE message from index for language: ${newLang}`);
+                console.log(`🌐 Received LANGUAGE_CHANGE for: ${newLang}`);
                 if (translations[newLang] && newLang !== document.documentElement.lang) {
                     applyTranslations(newLang);
                     broadcastLanguageChange(newLang);
@@ -995,15 +1227,19 @@
                 }
             }
         });
+
         function sendPortfolioUpdate() {
+            // FORCE normalization before sending
+            forcePortfolioNormalization();
             const data = {
                 type: 'PORTFOLIO_UPDATE',
                 budget: budget,
                 portfolio: portfolio
             };
-            console.log("Sending PORTFOLIO_UPDATE:", data);
+            console.log("📤 Sending PORTFOLIO_UPDATE with", Object.keys(portfolio).length, "unique symbols");
             window.parent.postMessage(data, '*');
         }
+
         async function fetchStockList() {
             const url = `https://finnhub.io/api/v1/stock/symbol?exchange=US&token=${finnhubApiKey}`;
             try {
@@ -1014,12 +1250,13 @@
                     symbol: stock.symbol.toUpperCase(),
                     description: stock.description
                 }));
-                console.log("Stock list fetched:", stockList.length, "stocks");
+                console.log("📋 Stock list fetched:", stockList.length, "stocks");
             } catch (error) {
                 console.error("Error fetching stock list:", error);
                 displayErrorMessage(translations[document.documentElement.lang || 'en']['errorStockList']);
             }
         }
+
         function debounce(func, delay) {
             let debounceTimer;
             return function() {
@@ -1029,13 +1266,17 @@
                 debounceTimer = setTimeout(() => func.apply(context, args), delay);
             }
         }
+
         const debouncedFilterSymbols = debounce(filterSymbols, 300);
+
         function filterSymbols() {
             const input = document.getElementById('stock-symbol').value.toUpperCase();
             const suggestions = document.getElementById('suggestions');
             suggestions.innerHTML = '';
             if (input === '') {
                 suggestions.style.display = 'none';
+                document.getElementById('current-price-container').style.display = 'none';
+                currentSymbol = '';
                 return;
             }
             const exactMatches = stockList.filter(stock => stock.symbol === input || stock.description.toUpperCase() === input);
@@ -1046,6 +1287,7 @@
             const filtered = uniqueCombined.slice(0, 5);
             if (filtered.length === 0) {
                 suggestions.style.display = 'none';
+                document.getElementById('current-price-container').style.display = 'none';
                 return;
             }
             filtered.forEach(stock => {
@@ -1057,16 +1299,37 @@
             });
             suggestions.style.display = 'block';
         }
+
         async function selectSymbol(symbol) {
             symbol = symbol.toUpperCase();
             document.getElementById('stock-symbol').value = symbol;
             const suggestions = document.getElementById('suggestions');
             suggestions.style.display = 'none';
-            const price = await fetchStockPrice(symbol);
-            document.getElementById('currentPrice').innerText = price > 0 ? price.toFixed(2) : "0.00";
-            currentSymbol = symbol;
-            createTradingViewWidget(symbol);
+           
+            // Show loading state
+            const priceContainer = document.getElementById('current-price-container');
+            const priceElement = document.getElementById('current-price');
+            const currentLang = document.documentElement.lang || 'en';
+           
+            priceContainer.style.display = 'block';
+            priceElement.innerHTML = translations[currentLang]['loadingPrice'];
+            priceElement.classList.add('current-price-loading');
+           
+            // Fetch and display price
+            try {
+                const price = await fetchStockPrice(symbol);
+                priceElement.innerHTML = `$${price.toFixed(2)}`;
+                priceElement.classList.remove('current-price-loading');
+                currentSymbol = symbol;
+                createTradingViewWidget(symbol);
+            } catch (error) {
+                console.error(`Error fetching price for ${symbol}:`, error);
+                priceElement.innerHTML = 'Error fetching price';
+                priceElement.classList.remove('current-price-loading');
+                currentSymbol = '';
+            }
         }
+
         async function fetchStockPrice(symbol) {
             const url = `https://finnhub.io/api/v1/quote?symbol=${symbol}&token=${finnhubApiKey}`;
             try {
@@ -1084,6 +1347,7 @@
                 return 0;
             }
         }
+
         async function fetchHistoricalPrices(symbol) {
             const to = Math.floor(Date.now() / 1000);
             const from = to - 30 * 24 * 60 * 60;
@@ -1105,11 +1369,12 @@
                 return [];
             }
         }
+
         function createTradingViewWidget(symbol) {
             const widgetContainer = document.getElementById('tradingview-widget');
             widgetContainer.innerHTML = '';
             new TradingView.MediumWidget({
-                symbols: [[symbol]],
+                symbols: [[symbol || 'AAPL']],
                 chartOnly: false,
                 width: "100%",
                 height: 400,
@@ -1124,208 +1389,642 @@
                 container_id: "tradingview-widget"
             });
         }
+
+        // BULLETPROOF portfolio table update
+        async function updatePortfolioTable() {
+            console.log('📊 Updating portfolio table...');
+            
+            // FORCE normalization before processing
+            forcePortfolioNormalization();
+            
+            const tbody = document.getElementById('portfolioTableBody');
+            tbody.innerHTML = '';
+           
+            const symbols = Object.keys(portfolio);
+            console.log(`📋 Processing ${symbols.length} symbols:`, symbols);
+           
+            if (symbols.length === 0) {
+                console.log('📭 Empty portfolio - showing no positions message');
+                const row = document.createElement('tr');
+                const cell = document.createElement('td');
+                cell.setAttribute('colspan', '6');
+                cell.innerText = 'No positions in portfolio';
+                cell.style.textAlign = 'center';
+                cell.style.color = '#cccccc';
+                cell.style.padding = '20px';
+                row.appendChild(cell);
+                tbody.appendChild(row);
+                updateSummaryTotals(0, 0);
+                return;
+            }
+           
+            let totalPortfolioValue = 0;
+            let totalProfit = 0;
+            
+            // Fetch all prices concurrently
+            console.log('💰 Fetching prices for:', symbols);
+            const pricePromises = symbols.map(symbol => fetchStockPrice(symbol));
+            const prices = await Promise.all(pricePromises);
+            const currentLang = document.documentElement.lang || 'en';
+           
+            // Process each symbol - IMPOSSIBLE to have duplicates here
+            symbols.forEach((symbol, index) => {
+                const stockData = portfolio[symbol];
+                
+                // Safety check
+                if (!stockData || stockData.quantity <= 0) {
+                    console.warn(`⚠️ Skipping invalid data for ${symbol}:`, stockData);
+                    return;
+                }
+               
+                const totalQuantity = stockData.quantity;
+                const purchasePrice = stockData.totalInvested / totalQuantity;
+                const currentPrice = prices[index] || 0;
+                const totalCurrentValue = currentPrice * totalQuantity;
+                const profit = (currentPrice - purchasePrice) * totalQuantity;
+                const percentageProfit = purchasePrice > 0 ? ((currentPrice - purchasePrice) / purchasePrice) * 100 : 0;
+               
+                console.log(`💹 ${symbol}: ${totalQuantity} shares @ $${purchasePrice.toFixed(2)} (current: $${currentPrice.toFixed(2)})`);
+               
+                const row = document.createElement('tr');
+               
+                // Symbol cell
+                const symbolCell = document.createElement('td');
+                symbolCell.innerText = symbol;
+                row.appendChild(symbolCell);
+               
+                // Quantity cell
+                const quantityCell = document.createElement('td');
+                quantityCell.innerText = totalQuantity;
+                row.appendChild(quantityCell);
+               
+                // Purchase price cell
+                const purchasePriceCell = document.createElement('td');
+                purchasePriceCell.innerText = `$${purchasePrice.toFixed(2)}`;
+                row.appendChild(purchasePriceCell);
+               
+                // Current price cell
+                const currentPriceCell = document.createElement('td');
+                currentPriceCell.innerText = `$${currentPrice.toFixed(2)}`;
+                row.appendChild(currentPriceCell);
+               
+                // Profit/Loss cell
+                const profitCell = document.createElement('td');
+                const profitText = `$${profit.toFixed(2)} (${percentageProfit.toFixed(2)}%)`;
+                profitCell.innerHTML = profitText;
+                profitCell.className = profit >= 0 ? 'profit-positive' : 'profit-negative';
+                row.appendChild(profitCell);
+               
+                // Action cell
+                const actionCell = document.createElement('td');
+                const sellButton = document.createElement('button');
+                sellButton.innerText = translations[currentLang]['sellButton'];
+                sellButton.onclick = () => sellStock(symbol);
+                actionCell.appendChild(sellButton);
+                row.appendChild(actionCell);
+               
+                tbody.appendChild(row);
+                totalPortfolioValue += totalCurrentValue;
+                totalProfit += profit;
+            });
+           
+            console.log(`💎 Total portfolio value: $${totalPortfolioValue.toFixed(2)}, profit: $${totalProfit.toFixed(2)}`);
+            updateSummaryTotals(totalPortfolioValue, totalProfit);
+        }
+
+        function updateSummaryTotals(totalPortfolioValue, totalProfit) {
+            const totalValue = budget + totalPortfolioValue;
+            document.getElementById('portfolioValue').innerText = totalValue.toFixed(2);
+            
+            const profitElement = document.getElementById('totalProfit');
+            profitElement.innerText = `$${totalProfit.toFixed(2)}`;
+            profitElement.className = `total-profit ${totalProfit >= 0 ? 'profit-positive' : 'profit-negative'}`;
+           
+            const totalProfitAmount = totalValue - initialCapital;
+            const percent = initialCapital > 0 ? (totalProfitAmount / initialCapital) * 100 : 0;
+            const percentElement = document.getElementById('totalProfitPercent');
+            percentElement.innerText = `${percent.toFixed(2)}%`;
+            percentElement.className = `total-profit ${percent >= 0 ? 'profit-positive' : 'profit-negative'}`;
+        }
+
+        function updateBudget() {
+            document.getElementById('budget').innerText = budget.toFixed(2);
+        }
+
         async function buyStock() {
             if (isBuying) return;
             isBuying = true;
             const buyButton = document.getElementById('buy-button');
             buyButton.disabled = true;
+            buyButton.innerText = 'Processing...';
             displayLoader(true);
+           
             const symbolInput = document.getElementById('stock-symbol').value.trim();
             const quantityInput = document.getElementById('quantity').value;
-            const symbol = symbolInput.toUpperCase();
+            const symbol = normalizeSymbol(symbolInput);
             const quantity = parseInt(quantityInput);
             const currentLang = document.documentElement.lang || 'en';
+           
+            console.log(`🛒 Buy attempt: ${quantity} shares of ${symbol}`);
+           
             if (!symbol) {
                 displayErrorMessage(translations[currentLang]['errorNoSymbol']);
-                isBuying = false;
-                buyButton.disabled = false;
-                displayLoader(false);
+                resetBuyButton();
                 return;
             }
+           
             if (!quantity || quantity <= 0 || isNaN(quantity)) {
                 displayErrorMessage(translations[currentLang]['errorInvalidQuantity']);
-                isBuying = false;
-                buyButton.disabled = false;
-                displayLoader(false);
+                resetBuyButton();
                 return;
             }
+           
             try {
                 const price = await fetchStockPrice(symbol);
                 if (price <= 0) {
                     displayErrorMessage(translations[currentLang]['errorInvalidSymbol']);
-                    isBuying = false;
-                    buyButton.disabled = false;
-                    displayLoader(false);
+                    resetBuyButton();
                     return;
                 }
+               
                 const totalCost = price * quantity;
+                console.log(`💰 Cost: $${totalCost.toFixed(2)} (price: $${price.toFixed(2)})`);
+               
                 if (totalCost > budget) {
                     displayErrorMessage(translations[currentLang]['errorInsufficientFunds']);
-                    isBuying = false;
-                    buyButton.disabled = false;
-                    displayLoader(false);
+                    resetBuyButton();
                     return;
                 }
+               
+                // Deduct from budget FIRST
                 budget -= totalCost;
-                if (portfolio[symbol]) {
-                    portfolio[symbol].quantity += quantity;
-                    portfolio[symbol].totalInvested += totalCost;
-                } else {
-                    portfolio[symbol] = {
-                        quantity: quantity,
-                        totalInvested: totalCost
-                    };
+               
+                // Add to portfolio with normalization
+                const success = addStockToPortfolio(symbol, quantity, totalCost);
+                if (!success) {
+                    // Revert budget if add failed
+                    budget += totalCost;
+                    displayErrorMessage(translations[currentLang]['errorBuy']);
+                    resetBuyButton();
+                    return;
                 }
+               
+                // Update everything - SEPARATE from translations
                 updateBudget();
                 await updatePortfolioTable();
                 sendPortfolioUpdate();
                 saveUserData();
                 updatePortfolioAnalysis();
-                displaySuccessMessage(translations[currentLang]['successBuy'].replace('{quantity}', quantity).replace('{symbol}', symbol));
-                console.log(`Bought: ${quantity} shares of ${symbol} at $${price.toFixed(2)} each.`);
+               
+                // Clear inputs
+                document.getElementById('quantity').value = '';
+               
+                displaySuccessMessage(translations[currentLang]['successBuy']
+                    .replace('{quantity}', quantity)
+                    .replace('{symbol}', symbol));
+                console.log(`✅ Purchase successful: ${quantity} shares of ${symbol}`);
+               
             } catch (error) {
-                console.error("Error buying stock:", error);
+                console.error("❌ Buy error:", error);
                 displayErrorMessage(translations[currentLang]['errorBuy']);
             } finally {
-                isBuying = false;
-                buyButton.disabled = false;
-                displayLoader(false);
+                resetBuyButton();
             }
         }
-        async function sellStock(symbol) {
-            symbol = symbol.toUpperCase();
-            const totalQuantity = getTotalQuantity(symbol);
+
+        function resetBuyButton() {
+            isBuying = false;
+            const buyButton = document.getElementById('buy-button');
+            buyButton.disabled = false;
             const currentLang = document.documentElement.lang || 'en';
-            const quantityToSellStr = prompt(translations[currentLang]['sellPrompt'].replace('{totalQuantity}', totalQuantity), totalQuantity);
+            buyButton.innerHTML = `<b>${translations[currentLang]['buyButton']}</b>`;
+            displayLoader(false);
+        }
+
+        async function sellStock(symbol) {
+            const normalizedSymbol = normalizeSymbol(symbol);
+            forcePortfolioNormalization(); // Fresh data
+            const totalQuantity = getTotalQuantity(normalizedSymbol);
+            const currentLang = document.documentElement.lang || 'en';
+           
+            console.log(`🛒 Sell attempt: ${normalizedSymbol}, available: ${totalQuantity}`);
+           
+            if (totalQuantity === 0) {
+                displayErrorMessage(translations[currentLang]['errorNotEnoughShares']);
+                return;
+            }
+           
+            const quantityToSellStr = prompt(
+                translations[currentLang]['sellPrompt'].replace('{totalQuantity}', totalQuantity), 
+                totalQuantity
+            );
             if (quantityToSellStr === null) return;
+           
             const quantityToSell = parseInt(quantityToSellStr);
             if (!quantityToSell || quantityToSell <= 0 || isNaN(quantityToSell)) {
                 displayErrorMessage(translations[currentLang]['errorInvalidQuantity']);
                 return;
             }
+           
             if (quantityToSell > totalQuantity) {
                 displayErrorMessage(translations[currentLang]['errorNotEnoughShares']);
                 return;
             }
-            await sellStockWithQuantity(symbol, quantityToSell);
+           
+            await sellStockWithQuantity(normalizedSymbol, quantityToSell);
         }
+
         async function sellStockWithQuantity(symbol, quantity) {
-            symbol = symbol.toUpperCase();
+            const normalizedSymbol = normalizeSymbol(symbol);
             const currentLang = document.documentElement.lang || 'en';
-            if (!portfolio[symbol] || getTotalQuantity(symbol) < quantity) {
+           
+            forcePortfolioNormalization(); // Fresh data
+            if (!portfolio[normalizedSymbol] || getTotalQuantity(normalizedSymbol) < quantity) {
                 displayErrorMessage(translations[currentLang]['errorNotEnoughShares']);
                 return;
             }
+           
             try {
-                const price = await fetchStockPrice(symbol);
+                const price = await fetchStockPrice(normalizedSymbol);
                 if (price <= 0) {
                     displayErrorMessage(translations[currentLang]['errorInvalidSymbol']);
                     return;
                 }
+               
                 const totalRevenue = price * quantity;
-                budget += totalRevenue;
-                const purchasePrice = portfolio[symbol].totalInvested / portfolio[symbol].quantity;
-                portfolio[symbol].quantity -= quantity;
-                portfolio[symbol].totalInvested -= purchasePrice * quantity;
-                if (portfolio[symbol].quantity === 0) {
-                    delete portfolio[symbol];
+                console.log(`💸 Sell: ${quantity} shares of ${normalizedSymbol} for $${totalRevenue.toFixed(2)}`);
+               
+                // Remove from portfolio
+                const success = removeStockFromPortfolio(normalizedSymbol, quantity);
+                if (!success) {
+                    displayErrorMessage(translations[currentLang]['errorSell']);
+                    return;
                 }
+               
+                // Add revenue to budget
+                budget += totalRevenue;
+               
+                // Update everything - SEPARATE from translations
                 updateBudget();
                 await updatePortfolioTable();
                 sendPortfolioUpdate();
                 saveUserData();
                 updatePortfolioAnalysis();
-                displaySuccessMessage(translations[currentLang]['successSell'].replace('{quantity}', quantity).replace('{symbol}', symbol));
-                console.log(`Sold: ${quantity} shares of ${symbol} at $${price.toFixed(2)} each.`);
+               
+                displaySuccessMessage(translations[currentLang]['successSell']
+                    .replace('{quantity}', quantity)
+                    .replace('{symbol}', normalizedSymbol));
+                console.log(`✅ Sale successful: ${quantity} shares of ${normalizedSymbol}`);
+               
             } catch (error) {
-                console.error("Error selling stock:", error);
+                console.error("❌ Sell error:", error);
                 displayErrorMessage(translations[currentLang]['errorSell']);
             }
         }
-        function getTotalQuantity(symbol) {
-            symbol = symbol.toUpperCase();
-            return portfolio[symbol] ? portfolio[symbol].quantity : 0;
+
+        async function updatePortfolioAnalysis() {
+            try {
+                console.log('📈 Updating portfolio analysis...');
+                
+                // FORCE normalization
+                forcePortfolioNormalization();
+                
+                const symbols = Object.keys(portfolio);
+                let totalPortfolioValue = 0;
+                const stockValues = [];
+                const historicalData = {};
+                const currentLang = document.documentElement.lang || 'en';
+            
+                console.log(`📊 Analysis for ${symbols.length} unique symbols:`, symbols);
+                
+                if (symbols.length > 0) {
+                    const pricePromises = symbols.map(symbol => fetchStockPrice(symbol));
+                    const historicalPromises = symbols.map(symbol => fetchHistoricalPrices(symbol));
+                    const prices = await Promise.all(pricePromises);
+                    const historicalResults = await Promise.all(historicalPromises);
+                
+                    symbols.forEach((symbol, index) => {
+                        const stockData = portfolio[symbol];
+                        
+                        if (!stockData || stockData.quantity <= 0) {
+                            console.warn(`⚠️ Skipping invalid analysis data for ${symbol}`);
+                            return;
+                        }
+                       
+                        const currentPrice = prices[index] || 0;
+                        const value = stockData.quantity * currentPrice;
+                        if (!isNaN(value) && value >= 0 && currentPrice > 0) {
+                            totalPortfolioValue += value;
+                            stockValues.push({
+                                symbol,
+                                value,
+                                price: currentPrice,
+                                quantity: stockData.quantity,
+                                totalInvested: stockData.totalInvested,
+                                sector: stockSectors[symbol] || translations[currentLang]['unknownSector']
+                            });
+                            historicalData[symbol] = historicalResults[index];
+                        }
+                    });
+                }
+            
+                const totalValueWithCash = totalPortfolioValue + budget;
+                if (stockValues.length === 0) {
+                    stockValues.push({
+                        symbol: translations[currentLang]['cashBalance'],
+                        value: budget,
+                        price: budget,
+                        quantity: 1,
+                        totalInvested: budget,
+                        sector: translations[currentLang]['cashBalance']
+                    });
+                }
+            
+                console.log('📈 Analysis complete -', stockValues.length, 'positions, total value: $', totalValueWithCash.toFixed(2));
+            
+                // Create charts
+                if (allocationChart) allocationChart.destroy();
+                const allocationCtx = document.getElementById('allocation-chart')?.getContext('2d');
+                if (allocationCtx) {
+                    allocationChart = new Chart(allocationCtx, {
+                        type: 'pie',
+                        data: {
+                            labels: stockValues.map(s => s.symbol),
+                            datasets: [{
+                                data: stockValues.map(s => s.value),
+                                backgroundColor: stockValues.length > 0 ? chartColors.slice(0, stockValues.length) : ['#cccccc'],
+                                borderColor: '#1B2631',
+                                borderWidth: 2
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    position: 'bottom',
+                                    labels: { color: '#ffffff', font: { size: 12, family: 'Poppins' } }
+                                },
+                                tooltip: {
+                                    callbacks: {
+                                        label: function(context) {
+                                            const value = context.raw;
+                                            const percentage = totalValueWithCash > 0 ? ((value / totalValueWithCash) * 100).toFixed(2) : 0;
+                                            return `${context.label}: $${value.toFixed(2)} (${percentage}%)`;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+            
+                if (sectorChart) sectorChart.destroy();
+                const sectorCtx = document.getElementById('sector-chart')?.getContext('2d');
+                if (sectorCtx) {
+                    const sectorData = {};
+                    stockValues.forEach(stock => {
+                        const sector = stock.sector;
+                        sectorData[sector] = (sectorData[sector] || 0) + stock.value;
+                    });
+                    const sectorLabels = Object.keys(sectorData);
+                    sectorChart = new Chart(sectorCtx, {
+                        type: 'doughnut',
+                        data: {
+                            labels: sectorLabels,
+                            datasets: [{
+                                data: Object.values(sectorData),
+                                backgroundColor: sectorLabels.length > 0 ? chartColors.slice(0, sectorLabels.length) : ['#cccccc'],
+                                borderColor: '#1B2631',
+                                borderWidth: 2
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    position: 'bottom',
+                                    labels: { color: '#ffffff', font: { size: 12, family: 'Poppins' } }
+                                },
+                                tooltip: {
+                                    callbacks: {
+                                        label: function(context) {
+                                            const value = context.raw;
+                                            const percentage = totalValueWithCash > 0 ? ((value / totalValueWithCash) * 100).toFixed(2) : 0;
+                                            return `${context.label}: $${value.toFixed(2)} (${percentage}%)`;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+            
+                // Performance chart
+                if (performanceChart) performanceChart.destroy();
+                const perfCtx = document.getElementById('performance-chart')?.getContext('2d');
+                if (perfCtx && symbols.length > 0) {
+                    const days = 30;
+                    const labels = [];
+                    const portfolioValues = [];
+                    const today = new Date();
+                
+                    for (let i = days - 1; i >= 0; i--) {
+                        const date = new Date(today);
+                        date.setDate(today.getDate() - i);
+                        const dateStr = date.toLocaleDateString();
+                        labels.push(dateStr);
+                        let dailyValue = budget;
+                        symbols.forEach(symbol => {
+                            const stockData = portfolio[symbol];
+                            if (!stockData) return;
+                            const historicalPrices = historicalData[symbol] || [];
+                            const historicalPrice = historicalPrices.find(h => h.date === dateStr)?.price ||
+                                (stockData.totalInvested / stockData.quantity);
+                            dailyValue += historicalPrice * stockData.quantity;
+                        });
+                        portfolioValues.push(dailyValue);
+                    }
+                
+                    performanceChart = new Chart(perfCtx, {
+                        type: 'line',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                label: translations[currentLang]['portfolioDevelopment'],
+                                data: portfolioValues,
+                                borderColor: '#007bff',
+                                backgroundColor: 'rgba(0, 123, 255, 0.2)',
+                                fill: true,
+                                tension: 0.4
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                x: {
+                                    ticks: { color: '#ffffff', maxTicksLimit: 10 },
+                                    grid: { color: '#2e2e2e' }
+                                },
+                                y: {
+                                    ticks: {
+                                        color: '#ffffff',
+                                        callback: value => '$' + value.toFixed(2)
+                                    },
+                                    grid: { color: '#2e2e2e' }
+                                }
+                            },
+                            plugins: {
+                                legend: { labels: { color: '#ffffff', font: { family: 'Poppins' } } },
+                                tooltip: {
+                                    callbacks: {
+                                        label: context => `${translations[currentLang]['portfolioDevelopment']}: $${context.raw.toFixed(2)}`
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+            
+                // Profit/Loss chart
+                if (profitLossChart) profitLossChart.destroy();
+                const plCtx = document.getElementById('profit-loss-chart')?.getContext('2d');
+                if (plCtx) {
+                    const validStocks = stockValues.filter(stock => stock.symbol !== translations[currentLang]['cashBalance']);
+                    const plData = validStocks.map(stock => {
+                        const purchasePrice = stock.totalInvested / stock.quantity;
+                        return (stock.price - purchasePrice) * stock.quantity;
+                    });
+                    profitLossChart = new Chart(plCtx, {
+                        type: 'bar',
+                        data: {
+                            labels: validStocks.map(s => s.symbol),
+                            datasets: [{
+                                label: translations[currentLang]['profitLossStock'],
+                                data: plData,
+                                backgroundColor: plData.map(value => value >= 0 ? '#4caf50' : '#f44336'),
+                                borderColor: '#1B2631',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                x: { ticks: { color: '#ffffff' }, grid: { display: false } },
+                                y: {
+                                    ticks: {
+                                        color: '#ffffff',
+                                        callback: value => '$' + value.toFixed(2)
+                                    },
+                                    grid: { color: '#2e2e2e' }
+                                }
+                            },
+                            plugins: {
+                                legend: { labels: { color: '#ffffff', font: { family: 'Poppins' } } },
+                                tooltip: {
+                                    callbacks: {
+                                        label: context => `${translations[currentLang]['profitLossStock']}: $${context.raw.toFixed(2)}`
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+            
+                // Update summary metrics
+                const validStocks = stockValues.filter(stock => stock.symbol !== translations[currentLang]['cashBalance']);
+                
+                const topPerformer = validStocks.reduce((max, stock) => {
+                    const purchasePrice = stock.totalInvested / stock.quantity;
+                    const profitPercent = purchasePrice > 0 ? ((stock.price - purchasePrice) / purchasePrice) * 100 : 0;
+                    return !max || profitPercent > max.profitPercent ? { symbol: stock.symbol, profitPercent } : max;
+                }, null);
+                
+                const worstPerformer = validStocks.reduce((min, stock) => {
+                    const purchasePrice = stock.totalInvested / stock.quantity;
+                    const profitPercent = purchasePrice > 0 ? ((stock.price - purchasePrice) / purchasePrice) * 100 : 0;
+                    return !min || profitPercent < min.profitPercent ? { symbol: stock.symbol, profitPercent } : min;
+                }, null);
+                
+                const largestPosition = validStocks.reduce((max, stock) => {
+                    return !max || stock.value > max.value ? stock : max;
+                }, null);
+            
+                document.getElementById('top-performer').innerText = topPerformer && topPerformer.profitPercent !== 0 ?
+                    `${topPerformer.symbol} (${topPerformer.profitPercent.toFixed(2)}%)` : '-';
+                document.getElementById('worst-performer').innerText = worstPerformer && worstPerformer.profitPercent !== 0 ?
+                    `${worstPerformer.symbol} (${worstPerformer.profitPercent.toFixed(2)}%)` : '-';
+                document.getElementById('largest-position').innerText = largestPosition ?
+                    `${largestPosition.symbol} ($${largestPosition.value.toFixed(2)})` : '-';
+                document.getElementById('position-count').innerText = validStocks.length;
+                document.getElementById('avg-position-size').innerText = validStocks.length > 0 ?
+                    `$${(totalPortfolioValue / validStocks.length).toFixed(2)}` : '$0.00';
+            
+                // Sparkline
+                if (sparklineChart) sparklineChart.destroy();
+                const sparklineCtx = document.getElementById('sparkline-chart')?.getContext('2d');
+                if (sparklineCtx && symbols.length > 0) {
+                    const days = 10;
+                    const labels = [];
+                    const portfolioValues = [];
+                    const today = new Date();
+                
+                    for (let i = days - 1; i >= 0; i--) {
+                        const date = new Date(today);
+                        date.setDate(today.getDate() - i);
+                        const dateStr = date.toLocaleDateString();
+                        labels.push(dateStr);
+                        let dailyValue = budget;
+                        symbols.forEach(symbol => {
+                            const stockData = portfolio[symbol];
+                            if (!stockData) return;
+                            const historicalPrices = historicalData[symbol] || [];
+                            const historicalPrice = historicalPrices.find(h => h.date === dateStr)?.price ||
+                                (stockData.totalInvested / stockData.quantity);
+                            dailyValue += historicalPrice * stockData.quantity;
+                        });
+                        portfolioValues.push(dailyValue);
+                    }
+                    
+                    sparklineChart = new Chart(sparklineCtx, {
+                        type: 'line',
+                        data: {
+                            labels: labels,
+                            datasets: [{
+                                data: portfolioValues,
+                                borderColor: '#007bff',
+                                backgroundColor: 'rgba(0, 123, 255, 0.2)',
+                                fill: true,
+                                tension: 0.4,
+                                pointRadius: 0
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                x: { display: false },
+                                y: { display: false }
+                            },
+                            plugins: {
+                                legend: { display: false },
+                                tooltip: { enabled: false }
+                            }
+                        }
+                    });
+                }
+                
+                console.log('✅ Portfolio analysis updated');
+                
+            } catch (error) {
+                console.error("❌ Portfolio analysis failed:", error);
+                createFallbackCharts();
+            }
         }
-        function updateBudget() {
-            document.getElementById('budget').innerText = budget.toFixed(2);
-            calculateTotalProfit();
-        }
-        async function updatePortfolioTable() {
-            const tbody = document.getElementById('portfolioTableBody');
-            tbody.innerHTML = '';
-            let totalPortfolioValue = 0;
-            let totalProfit = 0;
-            const symbols = Object.keys(portfolio);
-            const pricePromises = symbols.map(symbol => fetchStockPrice(symbol));
-            const prices = await Promise.all(pricePromises);
-            const currentLang = document.documentElement.lang || 'en';
-            symbols.forEach((symbol, index) => {
-                const stockData = portfolio[symbol];
-                const totalQuantity = stockData.quantity;
-                const purchasePrice = stockData.totalInvested / totalQuantity;
-                const currentPrice = prices[index];
-                const totalCurrentValue = currentPrice * totalQuantity;
-                const profit = (currentPrice - purchasePrice) * totalQuantity;
-                const percentageProfit = purchasePrice > 0 ? ((currentPrice - purchasePrice) / purchasePrice) * 100 : 0;
-                const row = document.createElement('tr');
-                const symbolCell = document.createElement('td');
-                symbolCell.innerText = symbol;
-                row.appendChild(symbolCell);
-                const quantityCell = document.createElement('td');
-                quantityCell.innerText = totalQuantity;
-                row.appendChild(quantityCell);
-                const purchasePriceCell = document.createElement('td');
-                purchasePriceCell.innerText = `$${purchasePrice.toFixed(2)}`;
-                row.appendChild(purchasePriceCell);
-                const currentPriceCell = document.createElement('td');
-                currentPriceCell.innerText = `$${currentPrice.toFixed(2)}`;
-                row.appendChild(currentPriceCell);
-                const profitCell = document.createElement('td');
-                profitCell.innerHTML = `$${profit.toFixed(2)} (${percentageProfit.toFixed(2)}%)`;
-                profitCell.classList.add(profit >= 0 ? 'profit-positive' : 'profit-negative');
-                row.appendChild(profitCell);
-                const actionCell = document.createElement('td');
-                const sellButton = document.createElement('button');
-                sellButton.innerText = translations[currentLang]['sellButton'];
-                sellButton.setAttribute('data-translate-key', 'sellButton');
-                sellButton.onclick = () => sellStock(symbol);
-                actionCell.appendChild(sellButton);
-                row.appendChild(actionCell);
-                tbody.appendChild(row);
-                totalPortfolioValue += totalCurrentValue;
-                totalProfit += profit;
-            });
-            document.getElementById('portfolioValue').innerText = (budget + totalPortfolioValue).toFixed(2);
-            document.getElementById('totalProfit').innerText = `$${totalProfit.toFixed(2)}`;
-            document.getElementById('totalProfit').classList.remove('profit-positive', 'profit-negative');
-            document.getElementById('totalProfit').classList.add(totalProfit >= 0 ? 'profit-positive' : 'profit-negative');
-            calculateTotalProfit();
-        }
-        async function calculateTotalProfit() {
-            let totalProfit = 0;
-            let totalPortfolioValue = 0;
-            const symbols = Object.keys(portfolio);
-            const pricePromises = symbols.map(symbol => fetchStockPrice(symbol));
-            const prices = await Promise.all(pricePromises);
-            symbols.forEach((symbol, index) => {
-                const stockData = portfolio[symbol];
-                const totalQuantity = stockData.quantity;
-                const purchasePrice = stockData.totalInvested / totalQuantity;
-                const currentPrice = prices[index];
-                const profit = (currentPrice - purchasePrice) * totalQuantity;
-                totalProfit += profit;
-                totalPortfolioValue += currentPrice * totalQuantity;
-            });
-            document.getElementById('totalProfit').innerText = `$${totalProfit.toFixed(2)}`;
-            document.getElementById('totalProfit').classList.remove('profit-positive', 'profit-negative');
-            document.getElementById('totalProfit').classList.add(totalProfit >= 0 ? 'profit-positive' : 'profit-negative');
-            document.getElementById('portfolioValue').innerText = (budget + totalPortfolioValue).toFixed(2);
-            const totalProfitAmount = (budget + totalPortfolioValue) - initialCapital;
-            const percent = initialCapital > 0 ? (totalProfitAmount / initialCapital) * 100 : 0;
-            document.getElementById('totalProfitPercent').innerText = `${percent.toFixed(2)}%`;
-            document.getElementById('totalProfitPercent').classList.remove('profit-positive', 'profit-negative');
-            document.getElementById('totalProfitPercent').classList.add(percent >= 0 ? 'profit-positive' : 'profit-negative');
-        }
+
         function createFallbackCharts() {
             const contexts = ['allocation-chart', 'sector-chart', 'performance-chart', 'profit-loss-chart', 'sparkline-chart'];
             const currentLang = document.documentElement.lang || 'en';
@@ -1371,328 +2070,7 @@
                 }
             });
         }
-        async function updatePortfolioAnalysis() {
-            try {
-                console.log("Updating portfolio analysis...");
-                const symbols = Object.keys(portfolio);
-                let totalPortfolioValue = 0;
-                const stockValues = [];
-                const historicalData = {};
-                const currentLang = document.documentElement.lang || 'en';
-              
-                if (symbols.length > 0) {
-                    const pricePromises = symbols.map(symbol => fetchStockPrice(symbol));
-                    const historicalPromises = symbols.map(symbol => fetchHistoricalPrices(symbol));
-                    const prices = await Promise.all(pricePromises);
-                    const historicalResults = await Promise.all(historicalPromises);
-                  
-                    symbols.forEach((symbol, index) => {
-                        const stockData = portfolio[symbol];
-                        const currentPrice = prices[index];
-                        const value = stockData.quantity * currentPrice;
-                        if (!isNaN(value) && value >= 0 && currentPrice > 0) {
-                            totalPortfolioValue += value;
-                            stockValues.push({
-                                symbol,
-                                value,
-                                price: currentPrice,
-                                quantity: stockData.quantity,
-                                totalInvested: stockData.totalInvested,
-                                sector: stockSectors[symbol] || translations[currentLang]['unknownSector']
-                            });
-                            historicalData[symbol] = historicalResults[index];
-                        }
-                    });
-                }
-              
-                const totalValueWithCash = totalPortfolioValue + budget;
-                if (stockValues.length === 0) {
-                    stockValues.push({
-                        symbol: translations[currentLang]['cashBalance'],
-                        value: budget,
-                        price: budget,
-                        quantity: 1,
-                        totalInvested: budget,
-                        sector: translations[currentLang]['cashBalance']
-                    });
-                }
-              
-                console.log("Stock values:", stockValues);
-                console.log("Total portfolio value (excluding cash):", totalPortfolioValue);
-              
-                if (allocationChart) allocationChart.destroy();
-                const allocationCtx = document.getElementById('allocation-chart')?.getContext('2d');
-                if (!allocationCtx) {
-                    console.error("Allocation chart canvas not found");
-                    createFallbackCharts();
-                    return;
-                }
-                allocationChart = new Chart(allocationCtx, {
-                    type: 'pie',
-                    data: {
-                        labels: stockValues.map(s => s.symbol),
-                        datasets: [{
-                            data: stockValues.map(s => s.value),
-                            backgroundColor: stockValues.length > 0 ? chartColors.slice(0, stockValues.length) : ['#cccccc'],
-                            borderColor: '#1B2631',
-                            borderWidth: 2
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                position: 'bottom',
-                                labels: { color: '#ffffff', font: { size: 12, family: 'Poppins' } }
-                            },
-                            tooltip: {
-                                callbacks: {
-                                    label: function(context) {
-                                        const value = context.raw;
-                                        const percentage = totalValueWithCash > 0 ? ((value / totalValueWithCash) * 100).toFixed(2) : 0;
-                                        return `${context.label}: $${value.toFixed(2)} (${percentage}%)`;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                });
-                console.log("Allocation chart rendered");
-              
-                if (sectorChart) sectorChart.destroy();
-                const sectorCtx = document.getElementById('sector-chart')?.getContext('2d');
-                if (!sectorCtx) {
-                    console.error("Sector chart canvas not found");
-                    createFallbackCharts();
-                    return;
-                }
-                const sectorData = {};
-                stockValues.forEach(stock => {
-                    const sector = stock.sector;
-                    sectorData[sector] = (sectorData[sector] || 0) + stock.value;
-                });
-                const sectorLabels = Object.keys(sectorData);
-                sectorChart = new Chart(sectorCtx, {
-                    type: 'doughnut',
-                    data: {
-                        labels: sectorLabels,
-                        datasets: [{
-                            data: Object.values(sectorData),
-                            backgroundColor: sectorLabels.length > 0 ? chartColors.slice(0, sectorLabels.length) : ['#cccccc'],
-                            borderColor: '#1B2631',
-                            borderWidth: 2
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        plugins: {
-                            legend: {
-                                position: 'bottom',
-                                labels: { color: '#ffffff', font: { size: 12, family: 'Poppins' } }
-                            },
-                            tooltip: {
-                                callbacks: {
-                                    label: function(context) {
-                                        const value = context.raw;
-                                        const percentage = totalValueWithCash > 0 ? ((value / totalValueWithCash) * 100).toFixed(2) : 0;
-                                        return `${context.label}: $${value.toFixed(2)} (${percentage}%)`;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                });
-                console.log("Sector chart rendered");
-              
-                if (performanceChart) performanceChart.destroy();
-                const perfCtx = document.getElementById('performance-chart')?.getContext('2d');
-                if (!perfCtx) {
-                    console.error("Performance chart canvas not found");
-                    createFallbackCharts();
-                    return;
-                }
-              
-                const days = 30;
-                const labels = [];
-                const portfolioValues = [];
-                const today = new Date();
-                const dateSet = new Set();
-              
-                for (let i = days - 1; i >= 0; i--) {
-                    const date = new Date(today);
-                    date.setDate(today.getDate() - i);
-                    const dateStr = date.toLocaleDateString();
-                    labels.push(dateStr);
-                    let dailyValue = budget;
-                    symbols.forEach(symbol => {
-                        const stockData = portfolio[symbol];
-                        const historicalPrices = historicalData[symbol] || [];
-                        const historicalPrice = historicalPrices.find(h => h.date === dateStr)?.price ||
-                            (stockData.totalInvested / stockData.quantity);
-                        dailyValue += historicalPrice * stockData.quantity;
-                    });
-                    portfolioValues.push(dailyValue);
-                    dateSet.add(dateStr);
-                }
-              
-                performanceChart = new Chart(perfCtx, {
-                    type: 'line',
-                    data: {
-                        labels: labels,
-                        datasets: [{
-                            label: translations[currentLang]['portfolioDevelopment'],
-                            data: portfolioValues,
-                            borderColor: '#007bff',
-                            backgroundColor: 'rgba(0, 123, 255, 0.2)',
-                            fill: true,
-                            tension: 0.4
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        scales: {
-                            x: {
-                                ticks: { color: '#ffffff', maxTicksLimit: 10 },
-                                grid: { color: '#2e2e2e' }
-                            },
-                            y: {
-                                ticks: {
-                                    color: '#ffffff',
-                                    callback: value => '$' + value.toFixed(2)
-                                },
-                                grid: { color: '#2e2e2e' }
-                            }
-                        },
-                        plugins: {
-                            legend: { labels: { color: '#ffffff', font: { family: 'Poppins' } } },
-                            tooltip: {
-                                callbacks: {
-                                    label: context => `${translations[currentLang]['portfolioDevelopment']}: $${context.raw.toFixed(2)}`
-                                }
-                            }
-                        }
-                    }
-                });
-                console.log("Performance chart rendered");
-              
-                if (profitLossChart) profitLossChart.destroy();
-                const plCtx = document.getElementById('profit-loss-chart')?.getContext('2d');
-                if (!plCtx) {
-                    console.error("Profit/loss chart canvas not found");
-                    createFallbackCharts();
-                    return;
-                }
-                const validStocks = stockValues.filter(stock => stock.symbol !== translations[currentLang]['cashBalance']);
-                const plData = validStocks.map(stock => {
-                    const purchasePrice = stock.totalInvested / stock.quantity;
-                    return (stock.price - purchasePrice) * stock.quantity;
-                });
-                profitLossChart = new Chart(plCtx, {
-                    type: 'bar',
-                    data: {
-                        labels: validStocks.map(s => s.symbol),
-                        datasets: [{
-                            label: translations[currentLang]['profitLossStock'],
-                            data: plData,
-                            backgroundColor: plData.map(value => value >= 0 ? '#4caf50' : '#f44336'),
-                            borderColor: '#1B2631',
-                            borderWidth: 1
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        scales: {
-                            x: { ticks: { color: '#ffffff' }, grid: { display: false } },
-                            y: {
-                                ticks: {
-                                    color: '#ffffff',
-                                    callback: value => '$' + value.toFixed(2)
-                                },
-                                grid: { color: '#2e2e2e' }
-                            }
-                        },
-                        plugins: {
-                            legend: { labels: { color: '#ffffff', font: { family: 'Poppins' } } },
-                            tooltip: {
-                                callbacks: {
-                                    label: context => `${translations[currentLang]['profitLossStock']}: $${context.raw.toFixed(2)}`
-                                }
-                            }
-                        }
-                    }
-                });
-                console.log("Profit/loss chart rendered");
-              
-                const topPerformer = validStocks.reduce((max, stock) => {
-                    const purchasePrice = stock.totalInvested / stock.quantity;
-                    const profitPercent = purchasePrice > 0 ? ((stock.price - purchasePrice) / purchasePrice) * 100 : 0;
-                    return !max || profitPercent > max.profitPercent ? { symbol: stock.symbol, profitPercent } : max;
-                }, null);
-                const worstPerformer = validStocks.reduce((min, stock) => {
-                    const purchasePrice = stock.totalInvested / stock.quantity;
-                    const profitPercent = purchasePrice > 0 ? ((stock.price - purchasePrice) / purchasePrice) * 100 : 0;
-                    return !min || profitPercent < min.profitPercent ? { symbol: stock.symbol, profitPercent } : min;
-                }, null);
-                const largestPosition = validStocks.reduce((max, stock) => {
-                    return !max || stock.value > max.value ? stock : max;
-                }, null);
-              
-                document.getElementById('top-performer').innerText = topPerformer && topPerformer.profitPercent !== 0 ?
-                    `${topPerformer.symbol} (${topPerformer.profitPercent.toFixed(2)}%)` : '-';
-                document.getElementById('worst-performer').innerText = worstPerformer && worstPerformer.profitPercent !== 0 ?
-                    `${worstPerformer.symbol} (${worstPerformer.profitPercent.toFixed(2)}%)` : '-';
-                document.getElementById('largest-position').innerText = largestPosition ?
-                    `${largestPosition.symbol} ($${largestPosition.value.toFixed(2)})` : '-';
-                document.getElementById('position-count').innerText = validStocks.length;
-                document.getElementById('avg-position-size').innerText = validStocks.length > 0 ?
-                    `$${(totalPortfolioValue / validStocks.length).toFixed(2)}` : '$0.00';
-              
-                if (sparklineChart) sparklineChart.destroy();
-                const sparklineCtx = document.getElementById('sparkline-chart')?.getContext('2d');
-                if (!sparklineCtx) {
-                    console.error("Sparkline chart canvas not found");
-                    createFallbackCharts();
-                    return;
-                }
-                const sparklineData = portfolioValues.slice(-10).length > 0 ? portfolioValues.slice(-10) : [budget, budget];
-                const sparklineLabels = labels.slice(-10).length > 0 ? labels.slice(-10) : ['Start', 'End'];
-                sparklineChart = new Chart(sparklineCtx, {
-                    type: 'line',
-                    data: {
-                        labels: sparklineLabels,
-                        datasets: [{
-                            data: sparklineData,
-                            borderColor: '#007bff',
-                            backgroundColor: 'rgba(0, 123, 255, 0.2)',
-                            fill: true,
-                            tension: 0.4,
-                            pointRadius: 0
-                        }]
-                    },
-                    options: {
-                        responsive: true,
-                        maintainAspectRatio: false,
-                        scales: {
-                            x: { display: false },
-                            y: { display: false }
-                        },
-                        plugins: {
-                            legend: { display: false },
-                            tooltip: { enabled: false }
-                        }
-                    }
-                });
-                console.log("Sparkline chart rendered");
-            } catch (error) {
-                console.error("Portfolio analysis failed:", error);
-                createFallbackCharts();
-                displayErrorMessage(translations[document.documentElement.lang || 'en']['errorStockList']);
-            }
-        }
+
         document.querySelectorAll('.tab-button').forEach(button => {
             button.addEventListener('click', function() {
                 const tabName = this.getAttribute('data-tab');
@@ -1702,32 +2080,18 @@
                 const tabContent = document.getElementById(`${tabName}-tab`);
                 if (tabContent) {
                     tabContent.classList.add('active');
-                } else {
-                    console.error(`Tab content not found for: ${tabName}`);
                 }
             });
         });
-        function normalizePortfolioSymbols(originalPortfolio) {
-            const normalizedPortfolio = {};
-            for (const symbol in originalPortfolio) {
-                const upperSymbol = symbol.toUpperCase();
-                if (!normalizedPortfolio[upperSymbol]) {
-                    normalizedPortfolio[upperSymbol] = {
-                        quantity: 0,
-                        totalInvested: 0
-                    };
-                }
-                normalizedPortfolio[upperSymbol].quantity += originalPortfolio[symbol].quantity;
-                normalizedPortfolio[upperSymbol].totalInvested += originalPortfolio[symbol].totalInvested;
-            }
-            return normalizedPortfolio;
-        }
+
         function displaySuccessMessage(message) {
             displayMessage(message, 'success');
         }
+
         function displayErrorMessage(message) {
             displayMessage(message, 'error');
         }
+
         function displayMessage(message, type) {
             const container = document.getElementById('message-container');
             const div = document.createElement('div');
@@ -1739,44 +2103,72 @@
             container.appendChild(div);
             setTimeout(() => div.remove(), 4000);
         }
+
         function displayLoader(show) {
             const loader = document.getElementById('loader');
             loader.style.display = show ? 'block' : 'none';
         }
+
         function saveUserData() {
+            // FORCE normalization before saving
+            forcePortfolioNormalization();
+            
             const user = firebase.auth().currentUser;
             if (user) {
                 const userId = user.uid;
+                console.log(`💾 Saving ${Object.keys(portfolio).length} unique positions for user ${userId}`);
+                
                 const userRef = database.ref('users/' + userId);
                 userRef.set({
                     budget: budget,
                     portfolio: portfolio
                 }, (error) => {
                     if (error) {
-                        console.error("Error saving data:", error);
+                        console.error("❌ Save error:", error);
                         displayErrorMessage(translations[document.documentElement.lang || 'en']['errorSaveData']);
                     } else {
-                        console.log("Data saved successfully.");
+                        console.log(`✅ Data saved: ${Object.keys(portfolio).length} unique symbols`);
                     }
                 });
             }
         }
+
         window.changeLanguage = function(lang) {
             if (translations[lang]) {
                 applyTranslations(lang);
                 broadcastLanguageChange(lang);
             }
         };
+
+        // Initialize with forced clean state
         window.onload = async function() {
-            console.log("Window loaded, initializing...");
+            console.log("🚀 Initializing simulator with CLEAN portfolio state");
+            
+            // Start with empty normalized portfolio
+            portfolio = {};
+            forcePortfolioNormalization();
+            
             const storedLang = localStorage.getItem('preferredLanguage') || 'en';
-            console.log(`Initializing simulator.html with language: ${storedLang}`);
-            applyTranslations(storedLang);
+            console.log(`🌐 Initializing with language: ${storedLang}`);
+            
+            // Apply static translations first
+            applyStaticTranslations(storedLang);
             showWelcomePopup();
             createTradingViewWidget('AAPL');
             currentSymbol = 'AAPL';
+            
             await fetchStockList();
-            updatePortfolioAnalysis();
+            
+            // Set default and show price
+            document.getElementById('stock-symbol').value = 'AAPL';
+            await selectSymbol('AAPL');
+            
+            // Now update dynamic content
+            updateDynamicContent();
+            
+            // Final check
+            forcePortfolioNormalization();
+            console.log('🎯 Initialization complete - portfolio has', Object.keys(portfolio).length, 'positions');
         };
     </script>
 </body>
