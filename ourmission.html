@@ -74,6 +74,12 @@
             font-size: 24px;
             margin-bottom: 10px;
         }
+        .profile-role {
+            color: #a0a0a0;
+            font-size: 14px;
+            margin-top: -8px;
+            margin-bottom: 10px;
+        }
         p {
             font-size: 18px;
             line-height: 1.6;
@@ -231,6 +237,10 @@
             .profile-name {
                 font-size: 20px;
             }
+            .profile-role {
+                font-size: 13px;
+                margin-top: -6px;
+            }
             .contact-button {
                 width: 100%;
                 font-size: 18px;
@@ -263,12 +273,12 @@
             <div class="profile-card">
                 <img src="profile.png" alt="Albert L." class="profile-image">
                 <p class="profile-name">Albert L.</p>
-                
+                <p class="profile-role" data-translate-key="founder_role">Gründer</p>
             </div>
             <div class="profile-card">
                 <img src="profile.png" alt="Melchior B." class="profile-image">
                 <p class="profile-name">Melchior B.</p>
-               
+                <p class="profile-role" data-translate-key="founder_role">Gründer</p>
             </div>
         </div>
         <button class="contact-button" onclick="openContactForm()" data-translate-key="contact_button">Kontakt Aufnehmen</button>
@@ -293,12 +303,12 @@
     <div id="message-container"></div>
 
     <script>
-        // Initialize EmailJS with your public key
+        // Initialize EmailJS
         (function(){
             emailjs.init("Zw39o2PKqhQ9D2le6");
         })();
 
-        // Translation dictionary
+        // Translation dictionary - NOW INCLUDES FOUNDER ROLE
         const translations = {
             "de": {
                 "title": "Unsere Mission",
@@ -310,7 +320,8 @@
                 "message_label": "Nachricht",
                 "submit_button": "Nachricht Senden",
                 "success_message": "Nachricht erfolgreich gesendet!",
-                "error_message": "Fehler beim Senden der Nachricht. Bitte versuche es erneut."
+                "error_message": "Fehler beim Senden der Nachricht. Bitte versuche es erneut.",
+                "founder_role": "Gründer"
             },
             "en": {
                 "title": "Our Mission",
@@ -322,7 +333,8 @@
                 "message_label": "Message",
                 "submit_button": "Send Message",
                 "success_message": "Message sent successfully!",
-                "error_message": "Error sending message. Please try again."
+                "error_message": "Error sending message. Please try again.",
+                "founder_role": "Founder"
             },
             "fr": {
                 "title": "Notre Mission",
@@ -334,7 +346,8 @@
                 "message_label": "Message",
                 "submit_button": "Envoyer le Message",
                 "success_message": "Message envoyé avec succès !",
-                "error_message": "Erreur lors de l'envoi du message. Veuillez réessayer."
+                "error_message": "Erreur lors de l'envoi du message. Veuillez réessayer.",
+                "founder_role": "Fondateur"
             }
         };
 
@@ -368,7 +381,7 @@
             }
         });
 
-        // Listen for language change messages from parent (index.html)
+        // Listen for language change from parent
         window.addEventListener('message', (event) => {
             if (event.data.type === 'LANGUAGE_CHANGE') {
                 translatePage(event.data.language);
