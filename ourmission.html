@@ -4,9 +4,79 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title data-translate-key="title">JugendInvestiert - Unsere Mission</title>
+
+    <!-- ===== SEO BLOCK ===================================================
+         IMPORTANT: Replace https://www.YOUR-DOMAIN.de everywhere below with
+         your real domain, and adjust /mission.html to this page's real
+         filename/path on your server. Absolute URLs are required here.
+    ==================================================================== -->
+    <meta name="description" content="Lerne das Team hinter JugendInvestiert kennen: Albert Ludemann und Melchior B., die Gründer der Plattform für finanzielle Bildung junger Menschen in Deutschland.">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://www.YOUR-DOMAIN.de/mission.html">
+
+    <!-- Open Graph (used by Google, WhatsApp, LinkedIn, Facebook previews) -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="JugendInvestiert">
+    <meta property="og:title" content="JugendInvestiert – Unsere Mission und unser Team">
+    <meta property="og:description" content="Wir wollen finanzielle Bildung in Deutschland revolutionieren. Lerne unsere Gründer Albert Ludemann und Melchior B. kennen.">
+    <meta property="og:url" content="https://www.YOUR-DOMAIN.de/mission.html">
+    <meta property="og:image" content="https://www.YOUR-DOMAIN.de/albert-l-jugendinvestiert.jpg">
+    <meta property="og:image:alt" content="Albert Ludemann, Gründer von JugendInvestiert">
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- ===== END SEO BLOCK ===== -->
+
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
     <!-- EmailJS SDK -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+    <!-- Structured data: tells Google explicitly who is on this page and which
+         image belongs to which person. This is what makes the photo eligible
+         to show up for name searches. Replace YOUR-DOMAIN here too.
+         NOTE: full name is set as "Albert Ludemann" - if the spelling differs
+         (e.g. with an umlaut: Lüdemann), correct it here AND everywhere else. -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "AboutPage",
+      "name": "JugendInvestiert – Unsere Mission",
+      "url": "https://www.YOUR-DOMAIN.de/mission.html",
+      "inLanguage": "de",
+      "mainEntity": {
+        "@type": "Organization",
+        "name": "JugendInvestiert",
+        "url": "https://www.YOUR-DOMAIN.de/",
+        "founder": [
+          {
+            "@type": "Person",
+            "name": "Albert Ludemann",
+            "alternateName": "Albert L.",
+            "jobTitle": "Gründer",
+            "description": "Albert Ludemann ist ein deutscher Unternehmer und Gründer von JugendInvestiert, einer Plattform für finanzielle Bildung junger Menschen in Deutschland.",
+            "knowsAbout": ["Finanzielle Bildung", "Finanzen", "Investieren"],
+            "worksFor": {
+              "@type": "Organization",
+              "name": "JugendInvestiert"
+            },
+            "image": {
+              "@type": "ImageObject",
+              "url": "https://www.YOUR-DOMAIN.de/albert-l-jugendinvestiert.jpg",
+              "caption": "Albert Ludemann, Gründer von JugendInvestiert"
+            }
+          },
+          {
+            "@type": "Person",
+            "name": "Melchior B.",
+            "jobTitle": "Gründer",
+            "worksFor": {
+              "@type": "Organization",
+              "name": "JugendInvestiert"
+            }
+          }
+        ]
+      }
+    }
+    </script>
+
     <style>
         *, *::before, *::after {
             box-sizing: border-box;
@@ -79,6 +149,12 @@
             font-size: 14px;
             margin-top: -8px;
             margin-bottom: 10px;
+        }
+        .profile-bio {
+            color: #d0d0d0;
+            font-size: 13px;
+            line-height: 1.5;
+            margin: 0 0 5px;
         }
         p {
             font-size: 18px;
@@ -241,6 +317,9 @@
                 font-size: 13px;
                 margin-top: -6px;
             }
+            .profile-bio {
+                font-size: 12px;
+            }
             .contact-button {
                 width: 100%;
                 font-size: 18px;
@@ -271,12 +350,16 @@
         <h1>Team</h1>
         <div class="team-container">
             <div class="profile-card">
-                <img src="profile.png" alt="Albert L." class="profile-image">
-                <p class="profile-name">Albert L.</p>
+                <!-- Upload your photo (currently albertus5.jpg) RENAMED to
+                     albert-l-jugendinvestiert.jpg into the same folder as this
+                     HTML file (next to earth.gif / profile.png). -->
+                <img src="albert-l-jugendinvestiert.jpg" alt="Albert Ludemann, deutscher Unternehmer und Gründer von JugendInvestiert" title="Albert Ludemann – Gründer von JugendInvestiert" class="profile-image">
+                <p class="profile-name">Albert Ludemann</p>
                 <p class="profile-role" data-translate-key="founder_role">Gründer</p>
+                <p class="profile-bio" data-translate-key="albert_bio">Albert Ludemann ist ein deutscher Unternehmer und Gründer von JugendInvestiert, einer Plattform für finanzielle Bildung. Sein Ziel: jungen Menschen in Deutschland einen fairen Start in die finanzielle Unabhängigkeit zu ermöglichen.</p>
             </div>
             <div class="profile-card">
-                <img src="profile.png" alt="Melchior B." class="profile-image">
+                <img src="profile.png" alt="Melchior B., Gründer von JugendInvestiert" class="profile-image">
                 <p class="profile-name">Melchior B.</p>
                 <p class="profile-role" data-translate-key="founder_role">Gründer</p>
             </div>
@@ -321,7 +404,8 @@
                 "submit_button": "Nachricht Senden",
                 "success_message": "Nachricht erfolgreich gesendet!",
                 "error_message": "Fehler beim Senden der Nachricht. Bitte versuche es erneut.",
-                "founder_role": "Gründer"
+                "founder_role": "Gründer",
+                "albert_bio": "Albert Ludemann ist ein deutscher Unternehmer und Gründer von JugendInvestiert, einer Plattform für finanzielle Bildung. Sein Ziel: jungen Menschen in Deutschland einen fairen Start in die finanzielle Unabhängigkeit zu ermöglichen."
             },
             "en": {
                 "title": "Our Mission",
@@ -334,7 +418,8 @@
                 "submit_button": "Send Message",
                 "success_message": "Message sent successfully!",
                 "error_message": "Error sending message. Please try again.",
-                "founder_role": "Founder"
+                "founder_role": "Founder",
+                "albert_bio": "Albert Ludemann is a German entrepreneur and founder of JugendInvestiert, a platform for financial education. His goal: giving young people in Germany a fair start toward financial independence."
             },
             "fr": {
                 "title": "Notre Mission",
@@ -347,7 +432,8 @@
                 "submit_button": "Envoyer le Message",
                 "success_message": "Message envoyé avec succès !",
                 "error_message": "Erreur lors de l'envoi du message. Veuillez réessayer.",
-                "founder_role": "Fondateur"
+                "founder_role": "Fondateur",
+                "albert_bio": "Albert Ludemann est un entrepreneur allemand et fondateur de JugendInvestiert, une plateforme d'éducation financière. Son objectif : offrir aux jeunes en Allemagne un départ équitable vers l'indépendance financière."
             }
         };
 
